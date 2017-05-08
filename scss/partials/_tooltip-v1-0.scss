@@ -1,0 +1,147 @@
+@if $tooltip-v1-0 {
+	.tooltip {
+		$triangle-color: color('tooltip', 'background');
+		
+		position: relative;		
+
+		&:hover .tooltip__container {
+			display: block;
+		}
+
+		&:not(.tooltip--permanent) .tooltip__container:hover {	
+			display: none !important;
+
+			opacity: 0;
+
+			visibility: hidden;
+		}
+
+		@include modifier('permanent') {
+			&:hover .tooltip__container {
+				display: block !important;
+			}
+		}
+
+		@include element('container') {
+			@include position(absolute, null null null null); 
+
+			display: none;	
+
+			width: 100%;
+			min-width: 240px;
+
+			z-index: 20;
+			
+			@include modifier('top') {
+				@include transform(translateX(-50%));
+
+				bottom: 100%;
+				left: 50%;
+
+				padding: 0 0 $small-spacing;
+
+				.tooltip__content::before {
+					@include transform(translateX(-50%));
+					@include triangle($base-triangle-size, $triangle-color, down);
+
+					top: 100%;
+					left: 50%;				
+				}
+			}
+
+			@include modifier('right') {
+				@include transform(translateY(-50%));
+
+				top: 50%;
+				left: 100%;
+
+				padding: 0 0 0 $small-spacing;
+
+				.tooltip__content::before {
+					@include transform(translateY(-50%));
+					@include triangle($base-triangle-size, $triangle-color, left);
+
+					top: 50%;
+					right: 100%;					
+				}
+			}
+
+			@include modifier('bottom') {
+				@include transform(translateX(-50%));
+
+				top: 100%;
+				left: 50%;
+
+				padding: $small-spacing 0 0 0;
+
+				.tooltip__content::before {
+					@include transform(translateX(-50%));
+					@include triangle($base-triangle-size, $triangle-color, up);
+
+					bottom: 100%;
+					left: 50%;				
+				}
+			}
+
+			@include modifier('left') {
+				@include transform(translateY(-50%));
+
+				top: 50%;
+				right: 100%;
+
+				padding: 0 $small-spacing 0 0;
+
+				.tooltip__content::before {
+					@include transform(translateY(-50%));
+					@include triangle($base-triangle-size, $triangle-color, right);
+
+					top: 50%;
+					left: 100%;				
+				}
+			}
+
+			@include modifier('pre') {
+				width: auto;
+				min-width: inherit;
+
+				white-space: nowrap;
+			}
+
+			@include modifier('no-min-width') {
+				min-width: inherit;
+			}
+		}
+
+		@include element('content') {
+			position: relative;
+
+			padding: $small-spacing;
+
+			border-radius: $base-border-radius;
+
+			background-color: color('tooltip', 'background');
+
+			box-shadow: $base-box-shadow;
+
+			color: pick-visible-color(
+				color('tooltip', 'background'),
+				color('text-inverted', 'general'),
+				color('text', 'general')
+			);
+			font-size: $extra-small-font-size;
+			line-height: $small-line-height;
+
+			&::before {
+				@include position(absolute, null null null null);
+
+				content:'';
+			}
+		}
+
+		&:hover {
+			.tooltip__container {
+				display: block;
+			}
+		}
+	}
+} // End if

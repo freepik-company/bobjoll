@@ -1,0 +1,220 @@
+@if $tab-v1-0 {
+	.tabs {
+		$tabs-height: 480px;
+
+		overflow: hidden;
+
+		margin: 0 0 $base-spacing;
+
+		border: $base-border;
+		border-color: color('tabs-border', 'general');
+		border-radius: $base-border-radius;
+
+		@include element('navigation') {
+			display: none;
+
+			@include breakpoint('sm', 'min') {
+				@include size(20% $tabs-height);
+
+				position: relative;
+
+				display: inline;
+
+				float: left;
+
+				z-index: 1;
+			}
+		} // End navigation
+
+		@include element('container') {
+			display: block;
+
+			margin: 0 auto;
+
+			border-left: $base-border;
+			border-color: color('tabs-border', 'general');
+
+			white-space: wrap;
+
+			.tabs__link[data-tab]::before {
+				border: none;
+
+				@include triangle($base-triangle-size, color('tabs-triangle', 'general'), down);
+			}
+
+			@include breakpoint('sm', 'min') {
+				@include size(80% $tabs-height);
+
+				display: inline-block;
+
+				float: left;
+			}
+		} // End container
+
+		@include element('content') {
+			display: none;
+
+			padding: $base-spacing;
+
+			&:last-child {
+				margin: 0;
+			}
+
+			.scrollable {
+				margin: ($small-spacing * -1) ($base-spacing * -1);
+				padding: $small-spacing $base-spacing;
+			}
+
+			@include breakpoint('xs', 'min') {
+				border: 0;
+			}
+		} // End content
+
+		@include element('link') {
+			@include transition(
+				border $base-duration $base-timing
+				background $base-duration $base-timing
+			);
+
+			position: relative;
+
+			display: block;
+
+			width: 100%;
+
+			padding: $small-spacing $base-spacing;
+
+			border-bottom: $base-border;
+			border-color: color('tabs-border', 'general');
+
+			background-color: color('tabs', 'background');
+
+			color: color('tabs', 'general');
+			text-align: left;
+			text-decoration: none;
+
+			cursor: pointer;
+
+			&[data-tab]::before {
+				@include position(absolute, 50% $small-spacing null null);
+				@include transform(translateY(-50%));
+				@include transition($base-duration $base-timing);
+				@include triangle($base-triangle-size, color('tabs-triangle', 'general'), right);
+
+				opacity: 1;
+
+				content: ''; 
+			}
+
+			&[data-tab]::after {
+				@include position(absolute, 50% 0 null null);
+				@include transform(translate(100%, -50%));
+				@include transition($base-duration $base-timing);
+				@include triangle($base-icon-height, color('tabs-triangle-active', 'general'), left);
+
+				opacity: 0;
+
+				background-color: transparent;
+
+				content: ''; 
+			}
+
+			&.button--icon {
+				@include justify-content(flex-start !important);
+			}
+
+			@include modifier('heading') {
+				border-top: $base-border;
+				border-bottom: 0;				
+
+				&:first-child {
+					border-top: 0;
+				}
+
+				&.active {
+					border-bottom: $base-border;
+					border-color: color('tabs-border', 'general');
+
+					font-weight: bold;
+
+					& + .tabs__content {
+						display: block;
+					}
+				}
+
+				@include breakpoint('sm', 'min') {
+					display: none;
+				}
+			}
+
+			&:focus {
+				outline: none;
+			}
+
+			&.active,
+			&:hover {
+				width: calc(100% + 1px);
+
+				border-bottom-color: color('tabs-active', 'background');
+
+				background-color: color('tabs-active', 'background');
+
+				color: color('tabs-active', 'general');
+			}
+
+			&:hover {
+				border-bottom-color: color('tabs-active', 'background', 1, -5);
+
+				background-color: color('tabs-active', 'background', 1, -5);
+
+				&::before {
+					@include triangle($base-triangle-size, color('tabs-triangle-active', 'general'), right);
+				}
+			}
+
+			&.active {
+				&[data-tab]::before {
+					opacity: 0;
+				}
+
+				&[data-tab]::after {
+					@include transform(translate(0, -50%));
+
+					opacity: 1;
+				}
+			}
+
+			@include breakpoint('sm', 'min') {
+				position: relative;
+
+				&::after {
+					@include size($base-border-width 100%);
+
+					display: block;
+
+					background-color: color('tabs', 'background');
+
+					content: '';
+				}
+
+				&.active {
+					margin: 0 -1px 0 0;
+					
+					// border-right: 3px solid color('tabs-active', 'general');
+				}
+			}
+		} // End link 
+
+		@include modifier('auto-height') {
+			.tabs__navigation,
+			.tabs__container {
+				height: auto !important;
+			}
+		}
+
+		@include modifier('no-border') {
+			border: none;
+			border-radius: 0;
+		}
+	}
+}

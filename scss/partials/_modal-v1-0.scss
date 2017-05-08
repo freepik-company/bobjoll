@@ -1,0 +1,124 @@
+@if $modal-v1-0 {
+	.modal {
+		@include position(fixed, 0 null null 0);
+		@include transform(scale(0));
+		@include transition(
+			opacity ($base-duration / 2) ($base-duration / 2) $base-timing,
+			transform $base-duration ($base-duration) $base-timing
+		);
+
+		opacity: 0;
+
+		width: 100vw;
+		height: 0vh;
+
+		padding: 0 $base-spacing;
+
+		background-color: color('overlay', 'background', .75);
+
+		text-align: center;
+		line-height: 100vh;
+
+		z-index: 100;
+
+		&.scrollable {
+			overflow-y: scroll;			
+		}
+
+		&.active {
+			@include transform(scale(1));
+			@include transition(opacity $base-duration $base-timing);
+
+			opacity: 1;
+
+			height: 100vh;
+
+			& > * {
+				@include transform(scale(1));
+				@include transition($base-duration $base-duration $base-timing);
+
+				opacity: 1;				
+			}
+		}
+
+		& > * {			
+			@include transform(scale(.8));
+			@include transition($base-duration $base-timing);
+
+			opacity: 0;
+		}		
+
+		@include element('container') {
+			position: relative;
+
+			display: inline-block;
+
+			width: 100%;
+			max-width: map-get($breakpoints, 'lg');
+
+			margin: $large-spacing * 2 0;			
+		
+			vertical-align: middle;
+
+			text-align: left;
+			line-height: $base-line-height;
+
+			& > .content {
+				overflow: hidden;
+
+				padding: $base-spacing;
+
+				border-radius: $base-border-radius;
+
+				background-color: color('modal', 'background');
+			}
+		}
+
+		@include element('close') {
+			&:not(.nostyle) {
+				@include appearance(none);
+				@include position(absolute, 0 0 null null);
+				@include backface-visibility(hidden);
+
+				margin: $small-spacing;
+				padding: 0;
+
+				color: color('text-inverted', 'general');
+				font-size: $large-font-size * 2;
+				line-height: 1;				
+			}
+		}
+
+		@include modifier('full-screen') {
+			padding: 0;
+
+			line-height: inherit;
+
+			.modal__container {
+				width: 100%;
+				max-width: inherit;
+				height: 100%;
+
+				margin: 0;
+				padding: 0;
+
+				background-color: color('modal', 'background');
+
+				vertical-align: inherit;
+			}
+		}
+
+		@include element('trigger') {
+			cursor: pointer;
+		}
+
+		// Sizes
+		@each $size in $sizes {
+			@include modifier($size) {				
+				.modal__container {
+					max-width: map-get($breakpoints, $size);					
+				}
+			}
+		}
+	}
+} // End if

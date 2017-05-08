@@ -1,0 +1,95 @@
+%row-flexbox {
+    @include display(flex);
+    @include flex-wrap(wrap);
+    @include align-items(flex-start);
+}
+
+%col {
+    @if $grid-mode == 'float' {
+        float: left;
+
+        min-height: 1px;
+    }        
+
+    position: relative;
+
+    margin: 0 0 $grid-columns-spacing * 2;
+    padding: 0 $grid-columns-spacing;
+
+    box-sizing: border-box;
+}
+
+.row {
+    @if $grid-mode == 'flexbox' {
+        @extend %row-flexbox;
+
+        @include modifier('space-between') {
+            @include justify-content(space-between);
+        }
+
+        @include modifier('horizontal-center') {
+            @include justify-content(center);
+        }
+
+        @include modifier('vertical-center') {
+            @include align-items(center);
+        }
+    }    
+}
+
+.col {            
+    @include flex(1);
+    @extend %col;
+}
+
+@if $grid-v1-0 {    
+    .col--center {
+        @include align-self(center);
+    }
+
+    .col--top {
+        @include align-self(flex-start);
+    }
+
+    .col--bottom {
+        @include align-self(flex-end);
+    }
+
+    .col--stretch {
+        @include align-self(stretch);
+    }
+
+    .container-fluid {
+        @include clearfix;
+
+        padding: 0 $base-spacing;
+    }
+
+    .container {
+        @include clearfix;
+        
+        max-width: map-get($breakpoints, 'xl');
+
+        margin: 0 auto;
+        padding: 0 $base-spacing;
+
+        @include modifier('sm') {
+            max-width: map-get($breakpoints, 'lg');
+        }
+    }
+
+    .row {
+        @if $grid-mode == 'flexbox' {
+            @include grid($grid-columns);
+        } @else if $grid-mode == 'float' {
+            @include clearfix;
+        }        
+        
+        margin: 0 ($grid-columns-spacing * -1);
+    }
+
+    .col {            
+        @include flex(1);
+        @extend %col;
+    }
+} // End if

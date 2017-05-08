@@ -1,0 +1,60 @@
+@if $avatar-v1-0 {
+	.avatar {
+		@include display(flex);
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+
+		position: relative;
+
+		overflow: hidden;
+
+		display: block;
+
+		border-radius: $base-border-radius;
+
+		background-color: color('light', 'background');
+
+		z-index: 1;
+
+		@include modifier('circle') {
+			overflow: hidden;
+
+			border-radius: 50%;
+		}
+
+		@include modifier('empty') {
+			border: $base-border;
+			border-style: dashed;
+		}
+
+		@include modifier('xs') {
+			width: $avatar-width-xs;
+			height: $avatar-height-xs;
+		}
+
+		@include modifier('sm') {
+			width: $avatar-width-sm;
+			height: $avatar-height-sm;
+		}
+
+		@include modifier('md') {
+			width: $avatar-width-md;
+			height: $avatar-height-md;
+		}
+
+		@include modifier('lg') {
+			width: $avatar-width-lg;
+			height: $avatar-height-lg;
+		}
+
+		svg, img {
+			@include align-self(center);	
+			@include position(absolute, 50% null null 50%);
+			@include transform(translate(-50%, -50%));
+
+			display: block;
+
+			width: 100%;
+		}
+	}
+} // End if

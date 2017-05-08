@@ -1,0 +1,73 @@
+@if $notification-v1-0 {
+	$notifications-width: 480px;
+	$notification-max: 10;
+
+	.notifications {
+		@include position(fixed, 0 null null 0);
+
+		width: 100%;
+		height: 100%;
+
+		pointer-events: none;
+
+		z-index: 101;
+
+		@include element('top-left') {
+			@include position(fixed, 0 null null 0);
+		}
+
+		@include element('top-right') {
+			@include position(fixed, 0 0 null null);
+		}
+
+		@include element('bottom-left') {
+			@include position(fixed, null null 0 0);
+		}
+
+		@include element('bottom-right') {
+			@include position(fixed, null 0 0 null);
+		}
+	}
+
+	.notification {
+		@include transition($base-duration $base-timing);
+
+		position: relative;
+
+		max-width: $notifications-width;
+
+		margin: $small-spacing;
+
+		border-radius: $base-border-radius;
+
+		background-color: color('light', 'background');
+
+		box-shadow: $base-box-shadow;
+
+		pointer-events: all;
+
+		z-index: 1;
+
+		&.animation--fade-out {
+			@include animation(scale-out $base-duration $base-timing forwards);
+		}
+
+		p:last-child {
+			margin: 0;
+
+			font-size: $extra-small-font-size;
+		}
+
+		@include element('content') {
+			padding: $small-spacing;
+		}
+
+		@include element('close') {
+			@include position(absolute, 0 0 null null);
+			@include transform(translate(25%, -25%));
+			@include transition-duration(0ms);
+
+			margin: 0;
+		}
+	}
+}

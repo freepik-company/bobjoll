@@ -1,0 +1,21 @@
+@if $gr-auth-v1-0 {
+    .gr-auth {
+        @include modifier('logged') {
+            .gr-auth__disconnected {
+                display: none !important;
+            }
+
+            .gr-auth__connected {
+                display: inherit !important;
+            }
+        }
+
+        @include element('disconnected') {
+            display: inherit !important;
+        }
+
+        @include element('connected') {
+            display: none !important;
+        }
+    }
+}

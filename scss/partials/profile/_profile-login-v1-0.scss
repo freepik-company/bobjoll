@@ -1,0 +1,56 @@
+@if $profile-login-v1-0 {
+	.profile-login {
+		@include element('content') {
+			width: 100%;
+			max-width: 480px;
+
+			margin: 0 auto;
+			padding: $base-spacing $large-spacing;
+
+			border: $base-border;
+			border-radius: $base-border-radius;
+
+			background-color: color('light', 'background');
+
+			box-shadow: $base-box-shadow;
+			
+			line-height: $base-line-height;
+		}
+
+		@include modifier('fullscreen') {
+			height: 100vh;
+
+			line-height: 100vh;
+
+			.profile__container {
+				display: inline-block;
+
+				width: 100%;
+
+				padding: $base-spacing;
+
+				vertical-align: middle;
+				
+				text-align: center;
+				line-height: 0;
+			}
+		}
+
+		@include element('social') {
+			margin: $small-spacing ($large-spacing * -1) ($base-spacing * -1) ($large-spacing * -1);
+			padding: $base-spacing $large-spacing;
+
+			border-top: $base-border;
+
+			background-color: color('border', 'general', 1, -2.5);
+
+			.button {
+				margin-bottom: $small-spacing;
+
+				&:last-child {
+					margin: 0;
+				}
+			}
+		}
+	}
+}

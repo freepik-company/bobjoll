@@ -1,0 +1,99 @@
+@if $accordion-v1-0 {
+	.accordion {
+		@include clearfix;
+
+		position: relative;
+
+		overflow: hidden;
+
+		margin: 0 0 $base-spacing;
+		padding: 0;
+
+		line-height: $base-line-height;
+
+		@include modifier('tabs') {
+			@include breakpoint('xs', 'min') {
+				.accordion__container {
+					display: inline;
+				}
+
+				.accordion__content {
+					float: left;
+
+					border-top: 0;
+				}
+
+				.accordion__link {
+					&:not(.nostyle) {
+						display: inline-block;
+
+						border-top: 0;
+
+						&.active {
+							margin: 0 0 -1px;
+
+							border: $base-border;
+							border-bottom-color: #fff;
+							border-top-left-radius: $base-border-radius;
+							border-top-right-radius: $base-border-radius;
+						}						
+					}
+				}
+			}		
+		}
+
+		@include element('container') {
+			margin: 0;
+
+			list-style: none;
+		}
+
+		@include element('content') {
+			@include position(absolute, 100% null null 0);
+
+			width: 100%;
+
+			padding: $small-spacing $base-spacing;
+
+			p:last-child {
+				margin: 0;
+			}
+		}
+
+		@include element('link') {
+			&:not(.nostyle) {
+				display: block;
+
+				border-top: $base-border;
+
+				padding: $small-spacing $base-spacing;
+
+				text-decoration: none;
+
+				&.active {
+					border-bottom: 0;
+				}
+			}			
+
+			&.active + .accordion__content {
+				position: relative;
+
+				display: block;
+
+				border-top: $base-border;
+			}
+		}
+
+		@include modifier('inverted') {
+			color: color('text-inverted', 'general');
+
+			a:not(.button) {
+				color: color('link-inverted', 'general', .75);
+
+				&:hover, &.active {
+					color: color('link-inverted', 'general');					
+				}				
+			}
+		}
+	}
+} // End if

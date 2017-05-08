@@ -1,0 +1,13 @@
+@if $expandable-v1-0 {
+	.expandable {
+		@include element('more') {
+			border-color: color('button', 'general');
+
+			background-color: color('button', 'general');
+
+			color: color('text-inverted', 'general');
+
+			cursor: pointer;
+		}
+	}
+}

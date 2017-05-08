@@ -1,0 +1,75 @@
+@mixin grid($grid-columns: 12) {
+  $grid-media-width: map-values($breakpoints);
+  $grid-media-mode: map-keys($breakpoints);
+
+  @each $current-media-width in $grid-media-width {
+    $i: index($grid-media-width, $current-media-width);
+    $mode: nth($grid-media-mode, $i);
+
+    @include grid-media($current-media-width, $mode, $grid-columns);
+
+    @for $i from 1 through $grid-columns {
+      .col__#{$mode}--#{$i} {
+        @extend %col;
+      }
+    } 
+  }
+}
+
+@mixin grid-media($grid-media-width, $grid-media-mode, $grid-columns) {
+  @if $grid-media-mode == 'xs' {
+    @include grid-columns($grid-media-mode, $grid-columns);
+  }   
+  @media screen and (min-width: ($grid-media-width + 0px)) {
+    @include grid-columns($grid-media-mode, $grid-columns);
+  }
+}
+
+@mixin grid-columns($grid-media-mode, $grid-columns) {
+  $grid-mode-list: '' 'offset';
+  @each $current-grid-mode in $grid-mode-list {
+    @if $current-grid-mode != '' {
+      @for $i from $grid-columns through 0 {
+        .col__#{$grid-media-mode}--#{$current-grid-mode}-#{$i} {
+          @include grid-style($i, $current-grid-mode);
+        }
+      }
+    } @else {
+      @for $i from $grid-columns through 1 {
+        .col__#{$grid-media-mode}--#{$i} {
+          @include grid-style($i, $current-grid-mode);
+        }
+      }
+    }
+  }
+}
+
+@mixin grid-style($span: $columns of $container-columns, $mode: '') {
+  $columns: nth($span, 1);
+  $container-columns: $grid-columns;
+  $percentage: $columns / $container-columns * 100%;
+
+  @if $percentage == 0% and $mode != offset {
+    $percentage: auto;
+  }
+
+  @if $mode == '' {
+    @if $grid-mode == 'flexbox' {
+      width: $percentage; 
+    } @else if $grid-mode == 'float' {
+      width: $percentage;  
+    }  
+  }
+
+  @if $mode == pull and $grid--pull {
+    right: $percentage;
+  }
+
+  @if $mode == push and $grid--push {
+    left: $percentage;
+  }
+
+  @if $mode == offset and $grid--offset {
+    margin-left: $percentage;
+  }
+}

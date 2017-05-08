@@ -1,0 +1,51 @@
+@if $general-v1-0 {
+	body {
+		@include align-items(flex-start);
+		@include display(flex);
+		@include flex-direction(column);
+		@include flex-wrap(wrap);
+
+		overflow: auto;	
+
+		height: auto;
+		min-height: 100vh !important;
+
+		background-color: color('body', 'background');
+
+		color: color('text', 'general');
+		font-family: $base-font-family;
+		font-size: $base-font-size;
+		line-height: $base-line-height;
+
+		-webkit-font-smoothing: antialiased;
+
+		// IE 11
+		@media all and (-ms-high-contrast:none) {
+			display: block;
+		}
+
+		& > * {
+			width: 100%;
+		}
+	}
+
+	main {
+		@include flex(1);
+
+		overflow: hidden;
+
+		& > :last-child {
+			margin-bottom: 0;
+		}
+
+		section {
+			margin: 0 0 $large-spacing;
+		}
+	}
+
+	* {
+		box-sizing: border-box;
+		
+		outline: none; 
+	}
+} // End if

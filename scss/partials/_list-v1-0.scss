@@ -1,0 +1,96 @@
+@if $list-v1-0 { 
+	ul, ol, dl {
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		list-style: none;
+	}
+
+	.list { 
+		margin: 0 0 $base-spacing;
+		
+		li {
+			position: relative;
+
+			margin: 0 0 $small-spacing;
+			padding: 0 0 0 $small-spacing;
+
+			list-style: none;
+
+			&::before {
+				$bullet-width: 6px;
+				$bullet-height: $bullet-width;
+				$bullet-spacing: floor(floor($base-line-height * $base-font-size) - $bullet-height) / 2;
+
+				display: inline-block;
+
+				width: $bullet-width;
+				height: $bullet-height;
+
+				margin: ($bullet-spacing - 1) $extra-small-spacing $bullet-spacing ($small-spacing * -1);
+
+				border-radius: 50%;
+
+				background-color: color('text', 'general');
+
+				vertical-align: middle;
+
+				content: '';
+			}			
+		}
+
+		@each $size in $sizes {
+			@include modifier($size) {
+				li {
+					font-size: map-get($font-sizes, $size);
+					line-height: map-get($line-height-sizes, $size);					
+
+					&::before {
+						$bullet-width: 6px;
+						$bullet-height: $bullet-width;
+						$bullet-spacing: floor(floor(map-get($line-height-sizes, $size) * map-get($font-sizes, $size)) - $bullet-height) / 2;
+
+						margin: $bullet-spacing $extra-small-spacing 0 0;
+					}
+				}		
+			}
+		} // End sizes
+
+		@include modifier('horizontal') {
+			@include clearfix; 
+
+			display: block;
+
+			li {
+				float: left;
+
+				margin: 0 $small-spacing 0 0; 
+
+				&:last-child {
+					margin: 0;
+				}
+			}
+		}
+
+		@include modifier('comma-separated') {
+			li {
+				margin: 0;
+				padding: 0;
+			}
+
+			li:not(:last-child) a::after {
+				content: ',\00a0'
+			}
+		}
+
+		@include modifier('nospacing') {
+			margin: 0;
+
+			li {
+				margin: 0;
+			}
+		}
+	}
+} // End if

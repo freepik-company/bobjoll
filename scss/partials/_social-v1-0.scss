@@ -1,0 +1,30 @@
+@if $social-v1-0 {
+	.social {
+		@include modifier('nav') {
+			.button {
+				display: block;
+				
+				border-color: transparent;
+				border-radius: 0;					
+
+				box-shadow: none;
+			}
+
+			li:last-child {
+				border: none !important;
+			}
+
+			@include modifier('horizontal') {
+				li {
+					border-right: $base-border;
+				}
+			} // End horizontal
+
+			@include modifier('vertical') {
+				li {
+					border-bottom: $base-border;
+				}
+			} // End vertical
+		} // End nav
+	}
+}

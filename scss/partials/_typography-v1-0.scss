@@ -1,0 +1,188 @@
+@if $typography-v1-0 {
+	.copyright {
+		margin: 0;
+
+		font-size: $small-font-size;
+	}
+
+	.type {
+		display: inline-block;
+
+		margin: 0 0 $small-spacing;
+		padding: ($small-spacing / 10) 0;
+
+		border-bottom: $base-border;
+
+		font-size: $small-font-size;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	.date {
+		margin: 0;
+
+		color: rgba(color('text', 'general'), .5);		
+	}
+
+	.author {		
+		font-size: $small-font-size;
+	}
+
+	.read-more {
+		position: relative;
+
+		padding: 0 ($small-spacing / 2) 0 0;
+
+		color: color('link', 'general');
+		font-size: $small-font-size;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	.code {
+		padding: ($small-spacing / 2) $small-spacing;
+
+		border: $base-border;
+		border-radius: $base-border-radius;
+
+		font-size: $small-spacing;
+		font-style: normal;
+
+		white-space: nowrap;
+
+		@include modifier('line') {
+			overflow: hidden;
+			
+			display: block;	
+
+			padding: 0 $small-spacing;		
+
+			height: $small-element-height;
+
+			text-align: left;
+			text-overflow: ellipsis;						
+			line-height: $small-element-height;
+
+			code {
+				white-space: nowrap;
+			}
+		}
+	}
+
+	hr {
+		width: 3em;
+		height: $base-border-width;
+
+		margin: 0 0 $base-spacing;
+
+		border: none;
+
+		background-color: color('border', 'general');
+	}
+
+	#{$all-headings} {		
+		margin: $base-spacing 0;
+		padding: 0;
+
+		color: color('heading', 'general');
+		font-family: $title-font-family;
+		line-height: $title-line-height;
+
+		&.first {
+			margin-top: 0;
+		}
+	}
+
+	#{$all-headings} {
+		&.category {
+			padding-bottom: $extra-small-spacing;
+
+			border-bottom: $base-border;
+			border-color: color('text', 'general', .15);
+
+			text-align: center;
+		}
+	}
+
+	.heading-inverted {
+		color: color('heading-inverted', 'general');
+	}
+
+	h1 { @include font-size($h1-font-size); }
+	h2 { @include font-size($h2-font-size); }
+	h3 { @include font-size($h3-font-size); }
+	h4 { @include font-size($h4-font-size); }
+	h5 { @include font-size($h5-font-size); }
+	h6 { @include font-size($h6-font-size); }
+
+	.link {
+		color: color('link', 'general');
+
+		cursor: pointer;
+
+		text-decoration: none;
+
+		&:hover {
+			color: color('link', 'general', 1, 10);
+		}
+
+		&.active {
+			color: color('link', 'general', 1, 20);
+			font-weight: bold;			
+		}
+	}
+
+	.link-inverted {
+		&:not(.button) {
+			color: color('link-inverted', 'general', 1, 20);
+
+			&:hover {
+				color: color('link-inverted', 'general', 1, 10);
+
+				svg {
+					opacity: .8;
+				}
+			}
+
+			&.active {
+				color: color('link-inverted', 'general', 1);
+				font-weight: bold;
+
+				svg {
+					opacity: 1;
+				}
+			}
+
+			svg {
+				opacity: .4;
+			}			
+		}
+	}
+
+	.text, p {
+		margin: 0 0 $base-spacing;
+	}
+
+	.text--inverted {
+		color: color('text-inverted', 'general');
+	}
+
+	blockquote {
+		margin: 0;
+		padding-left: $base-spacing;
+		border-left: 4px solid color('border', 'general');
+	}
+
+	figcaption {
+		color: color('text', 'general', 1, -20);
+		font-size: $small-font-size;
+	}
+
+	svg {
+		pointer-events: none;
+	}
+
+	a {
+		@extend .link;
+	}
+} // End if

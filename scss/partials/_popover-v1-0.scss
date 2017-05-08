@@ -1,0 +1,275 @@
+@if $popover-v1-0 {
+	.popover { 
+		position: relative;
+
+		&::after {
+			@include transition(opacity $base-duration $base-timing);
+
+			opacity: 0;
+
+			z-index: 21;
+
+			content: ''; 
+		}
+
+		&.active {
+			overflow: visible;
+
+			&::after {
+				opacity: 1;
+			}
+
+			.popover__container {
+				opacity: 1; 
+
+				display: block;
+			}
+		}
+
+		.scrollable {
+			overflow-x: hidden;
+		}
+
+		@include element('container') {
+			@include transition(
+				opacity $base-duration $base-timing,
+				margin $base-duration $base-timing
+			);
+			@include position(absolute, null null null null);
+			
+			overflow: hidden;
+
+			opacity: 0;
+
+			display: none;
+
+			width: 80vw;
+			min-width: 320px;
+			max-width: map-get($breakpoints, 'sm');
+
+			padding: $base-spacing;
+
+			border-radius: $base-border-radius;
+
+			background-color: color('popover', 'background'); 
+
+			box-shadow: $base-box-shadow;
+
+			font-size: $small-font-size;
+
+			z-index: 20;
+		}
+
+		@include modifier('width-auto') {
+			.popover__container {
+				width: auto;
+				min-width: inherit;
+
+				white-space: nowrap;				
+			}
+		}
+
+		@include modifier('width-xs') {
+			.popover__container {
+				width: 320px;
+			}
+		}
+
+		@include modifier('full-size') {
+			position: static !important;
+
+			.popover__container {
+				@include position(absolute, 0 null null 0);
+
+				width: 100%;
+				min-width: inherit;
+				max-width: inherit;
+				height: 100%;
+
+				border-radius: 0;
+
+				.content {
+					@include position(absolute, 50% null null 50%);
+					@include transform(translate(-50%, -50%));
+
+					width: 100%;
+
+					padding: $small-spacing;
+				}		
+			}
+		}
+
+		@include modifier('top') {
+			@extend %popover-top;
+
+			.popover__container {
+				@include transform(translateX(-50%));
+
+				left: 50%;				
+			}
+		}
+
+		@include modifier('top-left') {
+			@extend %popover-top;
+
+			.popover__container {
+				left: 0;
+			}			
+		}
+
+		@include modifier('top-right') {
+			@extend %popover-top;
+
+			.popover__container {
+				right: 0;
+			}			
+		}
+
+		@include modifier('left') {
+			@extend %popover-left;
+		}
+
+		@include modifier('right') {
+			@extend %popover-right;
+		}
+
+		@include modifier('bottom') {
+			@extend %popover-bottom;
+
+			.popover__container {
+				@include transform(translateX(-50%));
+
+				left: 50%;
+			}
+		}
+
+		@include modifier('bottom-left') {
+			@extend %popover-bottom;
+
+			.popover__container {
+				left: 0;
+			}			
+		}
+
+		@include modifier('bottom-right') {
+			@extend %popover-bottom;
+
+			.popover__container {
+				right: 0;
+			}			
+		}
+
+		@include breakpoint('md', 'min') {
+			.scrollable {
+				max-height: 480px;
+			}
+		}
+	}
+	
+	%popover-top {
+		&.active {
+			&::after {
+				@include position(absolute, null null 100% 50%);
+				@include transform(translateX(-50%));
+				@include triangle($base-triangle-size, color('popover', 'background'), down);
+
+				margin: 0 0 ($small-spacing - ($base-triangle-size / 2));
+
+				content: '';			
+			}
+
+			.popover__container {
+				margin: 0 0 $small-spacing;
+			}			
+		}
+
+		.popover__container {
+			bottom: 100%;
+
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+
+	%popover-right {
+		&.active {
+			&::after {
+				@include position(absolute, 50% null null 100%);
+				@include transform(translateY(-50%));
+				@include triangle($base-triangle-size, color('popover', 'background'), left);
+
+				margin: 0 ($small-spacing - ($base-triangle-size / 2)) 0;
+
+				content: '';			
+			}
+
+			.popover__container {
+				margin: 0 $small-spacing 0 0;
+			}			
+		}
+
+		.popover__container {
+			@include transform(translateY(-50%));
+
+			top: 50%;
+			left: 100%;
+
+			margin-top: 0;
+			margin-bottom: 0;
+			margin-right: 0;
+		}
+	}
+
+	%popover-left {
+		&.active {
+			&::after {
+				@include position(absolute, 50% 100% null null);
+				@include transform(translateY(-50%));
+				@include triangle($base-triangle-size, color('popover', 'background'), right);
+
+				margin: 0 ($small-spacing - ($base-triangle-size / 2)) 0;
+
+				content: '';			
+			}
+
+			.popover__container {
+				margin: 0 $small-spacing 0 0;
+			}			
+		}
+
+		.popover__container {
+			@include transform(translateY(-50%));
+
+			top: 50%;
+			right: 100%;
+
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	%popover-bottom {
+		&.active {
+			&::after {
+				@include position(absolute, 100% null null 50%);
+				@include transform(translateX(-50%));
+				@include triangle($base-triangle-size, color('popover', 'background'), up);
+
+				margin: ($small-spacing - ($base-triangle-size / 2)) 0 0;
+
+				content: '';			
+			}
+
+			.popover__container {
+				margin: $small-spacing 0 0;	
+			}			
+		}
+
+		.popover__container {
+			top: 100%;
+
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+}

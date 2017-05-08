@@ -1,0 +1,52 @@
+@if $nav-v1-0 {
+	.nav {
+		@include modifier('horizontal') {
+			@include clearfix;
+
+			li {
+				display: block;
+
+				float: left;
+
+				min-height: $base-element-height;
+
+				margin: 0 $extra-small-spacing;
+
+				line-height: $base-element-height;
+			}
+		}
+
+		@include element('submenu') {
+			@include transition($base-duration $base-timing);
+
+			overflow: hidden;
+
+			height: 0;
+			max-height: 600px;
+
+			@include element('button') {
+				position: relative;
+
+				&::after {
+					@include position(absolute, 50% $small-spacing null null);
+					@include transform(translateY(-50%));
+					@include triangle($base-triangle-size, color('text', 'general'), right);
+
+					content: '';
+				}
+
+				&.show {
+					&::after {
+						border: 0;
+
+						@include triangle($base-triangle-size, color('text', 'general'), down);
+					}
+
+					& ~ .nav__submenu {
+						height: auto;
+					}
+				}
+			}
+		}
+	}
+}

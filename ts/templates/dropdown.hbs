@@ -1,0 +1,28 @@
+<div class="dropdown__container">
+	<p class="dropdown__button">
+	{{#each options}}
+		{{#if defaultSelected}}
+			{{innerText}}
+		{{/if}}
+	{{/each}}	
+	</p>
+	<div class="dropdown__select">		
+		{{#if dataset.search}}
+			<div class="dropdown__search">
+				<div class="group mg-none">
+					<input type="text" name="{{name}}-search" placeholder="Search">
+					<i class="icon icon--sm icon--mg-md icon--search"></i>
+				</div>
+			</div>
+		{{/if}}
+		<div class="scrollable">
+			<ul>
+			{{#each options}}
+				{{#if value}}
+				<li data-value="{{value}}">{{innerText}}</li>
+				{{/if}}
+			{{/each}}		
+			</ul>			
+		</div>
+	</div>
+</div>
