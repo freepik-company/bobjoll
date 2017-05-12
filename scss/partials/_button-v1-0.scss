@@ -319,7 +319,7 @@
 				}
 			}
 
-			span ~ .icon, .icon ~ span {
+			span ~ i, i ~ span {
 				margin-left: $extra-small-spacing !important;
 			}
 		}
