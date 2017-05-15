@@ -61,7 +61,7 @@ import * as Settings from 'Settings';
     EventListenerOn('body', '.scrollable', 'DOMMouseScroll mousewheel', function(this: HTMLElement, e: any) {
         e.stopPropagation();
 
-        if(!disable(this)) {
+        if(!disable(this) && this.scrollHeight > this.clientHeight) {
             var up = (e.type == 'DOMMouseScroll' ? (e.originalEvent).detail * -40 : (e.originalEvent).wheelDelta) > 0,
                 h = this.scrollHeight - this.clientHeight,
                 c = this.scrollTop / h;
