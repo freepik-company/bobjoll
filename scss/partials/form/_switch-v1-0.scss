@@ -1,56 +1,65 @@
 @if $form-v1-0 {
+	$switch-padding: $base-border-width;
+	$switch-shadow: 0 0 0 $base-border-width color('border', 'general');
+
 	.switch {
-		$large-switch-width: $large-input-ui-height + $small-spacing;
-		$large-switch-height: $large-input-ui-height;
-		$large-switch-spacing: (($base-input-height - $large-input-ui-height) / 2);
-		$switch-width: $base-input-ui-height + $small-spacing;
-		$switch-height: $base-input-ui-height;
-		$switch-spacing: (($base-input-height - $base-input-ui-height) / 2);
-		$small-switch-width: $small-input-ui-height + ($small-spacing / 2);
-		$small-switch-height: $small-input-ui-height;
-		$small-switch-spacing: (($base-input-height - $small-input-ui-height) / 2);
-		$switch-padding: 1px;
-		$switch-shadow: 0 0 0 $base-border-width color('border', 'general');
-
 		@extend %row-flexbox;
-
-		margin: 0 0 $small-spacing;
-		padding: 0;
+		@extend .row--vertical-center;
 
 		background-color: color('input', 'background');
 
 		cursor: pointer;
 
-		@include element('indicator') {
-			@include transition(all $base-duration $base-timing);
+		&:hover {
+			.switch__indicator::after {
+				background-color: color('border', 'general', 1, -5);
+			}
 
+			.switch__link {
+				color: color('text', 'general');
+			}
+		}	
+
+		.switch__indicator ~ .switch__link,
+		.switch__link ~ .switch__indicator {
+			margin: 0 0 0 $small-spacing;
+		}
+
+		input[type="checkbox"],
+		input[type="radio"] {
+			display: none;
+
+			&:checked ~ .switch__indicator {
+				background-color: color('link', 'general');
+
+				&::before {
+					@include transform(scale(0));
+				}
+
+				&::after {
+					background-color: color('input', 'background');
+
+					box-shadow: 0 0 0 $base-border-width color('border', 'general', 0);
+				}
+			}
+
+			&:checked ~ .switch__link {
+				color: color('text', 'general');
+			}
+		}
+
+		@include element('indicator') {
+			
 			position: relative;
 
 			display: block;
 
-			width: $switch-width;
-			height: $switch-height;
-
-			margin: 0 auto 0 0;
-			padding: 0 $small-spacing 0 0;
-
-			border-radius: $switch-height;
-
-			background: color('border', 'general');
-
-			line-height: $switch-height;
-
-			cursor: pointer;
+			background: color('border', 'general');			
 
 			&::before {
 				@include position(absolute, $switch-padding null null $switch-padding);
 				@include transform(scale(1));
 				@include transition(all $base-duration $base-timing);
-
-				width: $switch-width - ($switch-padding * 2);
-				height: $switch-height - ($switch-padding * 2);
-
-				border-radius: $switch-height - ($switch-padding * 2);
 
 				background-color: color('input', 'background');
 
@@ -60,13 +69,10 @@
 			}
 
 			&::after {
-				@include position(absolute, $switch-padding 0 0 $switch-padding);
+				@include position(absolute, 0 null null 0);
 				@include transition(all $base-duration $base-timing);
 
-				width: $switch-height - ($switch-padding * 2);
-				height: $switch-height - ($switch-padding * 2);
-
-				border-radius: $switch-height - ($switch-padding * 2);
+				margin: $switch-padding;
 
 				background-color: color('body', 'background');
 
@@ -84,115 +90,47 @@
 			color: color('text', 'general', .6);
 		}
 
-		@include modifier('right') {						
-			.switch__indicator {
-				@include order(10);
+		// Sizes
+		@each $size in $sizes {
+			@include modifier($size) {
+				$spacing: map-get($input-ui-sizes, $size) / 2;
+				$switch-width: map-get($input-ui-sizes, $size) + $spacing;
+				$switch-height: map-get($input-ui-sizes, $size);
+				$switch-spacing: ((map-get($input-sizes, $size) - map-get($input-ui-sizes, $size)) / 2);
+				$switch-font-size: map-get($font-sizes, $size);
 
-				margin: 0 0 0 auto;
-				padding: 0 0 0 $small-spacing;
-			}
-		}
+				.switch__indicator {
+					width: $switch-width;
+					height: $switch-height;
 
-		@include modifier('sm') {
-			padding: $extra-small-spacing 0 $extra-small-spacing ($small-switch-width + $extra-small-spacing);
+					border-radius: $switch-height;
 
-			font-size: $small-font-size;
+					line-height: $switch-height;
 
-			line-height: $small-switch-height;
+					&::before {
+						width: $switch-width - ($switch-padding * 2);
+						height: $switch-height - ($switch-padding * 2);
+ 
+						border-radius: $switch-height - ($switch-padding * 2);
+					}
 
-			.switch__indicator { 
-				top: $extra-small-spacing;
+					&::after {
+						width: $switch-height - ($switch-padding * 2);
+						height: $switch-height - ($switch-padding * 2);
 
-				width: $small-switch-width;
-				height: $small-switch-height;
-
-				&::before {
-					width: $small-switch-width - ($switch-padding * 2);
-					height: $small-switch-height - ($switch-padding * 2);
-
-					border-radius: $small-switch-height - ($switch-padding * 2);
+						border-radius: $switch-height - ($switch-padding * 2);
+					}
 				}
 
-				&::after {
-					width: $small-switch-height - ($switch-padding * 2);
-					height: $small-switch-height - ($switch-padding * 2);
-
-					border-radius: $small-switch-height - ($switch-padding * 2);
-				}
-			}
-
-			input[type="checkbox"]:checked + .switch__indicator::after {
-				left: ($small-switch-width - ($small-switch-height - ($switch-padding * 2))) - $switch-padding !important;
-			}
-		}
-
-		@include modifier('large') {	
-			padding: $large-switch-spacing 0 $large-switch-spacing ($large-switch-width + $small-spacing);
-
-			font-size: $large-font-size;
-
-			line-height: $large-switch-height;
-
-			.switch__indicator {
-				top: $large-switch-spacing;
-
-				width: $large-switch-width;
-				height: $large-switch-height;
-
-				&::before {
-					width: $large-switch-width - ($switch-padding * 2);
-					height: $large-switch-height - ($switch-padding * 2);
-
-					border-radius: $large-switch-height - ($switch-padding * 2);
+				.switch__link {
+					font-size: $switch-font-size;
 				}
 
-				&::after {
-					width: $large-switch-height - ($switch-padding * 2);
-					height: $large-switch-height - ($switch-padding * 2);
-
-					border-radius: $large-switch-height - ($switch-padding * 2);
-				}
-			}
-
-			input[type="checkbox"]:checked + .switch__indicator::after {
-				left: ($large-switch-width - ($large-switch-height - ($switch-padding * 2))) - $switch-padding !important;
-			}
-		}
-
-		&.radio__indicator {
-			border-radius: 50%;
-		}
-
-		&:hover {
-			.switch__indicator::after {
-				background-color: color('border', 'general', 1, -5);
-			}
-
-			.switch__link {
-				color: color('text', 'general');
-			}
-		}
-
-		input[type="checkbox"] {
-			display: none;
-
-			&:checked + .switch__indicator {
-				background-color: color('link', 'general', 1, 10);
-
-				&::before {
-					@include transform(scale(0));				
-				}
-
-				&::after {
-					left: ($switch-width - ($switch-height - ($switch-padding * 2))) - $switch-padding;
-
-					background-color: color('input', 'background');
-
-					box-shadow: 0 0 0 $base-border-width color('border', 'general', 0);
-				}
-
-				& ~ .switch__link {
-					color: color('text', 'general');
+				input[type="checkbox"],
+				input[type="radio"] {
+					&:checked ~ .switch__indicator::after {
+						left: ($switch-width - $switch-height);
+					}
 				}
 			}
 		}
