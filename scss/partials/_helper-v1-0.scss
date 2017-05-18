@@ -1,13 +1,7 @@
 @if $helper-v1-0 {
 	html {
 		// Colors
-		@include color-classes();
-
-		.disabled {
-			opacity: .65;
-
-			pointer-events: none;
-		}
+		@include color-classes();		
 
 		// Floating
 		.floatl { float: left; }
@@ -29,26 +23,11 @@
 		.alignr { text-align: right; }
 		.alignc { text-align: center; }
 
-		.font-xs { 
-			font-size: $extra-small-font-size; 
-			line-height: $extra-small-line-height; 
-		}
-		.font-sm { 
-			font-size: $small-font-size; 
-			line-height: $small-line-height; 
-		}
-		.font-md { 
-			font-size: $base-font-size; 
-			line-height: $base-line-height; 
-		}
-		.font-lg { 
-			font-size: $large-font-size; 
-			line-height: $base-line-height; 
-		}
-		.font-xl { 
-			font-size: $extra-large-font-size; 
-			line-height: $base-line-height; 
-		}
+		.font-xs { font-size: $extra-small-font-size; }
+		.font-sm { font-size: $small-font-size; }
+		.font-md { font-size: $base-font-size; }
+		.font-lg { font-size: $large-font-size; }
+		.font-xl { font-size: $extra-large-font-size; }
 
 		.resetcase { text-transform: initial; }
 		.lowercase { text-transform: lowercase; }
@@ -244,9 +223,46 @@
 			}
 		}
 
+		// Aspect ratio (name: width, height)
+		$aspect-ratios: (
+			'100': (100, 100),
+			'75': (100, 75),
+			'16-9': (16, 9)
+		);
+
+		.aspect-ratio {
+			&::before {
+				display: block;
+
+				width: 100%;
+
+				content: '';
+			}
+
+			@each $name, $map in $aspect-ratios {
+				@if (unitless(nth($map, 1)) and unitless(nth($map, 2))) {
+					$width: nth($map, 1);
+					$height: nth($map, 2);
+					$ratio: ($height / $width) * 100;
+
+					@include modifier($name) {
+						&::before {
+							padding: 0 0 $ratio + %;
+						}
+					}
+				}
+			}
+		}
+
 		// Other
 		.notransition {
 			@include transition(none !important);
-		}		
+		}
+
+		.disabled {
+			opacity: .65;
+
+			pointer-events: none;
+		}	
 	}
 } // End if
