@@ -1,23 +1,12 @@
 @if $form-v1-0 {	
-	$checkbox-spacing: ($base-input-height - map-get($input-ui-sizes, 'md')) / 2;
+	%spacing {
+		margin-left: $small-spacing;
+	}
 
 	.checkbox,
-	.radio {		
-		@include clearfix;
-
-		position: relative;
-
-		display: block;
-
-		margin: 0 0 $small-spacing;
-		padding: $checkbox-spacing 0 $checkbox-spacing ($base-input-ui-height + $small-spacing);
-
-		height: $base-input-ui-height;		
-
-		box-sizing: content-box;
-
-		color: color('text', 'general', 1);
-		line-height: $base-input-ui-height;
+	.radio {
+		@extend %row-flexbox;
+		@extend .row--vertical-center;
 
 		cursor: pointer;
 
@@ -25,8 +14,8 @@
 		input[type="radio"] {
 			display: none;
 
-			&:checked + .checkbox__indicator,
-			&:checked + .radio__indicator {
+			&:checked ~ .checkbox__indicator,
+			&:checked ~ .radio__indicator {
 				@include transition(
 					box-shadow $base-duration $base-timing
 					background-color $base-duration $base-timing
@@ -34,12 +23,7 @@
 
 				background-color: color('input', 'background');
 
-				box-shadow: inset 0 0 0 ($base-input-ui-height) color('green', 'state');
-
-				& + .checkbox__link,
-				& + .radio__link {
-					opacity: 1;
-				}
+				box-shadow: inset 0 0 0 ($base-input-ui-height) color('green', 'state');				
 
 				.icon {
 					@include transform(scale(1));
@@ -51,25 +35,14 @@
 					opacity: 1;
 				}
 			}
-		}
 
-		&:hover .checkbox__indicator,
-		&:hover .radio__indicator {
-			background-color: color('border', 'general', 1, -5);
-		}
-
-		&:hover .checkbox__link,
-		&:hover .radio__link {
-			opacity: 1;
+			&:checked ~ .checkbox__link,
+			&:checked ~ .checkbox__link {
+				opacity: 1;
+			}
 		}
 
 		@include element('indicator') {
-			@include position(absolute, $checkbox-spacing null null 0);
-			@include transition(
-				box-shadow $base-duration $base-duration $base-timing,
-				background-color $base-duration $base-timing
-			);
-
 			display: block;
 
 			width: $base-input-ui-height;
@@ -127,33 +100,11 @@
 			}
 		}
 
-		@include modifier('inline') {
-			display: inline-block;
-		}
-
-		@include modifier('right') {
-			padding: $checkbox-spacing ($base-input-ui-height + $small-spacing) $checkbox-spacing 0;
-
-			.checkbox__indicator,
-			.radio__indicator {
-				@include position(absolute, $checkbox-spacing 0 null auto);
-			}
-		}
-
+		// Sizes
 		@each $size in $sizes {		
 			@include modifier($size) {
-				$spacing: ($base-input-height - map-get($input-ui-sizes, $size)) / 2;
-
-				height: map-get($input-ui-sizes, $size);
-
-				padding: $spacing 0 $spacing ($small-input-ui-height + $small-spacing);
-
-				line-height: map-get($input-ui-sizes, $size);
-
 				.checkbox__indicator,
 				.radio__indicator {
-					top: $spacing;
-
 					width: map-get($input-ui-sizes, $size);
 					height: map-get($input-ui-sizes, $size);
 
@@ -161,23 +112,28 @@
 						width: map-get($input-ui-sizes, $size) * .8;
 						height: map-get($input-ui-sizes, $size) * .8;
 
-						margin: (map-get($input-ui-sizes, $size) - (map-get($input-ui-sizes, $size) * .8)) / 2;
-
 						font-size: map-get($input-ui-sizes, $size) * .8;
 						line-height: map-get($input-ui-sizes, $size) * .8;
 					}
-				}
-
-				&.checkbox--right,
-				&.radio--right {
-					padding: $spacing (map-get($input-ui-sizes, $size) + $small-spacing) $spacing 0;
 				}
 			}
 		} // End sizes
 	}
 
+	.checkbox {
+		.checkbox__indicator ~ .checkbox__link,
+		.checkbox__link ~ .checkbox__indicator {
+			@extend %spacing;
+		}
+	}
+
 	.radio {
-		@include element('indicator') {
+		.radio__indicator ~ .radio__link,
+		.radio__link ~ .radio__indicator {
+			@extend %spacing;
+		}
+
+		.radio__indicator {
 			border-radius: 50%;
 		}
 	}
