@@ -12,10 +12,10 @@
 		// Typography
 		.roman { font-style: normal }
 		.italic { font-style: italic; }
-		.light { font-weight: 200; }
+		.light { font-weight: 300; }
 		.regular { font-weight: 400; }
-		.semibold { font-weight: 500; }
-		.bold { font-weight: 600; }
+		.semibold { font-weight: 600; }
+		.bold { font-weight: 700; }
 		.ff--base { font-family: $base-font-family; }
 		.ff--title { font-family: $title-font-family; }
 
@@ -56,14 +56,14 @@
 		.invisible { visibility: hidden; }
 		.hide { display: none !important; }
 		.inline { display: inline; }
-		.inline--i { display: inline !important; }
+		.inline-i { display: inline !important; }
 		.block { display: block; }
-		.block--i { display: block !important; }
+		.block-i { display: block !important; }
 		.inline-block { display: inline-block; }
-		.inline-block--i { display: inline-block !important; }
+		.inline-block-i { display: inline-block !important; }
 		.overflow-hidden { overflow: hidden; }
 		.overflow-auto { overflow: auto; }
-		.overflow-visible { overflow: visible !important; }
+		.overflow-scroll { overflow: scroll !important; }
 		.overflow-ellipsis { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 		.scrollable { 
 			overflow-x: hidden;
@@ -158,6 +158,14 @@
 		.push-left-i { margin-right: auto !important; }
 		.push-right { margin-left: auto; }
 		.push-right-i { margin-left: auto !important; }
+		.push-center { 
+			margin-left: auto;
+			margin-right: auto;
+		 }
+		.push-center-i { 
+			margin-left: auto !important;
+			margin-right: auto !important;
+		 }
 		
 		.show-phone,
 		.show-phone-i,
@@ -227,7 +235,7 @@
 		$aspect-ratios: (
 			'100': (100, 100),
 			'75': (100, 75),
-			'16-9': (16, 9)
+			'16-9': (16, 9) 
 		);
 
 		.aspect-ratio {
