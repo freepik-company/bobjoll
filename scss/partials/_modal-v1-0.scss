@@ -89,6 +89,42 @@
 			}
 		}
 
+		@include element('close') {
+			@include modifier('absolute') {
+				@include position(absolute, null null null null);
+
+				z-index: 1;
+			}
+
+			@include modifier('top-left') {
+				@include transform(translate(-25%, -25%));
+
+				top: 0;
+				left: 0;
+			}
+
+			@include modifier('top-right') {
+				@include transform(translate(25%, -25%));
+
+				top: 0;
+				right: 0;
+			}
+
+			@include modifier('bottom-left') {
+				@include transform(translate(-25%, 25%));
+
+				top: 0;
+				left: 0;
+			}
+
+			@include modifier('bottom-right') {
+				@include transform(translate(25%, 25%));
+
+				top: 0;
+				right: 0;
+			}
+		}
+
 		@include modifier('full-screen') {
 			padding: 0;
 
