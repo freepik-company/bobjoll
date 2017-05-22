@@ -2,6 +2,8 @@
 	.popover { 
 		position: relative;
 
+		display: inline-block;
+
 		&::after {
 			@include transition(opacity $base-duration $base-timing);
 
