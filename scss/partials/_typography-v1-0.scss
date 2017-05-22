@@ -39,36 +39,6 @@
 		text-transform: uppercase;
 	}
 
-	.code {
-		padding: ($small-spacing / 2) $small-spacing;
-
-		border: $base-border;
-		border-radius: $base-border-radius;
-
-		font-size: $small-spacing;
-		font-style: normal;
-
-		white-space: nowrap;
-
-		@include modifier('line') {
-			overflow: hidden;
-			
-			display: block;	
-
-			padding: 0 $small-spacing;		
-
-			height: $small-element-height;
-
-			text-align: left;
-			text-overflow: ellipsis;						
-			line-height: $small-element-height;
-
-			code {
-				white-space: nowrap;
-			}
-		}
-	}
-
 	hr {
 		width: 3em;
 		height: $base-border-width;
