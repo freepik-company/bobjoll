@@ -1,3 +1,12 @@
+// Aspect ratio
+$aspect-ratios: (
+	'100': (100, 100),
+	'75': (100, 75),
+	'16-9': (16, 9),
+	'4-3': (4, 3)
+) !default;
+
+// Avatar
 $avatar-width-xs: 36px !default;
 $avatar-height-xs: $avatar-width-xs !default;
 $avatar-width-sm: 44px !default;
