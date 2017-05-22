@@ -2,7 +2,9 @@
 	.tooltip {
 		$triangle-color: color('tooltip', 'background');
 		
-		position: relative;		
+		position: relative;	
+
+		display: inline-block;	
 
 		&:hover .tooltip__container {
 			display: block;
