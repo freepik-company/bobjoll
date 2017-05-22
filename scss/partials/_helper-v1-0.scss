@@ -232,12 +232,6 @@
 		}
 
 		// Aspect ratio (name: width, height)
-		$aspect-ratios: (
-			'100': (100, 100),
-			'75': (100, 75),
-			'16-9': (16, 9) 
-		);
-
 		.aspect-ratio {
 			&::before {
 				display: block;
