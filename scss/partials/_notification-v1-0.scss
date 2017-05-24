@@ -20,12 +20,27 @@
 			@include position(fixed, 0 0 null null);
 		}
 
+		@include element('top-center') {
+			@include position(fixed, 0 null null 50%);
+			@include transform(translateX(-50%));
+		}
+
 		@include element('bottom-left') {
 			@include position(fixed, null null 0 0);
 		}
 
 		@include element('bottom-right') {
 			@include position(fixed, null 0 0 null);
+		}
+
+		@include element('bottom-center') {
+			@include position(fixed, null null 0 50%);
+			@include transform(translateX(-50%));
+		}
+
+		@include element('center') {
+			@include position(fixed, 50% null null 50%);
+			@include transform(translate(-50%, -50%));
 		}
 	}
 

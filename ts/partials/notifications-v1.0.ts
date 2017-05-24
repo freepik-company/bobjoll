@@ -1,8 +1,11 @@
 interface NotificationAnchor {
 	'top-left': HTMLElement | null,
 	'top-right': HTMLElement | null,
+	'top-center': HTMLElement | null,
 	'bottom-left': HTMLElement | null,
-	'bottom-right': HTMLElement | null
+	'bottom-right': HTMLElement | null,
+	'bottom-center': HTMLElement | null,
+	'center': HTMLElement | null
 }
 
 type NotificationPosition = keyof NotificationAnchor;
@@ -46,8 +49,11 @@ class Notifications {
 		this.anchor = {
 			'top-left': document.getElementById('notifications__top-left'),
 			'top-right': document.getElementById('notifications__top-right'),
+			'top-center': document.getElementById('notifications__top-center'),
 			'bottom-left': document.getElementById('notifications__bottom-left'),
-			'bottom-right': document.getElementById('notifications__bottom-right')
+			'bottom-right': document.getElementById('notifications__bottom-right'),
+			'bottom-center': document.getElementById('notifications__bottom-center'),
+			'center': document.getElementById('notifications__center')
 		};
 		this.storage = window.localStorage;
 	}
