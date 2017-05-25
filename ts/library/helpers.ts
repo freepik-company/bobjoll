@@ -8,17 +8,16 @@ export function EventListenerOn(parentSelector: string, childSelector: string, e
                     let target = (<Element>e.target);
 
                     if (target) {
-                        while (!target.matches(parentSelector)) {
+                        while (target && !target.matches(parentSelector)) {
                             if (target.matches(childSelector)) {
                                 callback.call(target, e);
 
                                 break;
                             }
-
                             target = (<Element>target.parentNode);
                         }
                     }
-                });               
+                });
             });
         });
     }
