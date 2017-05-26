@@ -1,3 +1,5 @@
+require('BobjollPath/templates/helpers.js');
+
 import { EventListenerOn, EventListenerOff } from 'Helpers';
 import 'BobjollPath/library/common';
 

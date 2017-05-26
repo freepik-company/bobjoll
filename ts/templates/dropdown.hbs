@@ -1,10 +1,10 @@
 <div class="dropdown__container">
 	<p class="dropdown__button">
-	{{#each options}}
-		{{#if defaultSelected}}
-			{{innerText}}
-		{{/if}}
-	{{/each}}	
+		{{#each options}}
+			{{#compare @key '==' @root.options.selectedIndex}}
+				{{innerText}}
+			{{/compare}}
+		{{/each}}
 	</p>
 	<div class="dropdown__select">		
 		{{#if dataset.search}}
