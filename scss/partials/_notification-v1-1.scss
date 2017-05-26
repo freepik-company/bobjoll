@@ -1,0 +1,95 @@
+@if $notification-v1-1 {
+    .notifications {
+        @include position(fixed, 0 null null 0);
+        
+        width: 100vw;
+        height: 100vh;
+
+        pointer-events: none;
+
+        z-index: 1000;
+
+        %notification-position {
+            @include position(absolute, null null null null);
+        }
+
+        @include element('top-left') {
+            @extend %notification-position;
+
+            top: 0;
+            left: 0;
+        }
+
+        @include element('top-right') {
+            @extend %notification-position;
+
+            top: 0;
+            right: 0;
+        }
+
+        @include element('top-center') {
+            @extend %notification-position;
+
+            @include transform(translateX(-50%));
+
+            top: 0;
+            left: 50%;
+        }
+
+         @include element('bottom-left') {
+            @extend %notification-position;
+
+            bottom: 0;
+            left: 0;
+        }
+
+        @include element('bottom-right') {
+            @extend %notification-position;
+
+            bottom: 0;
+            right: 0;
+        }
+
+        @include element('bottom-center') {
+            @extend %notification-position;
+
+            @include transform(translateX(-50%));
+
+            bottom: 0;
+            left: 50%;
+        }
+
+        @include element('center') {
+            @extend %notification-position;
+
+            @include transform(translate(-50%, -50%));
+
+            top: 50%;
+            left: 50%;
+        }
+    }
+
+    .notification {
+        position: relative;
+
+        opacity: 0;
+
+        max-width: map-get($breakpoints, 'sm');
+
+        margin: $base-spacing;
+        padding: $small-spacing $base-spacing;
+
+        border-radius: $base-border-radius;
+
+        background-color: color('notification', 'background');
+
+        box-shadow: $base-box-shadow;
+
+        pointer-events: all;
+
+        @include element('close') {
+            @include position(absolute, 0 0 null null);
+            @include transform(translate(50%, -50%));
+        }
+    }
+}
