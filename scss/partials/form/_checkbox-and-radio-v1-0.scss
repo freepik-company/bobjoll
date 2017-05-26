@@ -10,6 +10,8 @@
 
 		cursor: pointer;
 
+		padding: (($base-element-height - $base-input-ui-height) / 2) 0;
+
 		input[type="checkbox"],
 		input[type="radio"] {
 			display: none;
@@ -63,10 +65,10 @@
 
 				opacity: 0;
 
-				width: $base-input-ui-height * .8;
-				height: $base-input-ui-height * .8;
+				width: $base-input-ui-height;
+				height: $base-input-ui-height;
 
-				margin: ($base-input-ui-height - ($base-input-ui-height * .8)) / 2;
+				padding: (($base-input-ui-height - ($base-input-ui-height * .8)) / 2);
 				
 				color: color('icon-inverted', 'general');
 				fill: color('icon-inverted', 'general');
@@ -80,6 +82,10 @@
 			@include user-select(none);
 
 			display: inline;
+
+			height: $base-input-ui-height;
+
+			line-height: $base-input-ui-height;
 
 			opacity: .6;
 		}
@@ -102,19 +108,34 @@
 
 		// Sizes
 		@each $size in $sizes {		
+			$checkbox-width: map-get($input-ui-sizes, $size);
+			$checkbox-height: $checkbox-width;
+			$icon-size: $checkbox-width * .8;
+
 			@include modifier($size) {
+				padding: (($base-element-height - $checkbox-height) / 2) 0;
+
 				.checkbox__indicator,
 				.radio__indicator {
-					width: map-get($input-ui-sizes, $size);
-					height: map-get($input-ui-sizes, $size);
+					width: $checkbox-width;
+					height: $checkbox-height;				
 
 					.icon {
-						width: map-get($input-ui-sizes, $size) * .8;
-						height: map-get($input-ui-sizes, $size) * .8;
+						width: $checkbox-width;
+						height: $checkbox-height;
 
-						font-size: map-get($input-ui-sizes, $size) * .8;
-						line-height: map-get($input-ui-sizes, $size) * .8;
+						padding: ($checkbox-width - $icon-size) / 2;
+
+						font-size: $icon-size;
+						line-height: $icon-size;
 					}
+				}
+
+				.checkbox__link,
+				.radio__link {
+					height: $checkbox-height;
+
+					line-height: $checkbox-height;
 				}
 			}
 		} // End sizes
