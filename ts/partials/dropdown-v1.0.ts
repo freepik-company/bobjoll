@@ -1,3 +1,5 @@
+require('BobjollPath/templates/helpers.js');
+
 import { EventListenerOn, EventListenerOff } from 'Helpers';
 import 'BobjollPath/library/common';
 
@@ -79,9 +81,9 @@ import 'BobjollPath/library/common';
 						let value = element.dataset['value'];
 
 						if ((text && text.match(keyword)) || (value && value.match(keyword))) {
-							element.classList.add('hide');
-						} else {
 							element.classList.remove('hide');
+						} else {
+							element.classList.add('hide');
 						}
 					});
 				}
