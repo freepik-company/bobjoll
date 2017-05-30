@@ -1,6 +1,6 @@
 require('BobjollPath/templates/helpers.js');
 
-import { EventListenerOn, EventListenerOff } from 'Helpers';
+import { EventListenerOn } from 'Helpers';
 import 'BobjollPath/library/common';
 
 (function() {
@@ -40,7 +40,6 @@ import 'BobjollPath/library/common';
 
 		if (parents.length > 0) {
 			let dropdown = parents[0];
-			let eventChange: Event = new Event('change');
 			let select: HTMLSelectElement | null = dropdown.querySelector('select');
 			let button: Element | null = dropdown.querySelector('.dropdown__button');
 

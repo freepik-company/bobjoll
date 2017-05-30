@@ -17,9 +17,8 @@ interface ModalPrintSettings {
 	multilayer?: boolean;
 }
 
-import { EventListenerOn, EventListenerOff } from 'Helpers';
+import { EventListenerOn } from 'Helpers';
 import 'BobjollPath/library/common';
-import * as Settings from 'Settings';
 
 var extend = require('BobjollPath/library/extend');
 
@@ -31,8 +30,6 @@ class Modal {
 	modalsWrapper: HTMLElement;
 
 	constructor() {
-		let modal = this;
-
 		this.modalsActive = [];
 		this.modalsMultilayer = [];
 		this.modalsAddSettings = {
@@ -177,6 +174,4 @@ class Modal {
 	}
 }
 
-var modal = new Modal();
-
-export = modal;
+export var modal = new Modal();

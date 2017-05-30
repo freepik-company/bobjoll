@@ -1,4 +1,4 @@
-import { EventListenerOn, EventListenerOff } from 'Helpers';
+import { EventListenerOn } from 'Helpers';
 
 (function() {
 	EventListenerOn('body', '.trigger__button', 'click', function(this: HTMLElement, e: Event) {
