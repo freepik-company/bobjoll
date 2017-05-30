@@ -4,7 +4,7 @@
         
         width: 100vw;
         height: 100vh;
-
+        
         pointer-events: none;
 
         z-index: 1000;
@@ -24,7 +24,7 @@
             @extend %notification-position;
 
             top: 0;
-            right: 0;
+            right: 20px;
         }
 
         @include element('top-center') {
@@ -47,7 +47,7 @@
             @extend %notification-position;
 
             bottom: 0;
-            right: 0;
+            right: 20px;
         }
 
         @include element('bottom-center') {
@@ -67,7 +67,7 @@
             top: 50%;
             left: 50%;
         }
-    }
+    }    
 
     .notification {
         position: relative;
@@ -87,9 +87,110 @@
 
         pointer-events: all;
 
+        @include element('message') {
+            padding: $small-spacing $base-spacing;
+        }
+
+        @include element('state') {
+            @extend .col--stretch;
+
+            overflow: hidden;        
+
+            position: relative;
+
+            width: $base-element-height;
+
+            border-top-left-radius: $base-border-radius;
+            border-bottom-left-radius: $base-border-radius;
+
+            .icon {
+                @include position(absolute, 50% null null 50%);
+                @include transform(translate(-50%, -50%))
+            }
+        }
+
         @include element('close') {
             @include position(absolute, 0 0 null null);
             @include transform(translate(50%, -50%));
+        }
+
+        @include modifier('alert') {
+            padding: 0;
+
+            .notification__content {
+                @extend %row-flexbox;
+                @extend .row--vertical-center;
+            }
+
+            .notification__close {
+                margin: 0;
+            }
+        }
+
+        @include modifier('error') {
+            background-color: color('red', 'state');
+
+            color: color('red', 'state-text');
+
+            .notification__state {
+                background-color: color('red', 'state', 1, 5);
+
+                .icon {
+                    @extend .icon--cross;
+                }
+            }
+
+            .notification__close {
+                background-color: color('red', 'state', 1, 15);
+            }
+
+            .icon {
+                color: color('red', 'state-text');
+            }
+        }
+
+        @include modifier('warning') {
+            background-color: color('yellow', 'state');
+
+            color: color('yellow', 'state-text');
+
+            .notification__state {
+                background-color: color('yellow', 'state', 1, 5);
+
+                .icon {
+                    @extend .icon--exclamation;
+                }
+            }
+
+            .notification__close {
+                background-color: color('yellow', 'state', 1, 15);
+            }
+
+            .icon {
+                color: color('yellow', 'state-text');
+            }
+        }
+
+        @include modifier('success') {
+            background-color: color('green', 'state');
+
+            color: color('green', 'state-text');
+
+            .notification__state {
+                background-color: color('green', 'state', 1, 5);
+
+                .icon {
+                    @extend .icon--check;
+                }
+            }
+
+            .notification__close {
+                background-color: color('green', 'state', 1, 15);
+            }
+
+            .icon {
+                color: color('green', 'state-text');
+            }
         }
     }
 }
