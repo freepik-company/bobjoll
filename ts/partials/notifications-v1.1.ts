@@ -2,7 +2,7 @@ import * as Settings from 'Settings';
 
 const extend = require('BobjollPath/library/extend');
 
-interface Position {
+export interface Position {
     'bottom-center': HTMLElement;
     'bottom-left': HTMLElement;
     'bottom-right': HTMLElement;
@@ -12,7 +12,7 @@ interface Position {
     'top-right': HTMLElement;
 };
 
-interface DefaultSettings {
+export interface DefaultSettings {
     fixed: boolean;
     recurrent: boolean;
     timeout: number;
@@ -20,7 +20,7 @@ interface DefaultSettings {
     position: keyof Position;
 }
 
-interface Settings {
+export interface Settings {
     fixed?: boolean;
     recurrent?: boolean;
     timeout?: number;
@@ -28,14 +28,14 @@ interface Settings {
     position?: keyof Position;
 }
 
-interface InsertSettings extends Settings {
+export interface InsertSettings extends Settings {
     id?: string;
     class?: string;
     html: string;
 }
 
 export default class Notifications {
-    private settings: DefaultSettings;
+    public settings: DefaultSettings;
     private wrapper: HTMLElement;
     private active: any;
     private storage: Storage;
