@@ -32,7 +32,6 @@ export interface InsertSettings extends Settings {
     id?: string;
     class?: string;
     html: string;
-    customTemplate?: Function;
 }
 
 export default class Notifications {
@@ -100,7 +99,7 @@ export default class Notifications {
 
         options.id = options.id || `notifications_${new Date().getTime()}`;
 
-        anchor.insertAdjacentHTML(position, options.customTemplate(options) || options.template(options));
+        anchor.insertAdjacentHTML(position, options.template(options));
 
         this.show(options.id);
 
