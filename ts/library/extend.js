@@ -8,7 +8,15 @@ var extend = function ( defaults, options ) {
     }
     for (prop in options) {
         if (Object.prototype.hasOwnProperty.call(options, prop)) {
-            extended[prop] = options[prop];
+            if (Object.prototype.toString.call(extended[prop]) === '[object Object]') {
+                if (!extended[prop]) {
+                    extended[prop] = {};
+                }
+
+                extended[prop] = extend(extended[prop], options[prop]);
+            } else {
+                extended[prop] = options[prop];
+            }
         }
     }
     return extended;
