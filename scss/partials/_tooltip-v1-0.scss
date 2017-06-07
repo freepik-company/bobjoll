@@ -18,6 +18,16 @@
 			visibility: hidden;
 		}
 
+		&:not(.clicked) [data-content]::after {
+			display: inline-block;
+			content: attr(data-content);
+		}
+
+		&.clicked [data-content-action]::after {
+			display: inline-block;
+			content: attr(data-content-action);
+		}
+
 		@include modifier('permanent') {
 			&:hover .tooltip__container {
 				display: block !important;
@@ -32,7 +42,7 @@
 			width: 100%;
 			min-width: 240px;
 
-			z-index: 20;
+			z-index: 20;			
 			
 			@include modifier('top') {
 				@include transform(translateX(-50%));
