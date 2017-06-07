@@ -22,7 +22,7 @@ interface TouchEvent extends UIEvent {
     originalEvent: any;
 };
 
-import { EventListenerOn, EventListenerOff } from 'Helpers';
+import { EventListenerOn } from 'Helpers';
 import * as Settings from 'Settings';
 
 (function() {

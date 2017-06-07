@@ -306,7 +306,7 @@
 			}
 
 			@include modifier('left') {
-				.icon {
+				.icon:first-of-type {
 					@include position(absolute, 0 null null 0);
 
 					border-top-left-radius: $base-border-radius;
@@ -315,7 +315,7 @@
 			}
 
 			@include modifier('right') {
-				.icon {
+				.icon:first-of-type {
 					@include position(absolute, 0 0 null null);
 
 					border-top-right-radius: $base-border-radius;
@@ -361,7 +361,7 @@
 							white-space: nowrap;
 						}
 
-						.icon {
+						.icon:first-of-type {
 							background: color($social, 'social');
 						}
 					}

@@ -38,6 +38,28 @@
             }
         }
 
+        & > input {
+            @include flex(1 1 0);
+
+            margin: 0;
+
+            border: none;
+
+            &:focus ~ button {
+                @extend .button--main--hover.active;
+            }
+        }
+
+        & > button {
+            position: relative;
+
+            margin: 0;
+
+            border: none;
+
+            z-index: 11;
+        }
+
         @include element('context') {
             padding: 0 $small-spacing;
 

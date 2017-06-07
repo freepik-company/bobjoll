@@ -13,13 +13,13 @@ interface ModalHideSettings {
 interface ModalPrintSettings {
 	name: string;
 	html: string;
+	show?: boolean;
 	media?: string;
 	multilayer?: boolean;
 }
 
-import { EventListenerOn, EventListenerOff } from 'Helpers';
+import { EventListenerOn } from 'Helpers';
 import 'BobjollPath/library/common';
-import * as Settings from 'Settings';
 
 var extend = require('BobjollPath/library/extend');
 
@@ -31,8 +31,6 @@ class Modal {
 	modalsWrapper: HTMLElement;
 
 	constructor() {
-		let modal = this;
-
 		this.modalsActive = [];
 		this.modalsMultilayer = [];
 		this.modalsAddSettings = {
@@ -59,16 +57,16 @@ class Modal {
 
 	add(settings: ModalAddSettings) {
 		let config = extend(this.modalsAddSettings, settings);
-		let modal = document.getElementById(config.name);
+		let modal = document.getElementById(`modal-${config.name}`);
 
 		if (!modal) {
 			let template = require('BobjollPath/templates/modal.hbs');
 			
-			this.modalsWrapper.insertAdjacentHTML('afterbegin', template(config));
+			this.modalsWrapper.insertAdjacentHTML('beforeend', template(config));
 		}
 
-		if (config.multilayer && this.modalsMultilayer.indexOf(config.name) < 0) {
-			this.modalsMultilayer.push(config.name);
+		if (config.multilayer && this.modalsMultilayer.indexOf(`modal-${config.name}`) < 0) {
+			this.modalsMultilayer.push(`modal-${config.name}`);
 		}
 	}
 
@@ -121,9 +119,9 @@ class Modal {
 		}
 	}
 
-	print(settings: ModalPrintSettings) {
+	print(settings: ModalPrintSettings, show: boolean = true) {
 		let config = extend(this.modalsPrintSettings, settings);
-		let modal = document.getElementById(config.name);
+		let modal = document.getElementById(`modal-${config.name}`);
 
 		if (!modal) {
 			let addSettings: ModalAddSettings = {
@@ -137,7 +135,7 @@ class Modal {
 
 			this.add(addSettings);
 
-			modal = document.getElementById(config.name);
+			modal = document.getElementById(`modal-${config.name}`);
 		}
 
 		if (modal) {
@@ -147,7 +145,9 @@ class Modal {
 				modalContent.innerHTML = config.html;
 			}
 
-			this.show(config.name);
+			if (show) {
+				this.show(`modal-${config.name}`);
+			}			
 		}
 	}
 
@@ -177,6 +177,4 @@ class Modal {
 	}
 }
 
-var modal = new Modal();
-
-export = modal;
+export var modal = new Modal();

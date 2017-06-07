@@ -45,6 +45,10 @@
 
 			color: color('text', 'general', .4);
 		}
+
+		&.error {
+			border-color: color('red', 'state');
+		}
 	}
 
 	input,
@@ -124,7 +128,7 @@
 			}
 		}
 	}
-
+	
 	textarea {
 		padding: $small-spacing $base-spacing;
 

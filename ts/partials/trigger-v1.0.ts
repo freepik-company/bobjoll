@@ -1,4 +1,4 @@
-import { EventListenerOn, EventListenerOff } from 'Helpers';
+import { EventListenerOn } from 'Helpers';
 
 (function() {
 	EventListenerOn('body', '.trigger__button', 'click', function(this: HTMLElement, e: Event) {
@@ -8,23 +8,22 @@ import { EventListenerOn, EventListenerOff } from 'Helpers';
 
 		if (id) {
 			let trigger = document.getElementById(id);
+			let active = this.classList.contains('active');
 
-			if (trigger) {
-				let active = trigger.classList.contains('active');
+			closeTrigger(id);
 
-				closeTrigger(id);
-
-				if (!active) {
-					this.classList.add('active');
+			if (!active) {
+				if (trigger) {
 					trigger.classList.add('active');
+				}
 
-					document.body.dataset['trigger'] = id;
+				this.classList.add('active');
 
-					if (this.dataset['lockScroll']) {
-						console.log('lock');
-						document.body.classList.add('overflow-hidden');
-					}
-				}				
+				document.body.dataset['trigger'] = id;
+
+				if (this.dataset['lockScroll']) {
+					document.body.classList.add('overflow-hidden');
+				}
 			}
 		}
 	});
@@ -52,9 +51,10 @@ import { EventListenerOn, EventListenerOff } from 'Helpers';
 					let trigger = document.getElementById(id);
 
 					if (trigger) {
-						element.classList.remove('active');
 						trigger.classList.remove('active');
 					}
+
+					element.classList.remove('active');
 				}
 			});
 
