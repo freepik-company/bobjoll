@@ -60,6 +60,12 @@
             z-index: 11;
         }
 
+        @include modifier('inverted') {
+            background-color: color('light', 'background');
+
+            color: color('text', 'general');
+        }
+
         @include element('context') {
             padding: 0 $small-spacing;
 
