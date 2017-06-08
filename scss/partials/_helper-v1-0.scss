@@ -65,6 +65,7 @@
 		.overflow-auto { overflow: auto; }
 		.overflow-scroll { overflow: scroll !important; }
 		.overflow-ellipsis { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+		.overflow-visible { overflow: visible; }
 		.scrollable { 
 			overflow-x: hidden;
 			overflow-y: scroll;
