@@ -32,6 +32,7 @@ export interface InsertSettings extends Settings {
     id?: string;
     class?: string;
     html: string;
+    target?: string;
 }
 
 export default class Notifications {
@@ -87,7 +88,8 @@ export default class Notifications {
     public insert(settings: InsertSettings) {
         let options = extend(this.settings, settings);
         let anchor: Element = this.anchor(options.position);
-        let position: string = options.position.match(/top/) ? 'afterbegin' : 'beforeend';
+        let position: string = options.position.match(/top/) ? 'beforeend' : 'afterbegin';
+        let target = options.target ? document.querySelector(options.target) : null;
 
         if (!options.id && options.recurrent) {
             options.recurrent = false;
@@ -99,7 +101,66 @@ export default class Notifications {
 
         options.id = options.id || `notifications_${new Date().getTime()}`;
 
+        if (target) {
+            anchor = document.body;
+            position = 'beforeend';
+        }
+
         anchor.insertAdjacentHTML(position, options.template(options));
+
+        if (target) {            
+            let notification = document.getElementById(options.id);
+
+            if (notification) {
+                const notificationBounding = notification.getBoundingClientRect();
+                const notificationTriangle = (<HTMLElement>notification.querySelector('.notification__triangle'));
+                const targetBounding = target.getBoundingClientRect();
+
+                notification.classList.add('notification--absolute');
+
+                if (options.position.match(/top/)) {
+                    notification.style.bottom = `${(window.innerHeight - targetBounding.bottom - document.body.scrollTop) + targetBounding.height + parseFloat(Settings['small-spacing'])}px`;
+
+                    if (notificationTriangle) {
+                        notificationTriangle.style.top = '100%';
+                        notificationTriangle.style.left = '50%';
+                        notificationTriangle.style.transform = 'translateX(-50%)';
+                    }
+                }
+
+                if (options.position.match(/bottom/)) {
+                    notification.style.top = `${targetBounding.top + targetBounding.height + document.body.scrollTop + parseFloat(Settings['small-spacing'])}px`;
+
+                    if (notificationTriangle) {
+                        notificationTriangle.style.bottom = '100%';
+                        notificationTriangle.style.left = '50%';
+                        notificationTriangle.style.transform = 'translateX(-50%) rotate(180deg)';
+                    }    
+                }
+
+                if (options.position.match(/left/)) {
+                    notification.style.left = `${targetBounding.left}px`;
+
+                    if (notificationTriangle) {
+                        notificationTriangle.style.left = `${Settings['base-spacing']}`;
+                        notificationTriangle.style.right = "";
+                    } 
+                }
+
+                if (options.position.match(/right/)) {
+                    notification.style.right = `${window.innerWidth - targetBounding.right}px`;
+
+                    if (notificationTriangle) {
+                        notificationTriangle.style.left = "";
+                        notificationTriangle.style.right = `${Settings['base-spacing']}`;
+                    } 
+                }
+
+                if (options.position.match(/-center/)) {
+                    notification.style.left = `${targetBounding.left - (Math.abs(targetBounding.width - notificationBounding.width) / 2)}px`;
+                }
+            }
+        }
 
         this.show(options.id);
 

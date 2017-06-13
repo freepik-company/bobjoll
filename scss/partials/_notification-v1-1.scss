@@ -74,7 +74,8 @@
 
         opacity: 0;
 
-        max-width: map-get($breakpoints, 'sm');
+        width: 90vw;
+        max-width: 360px;
 
         margin: $base-spacing;
         padding: $small-spacing $base-spacing;
@@ -113,6 +114,26 @@
             @include position(absolute, 0 0 null null);
             @include transform(translate(50%, -50%));
         }
+
+        @include element('triangle') {
+            @include position(absolute, null null null null);
+
+            &::before {
+                @include triangle($base-triangle-size, color('light', 'background'), down);
+
+                display: block;
+
+                content: '';
+            }
+        }
+
+        @include modifier('absolute') {
+            @include position(absolute, null null null null);
+
+            margin: 0;
+
+            z-index: 99;
+        }        
 
         @include modifier('alert') {
             padding: 0;
