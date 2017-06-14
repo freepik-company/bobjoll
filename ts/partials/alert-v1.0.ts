@@ -1,7 +1,7 @@
 const extend = require('BobjollPath/library/extend');
 
-import {Position} from 'BobjollPath/partials/notifications-v1.1.ts';
-import Notification from 'BobjollPath/partials/notifications-v1.1.ts';
+import {Position} from 'BobjollPath/partials/notifications-v1.1';
+import Notification from 'BobjollPath/partials/notifications-v1.1';
 
 type AlertType = 'success' | 'warning' | 'error';
 
