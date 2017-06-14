@@ -2,10 +2,9 @@ interface Element {
 	parents(selector?: string): Element[];
 }
 
-Element.prototype.parents = function(this: any, selector?: string | undefined): any {
-	var elements = [];
-	var elem = this;
-	var ishaveselector = selector !== undefined;
+Element.prototype.parents = function(this: Element, selector?: string): Element[] {
+	var elements: Element[] = [];
+	var elem: Element | null = this;
 
 	if (elem && elem.parentElement) {
 		while ((elem = elem.parentElement) !== null) {
@@ -13,11 +12,11 @@ Element.prototype.parents = function(this: any, selector?: string | undefined): 
 				continue;
 			}
 	 
-			if (!ishaveselector || elem.matches(selector)) {
+			if (selector && elem.matches(selector)) {
 				elements.push(elem);
 			}
 		}
-	 
-		return elements; 		
 	}
+
+	return elements;
 };

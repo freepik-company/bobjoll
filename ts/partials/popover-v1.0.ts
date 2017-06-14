@@ -1,5 +1,5 @@
 import { EventListenerOn } from 'Helpers';
-import 'BobjollPath/library/common';
+import 'Common';
 import * as Settings from 'Settings';
 
 (function() {
@@ -64,7 +64,7 @@ import * as Settings from 'Settings';
 		let target: EventTarget = e.target;
 
 		if (target instanceof HTMLElement) {
-			let popover = (target.parents('.popover') as Element[]);
+			let popover = target.parents('.popover');
 
 			if (popover.length === 0 && active.length > 0) {
 				hide();
