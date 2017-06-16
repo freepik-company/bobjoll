@@ -90,94 +90,98 @@ export default class Notifications {
         let anchor: Element = this.anchor(options.position);
         let position: string = options.position.match(/top/) ? 'beforeend' : 'afterbegin';
         let target = options.target ? document.querySelector(options.target) : null;
+        let notification = document.getElementById(options.id);
 
-        if (!options.id && options.recurrent) {
-            options.recurrent = false;
+        if (!notification || !options.id) {
+            if (!options.id && options.recurrent) {
+                options.recurrent = false;
 
-            console.warn('You have to define a fixed ID for this notification in order for recurrent to work properly.');
-        }
+                console.warn('You have to define a fixed ID for this notification in order for recurrent to work properly.');
+            }
 
-        if (options.recurrent && this.storage.getItem(options.id)) return;
+            if (options.recurrent && this.storage.getItem(options.id)) return;
 
-        options.id = options.id || `notifications_${new Date().getTime()}`;
+            options.id = options.id || `notifications_${new Date().getTime()}`;
 
-        if (target) {
-            anchor = document.body;
-            position = 'beforeend';
-        }
+            if (target) {
+                anchor = document.body;
+                position = 'beforeend';
+            }
 
-        anchor.insertAdjacentHTML(position, options.template(options));
+            anchor.insertAdjacentHTML(position, options.template(options));
 
-        if (target) {            
-            let notification = document.getElementById(options.id);
+            if (target) {            
+                notification = document.getElementById(options.id);
 
-            if (notification) {
-                const notificationBounding = notification.getBoundingClientRect();
-                const notificationTriangle = (<HTMLElement>notification.querySelector('.notification__triangle'));
-                const targetBounding = target.getBoundingClientRect();
+                if (notification) {
+                    const notificationBounding = notification.getBoundingClientRect();
+                    const notificationTriangle = (<HTMLElement>notification.querySelector('.notification__triangle'));
+                    const targetBounding = target.getBoundingClientRect();
 
-                notification.classList.add('notification--absolute');
+                    notification.classList.add('notification--absolute');
 
-                if (options.position.match(/top/)) {
-                    notification.style.bottom = `${(window.innerHeight - targetBounding.bottom - document.body.scrollTop) + targetBounding.height + parseFloat(Settings['small-spacing'])}px`;
+                    if (options.position.match(/top/)) {
+                        notification.style.bottom = `${(window.innerHeight - targetBounding.bottom - document.body.scrollTop) + targetBounding.height + parseFloat(Settings['small-spacing'])}px`;
 
-                    if (notificationTriangle) {
-                        notificationTriangle.style.top = '100%';
-                        notificationTriangle.style.left = '50%';
-                        notificationTriangle.style.transform = 'translateX(-50%)';
+                        if (notificationTriangle) {
+                            notificationTriangle.style.top = '100%';
+                            notificationTriangle.style.left = '50%';
+                            notificationTriangle.style.transform = 'translateX(-50%)';
+                        }
+                    }
+
+                    if (options.position.match(/bottom/)) {
+                        notification.style.top = `${targetBounding.top + targetBounding.height + document.body.scrollTop + parseFloat(Settings['small-spacing'])}px`;
+
+                        if (notificationTriangle) {
+                            notificationTriangle.style.bottom = '100%';
+                            notificationTriangle.style.left = '50%';
+                            notificationTriangle.style.transform = 'translateX(-50%) rotate(180deg)';
+                        }    
+                    }
+
+                    if (options.position.match(/left/)) {
+                        notification.style.left = `${targetBounding.left}px`;
+
+                        if (notificationTriangle) {
+                            notificationTriangle.style.left = `${Settings['base-spacing']}`;
+                            notificationTriangle.style.right = "";
+                        } 
+                    }
+
+                    if (options.position.match(/right/)) {
+                        notification.style.right = `${window.innerWidth - targetBounding.right}px`;
+
+                        if (notificationTriangle) {
+                            notificationTriangle.style.left = "";
+                            notificationTriangle.style.right = `${Settings['base-spacing']}`;
+                        } 
+                    }
+
+                    if (options.position.match(/-center/)) {
+                        notification.style.left = `${targetBounding.left - (Math.abs(targetBounding.width - notificationBounding.width) / 2)}px`;
                     }
                 }
+            }
 
-                if (options.position.match(/bottom/)) {
-                    notification.style.top = `${targetBounding.top + targetBounding.height + document.body.scrollTop + parseFloat(Settings['small-spacing'])}px`;
+            this.show(options.id);
 
-                    if (notificationTriangle) {
-                        notificationTriangle.style.bottom = '100%';
-                        notificationTriangle.style.left = '50%';
-                        notificationTriangle.style.transform = 'translateX(-50%) rotate(180deg)';
-                    }    
-                }
+            if (!options.fixed) {
+                this.active[options.id] = {};
+                this.active[options.id].timeout = setTimeout(() => this.hide(options.id), options.timeout);
+            } else {
+                const notification = document.getElementById(options.id);
 
-                if (options.position.match(/left/)) {
-                    notification.style.left = `${targetBounding.left}px`;
+                if (notification) {
+                    const close = notification.querySelector('.notification__close');
 
-                    if (notificationTriangle) {
-                        notificationTriangle.style.left = `${Settings['base-spacing']}`;
-                        notificationTriangle.style.right = "";
-                    } 
-                }
-
-                if (options.position.match(/right/)) {
-                    notification.style.right = `${window.innerWidth - targetBounding.right}px`;
-
-                    if (notificationTriangle) {
-                        notificationTriangle.style.left = "";
-                        notificationTriangle.style.right = `${Settings['base-spacing']}`;
-                    } 
-                }
-
-                if (options.position.match(/-center/)) {
-                    notification.style.left = `${targetBounding.left - (Math.abs(targetBounding.width - notificationBounding.width) / 2)}px`;
+                    if (close) {
+                        close.addEventListener('click', () => this.hide(options.id));
+                    }
                 }
             }
         }
 
-        this.show(options.id);
-
-        if (!options.fixed) {
-            this.active[options.id] = {};
-            this.active[options.id].timeout = setTimeout(() => this.hide(options.id), options.timeout);
-        } else {
-            const notification = document.getElementById(options.id);
-
-            if (notification) {
-                const close = notification.querySelector('.notification__close');
-
-                if (close) {
-                    close.addEventListener('click', () => this.hide(options.id));
-                }
-            }
-        }
     }
 
     public hide(id: string) {
