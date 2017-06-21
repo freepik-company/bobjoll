@@ -62,7 +62,7 @@ import * as Settings from 'Settings';
         e.stopPropagation();
 
         if(!disable(this) && this.scrollHeight > this.clientHeight) {
-            var up = (e.type == 'DOMMouseScroll' ? (e.originalEvent).detail * -40 : (e.originalEvent).wheelDelta) > 0,
+            var up = (e.type == 'DOMMouseScroll' ? e.detail * -40 : e.wheelDelta) > 0,
                 h = this.scrollHeight - this.clientHeight,
                 c = this.scrollTop / h;
 
