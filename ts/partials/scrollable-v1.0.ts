@@ -85,7 +85,7 @@ import * as Settings from 'Settings';
     }
 
     function getTouchEvent(e: any) {
-        let event = (e.originalEvent);
+        let event = e;
 
         return event.targetTouches ? event.targetTouches[0] : event.changedTouches[0];
     }
