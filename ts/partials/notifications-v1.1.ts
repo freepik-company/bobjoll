@@ -182,6 +182,7 @@ export default class Notifications {
             }
         }
 
+        return options.id;
     }
 
     public hide(id: string) {
