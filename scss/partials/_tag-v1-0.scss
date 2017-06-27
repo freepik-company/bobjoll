@@ -87,7 +87,7 @@
 					height: map-get($button-sizes, $size);
 
 					font-size: map-get($font-sizes, $size);
-					line-height: map-get($button-sizes, $size) - ($base-border-width * 2);			
+					line-height: map-get($button-sizes, $size) - $base-border-width;			
 				}			
 			}
 		} // End sizes
