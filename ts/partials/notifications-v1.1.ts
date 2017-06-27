@@ -23,6 +23,7 @@ export interface DefaultSettings {
 export interface Settings {
     fixed?: boolean;
     recurrent?: boolean;
+    recurrentMax?: number;
     timeout?: number;
     template?: Function;
     position?: keyof Position;
@@ -119,6 +120,10 @@ export default class Notifications {
                     const targetBounding = target.getBoundingClientRect();
 
                     notification.classList.add('notification--absolute');
+                    
+                    if (options.recurrentMax) {
+                        notification.dataset.recurrentMax = options.recurrentMax;
+                    }
 
                     if (options.position.match(/top/)) {
                         notification.style.bottom = `${(window.innerHeight - targetBounding.bottom - document.body.scrollTop) + targetBounding.height + parseFloat(Settings['small-spacing'])}px`;
@@ -185,7 +190,7 @@ export default class Notifications {
         return options.id;
     }
 
-    public hide(id: string) {
+    public hide(id: string, hideRecurrent?: boolean) {
         const notification = document.getElementById(id);
 
         if (notification) {
@@ -195,9 +200,23 @@ export default class Notifications {
 
             if (recurrent) {
                 const userDisable = (<HTMLInputElement>notification.querySelector('.notification__disable input'));
+                const recurrentMax = notification.dataset.recurrentMax;
 
-                if (userDisable && userDisable.checked) {
+                if (userDisable && userDisable.checked || hideRecurrent) {
                     this.storage.setItem(id, 'false');
+                } else if (recurrentMax) {
+                    let count: string | number | null = this.storage.getItem(`${id}_count`);                    
+
+                    if (count) {
+                        count = parseFloat(count) + 1;          
+                    }
+
+                    this.storage.setItem(`${id}_count`, (count ? count : 1).toString());
+
+                    if (count && count >= parseFloat(recurrentMax)) {
+                        this.storage.removeItem(`${id}_count`);
+                        this.storage.setItem(id, 'false');
+                    }
                 }
             }
 
