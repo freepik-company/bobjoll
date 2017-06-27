@@ -15,7 +15,7 @@
 			display: inline;
 		}
 
-		a {
+		a:not(.button) {
 			padding: ($small-spacing / 2) $small-spacing;
 
 			border: $base-border;
