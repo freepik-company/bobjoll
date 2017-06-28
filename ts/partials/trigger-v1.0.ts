@@ -24,8 +24,10 @@ import { EventListenerOn } from 'Helpers';
 				if (this.dataset['lockScroll']) {
 					document.body.classList.add('overflow-hidden');
 				}
-			}
+			}			
 		}
+
+		this.dispatchEvent(new Event(`toggle`));
 	});
 
 	EventListenerOn('body', '.trigger__close', 'click', function(this: HTMLElement, e: Event) {
@@ -36,8 +38,10 @@ import { EventListenerOn } from 'Helpers';
 		if (parents && parents.length) {
 			let trigger = parents[0];
 
-			closeTrigger(trigger.id);
+			closeTrigger(trigger.id);			
 		}
+
+		this.dispatchEvent(new Event(`toggle`));
 	})
 
 	function closeTrigger(current?: string) {
