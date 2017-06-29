@@ -33,7 +33,8 @@ export interface InsertSettings extends Settings {
     id?: string;
     class?: string;
     html: string;
-    target?: string;
+    target?: string | Element;
+    position?: keyof Position;
 }
 
 export default class Notifications {
@@ -90,7 +91,7 @@ export default class Notifications {
         let options = extend(this.settings, settings);
         let anchor: Element = this.anchor(options.position);
         let position: string = options.position.match(/top/) ? 'beforeend' : 'afterbegin';
-        let target = options.target ? document.querySelector(options.target) : null;
+        let target = options.target ? ('string' === typeof options.target ? document.querySelector(options.target) : options.target) : null;
         let notification = document.getElementById(options.id);
 
         if (!notification || !options.id) {
