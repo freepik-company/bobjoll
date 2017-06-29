@@ -27,6 +27,16 @@ export class ClientStorage
         return !!this.backend;
     }
 
+    removeItem(namespace: string, key: string) {
+        const k = namespace + '/' + key;
+        if (this.backend) {
+            this.backend.removeItem(k);
+        }
+        else {
+            this.dummy[k];
+        }
+    }
+
     getItem(namespace: string, key: string): string | null {
         const k = namespace + '/' + key;
         return this.backend ? this.backend.getItem(k) : this.dummy[k];
@@ -40,6 +50,10 @@ export class ClientStorage
         else {
             this.dummy[k] = value;
         }
+    }
+
+    remove(namespace: string, key: string): any | null {
+        this.removeItem(namespace, key);
     }
 
     get(namespace: string, key: string): any | null {
