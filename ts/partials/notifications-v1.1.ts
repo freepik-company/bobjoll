@@ -1,5 +1,18 @@
 import * as Settings from 'Settings';
+import {localStorage as storage} from 'BobjollPath/library/storage';
 
+declare module "BobjollPath/library/storage" {
+    interface ClientStorage {
+        get(namespace: 'notification-visibility', key: string): boolean;
+        set(namespace: 'notification-visibility', key: string, value: boolean): void;
+
+        get(namespace: 'notification-count', key: string): number;
+        set(namespace: 'notification-count', key: string, value: boolean): void;
+    }
+}
+
+const STORAGE_VISIBILITY_NS = 'notification-visibility';
+const STORAGE_COUNT_NS = 'notification-count';
 const extend = require('BobjollPath/library/extend');
 
 export interface Position {
@@ -40,7 +53,6 @@ export default class Notifications {
     public settings: DefaultSettings;
     private wrapper: HTMLElement;
     private active: any;
-    private storage: Storage;
 
     constructor(settings?: Settings) {
         const defaultSettings: DefaultSettings = {
@@ -53,7 +65,6 @@ export default class Notifications {
 
         this.setup();
         this.active = {};
-        this.storage = window.localStorage;
         this.settings = extend(defaultSettings, settings);
     }
 
@@ -100,7 +111,7 @@ export default class Notifications {
                 console.warn('You have to define a fixed ID for this notification in order for recurrent to work properly.');
             }
 
-            if (options.recurrent && this.storage.getItem(options.id)) return;
+            if (options.recurrent && storage.get(STORAGE_VISIBILITY_NS, options.id) === false) return;
 
             options.id = options.id || `notifications_${new Date().getTime()}`;
 
@@ -203,19 +214,19 @@ export default class Notifications {
                 const recurrentMax = notification.dataset.recurrentMax;
 
                 if (userDisable && userDisable.checked || hideRecurrent) {
-                    this.storage.setItem(id, 'false');
+                    storage.set(STORAGE_VISIBILITY_NS, id, false);
                 } else if (recurrentMax) {
-                    let count: string | number | null = this.storage.getItem(`${id}_count`);                    
+                    let count: number = storage.get(STORAGE_COUNT_NS, `${id}_count`);                    
 
                     if (count) {
-                        count = parseFloat(count) + 1;          
+                        count = count++;          
                     }
 
-                    this.storage.setItem(`${id}_count`, (count ? count : 1).toString());
+                    storage.set(STORAGE_COUNT_NS, `${id}_count`, count ? count : 1);
 
                     if (count && count >= parseFloat(recurrentMax)) {
-                        this.storage.removeItem(`${id}_count`);
-                        this.storage.setItem(id, 'false');
+                        storage.remove(STORAGE_COUNT_NS, `${id}_count`);
+                        storage.set(STORAGE_VISIBILITY_NS, id, false);
                     }
                 }
             }
