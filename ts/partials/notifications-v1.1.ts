@@ -16,6 +16,7 @@ const STORAGE_COUNT_NS = 'notification-count';
 const extend = require('BobjollPath/library/extend');
 
 export interface Position {
+    'static': string;
     'bottom-center': HTMLElement;
     'bottom-left': HTMLElement;
     'bottom-right': HTMLElement;
@@ -104,6 +105,7 @@ export default class Notifications {
         let position: string = options.position.match(/top/) ? 'beforeend' : 'afterbegin';
         let target = options.target ? ('string' === typeof options.target ? document.querySelector(options.target) : options.target) : null;
         let notification = document.getElementById(options.id);
+        let staticNotification = 'static' === options.position;
 
         if (!notification || !options.id) {
             if (!options.id && options.recurrent) {
@@ -117,16 +119,22 @@ export default class Notifications {
             options.id = options.id || `notifications_${new Date().getTime()}`;
 
             if (target) {
-                anchor = document.body;
-                position = 'beforeend';
+                anchor = staticNotification ? target : document.body;
+                position = staticNotification ? 'afterend' : 'beforeend';
             }
+
+            if (staticNotification) {
+                options.class += ' notification--static';
+            }
+
+            console.log(options.target, options.position);
 
             anchor.insertAdjacentHTML(position, options.template(options));
 
             if (target) {            
                 notification = document.getElementById(options.id);
 
-                if (notification) {
+                if (notification && 'static' !== options.position) {
                     const notificationBounding = notification.getBoundingClientRect();
                     const notificationTriangle = (<HTMLElement>notification.querySelector('.notification__triangle'));
                     const targetBounding = target.getBoundingClientRect();

@@ -89,6 +89,8 @@
         pointer-events: all;
 
         @include element('message') {
+            @include flex(1);
+
             padding: $small-spacing $base-spacing;
         }
 
@@ -125,6 +127,13 @@
 
                 content: '';
             }
+        }
+
+        @include modifier('static') {
+            width: 100%;
+            max-width: inherit;
+
+            margin: 0 0 $base-spacing;
         }
 
         @include modifier('absolute') {
