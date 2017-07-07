@@ -39,6 +39,7 @@
 		}
 
 		@include modifier('loading') {
+			@extend .button--flat;
 			@extend .button--gray;
 			@extend .disabled;
 
