@@ -1,5 +1,5 @@
-import { qq, q, qi } from 'dom.q';
-import { KEvent, KEventTarget } from 'library/event';
+import { qq, q, qi } from './dom.q';
+import { KEvent, KEventTarget } from './event';
 
 export interface GrUser {
     id: number;
