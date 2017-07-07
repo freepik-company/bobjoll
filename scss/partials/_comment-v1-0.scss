@@ -1,8 +1,18 @@
 @if $comment-v1-0 {
 	.comments {
 		.comment {
+			margin: 0 0 $base-spacing;
+
+			@include element('author') {
+				margin: 0 0 $extra-small-spacing;
+			}
+
 			@include element('content') {
 				@include flex(1);
+			}
+
+			@include element('message') {
+				font-size: $small-font-size;
 			}
 
 			@include element('image') {
@@ -13,25 +23,23 @@
 				font-weight: bold;
 			}
 
+			ul {
+				margin: $base-spacing 0 0;
+				padding: 0 0 0 ($avatar-width-sm + $small-spacing);
+
+				border-left: $base-border;
+				border-width: $base-border-width * 2;
+
+				.comment__reply {
+					display: none !important;
+				}
+			}
+
 			p {
 				margin: 0 0 $extra-small-spacing;
 				padding: $extra-small-spacing 0 0 0;
 
 				font-size: $small-font-size;
-			}
-		}
-
-		ul {
-			ul {
-				margin: $base-spacing 0 0 0;
-				padding: 0 0 0 ($avatar-width-sm + $small-spacing);
-
-				border-left: $base-border;
-				border-width: $base-border-width * 2;
-			}
-
-			li {
-				margin: 0 0 $base-spacing;
 			}
 		}
 	}
