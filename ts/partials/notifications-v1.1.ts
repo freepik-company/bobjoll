@@ -102,7 +102,7 @@ export default class Notifications {
     public insert(settings: InsertSettings) {
         let options = extend(this.settings, settings);
         let anchor: Element = this.anchor(options.position);
-        let position: string = options.position.match(/top/) ? 'beforeend' : 'afterbegin';
+        let position: any = options.position.match(/top/) ? 'beforeend' : 'afterbegin';
         let target = options.target ? ('string' === typeof options.target ? document.querySelector(options.target) : options.target) : null;
         let notification = document.getElementById(options.id);
         let staticNotification = 'static' === options.position;
