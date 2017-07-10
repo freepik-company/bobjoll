@@ -5,17 +5,24 @@ class Loader {
     readonly total = 100;
 
     constructor() {
-		let loader: HTMLElement | null = document.getElementById('page-loader');
-
-		if (!loader) {
-			loader = document.createElement('div');
+		const loader: HTMLElement | null = document.getElementById('page-loader');
+        if (loader) {
+            this.loader = loader;
+        }
+        else {
+			const loader = document.createElement('div');
 			loader.id = 'page-loader';
 			loader.classList.add('page-loader');				
+            this.loader = loader;
+        }
 
-			document.body.insertBefore(loader, document.body.firstChild);
-		}
+        if (document.body) {
+            document.body.insertBefore(this.loader, document.body.firstChild);
+        }
+        else {
+            document.addEventListener('DOMContentLoaded', () => document.body.insertBefore(this.loader, document.body.firstChild));
+        }
 
-		this.loader = loader;		
 		this.reset();
     }
 
@@ -47,7 +54,7 @@ class Loader {
         let ticks = 0;
         this.reset();
         this.interval = window.setInterval(() => {
-            if (ticks++ < 4) return;
+            if (ticks++ < 3) return;
             loader.position += (loader.total - loader.position) / 16;
         }, 100);
     }
