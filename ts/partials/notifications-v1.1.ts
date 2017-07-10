@@ -1,8 +1,22 @@
 import * as Settings from 'Settings';
+import {localStorage as storage} from 'BobjollPath/library/storage';
 
+declare module "BobjollPath/library/storage" {
+    interface ClientStorage {
+        get(namespace: 'notification-visibility', key: string): boolean;
+        set(namespace: 'notification-visibility', key: string, value: boolean): void;
+
+        get(namespace: 'notification-count', key: string): number;
+        set(namespace: 'notification-count', key: string, value: boolean): void;
+    }
+}
+
+const STORAGE_VISIBILITY_NS = 'notification-visibility';
+const STORAGE_COUNT_NS = 'notification-count';
 const extend = require('BobjollPath/library/extend');
 
 export interface Position {
+    'static': string;
     'bottom-center': HTMLElement;
     'bottom-left': HTMLElement;
     'bottom-right': HTMLElement;
@@ -23,6 +37,7 @@ export interface DefaultSettings {
 export interface Settings {
     fixed?: boolean;
     recurrent?: boolean;
+    recurrentMax?: number;
     timeout?: number;
     template?: Function;
     position?: keyof Position;
@@ -32,14 +47,14 @@ export interface InsertSettings extends Settings {
     id?: string;
     class?: string;
     html: string;
-    target?: string;
+    target?: string | Element;
+    position?: keyof Position;
 }
 
 export default class Notifications {
     public settings: DefaultSettings;
     private wrapper: HTMLElement;
     private active: any;
-    private storage: Storage;
 
     constructor(settings?: Settings) {
         const defaultSettings: DefaultSettings = {
@@ -52,7 +67,6 @@ export default class Notifications {
 
         this.setup();
         this.active = {};
-        this.storage = window.localStorage;
         this.settings = extend(defaultSettings, settings);
     }
 
@@ -89,8 +103,9 @@ export default class Notifications {
         let options = extend(this.settings, settings);
         let anchor: Element = this.anchor(options.position);
         let position: InsertPosition = options.position.match(/top/) ? 'beforeend' : 'afterbegin';
-        let target = options.target ? document.querySelector(options.target) : null;
+        let target = options.target ? ('string' === typeof options.target ? document.querySelector(options.target) : options.target) : null;
         let notification = document.getElementById(options.id);
+        let staticNotification = 'static' === options.position;
 
         if (!notification || !options.id) {
             if (!options.id && options.recurrent) {
@@ -99,26 +114,36 @@ export default class Notifications {
                 console.warn('You have to define a fixed ID for this notification in order for recurrent to work properly.');
             }
 
-            if (options.recurrent && this.storage.getItem(options.id)) return;
+            if (options.recurrent && storage.get(STORAGE_VISIBILITY_NS, options.id) === false) return;
 
             options.id = options.id || `notifications_${new Date().getTime()}`;
 
             if (target) {
-                anchor = document.body;
-                position = 'beforeend';
+                anchor = staticNotification ? target : document.body;
+                position = staticNotification ? 'afterend' : 'beforeend';
             }
+
+            if (staticNotification) {
+                options.class += ' notification--static';
+            }
+
+            console.log(options.target, options.position);
 
             anchor.insertAdjacentHTML(position, options.template(options));
 
             if (target) {            
                 notification = document.getElementById(options.id);
 
-                if (notification) {
+                if (notification && 'static' !== options.position) {
                     const notificationBounding = notification.getBoundingClientRect();
                     const notificationTriangle = (<HTMLElement>notification.querySelector('.notification__triangle'));
                     const targetBounding = target.getBoundingClientRect();
 
                     notification.classList.add('notification--absolute');
+                    
+                    if (options.recurrentMax) {
+                        notification.dataset.recurrentMax = options.recurrentMax;
+                    }
 
                     if (options.position.match(/top/)) {
                         notification.style.bottom = `${(window.innerHeight - targetBounding.bottom - document.body.scrollTop) + targetBounding.height + parseFloat(Settings['small-spacing'])}px`;
@@ -185,7 +210,7 @@ export default class Notifications {
         return options.id;
     }
 
-    public hide(id: string) {
+    public hide(id: string, hideRecurrent?: boolean) {
         const notification = document.getElementById(id);
 
         if (notification) {
@@ -195,9 +220,23 @@ export default class Notifications {
 
             if (recurrent) {
                 const userDisable = (<HTMLInputElement>notification.querySelector('.notification__disable input'));
+                const recurrentMax = notification.dataset.recurrentMax;
 
-                if (userDisable && userDisable.checked) {
-                    this.storage.setItem(id, 'false');
+                if (userDisable && userDisable.checked || hideRecurrent) {
+                    storage.set(STORAGE_VISIBILITY_NS, id, false);
+                } else if (recurrentMax) {
+                    let count: number = storage.get(STORAGE_COUNT_NS, `${id}_count`);                    
+
+                    if (count) {
+                        count = count++;          
+                    }
+
+                    storage.set(STORAGE_COUNT_NS, `${id}_count`, count ? count : 1);
+
+                    if (count && count >= parseFloat(recurrentMax)) {
+                        storage.remove(STORAGE_COUNT_NS, `${id}_count`);
+                        storage.set(STORAGE_VISIBILITY_NS, id, false);
+                    }
                 }
             }
 

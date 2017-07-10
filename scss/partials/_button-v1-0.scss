@@ -38,6 +38,45 @@
 			opacity: .65;
 		}
 
+		@include modifier('loading') {
+			@extend .button--flat;
+			@extend .button--gray;
+			@extend .disabled;
+
+			@each $size in $sizes {
+				&.button--#{$size}::before {
+					$icon-size: map-get($icon-sizes, $size);
+
+					width: map-get($icon-size, 'width');
+					height: map-get($icon-size, 'height');
+
+					margin: ((map-get($icon-size, 'height') / 2) * -1) 0 0 ((map-get($icon-size, 'width') / 2) * -1);
+				}
+			}
+
+			&::before {
+				@include animation(rotate ($base-duration * 4) linear infinite);
+				@include position(absolute, 50% null null 50%);
+
+				overflow: hidden;
+
+				opacity: 1;
+
+				border-radius: 50%;
+				border-width: 2px;
+				border-color: color('border-inverted', 'general') color('border-inverted', 'general', 0.3) color('border-inverted', 'general', 0.3) color('border-inverted', 'general', 0.3);
+				border-style: solid;
+
+				box-sizing: border-box;
+
+				content: '';
+			}
+
+			& > * {
+				opacity: 0;
+			}
+		}
+
 		// Flat
 		@include modifier('flat') {	
 			position: relative;
@@ -166,7 +205,7 @@
 					fill: color('button', 'general');
 				}	
 			}
-		}
+		}		
 
 		// Color
 		@each $state, $hex in map-get($colors, 'state') {
@@ -516,4 +555,12 @@
 			}
 		}
 	} 
+
+	@include keyframes(rotate) {
+		0% {
+			@include transform(rotate(0deg));
+		} 100% {
+			@include transform(rotate(360deg));
+		}
+	}
 } // End if

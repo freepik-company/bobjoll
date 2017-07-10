@@ -34,6 +34,18 @@
         @include modifier('vertical-center') {
             @include align-items(center);
         }
+
+        @include modifier('left') {
+            @include justify-content(flex-start);
+        }
+
+        @include modifier('right') {
+            @include justify-content(flex-end);
+        }
+
+        @include modifier('nowrap') {
+            @include flex-wrap(nowrap);
+        }
     }    
 }
 
