@@ -122,7 +122,7 @@ class Notifications {
 		let template = require('BobjollPath/templates/notification.hbs');
 
 		if (anchor && show) {
-			let position: InsertPosition = settings.position ? (settings.position.indexOf('top') < 0 ? 'beforeend' : 'afterbegin') : 'beforeend';
+			let position: any = settings.position ? (settings.position.indexOf('top') < 0 ? 'beforeend' : 'afterbegin') : 'beforeend';
 
 			anchor.insertAdjacentHTML(position, template(settings));
 			notification = document.getElementById(settings.id);
