@@ -109,9 +109,15 @@ export class GrSession extends KEventTarget {
 
     addEventListener(type: 'gr:login', listener: (ev: KEventLogin) => any, useCapture?: boolean): void;
     addEventListener(type: 'gr:logout', listener: (ev: KEvent) => any, useCapture?: boolean): void;
+    addEventListener(type: 'gr:login-error', listener: (ev: KEvent) => any, useCapture?: boolean): void;
+    addEventListener(type: 'gr:register-error', listener: (ev: KEvent) => any, useCapture?: boolean): void;
     addEventListener(type: string, listener: (ev: KEvent) => any, useCapture: boolean = true): void
     {
         super.addEventListener(type, listener, useCapture);
+    }
+
+    triggerError(type: string) {
+        return this.dispatchEvent(KEvent.fromType(`gr:${type}-error`));
     }
 
     triggerLogin(user: GrUser) {
@@ -139,21 +145,39 @@ export class GrSession extends KEventTarget {
         for (const f of qq('.gr-auth__' + formName + '-form')) {
             if (!('__submitCallback' in f)) {
                 (f as any)['__submitCallback'] = true;
-                f.addEventListener('submit', (ev) => {
-                    this.loginOrRegister(formName, new FormData(ev.target as HTMLFormElement)).then((user) => {
-                        hideError(f);
-                        // if we don't get any information about the user we have to reload as we can not customize the header
-                        if (!user) {
-                            window.location.reload();
-                            return;
-                        }
-                        this.user = user;
-                        this.updateUI();
-                        this.triggerLogin(this.user);
-                    }).catch((error: string | string[] | RegisterError) => {
-                        showError(f, error);
-                    });
+                f.addEventListener('submit', async (ev) => {
                     ev.preventDefault();
+
+                    let submitButton = f.querySelector('[type="submit"]');
+
+                    if (submitButton) {
+                        submitButton.classList.add('button--loading');
+                    }
+
+                    try {
+                        await this.loginOrRegister(formName, new FormData(ev.target as HTMLFormElement)).then((user) => {
+                            hideError(f);
+                            // if we don't get any information about the user we have to reload as we can not customize the header
+                            if (!user) {
+                                window.location.reload();
+                                return;
+                            }
+                            this.user = user;
+                            this.updateUI();
+                            this.triggerLogin(this.user);
+                        }).catch((error: string | string[] | RegisterError) => {
+                            showError(f, error);
+
+                            this.triggerError(formName);
+                        });
+                    } catch(e) {
+                        console.error(e);
+                    } finally {
+                        if (submitButton) {
+                            submitButton.classList.remove('button--loading');
+                        }
+                    }
+
                 });
             }
         }
