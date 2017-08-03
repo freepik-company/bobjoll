@@ -103,6 +103,7 @@
 			@include transition($base-duration $base-timing);
 
 			height: $base-input-height;
+			position: relative;
 
 			margin: 0;
 			padding: 0 (($base-spacing + $small-spacing) + $base-triangle-size) 0 $base-spacing;
