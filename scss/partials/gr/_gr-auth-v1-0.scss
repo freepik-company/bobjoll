@@ -1,5 +1,11 @@
 @if $gr-auth-v1-0 {
     .gr-auth {
+        @include modifier('premium') {
+            .gr-auth__premium {
+                display: inherit;
+            }
+        }
+
         @include modifier('logged') {
             .gr-auth__disconnected {
                 display: none !important;
@@ -16,6 +22,10 @@
 
         @include element('connected') {
             display: none !important;
+        }
+
+        @include element('premium') {
+            display: none;
         }
     }
 }
