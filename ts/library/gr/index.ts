@@ -61,6 +61,13 @@ export class KEventLogin extends KEvent {
     }
 }
 
+export class KEventRegister extends KEvent {
+    constructor(data: FormData) {
+        super();
+        this.type = 'gr:register';
+    }
+}
+
 function hideError(form: HTMLElement) {
     const errorBlock = q("p.error", form);
     if (!errorBlock) return;
@@ -108,6 +115,7 @@ export class GrSession extends KEventTarget {
     }
 
     addEventListener(type: 'gr:login', listener: (ev: KEventLogin) => any, useCapture?: boolean): void;
+    addEventListener(type: 'gr:register', listener: (ev: KEventRegister) => any, useCapture?: boolean): void;
     addEventListener(type: 'gr:logout', listener: (ev: KEvent) => any, useCapture?: boolean): void;
     addEventListener(type: 'gr:login-error', listener: (ev: KEvent) => any, useCapture?: boolean): void;
     addEventListener(type: 'gr:register-error', listener: (ev: KEvent) => any, useCapture?: boolean): void;
@@ -122,6 +130,10 @@ export class GrSession extends KEventTarget {
 
     triggerLogin(user: GrUser) {
         return this.dispatchEvent(new KEventLogin(user));
+    }
+
+    triggerRegister(data: FormData) {
+        return this.dispatchEvent(new KEventRegister(data));
     }
 
     triggerLogout() {
@@ -149,19 +161,31 @@ export class GrSession extends KEventTarget {
                     ev.preventDefault();
 
                     let submitButton = f.querySelector('[type="submit"]');
+                    let submitReload: boolean = f.dataset.reload ? ('true' === f.dataset.reload) : true;
 
                     if (submitButton) {
                         submitButton.classList.add('button--loading');
                     }
 
                     try {
-                        await this.loginOrRegister(formName, new FormData(ev.target as HTMLFormElement)).then((user) => {
+                        let data = new FormData(ev.target as HTMLFormElement);
+
+                        await this.loginOrRegister(formName, data).then((user) => {                            
                             hideError(f);
                             // if we don't get any information about the user we have to reload as we can not customize the header
+
                             if (!user) {
-                                window.location.reload();
+                                if ('register' === formName) {
+                                    this.triggerRegister(data);
+                                }
+
+                                if (submitReload) {
+                                    window.location.reload();
+                                }
+
                                 return;
                             }
+
                             this.user = user;
                             this.updateUI();
                             this.triggerLogin(this.user);
