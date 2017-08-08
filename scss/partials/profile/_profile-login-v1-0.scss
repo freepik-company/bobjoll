@@ -1,5 +1,56 @@
 @if $profile-login-v1-0 {
 	.profile-login {
+		.recaptcha {
+			display: none;
+
+			margin: 0 0 $small-spacing;
+
+			&.active {
+				display: block;
+			}
+		}
+
+		input.error {
+			border-left: 2px solid color('red', 'state');
+		}
+
+		p.error {
+			@extend .icon--exclamation;
+
+			display: none;
+
+			width: 100%;
+
+			margin: 0;
+			padding: $extra-small-spacing 0;
+
+			color: color('red', 'state');
+			font-size: $small-font-size;
+			font-family: $base-font-family;
+			text-align: left;
+			line-height: $extra-small-element-height;
+
+			&::before {
+				color: color('red', 'state');
+
+				font-family: 'bobjoll-linear' !important;
+				font-style: normal;
+				font-weight: normal;
+				font-variant: normal;
+				text-transform: none;
+
+				margin: 0 $extra-small-spacing 0 0;
+			}
+		}
+
+		@include element('username') {
+			margin: 0 0 $small-spacing;
+		}
+
+		@include element('password') {
+			
+		}
+
 		@include element('content') {
 			width: 100%;
 			max-width: 480px;
@@ -51,6 +102,6 @@
 					margin: 0;
 				}
 			}
-		}
+		}		
 	}
 }

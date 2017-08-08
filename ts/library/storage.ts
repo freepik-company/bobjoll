@@ -37,10 +37,46 @@ export class ClientStorage
         }
     }
 
+    getAll(namespace: string): {key: string; value: any}[] {
+        let namespaceStored: {key: string; value: any}[] = [];
+
+        if (this.backend) {
+            for (let i = 0; i < this.backend.length; i++) {
+                let key = this.backend.key(i);
+
+                if (key && key.match(/namespace/i)) {
+                    let value = this.get(namespace, key);
+
+                    if (value) {
+                        namespaceStored.push({key: key, value: value});
+                    }
+                }
+            }
+        }
+
+        return namespaceStored;
+    }
+
+    getAllKeys(namespace: string): string[] {
+        let namespaceKeys: string[] = [];
+
+        if (this.backend) {
+            for (let i = 0; i < this.backend.length; i++) {
+                let key = this.backend.key(i);
+
+                if (key && key.match(/namespace/i)) {
+                    namespaceKeys.push(key);
+                }
+            }
+        }
+
+        return namespaceKeys;
+    }
+
     getItem(namespace: string, key: string): string | null {
         const k = namespace + '/' + key;
         return this.backend ? this.backend.getItem(k) : this.dummy[k];
-    }
+    }    
 
     setItem(namespace: string, key: string, value: string) {
         const k = namespace + '/' + key;
@@ -62,6 +98,14 @@ export class ClientStorage
 
     set(namespace: string, key: string, value: any) {
         this.setItem(namespace, key, JSON.stringify(value));
+    }
+
+    all(namespace: string) {
+        return this.getAll(namespace);
+    }
+
+    keys(namespace: string) {
+        return this.getAllKeys(namespace);
     }
 }
 

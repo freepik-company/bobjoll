@@ -1,4 +1,29 @@
-@if $form-v1-0 {	
+@if $form-v1-0 {
+	%checked-indicator {
+		@include transition(
+			box-shadow $base-duration $base-timing
+			background-color $base-duration $base-timing
+		);
+
+		background-color: color('input', 'background');
+
+		box-shadow: inset 0 0 0 ($base-input-ui-height) color('green', 'state');				
+
+		.icon {
+			@include transform(scale(1));
+			@include transition(
+				opaicty $base-duration $base-duration $base-timing,
+				transform $base-duration $base-duration $base-timing
+			);
+
+			opacity: 1;
+		}
+	}
+
+	%checked-link {
+		opacity: 1;
+	}
+	
 	%spacing {
 		margin-left: $small-spacing;
 	}
@@ -12,35 +37,28 @@
 
 		padding: (($base-element-height - $base-input-ui-height) / 2) 0;
 
+		&.active .checkbox__indicator,
+		&.active .radio__indicator {
+			@extend %checked-indicator;
+		}
+
+		&.active .checkbox__link,
+		&.active .radio__link {
+			@extend %checked-link;
+		}
+
 		input[type="checkbox"],
 		input[type="radio"] {
 			display: none;
 
 			&:checked ~ .checkbox__indicator,
 			&:checked ~ .radio__indicator {
-				@include transition(
-					box-shadow $base-duration $base-timing
-					background-color $base-duration $base-timing
-				);
-
-				background-color: color('input', 'background');
-
-				box-shadow: inset 0 0 0 ($base-input-ui-height) color('green', 'state');				
-
-				.icon {
-					@include transform(scale(1));
-					@include transition(
-						opaicty $base-duration $base-duration $base-timing,
-						transform $base-duration $base-duration $base-timing
-					);
-
-					opacity: 1;
-				}
+				@extend %checked-indicator;
 			}
 
 			&:checked ~ .checkbox__link,
 			&:checked ~ .checkbox__link {
-				opacity: 1;
+				@extend %checked-link;
 			}
 		}
 
