@@ -148,6 +148,10 @@
 		font-size: $small-font-size;
 	}
 
+	svg {
+		pointer-events: none;
+	}
+
 	a {
 		@extend .link;
 	}
