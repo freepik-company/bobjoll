@@ -64,7 +64,7 @@ export class ClientStorage
             for (let i = 0; i < this.backend.length; i++) {
                 let key = this.backend.key(i);
 
-                if (key && key.match(/namespace/i)) {
+                if (key && key.match(`/${namespace}/i`)) {
                     namespaceKeys.push(key);
                 }
             }
