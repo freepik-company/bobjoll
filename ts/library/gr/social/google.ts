@@ -26,7 +26,7 @@ export default class Google extends Social {
                     immediate: true
                 }, (response) => resolve(response));
 
-                setTimeout(() => reject('undefined' !== typeof GOOGLE_AUTH_TIMEOUT_MESSAGE || 'Google authentication timeout'), 10000);
+                setTimeout(() => reject('undefined' !== typeof GOOGLE_AUTH_TIMEOUT_MESSAGE ? GOOGLE_AUTH_TIMEOUT_MESSAGE : 'Google authentication timeout'), 10000);
             } catch(e) {
                 reject(e);
             }

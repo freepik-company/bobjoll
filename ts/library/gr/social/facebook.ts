@@ -6,6 +6,8 @@ namespace facebook {
     }
 }
 
+declare var FACEBOOK_AUTH_TIMEOUT_MESSAGE: string;
+
 declare var FB: facebook.FacebookStatic;
 
 import Social from './index';
@@ -27,6 +29,8 @@ export default class Facebook extends Social {
                 } else {
                     FB.getLoginStatus(resolve);
                 }
+
+                setTimeout(() => reject(('undefined' !== FACEBOOK_AUTH_TIMEOUT_MESSAGE ? FACEBOOK_AUTH_TIMEOUT_MESSAGE : 'Facebook authentication timeout')), 10000);
             } catch(e) {
                 reject(e);
             }
