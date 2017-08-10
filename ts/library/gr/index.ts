@@ -15,7 +15,7 @@ export interface GrUser {
 
 type RegisterError = { username: string[] } | { email: string[] } | { facebook_id: string[] } | { google_id: string[] } | { twitter_id: string[] };
 
-interface LoginResponse {
+export interface LoginResponse {
     data: {
         status: boolean,
         redirect_url: string,
@@ -68,7 +68,7 @@ export class KEventRegister extends KEvent {
     }
 }
 
-function hideError(form: HTMLElement) {
+export function hideError(form: HTMLElement) {
     const errorBlock = q("p.error", form);
     if (!errorBlock) return;
     errorBlock.innerHTML = '';
@@ -78,7 +78,7 @@ function hideError(form: HTMLElement) {
     }
 }
 
-function showError(form: HTMLElement, msgHtml: string | string[] | RegisterError) {
+export function showError(form: HTMLElement, msgHtml: string | string[] | RegisterError) {
     const errorBlock = q("p.error", form);
     if (!errorBlock) return;
 
@@ -111,8 +111,8 @@ export class GrSession extends KEventTarget {
 
     private init() {
         var grSessionTxt2 = decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*gr_session2\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1"));
-        this.user = parseUser(grSessionTxt2)
-    }
+        this.user = parseUser(grSessionTxt2);
+    }    
 
     addEventListener(type: 'gr:login', listener: (ev: KEventLogin) => any, useCapture?: boolean): void;
     addEventListener(type: 'gr:register', listener: (ev: KEventRegister) => any, useCapture?: boolean): void;
@@ -122,7 +122,7 @@ export class GrSession extends KEventTarget {
     addEventListener(type: string, listener: (ev: KEvent) => any, useCapture: boolean = true): void
     {
         super.addEventListener(type, listener, useCapture);
-    }
+    }    
 
     triggerError(type: string) {
         return this.dispatchEvent(KEvent.fromType(`gr:${type}-error`));
@@ -164,6 +164,7 @@ export class GrSession extends KEventTarget {
                     let submitReload: boolean = f.dataset.reload ? ('true' === f.dataset.reload) : true;
 
                     if (submitButton) {
+                        f.classList.add('disabled');
                         submitButton.classList.add('button--loading');
                     }
 
@@ -198,6 +199,7 @@ export class GrSession extends KEventTarget {
                         console.error(e);
                     } finally {
                         if (submitButton) {
+                            f.classList.remove('disabled');
                             submitButton.classList.remove('button--loading');
                         }
                     }
@@ -261,6 +263,11 @@ export class GrSession extends KEventTarget {
 
         this.hookAuthForm('login');
         this.hookAuthForm('register');
+    }
+
+    updateUser() {
+        var grSessionTxt2 = decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*gr_session2\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1"));
+        this.user = parseUser(grSessionTxt2);
     }
 
     logout(): Promise<{}> {
