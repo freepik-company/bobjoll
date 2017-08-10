@@ -78,9 +78,7 @@ export default class Facebook extends Social {
                 version: 'v2.8'
             });
 
-            FB.getLoginStatus((response) => {
-                console.dir('fb', response);
-            });
+            FB.getLoginStatus((response) => {});
 
             delete (window as any).fbAsyncInit;
         };

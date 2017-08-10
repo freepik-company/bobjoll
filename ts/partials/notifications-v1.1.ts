@@ -127,8 +127,6 @@ export default class Notifications {
                 options.class += ' notification--static';
             }
 
-            console.log(options.target, options.position);
-
             anchor.insertAdjacentHTML(position, options.template(options));
 
             if (target) {            
