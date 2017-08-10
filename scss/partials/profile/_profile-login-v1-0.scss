@@ -101,6 +101,10 @@
 				&:last-child {
 					margin: 0;
 				}
+
+				& ~.error {
+					@include position(relative, ($small-spacing * -1) null null null);
+				}
 			}
 		}		
 	}
