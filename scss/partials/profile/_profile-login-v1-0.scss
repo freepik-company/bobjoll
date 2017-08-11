@@ -14,25 +14,43 @@
 			border-left: 2px solid color('red', 'state');
 		}
 
-		p.error {
-			@extend .icon--exclamation;
-
+		p.message {
 			display: none;
 
-			width: 100%;
+			&.error,
+			&.success {
+				width: 100%;
 
-			margin: 0;
-			padding: $extra-small-spacing 0;
+				margin: 0;
+				padding: $extra-small-spacing 0;
+				
+				font-size: $small-font-size;
+				font-family: $base-font-family;
+				text-align: left;
+				line-height: $extra-small-element-height;
+			}
 
-			color: color('red', 'state');
-			font-size: $small-font-size;
-			font-family: $base-font-family;
-			text-align: left;
-			line-height: $extra-small-element-height;
+			&.error {
+				@extend .icon--exclamation;
 
-			&::before {
 				color: color('red', 'state');
 
+				&::before {
+					color: color('red', 'state');
+				}
+			}
+
+			&.success {
+				@extend .icon--check;
+
+				color: color('green', 'state');
+
+				&::before {
+					color: color('green', 'state');
+				}
+			}
+
+			&::before {				
 				font-family: 'bobjoll-linear' !important;
 				font-style: normal;
 				font-weight: normal;
@@ -102,7 +120,7 @@
 					margin: 0;
 				}
 
-				& ~.error {
+				& ~ .message {
 					@include position(relative, ($small-spacing * -1) null null null);
 				}
 			}
