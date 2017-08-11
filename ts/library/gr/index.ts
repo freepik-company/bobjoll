@@ -68,36 +68,38 @@ export class KEventRegister extends KEvent {
     }
 }
 
-export function hideError(form: HTMLElement) {
-    const errorBlock = q("p.error", form);
-    if (!errorBlock) return;
-    errorBlock.innerHTML = '';
-    errorBlock.style.display = 'none';
-    for (const input of qq('input', form)) {
-        input.classList.remove('error');
-    }
-}
-
-export function showError(form: HTMLElement, msgHtml: string | string[] | RegisterError) {
-    const errorBlock = q("p.error", form);
-    if (!errorBlock) return;
+export function showMessage(form: HTMLElement, msgHtml: string | string[] | RegisterError, type: 'error' | 'success') {
+    const messageBlock = q("p.message", form);
+    if (!messageBlock) return;
 
     if (msgHtml instanceof Array) {
-        errorBlock.innerHTML = msgHtml.join('<br>');
+        messageBlock.innerHTML = msgHtml.join('<br>');
     }
     else if (typeof msgHtml === 'string') {
-        errorBlock.innerHTML = msgHtml;
-    }
-    else {
+        messageBlock.innerHTML = msgHtml;
+    } else {
         let err: string[] = [];
         for (const field in msgHtml) {
             err = err.concat((msgHtml as {[key: string]: string[]})[field]);
             const input = qi('input[name=' + field + ']', form);
             input.classList.add('error');
         }
-        errorBlock.innerHTML = err.join('<br>');
+        messageBlock.innerHTML = err.join('<br>');
     }
-    errorBlock.style.display = 'block';
+
+    messageBlock.classList.add(type);
+    messageBlock.style.display = 'block';
+}
+
+export function hideMessage(form: HTMLElement) {
+    const messageBlock = q("p.message", form);
+    if (!messageBlock) return;
+    messageBlock.innerHTML = '';
+    messageBlock.style.display = 'none';
+    messageBlock.classList.remove('error', 'success');
+    for (const input of qq('input', form)) {
+        input.classList.remove('error', 'success');
+    }
 }
 
 export class GrSession extends KEventTarget {
@@ -119,6 +121,8 @@ export class GrSession extends KEventTarget {
     addEventListener(type: 'gr:logout', listener: (ev: KEvent) => any, useCapture?: boolean): void;
     addEventListener(type: 'gr:login-error', listener: (ev: KEvent) => any, useCapture?: boolean): void;
     addEventListener(type: 'gr:register-error', listener: (ev: KEvent) => any, useCapture?: boolean): void;
+    addEventListener(type: 'gr:forgot-password', listener: (ev: KEvent) => any, useCapture?: boolean): void;
+    addEventListener(type: 'gr:forgot-password-error', listener: (ev: KEvent) => any, useCapture?: boolean): void;
     addEventListener(type: string, listener: (ev: KEvent) => any, useCapture: boolean = true): void
     {
         super.addEventListener(type, listener, useCapture);
@@ -135,7 +139,7 @@ export class GrSession extends KEventTarget {
     triggerRegister(data: FormData) {
         return this.dispatchEvent(new KEventRegister(data));
     }
-
+    
     triggerLogout() {
         return this.dispatchEvent(KEvent.fromType('gr:logout'));
     }
@@ -172,7 +176,7 @@ export class GrSession extends KEventTarget {
                         let data = new FormData(ev.target as HTMLFormElement);
 
                         await this.loginOrRegister(formName, data).then((user) => {                            
-                            hideError(f);
+                            hideMessage(f);
                             // if we don't get any information about the user we have to reload as we can not customize the header
 
                             if (!user) {
@@ -191,7 +195,7 @@ export class GrSession extends KEventTarget {
                             this.updateUI();
                             this.triggerLogin(this.user);
                         }).catch((error: string | string[] | RegisterError) => {
-                            showError(f, error);
+                            showMessage(f, error, 'error');
 
                             this.triggerError(formName);
                         });
@@ -261,6 +265,7 @@ export class GrSession extends KEventTarget {
             }
         }
 
+        this.hookPasswordForm();
         this.hookAuthForm('login');
         this.hookAuthForm('register');
     }
@@ -333,6 +338,74 @@ export class GrSession extends KEventTarget {
             req.setRequestHeader('X-Requested-With', 'xmlhttprequest');
             req.send(formData);
         }) as Promise<GrUser | undefined>;
+    }
+
+    passwordRecovery(formData: FormData) {
+        return new Promise((resolve, reject) => {
+            const req = new XMLHttpRequest();
+
+            req.addEventListener('load', () => {                
+                try {
+                    const ret = JSON.parse(req.response);
+
+                    if (req.status !== 200) {
+                        reject(ret.data.message || ret.data.errors);
+                    }
+                    
+                    resolve(ret.data.message);
+                }
+                catch (e) {
+                    console.error('Error reading response (json):', req.response);
+                    reject('Error reading response (json):' + req.response);
+                }
+            });
+
+            // TODO: Extract this URL from the form.action
+            req.open('POST', '/profile/request/login/lost_password');
+            req.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+            req.send(formData);
+        });
+    }
+
+    private hookPasswordForm() {
+        for (const f of qq('.gr-auth__forgot-password-form')) {
+            if (!('__submitCallback' in f)) {
+                (f as any)['__submitCallback'] = true;
+                f.addEventListener('submit', async (ev) => {
+                    ev.preventDefault();
+
+                    let submitButton = f.querySelector('[type="submit"]');
+                    let submitReload: boolean = f.dataset.reload ? ('true' === f.dataset.reload) : true;
+
+                    f.classList.add('disabled');
+
+                    if (submitButton) {
+                        submitButton.classList.add('button--loading');
+                    }
+
+                    try {
+                        let data = new FormData(ev.target as HTMLFormElement);
+
+                        await this.passwordRecovery(data).then((message: string) => {
+                            hideMessage(f);
+                            showMessage(f, message, 'success');
+                        }).catch((error: string | string[] | RegisterError) => {
+                            showMessage(f, error, 'error');
+
+                            this.triggerError('forgot-password');
+                        });
+                    } catch(e) {
+                        console.error(e);
+                    } finally {
+                        f.classList.remove('disabled');
+
+                        if (submitButton) {
+                            submitButton.classList.remove('button--loading');
+                        }
+                    }
+                });
+            }
+        }
     }
 }
 
