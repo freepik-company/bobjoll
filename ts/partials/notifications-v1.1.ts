@@ -228,7 +228,7 @@ export default class Notifications {
                     let count: number = storage.get(STORAGE_COUNT_NS, `${id}_count`);                    
 
                     if (count) {
-                        count = count++;          
+                        count++;          
                     }
 
                     storage.set(STORAGE_COUNT_NS, `${id}_count`, count ? count : 1);
