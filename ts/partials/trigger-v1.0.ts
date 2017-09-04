@@ -51,7 +51,7 @@ import { EventListenerOn } from 'Helpers';
 			[].forEach.call(triggerActive, (element: HTMLElement) => {
 				let id: string | undefined = element.dataset['trigger'];
 
-				if (id && current && current !== id || id) {
+				if ((id && current) && (current !== id) || id) {
 					let trigger = document.getElementById(id);
 
 					if (trigger) {
