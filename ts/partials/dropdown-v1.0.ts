@@ -22,7 +22,7 @@ import 'BobjollPath/library/common';
 			let search: HTMLInputElement | null = parents[0].querySelector('input');
 
 			if (search) {
-				search.focus();			
+				search.focus();
 			}
 
 			removeActive();
@@ -48,7 +48,7 @@ import 'BobjollPath/library/common';
 
 				if (value) select.value = value;
 
-				select.dispatchEvent(new Event('change'));				
+				select.dispatchEvent(new Event('change'));
 			}
 
 			if (button) {
@@ -56,7 +56,7 @@ import 'BobjollPath/library/common';
 
 				if (text) button.innerHTML = text;
 
-				button.classList.remove('active');				
+				button.classList.remove('active');
 			}
 		}
 	});
@@ -100,7 +100,7 @@ import 'BobjollPath/library/common';
 					let button = dropdown.querySelector('.dropdown__button');
 
 					if (button) {
-						button.classList.remove('active');						
+						button.classList.remove('active');
 					}
 				}
 			}
@@ -110,7 +110,9 @@ import 'BobjollPath/library/common';
 	});
 
 	window.addEventListener('mouseup', (e: Event) => {
-		if((<Element>e.target).parents('.dropdown').length == 0) {
+		const target = <Element>e.target;
+		// this is a test
+		if(target.parents && target.parents('.dropdown').length == 0) {
 			removeActive();
 		}
 	});
@@ -138,4 +140,4 @@ import 'BobjollPath/library/common';
 			element.classList.remove('active');
 		});
 	}
-})(); 
+})();
