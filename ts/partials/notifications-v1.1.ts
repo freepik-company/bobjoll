@@ -127,23 +127,21 @@ export default class Notifications {
                 options.class += ' notification--static';
             }
 
-            console.log(options.target, options.position);
-
             anchor.insertAdjacentHTML(position, options.template(options));
 
-            if (target) {            
-                notification = document.getElementById(options.id);
+            notification = document.getElementById(options.id);
 
+            if (notification && options.recurrentMax) {
+                notification.dataset.recurrentMax = options.recurrentMax;
+            }
+
+            if (target) {
                 if (notification && 'static' !== options.position) {
                     const notificationBounding = notification.getBoundingClientRect();
                     const notificationTriangle = (<HTMLElement>notification.querySelector('.notification__triangle'));
                     const targetBounding = target.getBoundingClientRect();
 
                     notification.classList.add('notification--absolute');
-                    
-                    if (options.recurrentMax) {
-                        notification.dataset.recurrentMax = options.recurrentMax;
-                    }
 
                     if (options.position.match(/top/)) {
                         notification.style.bottom = `${(window.innerHeight - targetBounding.bottom - document.body.scrollTop) + targetBounding.height + parseFloat(Settings['small-spacing'])}px`;
@@ -218,6 +216,8 @@ export default class Notifications {
 
             notification.classList.add('animation--fade-out');
 
+            console.log(recurrent);
+
             if (recurrent) {
                 const userDisable = (<HTMLInputElement>notification.querySelector('.notification__disable input'));
                 const recurrentMax = notification.dataset.recurrentMax;
@@ -225,13 +225,15 @@ export default class Notifications {
                 if (userDisable && userDisable.checked || hideRecurrent) {
                     storage.set(STORAGE_VISIBILITY_NS, id, false);
                 } else if (recurrentMax) {
-                    let count: number = storage.get(STORAGE_COUNT_NS, `${id}_count`);                    
+                    let count: number = storage.get(STORAGE_COUNT_NS, `${id}_count`) | 0;                    
 
-                    if (count) {
+                    if ('undefined' !== typeof count) {
                         count++;          
                     }
 
-                    storage.set(STORAGE_COUNT_NS, `${id}_count`, count ? count : 1);
+                    console.log(count);
+
+                    storage.set(STORAGE_COUNT_NS, `${id}_count`, count);
 
                     if (count && count >= parseFloat(recurrentMax)) {
                         storage.remove(STORAGE_COUNT_NS, `${id}_count`);

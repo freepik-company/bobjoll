@@ -29,6 +29,12 @@
 		.font-lg { font-size: $large-font-size; }
 		.font-xl { font-size: $extra-large-font-size; }
 
+		.font-lh-xs { line-height: $extra-small-font-size; }
+		.font-lh-sm { line-height: $small-font-size; }
+		.font-lh-md { line-height: $base-font-size; }
+		.font-lh-lg { line-height: $large-font-size; }
+		.font-lh-xl { line-height: $extra-large-font-size; }
+
 		.resetcase { text-transform: initial; }
 		.lowercase { text-transform: lowercase; }
 		.uppercase { text-transform: uppercase; }
@@ -68,8 +74,12 @@
 		.overflow-visible { overflow: visible; }
 		.scrollable { 
 			overflow-x: hidden;
-			overflow-y: scroll;
+			overflow-y: auto;
 			-webkit-overflow-scrolling: touch;
+
+			@include breakpoint('md') {
+				overflow-y: scroll;
+			}
 
 			height: 100%;
 
