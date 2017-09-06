@@ -47,6 +47,11 @@
 			height: $avatar-height-lg;
 		}
 
+		@include modifier('xl') {
+			width: $avatar-width-xl;
+			height: $avatar-height-xl;
+		}
+
 		svg, img {
 			@include align-self(center);	
 			@include position(absolute, 50% null null 50%);
