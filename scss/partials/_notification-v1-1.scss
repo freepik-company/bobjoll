@@ -11,7 +11,7 @@
 
         %notification-position {
             @include position(absolute, null null null null);
-        }
+        }        
 
         @include element('top-left') {
             @extend %notification-position;
@@ -113,8 +113,10 @@
         }
 
         @include element('close') {
-            @include position(absolute, 0 0 null null);
-            @include transform(translate(50%, -50%));
+            &:not(.nostyle) {
+                @include position(absolute, 0 0 null null);
+                @include transform(translate(50%, -50%));
+            }
         }
 
         @include element('triangle') {
@@ -162,6 +164,15 @@
 
             color: color('red', 'state-text');
 
+            a {
+                color: color('red', 'state-text', 0.75);
+                font-weight: bold;
+
+                &:hover {
+                    color: color('red', 'state-text');
+                }
+            }
+
             .notification__state {
                 background-color: color('red', 'state', 1, 5);
 
@@ -183,6 +194,15 @@
             background-color: color('yellow', 'state');
 
             color: color('yellow', 'state-text');
+
+            a {
+                color: color('yellow', 'state-text', 0.75);
+                font-weight: bold;
+
+                &:hover {
+                    color: color('yellow', 'state-text');
+                }
+            }
 
             .notification__state {
                 background-color: color('yellow', 'state', 1, 5);
@@ -206,6 +226,15 @@
 
             color: color('green', 'state-text');
 
+            a {
+                color: color('green', 'state-text', 0.75);
+                font-weight: bold;
+
+                &:hover {
+                    color: color('green', 'state-text');
+                }
+            }
+
             .notification__state {
                 background-color: color('green', 'state', 1, 5);
 
@@ -220,6 +249,39 @@
 
             .icon {
                 color: color('green', 'state-text');
+            }
+        }
+
+        @include modifier('neutral') {
+            background-color: color('blue', 'state');
+
+            color: color('blue', 'state-text');
+
+            a {
+                color: color('blue', 'state-text', 0.75);
+                font-weight: bold;
+
+                &:hover {
+                    color: color('blue', 'state-text');
+                }
+            }
+
+            .notification__state {
+                background-color: color('blue', 'state', 1, 5);
+            }
+
+            .notification__close {
+                background-color: color('blue', 'state', 1, 15);
+            }
+
+            .icon {
+                color: color('blue', 'state-text');
+            }
+        }
+
+        @include modifier('hide-disable') {
+            .notification__disable {
+                display: none;
             }
         }
     }
