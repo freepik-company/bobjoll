@@ -48,13 +48,17 @@ export interface InsertSettings extends Settings {
     class?: string;
     html: string;
     target?: string | Element;
+    insert?: {
+        element: Element;
+        position: 'beforeend' | 'beforebegin' | 'afterend' | 'afterbegin';
+    }
     position?: keyof Position;
 }
 
 export default class Notifications {
     public settings: DefaultSettings;
     private wrapper: HTMLElement;
-    private active: any;
+    public active: any;
 
     constructor(settings?: Settings) {
         const defaultSettings: DefaultSettings = {
@@ -125,6 +129,11 @@ export default class Notifications {
 
             if (staticNotification) {
                 options.class += ' notification--static';
+            }
+
+            if (options.insert) {
+                anchor = options.insert.element;
+                position = options.insert.position;
             }
 
             anchor.insertAdjacentHTML(position, options.template(options));
