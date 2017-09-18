@@ -131,6 +131,10 @@
             }
         }
 
+        @include modifier('no-shadow') {
+            box-shadow: none;
+        }
+
         @include modifier('static') {
             width: 100%;
             max-width: inherit;
