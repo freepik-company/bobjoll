@@ -38,6 +38,7 @@ export interface Settings {
     fixed?: boolean;
     recurrent?: boolean;
     recurrentMax?: number;
+    recurrentPrint?: boolean;
     timeout?: number;
     template?: Function;
     position?: keyof Position;
@@ -118,7 +119,9 @@ export default class Notifications {
                 console.warn('You have to define a fixed ID for this notification in order for recurrent to work properly.');
             }
 
-            if (options.recurrent && storage.get(STORAGE_VISIBILITY_NS, options.id) === false) return;
+            if (options.recurrent && storage.get(STORAGE_VISIBILITY_NS, options.id) === false) {
+                return;
+            }
 
             options.id = options.id || `notifications_${new Date().getTime()}`;
 
@@ -142,6 +145,23 @@ export default class Notifications {
 
             if (notification && options.recurrentMax) {
                 notification.dataset.recurrentMax = options.recurrentMax;
+            }
+
+            if (notification && options.recurrentPrint && options.recurrentMax) {
+                notification.dataset.recurrentPrint = 'true';
+
+                let count: number = storage.get(STORAGE_COUNT_NS, `${options.id}_count`) | 0;
+
+                count++;
+
+                storage.set(STORAGE_COUNT_NS, `${options.id}_count`, count);
+
+                if (count && count >= parseFloat(options.recurrentMax)) {
+                    storage.remove(STORAGE_COUNT_NS, `${options.id}_count`);
+                    storage.set(STORAGE_VISIBILITY_NS, options.id, false);
+
+                    this.hide(options.id, true);
+                }
             }
 
             if (target) {
@@ -225,23 +245,20 @@ export default class Notifications {
 
             notification.classList.add('animation--fade-out');
 
-            console.log(recurrent);
-
             if (recurrent) {
                 const userDisable = (<HTMLInputElement>notification.querySelector('.notification__disable input'));
                 const recurrentMax = notification.dataset.recurrentMax;
+                const recurrentPrint = notification.dataset.recurrenPrint;
 
                 if (userDisable && userDisable.checked || hideRecurrent) {
                     storage.set(STORAGE_VISIBILITY_NS, id, false);
                 } else if (recurrentMax) {
-                    let count: number = storage.get(STORAGE_COUNT_NS, `${id}_count`) | 0;                    
-
-                    if ('undefined' !== typeof count) {
+                    let count: number = storage.get(STORAGE_COUNT_NS, `${id}_count`) | 0;
+                
+                    if (!recurrentPrint && 'undefined' !== typeof count) {
                         count++;          
                     }
-
-                    console.log(count);
-
+                    
                     storage.set(STORAGE_COUNT_NS, `${id}_count`, count);
 
                     if (count && count >= parseFloat(recurrentMax)) {
@@ -270,5 +287,9 @@ export default class Notifications {
         if (notification) {
             notification.classList.add('animation--fade-in');
         }
+    }
+
+    public get(id: string) {
+        return storage.get(STORAGE_VISIBILITY_NS, id);
     }
 }
