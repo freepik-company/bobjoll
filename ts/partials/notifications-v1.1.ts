@@ -159,8 +159,6 @@ export default class Notifications {
                 if (count && count >= parseFloat(options.recurrentMax)) {
                     storage.remove(STORAGE_COUNT_NS, `${options.id}_count`);
                     storage.set(STORAGE_VISIBILITY_NS, options.id, false);
-
-                    this.hide(options.id, true);
                 }
             }
 
@@ -289,7 +287,23 @@ export default class Notifications {
         }
     }
 
-    public get(id: string) {
-        return storage.get(STORAGE_VISIBILITY_NS, id);
+    public getSettings(id: string) {
+        let itemCount = storage.get(STORAGE_COUNT_NS, `${id}_count`) || undefined;
+        let itemVisibility = storage.get(STORAGE_VISIBILITY_NS, id);
+
+        let item: {
+            count?: number;
+            visibility?: boolean;
+        } = {};
+
+        if ('undefined' !== typeof itemCount) {
+            item.count = itemCount;
+        }
+
+        if ('undefined' !== typeof itemVisibility) {
+            item.visibility = itemVisibility;
+        }
+
+        return item;
     }
 }
