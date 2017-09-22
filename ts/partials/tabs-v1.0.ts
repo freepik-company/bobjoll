@@ -8,13 +8,15 @@ import 'BobjollPath/library/common';
 	EventListenerOn('body', '.tabs__link', 'click', function(this: HTMLElement, e: Event) {
 		let id: string | undefined = this.dataset['tab'];
 
+		console.log(id);
+
 		if (id) {
 			e.preventDefault();
 
 			let tab = document.getElementById(id);
 
 			if (tab) {
-				let parents = this.parents('.tabs');
+				let parents = tab.parents('.tabs');
 
 				if (parents && parents.length > 0) {
 					let tabWrapper = parents[0];
