@@ -180,7 +180,7 @@
             .notification__state {
                 background-color: color('red', 'state', 1, 5);
 
-                .icon {
+                .icon:not(.nostyle) {
                     @extend .icon--cross;
                 }
             }
@@ -211,7 +211,7 @@
             .notification__state {
                 background-color: color('yellow', 'state', 1, 5);
 
-                .icon {
+                .icon:not(.nostyle) {
                     @extend .icon--exclamation;
                 }
             }
@@ -242,7 +242,7 @@
             .notification__state {
                 background-color: color('green', 'state', 1, 5);
 
-                .icon {
+                .icon:not(.nostyle) {
                     @extend .icon--check;
                 }
             }
