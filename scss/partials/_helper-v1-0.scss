@@ -29,6 +29,13 @@
 		.font-lg { font-size: $large-font-size; }
 		.font-xl { font-size: $extra-large-font-size; }
 
+		.font-h1 { @include font-size($h1-font-size); }
+		.font-h2 { @include font-size($h2-font-size); }
+		.font-h3 { @include font-size($h3-font-size); }
+		.font-h4 { @include font-size($h4-font-size); }
+		.font-h5 { @include font-size($h5-font-size); }
+		.font-h6 { @include font-size($h6-font-size); }
+
 		.font-lh-xs { line-height: $extra-small-font-size; }
 		.font-lh-sm { line-height: $small-font-size; }
 		.font-lh-md { line-height: $base-font-size; }
