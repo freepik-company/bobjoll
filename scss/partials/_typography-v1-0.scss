@@ -86,19 +86,21 @@
 	h6 { @include font-size($h6-font-size); }
 
 	.link {
-		color: color('link', 'general');
-
-		cursor: pointer;
-
-		text-decoration: none;
-
-		&:hover {
-			color: color('link', 'general', 1, 10);
-		}
-
-		&.active {
-			color: color('link', 'general', 1, 20);
-			font-weight: bold;			
+		&:not(.button) {
+			color: color('link', 'general');
+	
+			cursor: pointer;
+	
+			text-decoration: none;
+	
+			&:hover {
+				color: color('link', 'general', 1, 10);
+			}
+	
+			&.active {
+				color: color('link', 'general', 1, 20);
+				font-weight: bold;			
+			}
 		}
 	}
 
