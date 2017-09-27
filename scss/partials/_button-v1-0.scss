@@ -55,7 +55,7 @@
 			}
 
 			&::before {
-				@include animation(rotate ($base-duration * 4) linear infinite);
+				@include animation(rotate (600ms) linear infinite);
 				@include position(absolute, 50% null null 50%);
 
 				overflow: hidden;

@@ -38,6 +38,7 @@ export interface Settings {
     fixed?: boolean;
     recurrent?: boolean;
     recurrentMax?: number;
+    recurrentPrint?: boolean;
     timeout?: number;
     template?: Function;
     position?: keyof Position;
@@ -48,13 +49,17 @@ export interface InsertSettings extends Settings {
     class?: string;
     html: string;
     target?: string | Element;
+    insert?: {
+        element: Element;
+        position: 'beforeend' | 'beforebegin' | 'afterend' | 'afterbegin';
+    }
     position?: keyof Position;
 }
 
 export default class Notifications {
     public settings: DefaultSettings;
     private wrapper: HTMLElement;
-    private active: any;
+    public active: any;
 
     constructor(settings?: Settings) {
         const defaultSettings: DefaultSettings = {
@@ -114,7 +119,9 @@ export default class Notifications {
                 console.warn('You have to define a fixed ID for this notification in order for recurrent to work properly.');
             }
 
-            if (options.recurrent && storage.get(STORAGE_VISIBILITY_NS, options.id) === false) return;
+            if (options.recurrent && storage.get(STORAGE_VISIBILITY_NS, options.id) === false) {
+                return;
+            }
 
             options.id = options.id || `notifications_${new Date().getTime()}`;
 
@@ -127,12 +134,32 @@ export default class Notifications {
                 options.class += ' notification--static';
             }
 
+            if (options.insert) {
+                anchor = options.insert.element;
+                position = options.insert.position;
+            }
+
             anchor.insertAdjacentHTML(position, options.template(options));
 
             notification = document.getElementById(options.id);
 
             if (notification && options.recurrentMax) {
                 notification.dataset.recurrentMax = options.recurrentMax;
+            }
+
+            if (notification && options.recurrentPrint && options.recurrentMax) {
+                notification.dataset.recurrentPrint = 'true';
+
+                let count: number = storage.get(STORAGE_COUNT_NS, `${options.id}_count`) | 0;
+
+                count++;
+
+                storage.set(STORAGE_COUNT_NS, `${options.id}_count`, count);
+
+                if (count && count >= parseFloat(options.recurrentMax)) {
+                    storage.remove(STORAGE_COUNT_NS, `${options.id}_count`);
+                    storage.set(STORAGE_VISIBILITY_NS, options.id, false);
+                }
             }
 
             if (target) {
@@ -216,23 +243,20 @@ export default class Notifications {
 
             notification.classList.add('animation--fade-out');
 
-            console.log(recurrent);
-
             if (recurrent) {
                 const userDisable = (<HTMLInputElement>notification.querySelector('.notification__disable input'));
                 const recurrentMax = notification.dataset.recurrentMax;
+                const recurrentPrint = notification.dataset.recurrenPrint;
 
                 if (userDisable && userDisable.checked || hideRecurrent) {
                     storage.set(STORAGE_VISIBILITY_NS, id, false);
                 } else if (recurrentMax) {
-                    let count: number = storage.get(STORAGE_COUNT_NS, `${id}_count`) | 0;                    
-
-                    if ('undefined' !== typeof count) {
+                    let count: number = storage.get(STORAGE_COUNT_NS, `${id}_count`) | 0;
+                
+                    if (!recurrentPrint && 'undefined' !== typeof count) {
                         count++;          
                     }
-
-                    console.log(count);
-
+                    
                     storage.set(STORAGE_COUNT_NS, `${id}_count`, count);
 
                     if (count && count >= parseFloat(recurrentMax)) {
@@ -261,5 +285,25 @@ export default class Notifications {
         if (notification) {
             notification.classList.add('animation--fade-in');
         }
+    }
+
+    public getSettings(id: string) {
+        let itemCount = storage.get(STORAGE_COUNT_NS, `${id}_count`) || undefined;
+        let itemVisibility = storage.get(STORAGE_VISIBILITY_NS, id);
+
+        let item: {
+            count?: number;
+            visibility?: boolean;
+        } = {};
+
+        if ('undefined' !== typeof itemCount) {
+            item.count = itemCount;
+        }
+
+        if ('undefined' !== typeof itemVisibility) {
+            item.visibility = itemVisibility;
+        }
+
+        return item;
     }
 }
