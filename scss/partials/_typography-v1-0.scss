@@ -85,31 +85,41 @@
 	h5 { @include font-size($h5-font-size); }
 	h6 { @include font-size($h6-font-size); }
 
-	.link {
-		&:not(.button) {
-			color: color('link', 'general');
-	
-			cursor: pointer;
-	
-			text-decoration: none;
-	
-			&:hover {
-				color: color('link', 'general', 1, 10);
-			}
-	
-			&.active {
-				color: color('link', 'general', 1, 20);
-				font-weight: bold;			
-			}
+	%link-hover {
+		&:hover {
+			color: color('link', 'general', 1);
+		}
+
+		&.active {
+			color: color('link', 'general', 1);
+			font-weight: 500;		
 		}
 	}
 
+	.link {
+		&:not(.link--text):not(.button) {
+			@extend %link-hover;
+
+			color: color('link', 'general');
+	
+			cursor: pointer;
+		}
+		
+		@include modifier('text') {
+			@extend %link-hover;
+
+			color: color('text', 'general');
+		}
+		
+		text-decoration: none;
+	}
+
 	.link-inverted {
-		&:not(.button) {
-			color: color('link-inverted', 'general', 1, 20);
+		&:not(.link--text):not(.button) {
+			color: color('link-inverted', 'general', .9);
 
 			&:hover {
-				color: color('link-inverted', 'general', 1, 10);
+				color: color('link-inverted', 'general', 1);
 
 				svg {
 					opacity: .8;
