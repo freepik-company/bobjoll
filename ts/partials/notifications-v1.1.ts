@@ -167,11 +167,12 @@ export default class Notifications {
                     const notificationBounding = notification.getBoundingClientRect();
                     const notificationTriangle = (<HTMLElement>notification.querySelector('.notification__triangle'));
                     const targetBounding = target.getBoundingClientRect();
+                    const scrollPosition = this.getScrollPosition();
 
                     notification.classList.add('notification--absolute');
 
                     if (options.position.match(/top/)) {
-                        notification.style.bottom = `${(window.innerHeight - targetBounding.bottom - document.body.scrollTop) + targetBounding.height + parseFloat(Settings['small-spacing'])}px`;
+                        notification.style.bottom = `${(window.innerHeight - targetBounding.bottom - scrollPosition) + targetBounding.height + parseFloat(Settings['small-spacing'])}px`;
 
                         if (notificationTriangle) {
                             notificationTriangle.style.top = '100%';
@@ -181,7 +182,7 @@ export default class Notifications {
                     }
 
                     if (options.position.match(/bottom/)) {
-                        notification.style.top = `${targetBounding.top + targetBounding.height + document.body.scrollTop + parseFloat(Settings['small-spacing'])}px`;
+                        notification.style.top = `${targetBounding.top + targetBounding.height + scrollPosition + parseFloat(Settings['small-spacing'])}px`;
 
                         if (notificationTriangle) {
                             notificationTriangle.style.bottom = '100%';
@@ -305,5 +306,9 @@ export default class Notifications {
         }
 
         return item;
+    }
+
+    getScrollPosition(): number {
+        return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
     }
 }
