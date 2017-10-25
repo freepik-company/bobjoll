@@ -39,7 +39,7 @@
         }
 
         & > input {
-            @include flex(1 1 0);
+            @include flex(1);
 
             margin: 0;
 
