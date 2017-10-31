@@ -1,9 +1,9 @@
 const extend = require('BobjollPath/library/extend');
 
-import {Position} from 'BobjollPath/partials/notifications-v1.1';
-import Notification from 'BobjollPath/partials/notifications-v1.1';
+// tslint:disable-next-line:import-name
+import Notification, { Position } from 'BobjollPath/partials/notifications-v1.1';
 
-type AlertType = 'success' | 'warning' | 'error';
+type AlertType = 'success' | 'warning' | 'error';
 
 export interface InsertSettings {
     fixed?: boolean;
@@ -34,16 +34,16 @@ export default class Alert extends Notification {
             timeout: 5000,
             template: require('BobjollPath/templates/alert.hbs'),
             position: 'top-right'
-        }
+        };
 
         super(extend(defaultSettings, settings));
     }
 
-    public new(html: string, type: AlertType, fixed: boolean = false) {
+    public new(html: string, type: AlertType, fixed = false) {
         return super.insert({
-            html: html,
-            class: `notification--${type}`,
-            fixed: fixed
+            fixed,
+            html,
+            class: `notification--${type}`
         });
     }
 }
