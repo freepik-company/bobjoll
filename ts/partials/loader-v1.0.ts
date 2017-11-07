@@ -28,27 +28,27 @@ class Loader {
 
     // set position between 0 and 100
 	set position(percent: number) {
-		this.current = percent;
-		this.loader.style.width = this.current + '%';
+    this.current = percent;
+    this.loader.style.width = this.current + '%';
 
-		if (this.current >= this.total) {
+    if (this.current >= this.total) {
 			this.loader.classList.add('animation--fade-out');
 		}
-        else {
-			this.loader.classList.remove('animation--fade-out');
-        }
-	}
+    else {
+        this.loader.classList.remove('animation--fade-out');
+    }
+}
 
     get position() {
         return this.current;
     }
 
-	reset() {
+    reset() {
         if (this.interval) {
             window.clearInterval(this.interval);
         }
         this.position = 0;
-	}
+    }
 
     start() {
         let ticks = 0;
