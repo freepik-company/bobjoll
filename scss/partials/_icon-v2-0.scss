@@ -1,8 +1,12 @@
 @if $icon-v2-0 {
-    @import '~/ProjectPath/bobjoll/fonts/bobjoll';
+	@font-face {
+		font-family: "bobjoll";
+		src: url("../bobjoll/fonts/bobjoll.woff2?437792a1b4f18e80d04d27dc4e4fa970") format("woff2"),
+url("../bobjoll/fonts/bobjoll.woff?437792a1b4f18e80d04d27dc4e4fa970") format("woff");
+	}
 
-    .icon {
-        display: block;
+	.icon {
+		display: block;
 
         width: $base-icon-width;
         height: $base-icon-height;
@@ -12,15 +16,20 @@
 
         color: color('icon', 'general');
         fill: color('icon', 'general');
-        font-family: 'bobjoll-linear' !important;
-        speak: none;
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
+        
         text-transform: none;
 
         -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+		-moz-osx-font-smoothing: grayscale;
+
+		speak: none;
+		
+		&::before {
+			font-family: "bobjoll";
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+		}
 
         @include modifier('inverted') {
             color: color('icon-inverted', 'general');
@@ -52,6 +61,707 @@
                     &.icon--mg-#{$size2} { padding: $icon-spacing; box-sizing: content-box; }
                 } // End spacing
             }       
-        } // End sizes
-    }
+		} // End sizes
+		
+			@include modifier("addcollection") {
+				&::before {
+					content: "\f101";
+				}
+			}
+			@include modifier("advanced") {
+				&::before {
+					content: "\f102";
+				}
+			}
+			@include modifier("aligncenter") {
+				&::before {
+					content: "\f103";
+				}
+			}
+			@include modifier("alignleft") {
+				&::before {
+					content: "\f104";
+				}
+			}
+			@include modifier("alignright") {
+				&::before {
+					content: "\f105";
+				}
+			}
+			@include modifier("amex") {
+				&::before {
+					content: "\f106";
+				}
+			}
+			@include modifier("archive") {
+				&::before {
+					content: "\f107";
+				}
+			}
+			@include modifier("backwards") {
+				&::before {
+					content: "\f108";
+				}
+			}
+			@include modifier("beginner") {
+				&::before {
+					content: "\f109";
+				}
+			}
+			@include modifier("behance") {
+				&::before {
+					content: "\f10a";
+				}
+			}
+			@include modifier("bold") {
+				&::before {
+					content: "\f10b";
+				}
+			}
+			@include modifier("book") {
+				&::before {
+					content: "\f10c";
+				}
+			}
+			@include modifier("bug") {
+				&::before {
+					content: "\f10d";
+				}
+			}
+			@include modifier("calendar") {
+				&::before {
+					content: "\f10e";
+				}
+			}
+			@include modifier("check") {
+				&::before {
+					content: "\f10f";
+				}
+			}
+			@include modifier("checkbox") {
+				&::before {
+					content: "\f110";
+				}
+			}
+			@include modifier("clip") {
+				&::before {
+					content: "\f111";
+				}
+			}
+			@include modifier("cloud") {
+				&::before {
+					content: "\f112";
+				}
+			}
+			@include modifier("collection") {
+				&::before {
+					content: "\f113";
+				}
+			}
+			@include modifier("comment") {
+				&::before {
+					content: "\f114";
+				}
+			}
+			@include modifier("cookie") {
+				&::before {
+					content: "\f115";
+				}
+			}
+			@include modifier("copyright") {
+				&::before {
+					content: "\f116";
+				}
+			}
+			@include modifier("coupon") {
+				&::before {
+					content: "\f117";
+				}
+			}
+			@include modifier("credit-card") {
+				&::before {
+					content: "\f118";
+				}
+			}
+			@include modifier("cross-small") {
+				&::before {
+					content: "\f119";
+				}
+			}
+			@include modifier("cross") {
+				&::before {
+					content: "\f11a";
+				}
+			}
+			@include modifier("crown") {
+				&::before {
+					content: "\f11b";
+				}
+			}
+			@include modifier("disabled") {
+				&::before {
+					content: "\f11c";
+				}
+			}
+			@include modifier("dollar") {
+				&::before {
+					content: "\f11d";
+				}
+			}
+			@include modifier("down-small") {
+				&::before {
+					content: "\f11e";
+				}
+			}
+			@include modifier("down") {
+				&::before {
+					content: "\f11f";
+				}
+			}
+			@include modifier("download") {
+				&::before {
+					content: "\f120";
+				}
+			}
+			@include modifier("dribbble") {
+				&::before {
+					content: "\f121";
+				}
+			}
+			@include modifier("duplicate") {
+				&::before {
+					content: "\f122";
+				}
+			}
+			@include modifier("earnings") {
+				&::before {
+					content: "\f123";
+				}
+			}
+			@include modifier("edit") {
+				&::before {
+					content: "\f124";
+				}
+			}
+			@include modifier("envelope") {
+				&::before {
+					content: "\f125";
+				}
+			}
+			@include modifier("exclamation") {
+				&::before {
+					content: "\f126";
+				}
+			}
+			@include modifier("eye-line-through") {
+				&::before {
+					content: "\f127";
+				}
+			}
+			@include modifier("eye") {
+				&::before {
+					content: "\f128";
+				}
+			}
+			@include modifier("facebook") {
+				&::before {
+					content: "\f129";
+				}
+			}
+			@include modifier("file") {
+				&::before {
+					content: "\f12a";
+				}
+			}
+			@include modifier("filter") {
+				&::before {
+					content: "\f12b";
+				}
+			}
+			@include modifier("flame") {
+				&::before {
+					content: "\f12c";
+				}
+			}
+			@include modifier("flip") {
+				&::before {
+					content: "\f12d";
+				}
+			}
+			@include modifier("folder") {
+				&::before {
+					content: "\f12e";
+				}
+			}
+			@include modifier("following") {
+				&::before {
+					content: "\f12f";
+				}
+			}
+			@include modifier("font") {
+				&::before {
+					content: "\f130";
+				}
+			}
+			@include modifier("forwards") {
+				&::before {
+					content: "\f131";
+				}
+			}
+			@include modifier("fullscreen") {
+				&::before {
+					content: "\f132";
+				}
+			}
+			@include modifier("globe") {
+				&::before {
+					content: "\f133";
+				}
+			}
+			@include modifier("google") {
+				&::before {
+					content: "\f134";
+				}
+			}
+			@include modifier("heart-filled") {
+				&::before {
+					content: "\f135";
+				}
+			}
+			@include modifier("heart") {
+				&::before {
+					content: "\f136";
+				}
+			}
+			@include modifier("inbox") {
+				&::before {
+					content: "\f137";
+				}
+			}
+			@include modifier("info") {
+				&::before {
+					content: "\f138";
+				}
+			}
+			@include modifier("instagram") {
+				&::before {
+					content: "\f139";
+				}
+			}
+			@include modifier("intermediate") {
+				&::before {
+					content: "\f13a";
+				}
+			}
+			@include modifier("interogation") {
+				&::before {
+					content: "\f13b";
+				}
+			}
+			@include modifier("italic") {
+				&::before {
+					content: "\f13c";
+				}
+			}
+			@include modifier("justify") {
+				&::before {
+					content: "\f13d";
+				}
+			}
+			@include modifier("laptop") {
+				&::before {
+					content: "\f13e";
+				}
+			}
+			@include modifier("layers") {
+				&::before {
+					content: "\f13f";
+				}
+			}
+			@include modifier("left-small") {
+				&::before {
+					content: "\f140";
+				}
+			}
+			@include modifier("left") {
+				&::before {
+					content: "\f141";
+				}
+			}
+			@include modifier("linkedin") {
+				&::before {
+					content: "\f142";
+				}
+			}
+			@include modifier("list") {
+				&::before {
+					content: "\f143";
+				}
+			}
+			@include modifier("lock") {
+				&::before {
+					content: "\f144";
+				}
+			}
+			@include modifier("logout") {
+				&::before {
+					content: "\f145";
+				}
+			}
+			@include modifier("marker") {
+				&::before {
+					content: "\f146";
+				}
+			}
+			@include modifier("master-card") {
+				&::before {
+					content: "\f147";
+				}
+			}
+			@include modifier("menuburger") {
+				&::before {
+					content: "\f148";
+				}
+			}
+			@include modifier("menudots-vertical") {
+				&::before {
+					content: "\f149";
+				}
+			}
+			@include modifier("menudots") {
+				&::before {
+					content: "\f14a";
+				}
+			}
+			@include modifier("minus-small") {
+				&::before {
+					content: "\f14b";
+				}
+			}
+			@include modifier("minus") {
+				&::before {
+					content: "\f14c";
+				}
+			}
+			@include modifier("next-small") {
+				&::before {
+					content: "\f14d";
+				}
+			}
+			@include modifier("next") {
+				&::before {
+					content: "\f14e";
+				}
+			}
+			@include modifier("notification") {
+				&::before {
+					content: "\f14f";
+				}
+			}
+			@include modifier("opacity") {
+				&::before {
+					content: "\f150";
+				}
+			}
+			@include modifier("palette") {
+				&::before {
+					content: "\f151";
+				}
+			}
+			@include modifier("paper-plane") {
+				&::before {
+					content: "\f152";
+				}
+			}
+			@include modifier("paper-plane2") {
+				&::before {
+					content: "\f153";
+				}
+			}
+			@include modifier("pause") {
+				&::before {
+					content: "\f154";
+				}
+			}
+			@include modifier("paypal") {
+				&::before {
+					content: "\f155";
+				}
+			}
+			@include modifier("pencil") {
+				&::before {
+					content: "\f156";
+				}
+			}
+			@include modifier("phone") {
+				&::before {
+					content: "\f157";
+				}
+			}
+			@include modifier("photo") {
+				&::before {
+					content: "\f158";
+				}
+			}
+			@include modifier("pinterest") {
+				&::before {
+					content: "\f159";
+				}
+			}
+			@include modifier("play") {
+				&::before {
+					content: "\f15a";
+				}
+			}
+			@include modifier("plus-small") {
+				&::before {
+					content: "\f15b";
+				}
+			}
+			@include modifier("plus") {
+				&::before {
+					content: "\f15c";
+				}
+			}
+			@include modifier("prev-small") {
+				&::before {
+					content: "\f15d";
+				}
+			}
+			@include modifier("prev") {
+				&::before {
+					content: "\f15e";
+				}
+			}
+			@include modifier("projects") {
+				&::before {
+					content: "\f15f";
+				}
+			}
+			@include modifier("psd") {
+				&::before {
+					content: "\f160";
+				}
+			}
+			@include modifier("quote") {
+				&::before {
+					content: "\f161";
+				}
+			}
+			@include modifier("receipt") {
+				&::before {
+					content: "\f162";
+				}
+			}
+			@include modifier("refresh") {
+				&::before {
+					content: "\f163";
+				}
+			}
+			@include modifier("removecollection") {
+				&::before {
+					content: "\f164";
+				}
+			}
+			@include modifier("right-small") {
+				&::before {
+					content: "\f165";
+				}
+			}
+			@include modifier("right") {
+				&::before {
+					content: "\f166";
+				}
+			}
+			@include modifier("rotate") {
+				&::before {
+					content: "\f167";
+				}
+			}
+			@include modifier("save") {
+				&::before {
+					content: "\f168";
+				}
+			}
+			@include modifier("search") {
+				&::before {
+					content: "\f169";
+				}
+			}
+			@include modifier("security") {
+				&::before {
+					content: "\f16a";
+				}
+			}
+			@include modifier("settings") {
+				&::before {
+					content: "\f16b";
+				}
+			}
+			@include modifier("share") {
+				&::before {
+					content: "\f16c";
+				}
+			}
+			@include modifier("shopping-cart") {
+				&::before {
+					content: "\f16d";
+				}
+			}
+			@include modifier("shuffle") {
+				&::before {
+					content: "\f16e";
+				}
+			}
+			@include modifier("sortcollection") {
+				&::before {
+					content: "\f16f";
+				}
+			}
+			@include modifier("star-filled") {
+				&::before {
+					content: "\f170";
+				}
+			}
+			@include modifier("star") {
+				&::before {
+					content: "\f171";
+				}
+			}
+			@include modifier("stats") {
+				&::before {
+					content: "\f172";
+				}
+			}
+			@include modifier("stop") {
+				&::before {
+					content: "\f173";
+				}
+			}
+			@include modifier("stumbleupon") {
+				&::before {
+					content: "\f174";
+				}
+			}
+			@include modifier("subtitles") {
+				&::before {
+					content: "\f175";
+				}
+			}
+			@include modifier("support") {
+				&::before {
+					content: "\f176";
+				}
+			}
+			@include modifier("tablet") {
+				&::before {
+					content: "\f177";
+				}
+			}
+			@include modifier("tag") {
+				&::before {
+					content: "\f178";
+				}
+			}
+			@include modifier("thumb-down") {
+				&::before {
+					content: "\f179";
+				}
+			}
+			@include modifier("thumb-up") {
+				&::before {
+					content: "\f17a";
+				}
+			}
+			@include modifier("time") {
+				&::before {
+					content: "\f17b";
+				}
+			}
+			@include modifier("trash") {
+				&::before {
+					content: "\f17c";
+				}
+			}
+			@include modifier("twitter") {
+				&::before {
+					content: "\f17d";
+				}
+			}
+			@include modifier("underline") {
+				&::before {
+					content: "\f17e";
+				}
+			}
+			@include modifier("undo") {
+				&::before {
+					content: "\f17f";
+				}
+			}
+			@include modifier("unlock") {
+				&::before {
+					content: "\f180";
+				}
+			}
+			@include modifier("up-small") {
+				&::before {
+					content: "\f181";
+				}
+			}
+			@include modifier("up") {
+				&::before {
+					content: "\f182";
+				}
+			}
+			@include modifier("upload") {
+				&::before {
+					content: "\f183";
+				}
+			}
+			@include modifier("url") {
+				&::before {
+					content: "\f184";
+				}
+			}
+			@include modifier("user") {
+				&::before {
+					content: "\f185";
+				}
+			}
+			@include modifier("vector") {
+				&::before {
+					content: "\f186";
+				}
+			}
+			@include modifier("video") {
+				&::before {
+					content: "\f187";
+				}
+			}
+			@include modifier("visa") {
+				&::before {
+					content: "\f188";
+				}
+			}
+			@include modifier("volume") {
+				&::before {
+					content: "\f189";
+				}
+			}
+			@include modifier("youtube") {
+				&::before {
+					content: "\f18a";
+				}
+			}
+			@include modifier("zoom-in") {
+				&::before {
+					content: "\f18b";
+				}
+			}
+			@include modifier("zoom-out") {
+				&::before {
+					content: "\f18c";
+				}
+			}
+	}
 }
