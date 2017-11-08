@@ -2,9 +2,9 @@ import { EventListenerOn } from 'Helpers';
 import 'BobjollPath/library/common';
 
 (function() {
-	var accordion_resize_timeout: any;
+	// var accordion_resize_timeout: any;
 
-	EventListenerOn('body', '.accordion__link', 'click', function(this: HTMLElement, e: Event) {		
+	EventListenerOn('body', '.accordion__link', 'click', function(this: HTMLElement, e: Event) {
 		e.preventDefault();
 
 		let parents = this.parents('.accordion');
@@ -25,7 +25,7 @@ import 'BobjollPath/library/common';
 			if (closable == 'true') {
 				this.classList.toggle('active');
 			} else {
-				this.classList.add('active');				
+				this.classList.add('active');
 			}
 		}
 	});
