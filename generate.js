@@ -19,6 +19,9 @@ fontsGenerator({
         classPrefix: 'icon--',
         baseSelector: '.icon'
     },
+    cssDest: './scss/partials/_icon-v2-0.scss',
+    cssTemplate: './fonts/webfontsGenerator.templates.scss.hbs',
+    cssFontsPath: '../bobjoll/fonts/',
     types: ['woff', 'woff2'],
     order: ['woff2', 'woff']
 }, function (error) {

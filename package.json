@@ -4,7 +4,7 @@
   "description": "Freepik Company / Web framework",
   "main": "generate.js",
   "scripts": {
-    "test": "node generate.js"
+    "webfont": "node generate.js"
   },
   "author": "",
   "license": "ISC",
