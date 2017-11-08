@@ -1,0 +1,14 @@
+{
+  "name": "bobjoll",
+  "version": "1.0.0",
+  "description": "Freepik Company / Web framework",
+  "main": "generate.js",
+  "scripts": {
+    "test": "node generate.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webfonts-generator": "^0.4.0"
+  }
+}
