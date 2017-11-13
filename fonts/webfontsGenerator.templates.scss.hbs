@@ -1,6 +1,8 @@
+$webfont: "{{fontName}}" !global;
+
 @if $icon-v2-0 {
 	@font-face {
-		font-family: "{{fontName}}";
+		font-family: $webfont;
 		src: {{{src}}};
 	}
 
@@ -24,7 +26,7 @@
 		speak: none;
 		
 		&::before {
-			font-family: "{{fontName}}";
+			font-family: $webfont;
 			font-style: normal;
 			font-weight: normal;
 			font-variant: normal;

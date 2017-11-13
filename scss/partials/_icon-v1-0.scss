@@ -1,6 +1,8 @@
 @if $icon-v1-0 {
+    $webfont: 'bobjoll-linear';
+
     @font-face {
-        font-family: 'bobjoll-linear';
+        font-family: $webfont;
         src:  url('../bobjoll/fonts/bobjoll-linear.eot?peouxb');
         src:  url('../bobjoll/fonts/bobjoll-linear.eot?peouxb#iefix') format('embedded-opentype'),
         url('../bobjoll/fonts/bobjoll-linear.ttf?peouxb') format('truetype'),
@@ -26,7 +28,7 @@
 
         color: color('icon', 'general');
         fill: color('icon', 'general');
-        font-family: 'bobjoll-linear' !important;
+        font-family: $webfont !important;
         speak: none;
         font-style: normal;
         font-weight: normal;
