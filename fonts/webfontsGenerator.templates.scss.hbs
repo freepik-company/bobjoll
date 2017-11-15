@@ -1,12 +1,12 @@
-$webfont: "{{fontName}}" !global;
-
 @if $icon-v2-0 {
+    $webfont: "{{fontName}}" !global;
+
 	@font-face {
 		font-family: $webfont;
 		src: {{{src}}};
 	}
 
-	.icon {
+    {{baseSelector}} {
 		display: block;
 
         width: $base-icon-width;
@@ -31,45 +31,41 @@ $webfont: "{{fontName}}" !global;
 			font-weight: normal;
 			font-variant: normal;
 		}
+    }
 
-        @include modifier('inverted') {
-            color: color('icon-inverted', 'general');
-            fill: color('icon-inverted', 'general');
-        } // End Inverted
+    {{classPrefix}}inverted {
+        color: color('icon-inverted', 'general');
+        fill: color('icon-inverted', 'general');
+    }
 
-        $map: map-get($colors, 'social');
+    $map: map-get($colors, 'social');
 
-        @each $color, $hex in $map {
-            @include modifier($color) {
-                color: $hex;
-                fill: $hex;
-            }
-        } // End Social 
+    @each $color, $hex in $map {
+        {{classPrefix}}#{$color} {
+            color: $hex;
+            fill: $hex;
+        }
+    }
 
-        @each $size1 in $sizes {
-            $map: map-get($icon-sizes, $size1);
+    @each $size1 in $sizes {
+        $map: map-get($icon-sizes, $size1);
 
-            @include modifier($size1) {
-                width: map-get($map, 'width');
-                height: map-get($map, 'height');
+            {{classPrefix}}#{$size1} {
+            width: map-get($map, 'width');
+            height: map-get($map, 'height');
 
-                font-size: map-get($map, 'width');
-                line-height: map-get($map, 'height');
+            font-size: map-get($map, 'width');
+            line-height: map-get($map, 'height');
 
-                @each $size2 in $sizes {
-                    $icon-spacing: ((map-get($base-sizes, $size2) - map-get($map, 'height')) / 2);
+            @each $size2 in $sizes {
+                $icon-spacing: ((map-get($base-sizes, $size2) - map-get($map, 'height')) / 2);
 
-                    &.icon--mg-#{$size2} { padding: $icon-spacing; box-sizing: content-box; }
-                } // End spacing
-            }       
-		} // End sizes
-		
-		{{#each codepoints}}
-			@include modifier("{{@key}}") {
-				&::before {
-					content: "\\{{this}}";
-				}
-			}
-		{{/each}}
-	}
+                &{{classPrefix}}mg-#{$size2} { padding: $icon-spacing; box-sizing: content-box; }
+            } // End spacing
+        }       
+    }
+    
+    {{#each codepoints}}
+    {{@root.classPrefix}}{{@key}} { &::before { content: "\\{{this}}"; } }
+    {{/each}}
 }

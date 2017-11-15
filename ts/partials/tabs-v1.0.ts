@@ -9,7 +9,7 @@ import 'BobjollPath/library/common';
 		if (id) {
 			e.preventDefault();
 
-			let tab = document.getElementById(id);
+			let tab = document.getElementById(id);			
 
 			if (tab) {
 				let parents = tab.parents('.tabs');
@@ -20,9 +20,11 @@ import 'BobjollPath/library/common';
 
 					if (tabWrapperButtons.length > 0) {
 						[].forEach.call(tabWrapperButtons, (element: HTMLElement) => {
-							if (element.dataset['tab'] !== id || element.classList.contains('active') && window.innerWidth <= Settings.breakpoints.sm) {
+							if (element.dataset['tab'] !== id || element.classList.contains('active')) {
 								element.classList.remove('active');
-							} else {
+							}
+
+							if (element.dataset['tab'] === id) {
 								element.classList.add('active');
 							}
 						});
