@@ -37,14 +37,12 @@ import * as Settings from 'Settings';
 	});
 
 	window.addEventListener('resize', () => {
-		let popover: NodeListOf<Element> | null = document.querySelectorAll('.popover.popover--mobile-fullscreen');
-
-		if (popover && popover.length > 0) {
+		if (active && active.length > 0) {
 			if(window.innerWidth <= Settings.breakpoints.md) {
 				if (timeout) clearTimeout(timeout);
 
 				timeout = setTimeout(() => {
-					[].forEach.call(popover, (element: HTMLElement) => {
+					[].forEach.call(active, (element: HTMLElement) => {
 						let container = element.querySelector('popover__container');
 
 						if (container) {
@@ -78,8 +76,8 @@ import * as Settings from 'Settings';
 
 			if (container) {
 				let containerSpacing: number = 12;
-				let containerBounding = container.getBoundingClientRect();
 				let containerScrollable: HTMLElement | null = (<HTMLElement>container.querySelector('.scrollable'));
+				let containerBounding = container.getBoundingClientRect();
 
 				if (!container.hasAttribute('style')) {
 					container.classList.add('notransition');				
@@ -100,7 +98,7 @@ import * as Settings from 'Settings';
 					if (popover.classList.contains('popover--bottom-right')) {
 						let right: number = (document.body.clientWidth - containerBounding.right) * -1;
 
-						container.style.right = right + 'px';
+						container.style.right = right + 'px'
 					}
 				}
 			}
@@ -118,6 +116,7 @@ import * as Settings from 'Settings';
 
 				element.classList.remove('active');
 				element.dispatchEvent(popoverEvent);
+				element.removeAttribute('style');
 
 				active.splice(index, 1);
 			});
