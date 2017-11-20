@@ -97,13 +97,11 @@
 	}
 
 	.link {
-		&:not(.link--text):not(.button) {
-			@extend %link-hover;
+		@extend %link-hover;
 
-			color: color('link', 'general');
-	
-			cursor: pointer;
-		}
+		color: color('link', 'general');
+
+		cursor: pointer;
 		
 		@include modifier('text') {
 			@extend %link-hover;
@@ -115,30 +113,28 @@
 	}
 
 	.link-inverted {
-		&:not(.link--text):not(.button) {
-			color: color('link-inverted', 'general', .9);
+		color: color('link-inverted', 'general', .9);
 
-			&:hover {
-				color: color('link-inverted', 'general', 1);
-
-				svg {
-					opacity: .8;
-				}
-			}
-
-			&.active {
-				color: color('link-inverted', 'general', 1);
-				font-weight: bold;
-
-				svg {
-					opacity: 1;
-				}
-			}
+		&:hover {
+			color: color('link-inverted', 'general', 1);
 
 			svg {
-				opacity: .4;
-			}			
+				opacity: .8;
+			}
 		}
+
+		&.active {
+			color: color('link-inverted', 'general', 1);
+			font-weight: bold;
+
+			svg {
+				opacity: 1;
+			}
+		}
+
+		svg {
+			opacity: .4;
+		}			
 	}
 
 	.text, p {
