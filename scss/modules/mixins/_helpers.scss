@@ -1,3 +1,30 @@
+// Fluid typo
+@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+	@each $property in $properties {
+		#{$property}: $min-value;
+	}
+
+	@media screen and (min-width: $min-vw) {
+		@each $property in $properties {
+			#{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+		}
+	}
+
+	@media screen and (min-width: $max-vw) {
+		@each $property in $properties {
+			#{$property}: $max-value;
+		}
+	}
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
 // Color
 @function color($color, $group, $opacity: 1, $darken: 0) {
 	$array: map-get($colors, $group);
@@ -59,16 +86,29 @@
 }
 
 // Fonts
-@mixin font-size($map) {
-	@each $breakpoint, $font-size in $map {
-		@if $breakpoint == null {
-			font-size: $font-size;
-		}
-		@else {
-			@media screen and (min-width: map-get($breakpoints, $breakpoint)) {
-				font-size: $font-size;
+@mixin font-size($var) {
+	
+	@if (type-of($var) == 'map') {
+		$min-width: if(map-has-key($var, 'min-vw'), map-get($var, 'min-vw'), false);
+		$max-width: if(map-has-key($var, 'max-vw'), map-get($var, 'max-vw'), false);
+		$min-value: if(map-has-key($var, 'min-value'), map-get($var, 'min-value'), false);
+		$max-value: if(map-has-key($var, 'max-value'), map-get($var, 'max-value'), false);
+
+		@if ($min-width != false AND $max-width != false AND $min-value != false AND $max-value != false) {
+			@include fluid-type(font-size, $min-width, $max-width, $min-value, $max-value);
+		} @else {
+			@each $breakpoint, $font-size in $var {
+				@if $breakpoint == null {
+					font-size: $font-size;
+				} @else {
+					@media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+						font-size: $font-size;
+					}
+				}
 			}
 		}
+	} @else {
+		font-size: $var;
 	}
 }
 
