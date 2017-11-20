@@ -21,7 +21,6 @@ export abstract class KEventTarget {
     }
 
     dispatchEvent(evt: KEvent): boolean {
-        // console.log('Dispatching', evt, this);
         let ancestors: KEventTarget[] = [this],
             parent = this.getParent();
 
