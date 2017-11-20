@@ -1,5 +1,5 @@
 @if $icon-v1-0 {
-    $webfont: 'bobjoll-linear';
+    $webfont: 'bobjoll-linear' !global;
 
     @font-face {
         font-family: $webfont;
