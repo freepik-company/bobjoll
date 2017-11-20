@@ -1,5 +1,4 @@
 import { EventListenerOn } from 'Helpers';
-import * as Settings from 'Settings';
 import 'BobjollPath/library/common';
 
 (function() {
