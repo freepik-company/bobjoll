@@ -1,65 +1,79 @@
 import { EventListenerOn } from 'Helpers';
 import 'BobjollPath/library/common';
 
-(function() {
-	EventListenerOn('body', '.tabs__link', 'click', function(this: HTMLElement, e: Event) {
-		let id: string | undefined = this.dataset['tab'];
+class Tabs {
+	constructor() {
+		this.addEventListeners();
+	}
 
-		if (id) {
-			e.preventDefault();
+	public show(id: string) {
+		let tab = document.getElementById(id);
 
-			let tab = document.getElementById(id);			
+		if (tab) {
+			let parents = tab.parents('.tabs');
 
-			if (tab) {
-				let parents = tab.parents('.tabs');
+			if (parents && parents.length > 0) {
+				let tabWrapper = parents[0];
+				let tabWrapperButtons = tabWrapper.querySelectorAll('.tabs__link');
 
-				if (parents && parents.length > 0) {
-					let tabWrapper = parents[0];
-					let tabWrapperButtons = tabWrapper.querySelectorAll('.tabs__link');
+				if (tabWrapperButtons.length > 0) {
+					[].forEach.call(tabWrapperButtons, (element: HTMLElement) => {
+						if (element.dataset['tab'] !== id || element.classList.contains('active')) {
+							element.classList.remove('active');
+						}
 
-					if (tabWrapperButtons.length > 0) {
-						[].forEach.call(tabWrapperButtons, (element: HTMLElement) => {
-							if (element.dataset['tab'] !== id || element.classList.contains('active')) {
-								element.classList.remove('active');
-							}
-
-							if (element.dataset['tab'] === id) {
-								element.classList.add('active');
-							}
-						});
-					}
+						if (element.dataset['tab'] === id) {
+							element.classList.add('active');
+						}
+					});
 				}
 			}
 		}
-	});
+	}
 
-	window.addEventListener('resize', () => {
-		if ((window as any).tabsTimeout) clearTimeout((window as any).tabsTimeout);
+	private addEventListeners() {
+		const self = this;
 
-		(window as any).tabsTimeout = setTimeout(function() {
-			let tabs = document.getElementsByClassName('tabs');
+		EventListenerOn('body', '.tabs__link', 'click', function (this: HTMLElement, e: Event) {
+			let id: string | undefined = this.dataset['tab'];
 
-			[].forEach.call(tabs, (element: HTMLElement) => {
-				let tabsButtons = element.querySelectorAll('.tabs__link.active'); // Active tab
+			if (id) {
+				e.preventDefault();
 
-				if (tabsButtons.length === 0) {
-					let tabsButton = (<HTMLElement>element.querySelector('.tabs__link')); // First tab
+				self.show(id);
+			}
+		});
 
-					if (tabsButton) {
-						let id = tabsButton.dataset['tab'];
+		window.addEventListener('resize', () => {
+			if ((window as any).tabsTimeout) clearTimeout((window as any).tabsTimeout);
 
-						if (id) {
-							let tabsButtons = element.querySelectorAll('.tabs__link[data-tab="' + id + '"]'); // Tab buttons with same id
+			(window as any).tabsTimeout = setTimeout(function () {
+				let tabs = document.getElementsByClassName('tabs');
 
-							if (tabsButtons) {
-								[].forEach.call(tabsButtons, (element: HTMLElement) => {
-									element.classList.add('active');
-								});
+				[].forEach.call(tabs, (element: HTMLElement) => {
+					let tabsButtons = element.querySelectorAll('.tabs__link.active'); // Active tab
+
+					if (tabsButtons.length === 0) {
+						let tabsButton = (<HTMLElement>element.querySelector('.tabs__link')); // First tab
+
+						if (tabsButton) {
+							let id = tabsButton.dataset['tab'];
+
+							if (id) {
+								let tabsButtons = element.querySelectorAll('.tabs__link[data-tab="' + id + '"]'); // Tab buttons with same id
+
+								if (tabsButtons) {
+									[].forEach.call(tabsButtons, (element: HTMLElement) => {
+										element.classList.add('active');
+									});
+								}
 							}
 						}
 					}
-				}
-			});
-		}, 150);
-	});
-})();
+				});
+			}, 150);
+		});
+	}
+}
+
+export default new Tabs();
