@@ -69,7 +69,7 @@ class Notifications {
 		if (dataGroup && settings.group) {
 			showGroup = dataGroup == 'true';
 
-			if (showGroup !== undefined && !showGroup) show = false;
+			if (typeof showGroup !== 'undefined' && !showGroup) show = false;
 		}
 
 		return show;
