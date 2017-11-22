@@ -1,0 +1,15 @@
+{
+	"base-duration": "0ms",
+	"base-timing": "cubic-bezier(1.000, 0.000, 0.000, 1.000)",
+	"breakpoints": { 
+		"xs": "480px",
+		"sm": "640px", 
+		"md": "768px",
+		"lg": "992px",
+		"xl": "1400px"
+	},
+	"grid-columns-spacing": "5px",
+	"base-spacing": "20px",
+	"small-spacing": "10px",
+	"extra-small-spacing": "5px"
+}

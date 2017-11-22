@@ -1,0 +1,105 @@
+$avatar-width-xs: 24px;
+$avatar-width-sm: 44px;
+$avatar-width-md: 64px;
+$avatar-width-lg: 84px;
+$avatar-width-xl: 110px;
+
+// Base dimensions   
+$extra-large-element-height: 64px;
+$large-element-height: 56px;
+$base-element-height: 44px;
+$small-element-height: 32px;
+$extra-small-element-height: 24px;
+
+// Buttons
+$extra-large-button-height: $extra-large-element-height;  
+$large-button-height: $large-element-height;
+$base-button-height: $base-element-height;
+$small-button-height: $small-element-height;
+$extra-small-button-height: $extra-small-element-height;
+
+// Border
+$base-border-width: 1px;
+$base-border-radius: 2px;
+$base-border-style: solid;
+$base-border: $base-border-width $base-border-style color('border', 'general');
+
+// Grid Settings
+$grid-columns: 12;
+$grid-columns-spacing: 5px; 
+
+// Typography
+$base-font-family: 'Roboto';
+$title-font-family: 'Montserrat';
+
+// Typography Sizes
+$extra-large-font-size: 22px;
+$large-font-size: 18px;
+$base-font-size: 15px;
+$small-font-size: 14px;
+$extra-small-font-size: 12px;
+
+$h1-font-size: (
+    'min-vw': map-get($breakpoints, 'xs'),
+    'max-vw': map-get($breakpoints, 'xl'),
+    'min-value': 29px,
+    'max-value': 36px,
+);
+$h2-font-size: (
+    'min-vw': map-get($breakpoints, 'xs'),
+    'max-vw': map-get($breakpoints, 'xl'),
+    'min-value': 25px,
+    'max-value': 32px,
+);
+$h3-font-size: (
+    'min-vw': map-get($breakpoints, 'xs'),
+    'max-vw': map-get($breakpoints, 'xl'),
+    'min-value': 23px,
+    'max-value': 28px,
+);
+$h4-font-size: (
+    'min-vw': map-get($breakpoints, 'xs'),
+    'max-vw': map-get($breakpoints, 'xl'),
+    'min-value': 20px,
+    'max-value': 28px,
+);
+$h5-font-size: 18px;
+$h6-font-size: $base-font-size;   
+
+// Icons
+$extra-large-icon-width: 34px;
+$large-icon-width: 28px;
+$base-icon-width: 18px;
+$small-icon-width: 16px;
+$extra-small-icon-width: 12px;
+
+// Inputs
+$large-input-height: $large-element-height;
+$base-input-height: $base-element-height;
+$small-input-height: $small-element-height;
+$large-input-ui-height: 36px;
+$base-input-ui-height: 30px;
+$small-input-ui-height: 20px;
+
+// Line Height
+$extra-large-line-height: 1.66;
+$large-line-height: 1.66;
+$base-line-height: 1.66;
+$small-line-height: 1.66;
+$extra-small-line-height: 1.66;
+$title-line-height: 1.66;
+
+// Shadow
+$base-box-shadow: 0 0 60px color('shadow', 'general', .25);
+$small-box-shadow: 0 0 30px color('shadow', 'general', .25);
+$inner-box-shadow: inset $base-box-shadow;
+
+// Spacing
+$extra-large-spacing: 50px;
+$large-spacing: 30px;
+$base-spacing: 20px;  
+$small-spacing: 10px;
+$extra-small-spacing: 5px;
+
+// Triangle
+$base-triangle-size: 8px;
