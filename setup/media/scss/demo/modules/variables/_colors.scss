@@ -1,0 +1,102 @@
+$color-bg: (background: (
+	'badge': #222,
+	'badge-inverted': #fff,
+	'body': #f4f4f4,
+	'dropdown': #fff, 
+	'footer': #3b3d40, 
+	'header': #fff,
+	'header-inverted': #4D4D4D, 
+	'input': #fff,
+	'input-inverted': #222,
+	'light': #fff,
+	'modal': #fff,
+	'notification': #fff,
+	'overlay': #222, 
+	'popover': #fff, 
+	'secondary': #3b3d40,
+	'showcase': #f4f4f4,
+	'showcase-item': #dfdfdf,
+	'showcase-item-inverted': #fff,
+	'table': #fff,
+	'table-head': #f9f9f9,
+	'table-odd': #f6f6f6,
+	'tabs': #fff,
+	'tabs-active': #0F73EE,	
+	'tags': #f9f9f9,
+	'tags-inverted': #fff,
+	'tooltip': #fff
+));
+
+$color-general: (general: (		
+	'border': #dfdfdf,
+	'border-inverted': #fff,
+	'triangle': #6b6b6b,
+	'triangle-active': #bebebe,
+	'button': #0F73EE,
+	'button-inverted': #fff,
+	'footer': #fff,
+	'heading': #4a4a4a,
+	'heading-inverted': #fff,
+	'icon': #4a4a4a,
+	'icon-inverted': #fff,
+	'link': #0F73EE,
+	'link-inverted': #fff,
+	'shadow': #1F2D3D,
+	'tabs': #777,
+	'tabs-active': #fff,
+	'tabs-border': (#dfdfdf, 1, -5),
+	'tabs-triangle': #333,
+	'tabs-triangle-active': #fff,
+	'tags': #555,
+	'tags-inverted': #222,
+	'text': #4a4a4a,
+	'text-dark': #000000,
+	'text-inverted': #fff,
+	'text-secondary': #777
+));
+
+$color-state: ( state: (
+	'green': #13CE66,
+    'blue': #1FB6FF,
+    'gray': #7F7F7F,
+    'red': #FF4949,
+	'yellow': #FFC82C,
+	'premium': #F90,
+	'flaticon': #7fff00,
+)) !default;
+
+$color-state-text: ( 'state-text': (
+	'green': #fff,
+    'blue': #fff,
+    'gray': #fff,
+    'red': #fff,
+	'yellow': #222,
+	'premium': #fff,
+	'flaticon': #333,
+)) !default;
+
+$color-project: (categories: (
+	'icon': #2DD274,
+	'photo': #F8DA1C,
+	'psd': #0F73EE,
+	'vector': #865AB1
+), project: ( 
+	'main': #0f73ee,
+	'main-dark': #104599,
+	'main-inverted': #fff, 
+	'main-light': #dff1fe, 
+	'premium': #fba707,
+	'tutpad': #ff5252,	
+), loading: (
+	'background': #d3d3d3
+), flaticon: (
+	'main': #7fff00,
+	'medium-gray': #4a5f5f
+));
+
+// Color keys
+$colors: ();
+$colors-keys: ( 'background', 'social', 'state', 'project', 'general' );
+
+// Add color groups
+$colors: map-merge($colors, $color-project);
