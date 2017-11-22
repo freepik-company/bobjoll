@@ -37,6 +37,9 @@
 		}
 	},
 	"files": [], // This will avoid loading files that are not defined as entry point.
+	"include": [
+		"media/ts/*"
+	],
 	"exclude": [ // Exclude node_modules
 		"node_modules",
 		"media/bobjoll/node_modules"	
