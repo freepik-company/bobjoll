@@ -22,7 +22,9 @@ export default class Google extends Social {
             try {
                 gapi.auth2.getAuthInstance().signIn({
                     scope: 'email profile'
-                }).then(() => resolve(response));
+                })
+                .then(() => resolve(response))
+                .error((error: any) => reject(error));
               
                 setTimeout(() => reject('undefined' !== typeof GOOGLE_AUTH_TIMEOUT_MESSAGE ? GOOGLE_AUTH_TIMEOUT_MESSAGE : 'Google authentication timeout'), 10000);
             } catch(e) {
