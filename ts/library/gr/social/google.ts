@@ -18,21 +18,9 @@ export default class Google extends Social {
             return;
         }
 
-        const response = await new Promise(function(resolve, reject) {
-            try {
-                gapi.auth2.getAuthInstance().signIn({
-                    scope: 'email profile'
-                })
-                .then(() => resolve(response))
-                .error((error: any) => reject(error));
-              
-                setTimeout(() => reject('undefined' !== typeof GOOGLE_AUTH_TIMEOUT_MESSAGE ? GOOGLE_AUTH_TIMEOUT_MESSAGE : 'Google authentication timeout'), 10000);
-            } catch(e) {
-                reject(e);
-            }
-        }) as GoogleApiOAuth2TokenObject;
-
-        return Google.status(response);
+        return gapi.auth2.getAuthInstance().signIn({
+            scope: 'email profile'
+        }).then((response: GoogleApiOAuth2TokenObject) => Google.status(response)); 
     }
 
     public static disconnect() {
@@ -119,6 +107,7 @@ export default class Google extends Social {
                 Google.connected = true;
 
                 form.append('google_id', data.result.id);
+                form.append('social_network', 'google');
             }
             else {
                 action = 'login';
