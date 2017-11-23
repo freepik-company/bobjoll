@@ -22,6 +22,10 @@ export default class Twitter extends Social {
         if ('function' === typeof Twitter.register) {
             data.append('twitter_id', args.twitter_id || '0');
 
+            if (args.result.match(/error/) && args.message) {
+                throw Error(args.message);
+            }
+
             if (args.result.match(/login|connect/)) {                
                 Twitter.auth(args.result, data);
             }
@@ -31,10 +35,6 @@ export default class Twitter extends Social {
                 data.append('avatar', args.avatar || '');
 
                 Twitter.register(data);
-            }
-
-            if (args.result.match(/error/) && args.message) {
-                throw Error(args.message);
             }
         }
     }
