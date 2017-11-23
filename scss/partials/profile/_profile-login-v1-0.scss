@@ -10,6 +10,14 @@
 			}
 		}
 
+		.tabs__content.disabled  {
+			opacity: 1;
+		}
+
+		.button.disabled {
+			opacity: .65;
+		}
+
 		input.error {
 			border-left: 2px solid color('red', 'state');
 		}
