@@ -23,16 +23,31 @@ export default class Facebook extends Social {
 
     public static async connect() {
         let response = await new Promise(function(resolve, reject) {
+            let timeout;
+
             try {
                 if (FB.getUserID() === '') {
-                    FB.login(resolve, {scope: Facebook.scope});
+                    FB.login((response) => {
+                        if (response.authResponse) {
+                            resolve(response);
+                        } else {
+                            reject({
+                                status: false,
+                                message: 'Login cancelled or not fully authorized.'
+                            });
+                        }
+                    }, {scope: Facebook.scope});
                 } else {
                     FB.getLoginStatus(resolve);
                 }
 
-                setTimeout(() => reject(('undefined' !== FACEBOOK_AUTH_TIMEOUT_MESSAGE ? FACEBOOK_AUTH_TIMEOUT_MESSAGE : 'Facebook authentication timeout')), 10000);
+                timeout = setTimeout(() => reject(('undefined' !== FACEBOOK_AUTH_TIMEOUT_MESSAGE ? FACEBOOK_AUTH_TIMEOUT_MESSAGE : 'Facebook authentication timeout')), 10000);
             } catch(e) {
                 reject(e);
+            } finally {
+                if (timeout) {
+                    clearTimeout(timeout);
+                }
             }
         });
 
