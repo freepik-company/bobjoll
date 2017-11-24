@@ -1,0 +1,47 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+        "baseUrl": "./media",
+		"module": "commonjs",
+		"target": "es5",
+		"sourceMap": true,
+		"types": ["node"],
+		"lib": ["es6", "es2015.promise", "dom"],
+		"removeComments": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"strictNullChecks": true,
+		"noFallthroughCasesInSwitch": true,
+		"typeRoots": [
+		    "node_modules/@types"
+		],
+        "paths": {
+			"ProjectPath/*": ["./*"],
+			"BobjollPath/*": ["./bobjoll/ts/*"],
+			"BobjollPathCSS/*": ["./bobjoll/scss/*"],
+			"BobjollAccordion": ["./bobjoll/ts/partials/accordion-v1.0"],
+		    "BobjollAlert": ["./bobjoll/ts/partials/alert-v1.0"],
+		    "BobjollCopy": ["./bobjoll/ts/partials/copy-v1.0"],
+		    "BobjollDropdown": ["./bobjoll/ts/partials/dropdown-v1.0"],
+		    "BobjollExpandable": ["./bobjoll/ts/partials/expandable-v1.0"],
+		    "BobjollModal": ["./bobjoll/ts/partials/modal-v1.0"],
+		    "BobjollNotifications": ["./bobjoll/ts/partials/notifications-v1.1"],
+		    "BobjollPopover": ["./bobjoll/ts/partials/popover-v1.0"],
+		    "BobjollScrollable": ["./bobjoll/ts/partials/scrollable-v1.0"],
+		    "BobjollTabs": ["./bobjoll/ts/partials/tabs-v1.0"],
+		    "BobjollTags": ["./bobjoll/ts/partials/tags-v1.0"],
+		    "BobjollTrigger": ["./bobjoll/ts/partials/trigger-v1.0"],
+		    "BobjollUpload": ["./bobjoll/ts/partials/upload-v1.0"],
+		    "BobjollPassword": ["./bobjoll/ts/partials/password-v1.0"]
+		}
+	},
+	"files": [], // This will avoid loading files that are not defined as entry point.
+	"include": [
+		"media/ts/*"
+	],
+	"exclude": [ // Exclude node_modules
+		"node_modules",
+		"media/bobjoll/node_modules"	
+	]
+}

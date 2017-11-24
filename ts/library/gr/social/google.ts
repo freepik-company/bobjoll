@@ -1,4 +1,4 @@
-/// <reference types="gapi" />
+/// <reference types="gapi.auth2" />
 
 declare var GOOGLE_AUTH_TIMEOUT_MESSAGE: string;
 
@@ -18,45 +18,29 @@ export default class Google extends Social {
             return;
         }
 
-        const response = await new Promise(function(resolve, reject) {
-            try {
-                gapi.auth.authorize({
-                    client_id: GOOGLE_CLIENT_ID, 
-                    scope: 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email', 
-                    immediate: true
-                }, (response) => resolve(response));
-
-                setTimeout(() => reject('undefined' !== typeof GOOGLE_AUTH_TIMEOUT_MESSAGE ? GOOGLE_AUTH_TIMEOUT_MESSAGE : 'Google authentication timeout'), 10000);
-            } catch(e) {
-                reject(e);
-            }
-        }) as GoogleApiOAuth2TokenObject;
-
-        return Google.status(response);
+        return gapi.auth2.getAuthInstance().signIn({
+            scope: 'email profile'
+        }).then((response: GoogleApiOAuth2TokenObject) => Google.status(response)); 
     }
 
     public static disconnect() {
         if (Google.gr && Google.gr.isLogged()) {
-			gapi.auth.authorize({
-                client_id: GOOGLE_CLIENT_ID, 
-                scope: 'https://www.googleapis.com/auth/plus.me', 
-                immediate: false
-            }, function(response) {
+            gapi.auth2.getAuthInstance().signOut().then((response: GoogleApiOAuth2TokenObject) => {
                 if (response && !response.error) {
                     let data = new FormData();
 
                     try {
                         var result = gapi.auth.getToken();
                         var request = new XMLHttpRequest();
-                        
-						request.open('GET', 'https://accounts.google.com/o/oauth2/revoke?token=' + result.access_token, false);
-						request.send();
-                    } catch(e) {};
+
+                        request.open('GET', 'https://accounts.google.com/o/oauth2/revoke?token=' + result.access_token, false);
+                        request.send();
+                    } catch (e) { };
 
                     data.append('social_network', 'google');
 
                     Google.request('DELETE', 'profile/connect', data);
-					Google.connected = false;
+                    Google.connected = false;
                 }
             });
 		}
@@ -72,7 +56,7 @@ export default class Google extends Social {
                 js = (d.createElement(s) as HTMLScriptElement); 
                 
                 js.id = id;
-                js.src = 'https://apis.google.com/js/client.js?onload=google_init';
+                js.src = 'https://apis.google.com/js/api:client.js?onload=google_init';
 
                 if (fjs.parentNode) fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'google-jssdk'));
@@ -85,10 +69,14 @@ export default class Google extends Social {
     }
 
     private static setup() {
-        (window as any).google_init = () => {
-            if (typeof gapi.client != 'undefined') {
-                gapi.client.setApiKey(GOOGLE_API_KEY); 
-            }
+        (window as any).google_init = async function() {
+            await new Promise((resolve) => {
+                gapi.load('client:auth2', () => resolve());                
+            });
+
+            gapi.auth2.init({
+                client_id: GOOGLE_CLIENT_ID
+            });
 
             Google.loaded = true;
 
@@ -119,6 +107,7 @@ export default class Google extends Social {
                 Google.connected = true;
 
                 form.append('google_id', data.result.id);
+                form.append('social_network', 'google');
             }
             else {
                 action = 'login';
