@@ -22,36 +22,17 @@ export default class Facebook extends Social {
     }
 
     public static async connect() {
-        let response = await new Promise(function(resolve, reject) {
-            let timeout;
-
-            try {
-                if (FB.getUserID() === '') {
-                    FB.login((response) => {
-                        if (response.authResponse) {
-                            resolve(response);
-                        } else {
-                            reject({
-                                status: false,
-                                message: 'Login cancelled or not fully authorized.'
-                            });
-                        }
-                    }, {scope: Facebook.scope});
-                } else {
-                    FB.getLoginStatus(resolve);
-                }
-
-                timeout = setTimeout(() => reject(('undefined' !== FACEBOOK_AUTH_TIMEOUT_MESSAGE ? FACEBOOK_AUTH_TIMEOUT_MESSAGE : 'Facebook authentication timeout')), 10000);
-            } catch(e) {
-                reject(e);
-            } finally {
-                if (timeout) {
-                    clearTimeout(timeout);
-                }
+        const response = await new Promise((resolve) => {
+            if ('' === FB.getUserID()) {
+                FB.login(() => resolve(response), {
+                    scope: 'public_profile, email'
+                })
+            } else {
+                FB.getLoginStatus((response) => resolve(response));
             }
         });
 
-        return Facebook.status((response as any));
+        return Facebook.status(<fb.AuthResponse>response);
     }
 
     public static disconnect() {
@@ -103,56 +84,56 @@ export default class Facebook extends Social {
         };
     }
 
-    private static async status(response: fb.AuthResponse)  {
-        let action: 'login' | 'register' | 'connect' = 'connect';
+    private static async status(response: any)  {
+        let action: 'login' | 'register' | 'connect' = 'login';
         let data = new FormData();
-        let uid: string;
 
         if (response) {
             if ('connected' === response.status) {
-                uid = response.authResponse.userID;
-
-                data.append('facebook_id', uid);
-
-                if (uid && Facebook.gr && Facebook.gr.isLogged()) {
-                    action = 'connect';
-
-                    data.append('social_network', 'facebook');            
-
-                    Facebook.connected = true;
-                }
-                else {
-                    action = 'login';
-                }
-            }
-            else if ('register' === response.status) {
-                let action = 'register';
-
-                await new Promise(function(resolve, reject) {
+                data.append('facebook_id', response.authResponse.userID);
+                data.append('social_network', 'facebook');                
+                
+                if (Facebook.gr && !Facebook.gr.isLogged()) action = 'connect';
+            } else if ('register' === response.status) {
+                let user = await new Promise((resolve, reject) => {
                     try {
-                        FB.api('/me?fields=id,email,name,locale,token_for_business', function(userResponse: any) {
+                        FB.api('/me?fields=id,email,name,locale,token_for_business', (fields: any) => {
                             FB.api('/me/picture', {
                                 'redirect': false,
                                 'height': '200',
                                 'type': 'normal',
                                 'width': '200'
-                            }, function(response: any) {
-                                data.append('facebook_id', userResponse.id);
-                                data.append('email', userResponse.email);
-                                data.append('name', userResponse.name);
-                                data.append('language', userResponse.locale);
-                                data.append('avatar', (response && !response.error && !response.data.is_silhouette) ? response.data.url : false);
+                            }, (picture: any) => {
+                                action = 'register';
 
-                                resolve();
+                                data.append('facebook_id', fields.id);
+                                data.append('email', fields.email);
+                                data.append('name', fields.name);
+                                data.append('language', fields.locale);
+                                data.append('avatar', (picture && !picture.error && !picture.data.is_silhouette) ? picture.data.url : false);
+                                data.append('fb_token', fields.token_for_business);
+
+                                resolve({
+                                    fields: fields,
+                                    picture: picture,
+                                });
                             });
                         });
-                    } catch(e) {
-                        reject(`Error ocurred during facebook register. Error: ${e}`);
-                    }                    
+                    } catch(err) {
+                        reject(err);
+                    }
                 });
             }
         }
 
-        return Facebook.auth(action, data);
+        let auth: any = await Facebook.auth(action, data);
+
+        if ('register' === auth.data.status) {
+            auth = await Facebook.status({
+                status: 'register'
+            });
+        }
+
+        return auth;
     }
 }
