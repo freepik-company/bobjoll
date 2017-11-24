@@ -48,7 +48,7 @@ export default class Social {
                         const ret: SocialResponse = JSON.parse(req.response);
 
                         if (ret.data.status) {
-                            if ('undefined' !== typeof gr && ret.data && ret.data.status) {
+                            if ('undefined' !== typeof gr && ret.data && ret.data.status && ret.data.status === true) {
                                 gr.updateUser();
                                 gr.updateUI();
                                 gr.triggerLogin(gr.user);
