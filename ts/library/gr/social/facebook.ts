@@ -22,9 +22,15 @@ export default class Facebook extends Social {
     }
 
     public static async connect() {
-        const response = await new Promise((resolve) => {
+        const response = await new Promise((resolve, reject) => {
             if ('' === FB.getUserID()) {
-                FB.login(() => resolve(response), {
+                FB.login((response) => {
+                    if (response.authResponse) {
+                        resolve(response);
+                    } else {
+                        reject(response);
+                    }
+                }, {
                     scope: 'public_profile, email'
                 })
             } else {
@@ -132,7 +138,12 @@ export default class Facebook extends Social {
             auth = await Facebook.status({
                 status: 'register'
             });
+
+            if (true === auth.data.status) {
+                auth = await Facebook.connect();
+            }
         }
+
 
         return auth;
     }
