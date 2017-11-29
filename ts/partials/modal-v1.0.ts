@@ -154,6 +154,19 @@ class Modal {
 	addEventListeners() {
 		let modal = this;
 
+		window.addEventListener('mouseup', (e: Event) => {
+			let target: EventTarget = e.target;
+
+			if (target instanceof HTMLElement) {
+				let wrapper = target.parents('.modal');
+				let container = target.parents('.modal__container');
+
+				if ((0 < wrapper.length || target.classList && target.classList.contains('modal')) && 0 === container.length) {
+					this.hide();
+				}
+			}
+		})
+
 		EventListenerOn('body', '.modal__close', 'click', function(this: HTMLElement, e: Event) {
 			e.preventDefault();
 
