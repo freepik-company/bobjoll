@@ -321,48 +321,50 @@
 		}
 
 		// Icon
-		@include modifier('icon') {
-			@include clearfix;
-
-			position: relative;
-
-			display: block;
-
-			&:not(.button--icon--only):not(.button--icon--left):not(.button--icon--right) {
-				@extend %row-flexbox;
-				@extend .row--vertical-center;
-				@extend .row--horizontal-center;
-
-				.icon {
-					padding-left: 0;
-					padding-right: 0;
+		@if ($grid-v1-0) {
+			@include modifier('icon') {
+				@include clearfix;
+	
+				position: relative;
+	
+				display: block;
+	
+				&:not(.button--icon--only):not(.button--icon--left):not(.button--icon--right) {
+					@extend %row-flexbox;
+					@extend .row--vertical-center;
+					@extend .row--horizontal-center;
+	
+					.icon {
+						padding-left: 0;
+						padding-right: 0;
+					}
+	
+					span ~ i, i ~ span {
+						margin-left: $extra-small-spacing !important;
+					}
 				}
-
-				span ~ i, i ~ span {
-					margin-left: $extra-small-spacing !important;
+	
+				@include modifier('only') {
+					padding: 0 !important;
 				}
-			}
-
-			@include modifier('only') {
-				padding: 0 !important;
-			}
-
-			@include modifier('left') {
-				.icon:first-of-type {
-					@include position(absolute, 0 null null 0);
-
-					border-top-left-radius: $base-border-radius;
-					border-bottom-left-radius: $base-border-radius;
+	
+				@include modifier('left') {
+					.icon:first-of-type {
+						@include position(absolute, 0 null null 0);
+	
+						border-top-left-radius: $base-border-radius;
+						border-bottom-left-radius: $base-border-radius;
+					}
 				}
-			}
-
-			@include modifier('right') {
-				.icon:first-of-type {
-					@include position(absolute, 0 0 null null);
-
-					border-top-right-radius: $base-border-radius;
-					border-bottom-right-radius: $base-border-radius;
-				}
+	
+				@include modifier('right') {
+					.icon:first-of-type {
+						@include position(absolute, 0 0 null null);
+	
+						border-top-right-radius: $base-border-radius;
+						border-bottom-right-radius: $base-border-radius;
+					}
+				}			
 			}			
 		}
 
@@ -398,10 +400,11 @@
 						background: color($social, 'social', 1, -2.5);
 
 						span {
-							@extend .overflow-ellipsis;
+							overflow: hidden;
 
 							display: block;
-
+							
+							text-overflow: ellipsis;
 							white-space: nowrap;
 						}
 
@@ -527,49 +530,51 @@
 		}
 
 		// Group
-		@include element('group') {
-			@extend %row-flexbox;
-
-			overflow: hidden;
-
-			display: inline-block;
-
-			border-radius: $base-border-radius;
-
-			box-shadow: 0 0 0 1px color('border', 'general');
-
-			.button {
-				width: 100%;
-
-				border-radius: 0 !important;
-
-				box-shadow: none !important;
-
-				text-align: center;
-			}
-
-			label {
-				input[type="checkbox"]:checked.hide ~ .button,
-				input[type="radio"]:checked.hide ~ .button {
-					@extend .button--main--hover.active;
+		@if ($form-v1-0) {
+			@include element('group') {
+				@extend %row-flexbox;
+	
+				overflow: hidden;
+	
+				display: inline-block;
+	
+				border-radius: $base-border-radius;
+	
+				box-shadow: 0 0 0 1px color('border', 'general');
+	
+				.button {
+					width: 100%;
+	
+					border-radius: 0 !important;
+	
+					box-shadow: none !important;
+	
+					text-align: center;
 				}
-			}
-
-			li {
-				@include flex(1);
-
-				box-shadow: 1px 0px 0px 0px color('border', 'general');
-
-				&:first-child {
-					border-top-left-radius: $base-border-radius;
-					border-bottom-left-radius: $base-border-radius;
+	
+				label {
+					input[type="checkbox"]:checked.hide ~ .button,
+					input[type="radio"]:checked.hide ~ .button {
+						@extend .button--main--hover.active;
+					}
 				}
-
-				&:last-child {
-					border-top-right-radius: $base-border-radius;
-					border-bottom-right-radius: $base-border-radius;
+	
+				li {
+					@include flex(1);
+	
+					box-shadow: 1px 0px 0px 0px color('border', 'general');
+	
+					&:first-child {
+						border-top-left-radius: $base-border-radius;
+						border-bottom-left-radius: $base-border-radius;
+					}
+	
+					&:last-child {
+						border-top-right-radius: $base-border-radius;
+						border-bottom-right-radius: $base-border-radius;
+					}
 				}
-			}
+			}			
 		}
 	} 
 

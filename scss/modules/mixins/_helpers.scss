@@ -25,6 +25,17 @@
   @return $number;
 }
 
+// Last of array
+@function map-get-last($map) {
+	$last-key: '';
+
+	@each $key, $value in $map {
+		$last-key: $key;
+	}
+
+	@return $last-key;
+}
+
 // Color
 @function color($color, $group, $opacity: 1, $darken: 0) {
 	$array: map-get($colors, $group);

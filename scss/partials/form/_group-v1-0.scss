@@ -39,26 +39,59 @@
         }
 
         & > input {
-            @include flex(1);
+            flex: 1;
 
             margin: 0;
 
             border: none;
 
-            &:focus ~ button {
-                @extend .button--main--hover.active;
+            @if $button-v1-0 {
+                &:focus ~ button {
+                    @extend .button--main--hover.active;
+                }                
+            }
+
+            @if $button-v2-0 {
+                @each $color, $hex in map-get($colors, 'buttons') {
+                    &:focus ~ .button {
+                        border: none !important;
+                    }
+
+                    &:focus ~ .button--#{$color}--hover {
+                        --bg: color($color, 'buttons', 1);
+                        --size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
+                        --color: color($color, 'buttons-text');
+
+                        .icon {
+                            color: color($color, 'buttons-text');
+                        }
+
+                        z-index: 2;
+                    }
+                }
             }
         }
 
         & > button {
+            @if ($button-v1-0) {
+                border: none;                
+            }
+
+            @if ($button-v2-0) {
+                --size: 0;
+            }           
+
             position: relative;
 
             margin: 0;
 
-            border: none;
             border-radius: 0;
 
-            z-index: 11;
+            z-index: 1;
+
+            &:hover {
+                z-index: 2;
+            }
         }
 
         @include modifier('inverted') {

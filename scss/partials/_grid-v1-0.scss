@@ -1,7 +1,7 @@
 %row-flexbox {
-    @include display(flex);
-    @include flex-wrap(wrap);
-    @include align-items(flex-start);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 %col {
@@ -24,51 +24,52 @@
         @extend %row-flexbox;
 
         @include modifier('space-between') {
-            @include justify-content(space-between);
+            justify-content: space-between;
         }
 
         @include modifier('horizontal-center') {
-            @include justify-content(center);
+            justify-content: center;
         }
 
         @include modifier('vertical-center') {
-            @include align-items(center);
+            align-items: center;
         }
 
         @include modifier('left') {
-            @include justify-content(flex-start);
+            justify-content: flex-start;
         }
 
         @include modifier('right') {
-            @include justify-content(flex-end);
+            justify-content: flex-end;
         }
 
         @include modifier('nowrap') {
-            @include flex-wrap(nowrap);
+            flex-wrap: nowrap;
         }
     }    
 }
 
-.col {            
-    @include flex(1);
+.col {                
     @extend %col;
+
+    flex: 1;
 }
 
 @if $grid-v1-0 {    
     .col--center {
-        @include align-self(center);
+        align-self: center;
     }
 
     .col--top {
-        @include align-self(flex-start);
+        align-self: flex-start;
     }
 
     .col--bottom {
-        @include align-self(flex-end);
+        align-self: flex-end;
     }
 
     .col--stretch {
-        @include align-self(stretch);
+        align-self: stretch;
     }
 
     .container-fluid {
@@ -101,7 +102,8 @@
     }
 
     .col {            
-        @include flex(1);
         @extend %col;
+
+        flex: 1;
     }
 } // End if
