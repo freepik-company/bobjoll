@@ -1,4 +1,4 @@
-@include keyframes(slide-top-in) {
+@keyframes slide-top-in {
 	0% {
 		top: -100%;
 	} 100% {
@@ -6,7 +6,7 @@
 	}
 }
 
-@include keyframes(slide-top-out) {
+@keyframes slide-top-out {
 	0% {
 		top: 0%;
 	} 100% {
@@ -14,7 +14,7 @@
 	}
 }
 
-@include keyframes(slide-bottom-in) {
+@keyframes slide-bottom-in {
 	0% {
 		bottom: -100%;
 	} 100% {
@@ -22,7 +22,7 @@
 	}
 }
 
-@include keyframes(slide-bottom-out) {
+@keyframes slide-bottom-out {
 	0% {
 		bottom: 0%;
 	} 100% {

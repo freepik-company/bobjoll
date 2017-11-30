@@ -1,23 +1,23 @@
 .animation--scale-in {
-	@include animation(scale-in $base-duration $base-timing forwards);
+	animation: scale-in $base-duration $base-timing forwards;
 }
 
 .animation--scale-out {
-	@include animation(scale-out $base-duration $base-timing forwards);
+	animation: scale-out $base-duration $base-timing forwards;
 }
 
-@include keyframes(scale-in) {
+@keyframes scale-in {
 	0% {
-		@include transform(scale(0));
+		transform: scale(0);
 	} 100% {
-		@include transform(scale(1));
+		transform: scale(1);
 	}
 }
 
-@include keyframes(scale-out) {
+@keyframes scale-out {
 	0% {
-		@include transform(scale(1));
+		transform: scale(1);
 	} 100% {
-		@include transform(scale(0));
+		transfrom: scale(0);
 	}
 }
