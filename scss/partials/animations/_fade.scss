@@ -1,12 +1,12 @@
 .animation--fade-in {
-	@include animation(fade-in $base-duration $base-timing forwards);
+	animation: fade-in $base-duration $base-timing forwards;
 }
 
 .animation--fade-out {
-	@include animation(fade-out $base-duration $base-timing forwards);
+	animation: fade-out $base-duration $base-timing forwards;
 }
 
-@include keyframes(fade-in) {
+@keyframes fade-in {
 	0% {
 		opacity: 0;
 	} 100% {
@@ -14,7 +14,7 @@
 	}
 }
 
-@include keyframes(fade-out) {
+@keyframes fade-out {
 	0% {
 		opacity: 1;
 	} 100% {

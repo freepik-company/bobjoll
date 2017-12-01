@@ -1,102 +1,60 @@
-$color-bg: (background: (
-	'badge': #222,
-	'badge-inverted': #fff,
-	'body': #f4f4f4,
-	'dropdown': #fff, 
-	'footer': #3b3d40, 
-	'header': #fff,
-	'header-inverted': #4D4D4D, 
-	'input': #fff,
-	'input-inverted': #222,
-	'light': #fff,
-	'modal': #fff,
-	'notification': #fff,
-	'overlay': #222, 
-	'popover': #fff, 
-	'secondary': #3b3d40,
-	'showcase': #f4f4f4,
-	'showcase-item': #dfdfdf,
-	'showcase-item-inverted': #fff,
-	'table': #fff,
-	'table-head': #f9f9f9,
-	'table-odd': #f6f6f6,
-	'tabs': #fff,
-	'tabs-active': #0F73EE,	
-	'tags': #f9f9f9,
-	'tags-inverted': #fff,
-	'tooltip': #fff
-));
+/**
+* Override default values of bobjoll
+*/
+// $color-main: #1FB6FF;
+// $color-dark: #222;
+// $color-border: #e8e8e8;
+// $color-secondary: #f8f8f8;
+// $color-light: #fff;
+// $color-heading: #273444;
+// $color-text: #3C4858;
 
-$color-general: (general: (		
-	'border': #dfdfdf,
-	'border-inverted': #fff,
-	'triangle': #6b6b6b,
-	'triangle-active': #bebebe,
-	'button': #0F73EE,
-	'button-inverted': #fff,
-	'footer': #fff,
-	'heading': #4a4a4a,
-	'heading-inverted': #fff,
-	'icon': #4a4a4a,
-	'icon-inverted': #fff,
-	'link': #0F73EE,
-	'link-inverted': #fff,
-	'shadow': #1F2D3D,
-	'tabs': #777,
-	'tabs-active': #fff,
-	'tabs-border': (#dfdfdf, 1, -5),
-	'tabs-triangle': #333,
-	'tabs-triangle-active': #fff,
-	'tags': #555,
-	'tags-inverted': #222,
-	'text': #4a4a4a,
-	'text-dark': #000000,
-	'text-inverted': #fff,
-	'text-secondary': #777
-));
+// $social-behance: #1769ff;
+// $social-dribbble: #ea4c89;
+// $social-facebook: #3b5998;
+// $social-google: #dd4b39;
+// $social-instagram: #e95950;
+// $social-pinterest: #cb2027;
+// $social-stumbleupon: #f74425;
+// $social-twitter: #55acee;
+// $social-vimeo: #aad450;
+// $social-youtube: #bb0000;
 
-$color-state: ( state: (
-	'green': #13CE66,
-    'blue': #1FB6FF,
-    'gray': #7F7F7F,
-    'red': #FF4949,
-	'yellow': #FFC82C,
-	'premium': #F90,
-	'flaticon': #7fff00,
-)) !default;
+// $state-green: #13CE66;
+// $state-blue: $color-main;
+// $state-gray: #7F7F7F;
+// $state-red: #FF4949;
+// $state-yellow: #FFC82C;
 
-$color-state-text: ( 'state-text': (
-	'green': #fff,
-    'blue': #fff,
-    'gray': #fff,
-    'red': #fff,
-	'yellow': #222,
-	'premium': #fff,
-	'flaticon': #333,
-)) !default;
+/**
+* Local colors
+*/
+$local-colors: (
+	background: (
+		// Add or override default values
+	),
+	state: (
+		// Add or override default values
+	),
+	state-text: (
+		// Add or override default values
+	),
+	social: (
+		// Add or override default values
+	),
+	general: (
+		// Add or override default values
+	),
+	buttons: (
+		// Add or override default values
+	), 
+	buttons-text: (
+		// Add or override default values
+	)
+);
 
-$color-project: (categories: (
-	'icon': #2DD274,
-	'photo': #F8DA1C,
-	'psd': #0F73EE,
-	'vector': #865AB1
-), project: ( 
-	'main': #0f73ee,
-	'main-dark': #104599,
-	'main-inverted': #fff, 
-	'main-light': #dff1fe, 
-	'premium': #fba707,
-	'tutpad': #ff5252,	
-), loading: (
-	'background': #d3d3d3
-), flaticon: (
-	'main': #7fff00,
-	'medium-gray': #4a5f5f
-));
-
-// Color keys
-$colors: ();
-$colors-keys: ( 'background', 'social', 'state', 'project', 'general' );
-
-// Add color groups
-$colors: map-merge($colors, $color-project);
+/**
+* Color override
+*/
+$colors-keys: (); // Add groups to generate color helpers
+$colors: map-extend($global-colors, $local-colors);

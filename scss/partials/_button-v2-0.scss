@@ -1,0 +1,270 @@
+@if $button-v2-0 {
+    #{$all-buttons} {
+        @include prefixer(appearance, none, webkit moz ms);
+
+		margin:  0; 
+		padding: 0;
+
+		border: none;
+
+
+		background: none;
+
+        user-select: none;
+		cursor: pointer;
+    }
+    
+    .button {
+        --bg: color('default', 'buttons');
+        --size: 0;
+        --font: $base-font-size;
+        --color: color('default', 'buttons-text');
+        --height: $base-element-height;
+
+        display: inline-block;
+
+        position: relative;
+
+        height: var(--height);
+        
+        padding: 0 1.6em;
+
+        border-radius: $base-border-radius;
+
+        box-shadow: inset 0px 0px 0px var(--size) var(--bg);
+
+        color: var(--color);
+        font-size: var(--font);
+        line-height: var(--height);
+
+        cursor: pointer;
+
+        &.active, &:hover {
+            --bg: color('default', 'buttons', 1, -3);
+
+            color: var(--color);
+            box-shadow: inset 0px 0px 0px var(--size) var(--bg);
+
+            .icon {
+                color: color('default', 'buttons-text');   
+                color: var(--color);
+            }
+        }
+
+        &.active {
+            --bg: color('default', 'buttons');
+        }       
+
+        .icon {
+            color: color('default', 'buttons');
+            color: var(--color);   
+        }        
+
+        /**
+        * Modifier
+        */
+        &--outline, 
+        &--flat {
+            --bg: color('default', 'buttons');
+        }
+
+        &--outline {
+            --size: $base-border-width;
+
+            color: var(--bg);
+
+            .icon {
+                color: var(--bg);
+            }
+
+            &.active, &:hover {
+                --size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
+            }
+        }
+
+        &--shadow {
+            &::before {
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                width: 100%;
+                height: 100%;
+
+                border-radius: $base-border-radius;
+
+                box-shadow: $small-box-shadow;
+
+                content: '';
+            }
+        }
+
+        &--state {
+            &.active:not(:disabled) {
+				.state--inactive {
+					display: none;
+				}
+
+				.state--active {
+					display: block;
+				}
+			}
+
+			&:not(.active) {
+				.state--inactive {
+					display: block;
+				}
+
+				.state--active {
+					display: none;
+				}
+			}
+        }        
+
+        &--text,
+        &--text-inverted {
+            --size: 0;
+        }
+
+        &--text-inverted {
+            --color: color('text-inverted', 'general', 1, .65);
+
+            &.active, &:hover {
+                --color: color('text-inverted', 'general');
+            }
+        }
+
+        &--text {
+            --color: color('text', 'general');
+
+            &.active, &:hover {
+                --color: color('link', 'general');
+            }
+        }
+
+        &--flat {
+            --size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
+        }
+
+        &--pill {
+            border-radius: var(--height);
+        }
+
+        &--icon {
+            @extend %row-flexbox;
+            @extend .row--vertical-center;
+            @extend .row--horizontal-center;
+
+            &:not(.button--icon--only) {
+                .icon {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+            }
+
+            span ~ i, i ~ span {
+                margin-left: $extra-small-spacing !important;
+            }
+
+            &--only {
+               padding: 0 !important;
+            }        
+        }
+
+        &--auto {
+            --size: 100px;
+            
+            span {
+                line-height: $base-line-height;
+            }
+        }
+
+        &--loading {
+            --bg: color('gray', 'buttons') !important;
+            --size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
+
+            pointer-events: none !important;
+
+			&::after {
+                animation: rotate 600ms linear infinite;
+
+				overflow: hidden;
+
+                opacity: 1;
+                
+                width: var(--size);
+                height: var(--size);
+
+				border-radius: 50%;
+				border-width: 2px;
+				border-color: color('border-inverted', 'general') color('border-inverted', 'general', 0.3) color('border-inverted', 'general', 0.3) color('border-inverted', 'general', 0.3);
+				border-style: solid;
+
+				box-sizing: border-box;
+
+				content: '';
+			}
+
+			& > * {
+				display: none;
+			}
+		}
+
+        /**
+        * Sizes
+        */
+        @each $key, $value in $button-sizes {
+			&--#{$key} {
+                --font: map-get($font-sizes, $key);
+                --height: $value;
+			}
+        }
+        
+        /**
+        * Colors
+        */
+        @each $color, $hex in map-get($colors, 'buttons') {
+            &--#{$color} {
+                --bg: $hex;
+                --color: color($color, 'buttons-text');
+                
+                &.active, &:hover {
+                    --bg: color($color, 'buttons', 1, -3);
+                }
+
+                &.active {
+                    --bg: color($color, 'buttons', 1);
+                }
+            }
+
+            &--#{$color}--hover {
+                &.active, &:hover {
+                    --color: color($color, 'buttons-text') !important;
+                    --bg: color($color, 'buttons', 1, -3) !important;
+                }
+                
+                &.active {
+                    --bg: color($color, 'buttons') !important;
+                }
+            }
+        }
+
+        /**
+        * Social
+        */
+        @each $color, $hex in map-get($colors, 'social') {
+            &--#{$color} {
+                --bg: $hex;
+                --color: color('inverted', 'buttons');                
+
+                &.active, &:hover {
+                    --bg: color($color, 'social', 1, -3);
+                }
+
+                &.active {
+                    --bg: color($color, 'social', 1);
+                }
+            }
+        }
+    }
+}

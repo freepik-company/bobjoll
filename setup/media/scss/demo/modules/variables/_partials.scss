@@ -1,41 +1,42 @@
 // Enable Partials
-$accordion-v1-0: 		true;
-$avatar-v1-0: 			true;
-$badge-v1-0: 			true;
+$accordion-v1-0: 		false;
+$avatar-v1-0: 			false;
+$badge-v1-0: 			false;
 $breadcrumb-v1-0: 		false;
-$button-v1-0: 			true;
-$caption-v1-0: 			true;
+$button-v1-0: 			false;
+$button-v2-0: 			false;
+$caption-v1-0: 			false;
 $comment-v1-0: 			false;
-$expandable-v1-0:		true;
-$form-v1-0: 			true;
-$general-v1-0: 			true;
+$expandable-v1-0:		false;
+$form-v1-0: 			false;
+$general-v1-0: 			false;
 
 // Grid
 $grid-mode:		 		'flexbox'; // flexbox or float
-$grid-v1-0: 			true;
+$grid-v1-0: 			false;
 $grid--pull:			false;  
 $grid--push:			false;
 $grid--offset:			false;
 
-$helper-v1-0: 			true;
+$helper-v1-0: 			false;
 $icon-v1-0: 			false; 
-$icon-v2-0: 			true; 
-$list-v1-0: 			true;
-$modal-v1-0: 			true;
-$nav-v1-0:	 			true;
+$icon-v2-0: 			false; 
+$list-v1-0: 			false;
+$modal-v1-0: 			false;
+$nav-v1-0:	 			false;
 $notification-v1-0: 	false; 
-$notification-v1-1: 	true; 
-$pagination-v1-0: 		true;
-$popover-v1-0: 			true;
+$notification-v1-1: 	false; 
+$pagination-v1-0: 		false;
+$popover-v1-0: 			false;
 $social-v1-0: 			false;
-$tab-v1-0: 				true;
+$tab-v1-0: 				false;
 $tables-v1-0:			false;
-$tag-v1-0: 				true;
-$tooltip-v1-0: 			true;
-$typography-v1-0: 		true;
+$tag-v1-0: 				false;
+$tooltip-v1-0: 			false;
+$typography-v1-0: 		false;
 
 // GR Library
-$gr-auth-v1-0:     		true;
+$gr-auth-v1-0:     		false;
 
 // Profile
-$profile-login-v1-0:	true;
+$profile-login-v1-0:	false;

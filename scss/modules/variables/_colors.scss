@@ -1,87 +1,122 @@
-$color-bg: ( background:(
-	'badge': #222,
-	'badge-inverted': #fff,
-	'body': #fff,
-	'dropdown': #fff,
-	'footer': #f8f8f8,
-	'header': #f8f8f8,
-	'input': #fff,
-	'input-inverted': #222,
-	'modal': #fff,
-	'notification': #fff,
-	'overlay': #222,		
-	'popover': #fff,
-	'secondary': #f8f8f8,
-	'table': #fff,
-	'table-head': #f9f9f9,
-	'table-odd': #f6f6f6,
-	'tabs': #f8f8f8,	
-	'tabs-active': #f8f8f8,
-	'tags': #fff, 
-	'tags-inverted': #222, 
-	'tooltip': #fff
-)) !default;
+$color-main: #1FB6FF !default;
+$color-dark: #222 !default;
+$color-border: #e8e8e8 !default;
+$color-secondary: #f8f8f8 !default;
+$color-light: #fff !default;
+$color-heading: #273444 !default;
+$color-text: #3C4858 !default;
 
-$color-social: ( social: (
-	'behance': #1769ff, 
-	'dribbble': #ea4c89,
-	'facebook': #3b5998,
-	'google': #dd4b39,
-	'instagram': #e95950,
-	'pinterest': #cb2027,
-	'stumbleupon': #f74425,
-	'twitter': #55acee,
-	'vimeo': #aad450,
-	'youtube': #bb0000
-)) !default;
+$social-behance: #1769ff !default;
+$social-dribbble: #ea4c89 !default;
+$social-facebook: #3b5998 !default;
+$social-google: #dd4b39 !default;
+$social-instagram: #e95950 !default;
+$social-pinterest: #cb2027 !default;
+$social-stumbleupon: #f74425 !default;
+$social-twitter: #55acee !default;
+$social-vimeo: #aad450 !default;
+$social-youtube: #bb0000 !default;
 
-$color-state: ( state: (
-	'green': #13CE66,
-    'blue': #1FB6FF,
-    'gray': #7F7F7F,
-    'red': #FF4949,
-    'yellow': #FFC82C
-)) !default;
+$state-green: #13CE66 !default;
+$state-blue: $color-main !default;
+$state-gray: #7F7F7F !default;
+$state-red: #FF4949 !default;
+$state-yellow: #FFC82C !default;
 
-$color-state-text: ( 'state-text': (
-	'green': #fff,
-    'blue': #fff,
-    'gray': #fff,
-    'red': #fff,
-    'yellow': #222
-)) !default;
-
-$color-general: ( general: (		
-	'border': #e8e8e8,
-	'border-inverted': #fff,
-	'button': #1FB6FF,
-	'button-inverted': #fff,
-	'heading': #273444,
-	'heading-inverted': #fff,
-	'icon': #3C4858,
-	'icon-inverted': #fff,
-	'link': #1FB6FF,
-	'link-inverted': #fff,
-	'shadow': #1F2D3D,
-	'tabs': #3C4858,
-	'tabs-border': #e8e8e8,
-	'tabs-active': #0F73EE,
-	'tabs-triangle': #333,
-	'tabs-triangle-active': #e8e8e8, 
-	'tags': #fff,
-	'tags-inverted': #0F73EE,
-	'text': #3C4858,
-	'text-inverted': #fff,
-	'text-secondary': #676767
-)) !default;
+$global-colors: ( 
+	background:(
+		'badge': $color-dark,
+		'badge-inverted': $color-light,
+		'body': $color-light,
+		'dropdown': $color-light,
+		'footer': $color-secondary,
+		'header': $color-secondary,
+		'input': $color-light,
+		'input-inverted': $color-dark,
+		'modal': $color-light,
+		'notification': $color-light,
+		'overlay': ($color-dark, .75, 0),		
+		'popover': $color-light,
+		'secondary': $color-secondary,
+		'light': $color-light,
+		'table': $color-light,
+		'table-head': ($color-secondary, 1, +2),
+		'table-odd': ($color-secondary, 1, -2),
+		'tabs': $color-secondary,	
+		'tabs-active': $color-secondary,
+		'tags': $color-light, 
+		'tags-inverted': $color-dark, 
+		'tooltip': $color-light
+	),
+	social: (
+		'behance': $social-behance, 
+		'dribbble': $social-dribbble,
+		'facebook': $social-facebook,
+		'google': $social-google,
+		'instagram': $social-instagram,
+		'pinterest': $social-pinterest,
+		'stumbleupon': $social-stumbleupon,
+		'twitter': $social-twitter,
+		'vimeo': $social-vimeo,
+		'youtube': $social-youtube
+	),
+	state: (
+		'green': $state-green,
+		'blue': $state-blue,
+		'gray': $state-gray,
+		'red': $state-red,
+		'yellow': $state-yellow
+	),
+	state-text: (
+		'green': $color-light,
+		'blue': $color-light,
+		'gray': $color-light,
+		'red': $color-light,
+		'yellow': $color-dark
+	),
+	general: (		
+		'border': $color-border,
+		'border-inverted': $color-light,
+		'button': $color-main,
+		'button-inverted': $color-light,
+		'heading': $color-heading,
+		'heading-inverted': $color-light,
+		'icon': $color-text,
+		'icon-inverted': $color-light,
+		'link': $color-main,
+		'link-inverted': $color-light,
+		'shadow': ($color-dark, .75, 0),
+		'tabs': $color-text,
+		'tabs-border': $color-border,
+		'tabs-active': ($color-main, 1, 1),
+		'tabs-triangle': $color-text,
+		'tabs-triangle-active': $color-border, 
+		'tags': $color-light,
+		'tags-inverted': ($color-main, 1, 1),
+		'text': $color-text,
+		'text-inverted': $color-light,
+		'text-secondary': ($color-text, 1, -2),
+	),
+	buttons: (
+		'default': $color-main,
+		'green': $state-green,
+		'blue': $state-blue,
+		'gray': $state-gray,
+		'red': $state-red,
+		'yellow': $state-yellow,
+		'inverted': $color-light,
+	), 
+	buttons-text: (
+		'default': $color-light,
+		'green': $color-light,
+		'blue': $color-light,
+		'gray': $color-light,
+		'red': $color-light,
+		'yellow': $color-text,
+		'inverted': $color-text,
+	)
+);
 
 // Colors
-$colors: () !default;
 $colors-keys: ( 'social', 'state' ) !default;
-
-// Add color groups
-$colors: map-merge($colors, $color-bg);
-$colors: map-merge($colors, $color-state);
-$colors: map-merge($colors, $color-state-text);
-$colors: map-merge($colors, $color-social);
-$colors: map-merge($colors, $color-general);
+$colors: $global-colors !default;
