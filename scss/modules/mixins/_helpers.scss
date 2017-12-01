@@ -25,7 +25,7 @@
   @return $number;
 }
 
-// Last of array
+// Last of map
 @function map-get-last($map) {
 	$last-key: '';
 
@@ -34,6 +34,22 @@
 	}
 
 	@return $last-key;
+}
+
+// Extend map
+@function map-extend($parent-map, $child-map) {
+	$result: $parent-map;
+
+	@each $key, $value in $child-map {
+		@if (not map-has-key($result, $key)) or (type-of(map-get($result, $key)) != type-of($value)) or (not (type-of(map-get($result, $key)) == map and type-of($value) == map)) {
+			$result: map-merge($result, ($key: $value));
+		}
+		@else {
+			$result: map-merge($result, ($key: map-extend(map-get($result, $key), $value)));
+		}
+	}
+
+	@return $result;
 }
 
 // Color
