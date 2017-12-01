@@ -119,7 +119,9 @@
                 
                 border-radius: 0;
 
-                box-shadow: none;
+                @if ($button-v1-0) {
+                    box-shadow: none;
+                }
 
                 z-index: 3;
             }
