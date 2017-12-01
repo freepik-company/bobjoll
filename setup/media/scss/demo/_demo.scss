@@ -7,20 +7,20 @@
 @import '../../settings.json';
 
 // Override colors
-@import '~ProjectPathCSS/freepik/modules/variables/colors';
 @import '~BobjollPathCSS/modules/variables/colors';
+@import '~ProjectPathCSS/freepik/modules/variables/colors';
 
 // Override general
-@import '~ProjectPathCSS/freepik/modules/variables/general';
 @import '~BobjollPathCSS/modules/variables/general';
+@import '~ProjectPathCSS/freepik/modules/variables/general';
 
 // Override partials
-@import 'modules/variables/partials';
 @import '~BobjollPathCSS/modules/variables/partials';
+@import 'modules/variables/partials';
 
 // Override selectors
-@import '~ProjectPathCSS/freepik/modules/variables/selectors';
 @import '~BobjollPathCSS/modules/variables/selectors';
+@import '~ProjectPathCSS/freepik/modules/variables/selectors';
 
 // Load framework
 @import '~BobjollPathCSS/base';

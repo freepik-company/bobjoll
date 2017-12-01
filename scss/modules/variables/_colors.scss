@@ -23,109 +23,100 @@ $state-gray: #7F7F7F !default;
 $state-red: #FF4949 !default;
 $state-yellow: #FFC82C !default;
 
-$color-bg: ( background:(
-	'badge': $color-dark,
-	'badge-inverted': $color-light,
-	'body': $color-light,
-	'dropdown': $color-light,
-	'footer': $color-secondary,
-	'header': $color-secondary,
-	'input': $color-light,
-	'input-inverted': $color-dark,
-	'modal': $color-light,
-	'notification': $color-light,
-	'overlay': ($color-dark, .75),		
-	'popover': $color-light,
-	'secondary': $color-secondary,
-	'table': $color-light,
-	'table-head': ($color-secondary, 1, +2),
-	'table-odd': ($color-secondary, 1, -2),
-	'tabs': $color-secondary,	
-	'tabs-active': $color-secondary,
-	'tags': $color-light, 
-	'tags-inverted': $color-dark, 
-	'tooltip': $color-light
-)) !default;
-
-$color-social: ( social: (
-	'behance': $social-behance, 
-	'dribbble': $social-dribbble,
-	'facebook': $social-facebook,
-	'google': $social-google,
-	'instagram': $social-instagram,
-	'pinterest': $social-pinterest,
-	'stumbleupon': $social-stumbleupon,
-	'twitter': $social-twitter,
-	'vimeo': $social-vimeo,
-	'youtube': $social-youtube
-)) !default;
-
-$color-state: ( state: (
-	'green': $state-green,
-    'blue': $state-blue,
-    'gray': $state-gray,
-    'red': $state-red,
-    'yellow': $state-yellow
-)) !default;
-
-$color-state-text: ( 'state-text': (
-	'green': $color-light,
-    'blue': $color-light,
-    'gray': $color-light,
-    'red': $color-light,
-    'yellow': $color-dark
-)) !default;
-
-$color-general: ( general: (		
-	'border': $color-border,
-	'border-inverted': $color-light,
-	'button': $color-main,
-	'button-inverted': $color-light,
-	'heading': $color-heading,
-	'heading-inverted': $color-light,
-	'icon': $color-text,
-	'icon-inverted': $color-light,
-	'link': $color-main,
-	'link-inverted': $color-light,
-	'shadow': ($color-dark, .75),
-	'tabs': $color-text,
-	'tabs-border': $color-border,
-	'tabs-active': ($color-main, 1, 1),
-	'tabs-triangle': $color-text,
-	'tabs-triangle-active': $color-border, 
-	'tags': $color-light,
-	'tags-inverted': ($color-main, 1, 1),
-	'text': $color-text,
-	'text-inverted': $color-light,
-	'text-secondary': ($color-text, 1, -2),
-)) !default;
-
-$color-buttons: ( buttons: (
-	'default': $color-main,
-	'green': $state-green,
-    'blue': $state-blue,
-    'gray': $state-gray,
-    'red': $state-red,
-	'yellow': $state-yellow,
-	'inverted': $color-light,
-), buttons-text: (
-	'default': $color-light,
-	'green': $color-light,
-    'blue': $color-light,
-    'gray': $color-light,
-    'red': $color-light,
-	'yellow': $color-text,
-	'inverted': $color-text,
-)) !default;
+$global-colors: ( 
+	background:(
+		'badge': $color-dark,
+		'badge-inverted': $color-light,
+		'body': $color-light,
+		'dropdown': $color-light,
+		'footer': $color-secondary,
+		'header': $color-secondary,
+		'input': $color-light,
+		'input-inverted': $color-dark,
+		'modal': $color-light,
+		'notification': $color-light,
+		'overlay': ($color-dark, .75, 0),		
+		'popover': $color-light,
+		'secondary': $color-secondary,
+		'light': $color-light,
+		'table': $color-light,
+		'table-head': ($color-secondary, 1, +2),
+		'table-odd': ($color-secondary, 1, -2),
+		'tabs': $color-secondary,	
+		'tabs-active': $color-secondary,
+		'tags': $color-light, 
+		'tags-inverted': $color-dark, 
+		'tooltip': $color-light
+	),
+	social: (
+		'behance': $social-behance, 
+		'dribbble': $social-dribbble,
+		'facebook': $social-facebook,
+		'google': $social-google,
+		'instagram': $social-instagram,
+		'pinterest': $social-pinterest,
+		'stumbleupon': $social-stumbleupon,
+		'twitter': $social-twitter,
+		'vimeo': $social-vimeo,
+		'youtube': $social-youtube
+	),
+	state: (
+		'green': $state-green,
+		'blue': $state-blue,
+		'gray': $state-gray,
+		'red': $state-red,
+		'yellow': $state-yellow
+	),
+	state-text: (
+		'green': $color-light,
+		'blue': $color-light,
+		'gray': $color-light,
+		'red': $color-light,
+		'yellow': $color-dark
+	),
+	general: (		
+		'border': $color-border,
+		'border-inverted': $color-light,
+		'button': $color-main,
+		'button-inverted': $color-light,
+		'heading': $color-heading,
+		'heading-inverted': $color-light,
+		'icon': $color-text,
+		'icon-inverted': $color-light,
+		'link': $color-main,
+		'link-inverted': $color-light,
+		'shadow': ($color-dark, .75, 0),
+		'tabs': $color-text,
+		'tabs-border': $color-border,
+		'tabs-active': ($color-main, 1, 1),
+		'tabs-triangle': $color-text,
+		'tabs-triangle-active': $color-border, 
+		'tags': $color-light,
+		'tags-inverted': ($color-main, 1, 1),
+		'text': $color-text,
+		'text-inverted': $color-light,
+		'text-secondary': ($color-text, 1, -2),
+	),
+	buttons: (
+		'default': $color-main,
+		'green': $state-green,
+		'blue': $state-blue,
+		'gray': $state-gray,
+		'red': $state-red,
+		'yellow': $state-yellow,
+		'inverted': $color-light,
+	), 
+	buttons-text: (
+		'default': $color-light,
+		'green': $color-light,
+		'blue': $color-light,
+		'gray': $color-light,
+		'red': $color-light,
+		'yellow': $color-text,
+		'inverted': $color-text,
+	)
+);
 
 // Colors
-$colors: () !default;
 $colors-keys: ( 'social', 'state' ) !default;
-
-// Add color groups
-$colors: map-merge($colors, $color-bg);
-$colors: map-merge($colors, $color-state);
-$colors: map-merge($colors, $color-state-text);
-$colors: map-merge($colors, $color-social);
-$colors: map-merge($colors, $color-general);
-$colors: map-merge($colors, $color-buttons);
+$colors: $global-colors !default;
