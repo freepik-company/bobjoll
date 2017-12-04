@@ -167,7 +167,9 @@
             }
 
             &--only {
-               padding: 0 !important;
+                width: var(--height);
+                
+                padding: 0 !important;
             }        
         }
 
