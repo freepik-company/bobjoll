@@ -167,7 +167,9 @@
             }
 
             &--only {
-               padding: 0 !important;
+                width: var(--height);
+                
+                padding: 0 !important;
             }        
         }
 
@@ -190,12 +192,16 @@
 			&::after {
                 animation: rotate 600ms linear infinite;
 
+                display: block !important;
+
 				overflow: hidden;
 
                 opacity: 1;
                 
-                width: var(--size);
-                height: var(--size);
+                width: calc(var(--size) * .75);
+                height: calc(var(--size) * .75);
+
+                margin: calc((var(--size) * .25) / 2);
 
 				border-radius: 50%;
 				border-width: 2px;
@@ -208,7 +214,7 @@
 			}
 
 			& > * {
-				display: none;
+                display: none !important;
 			}
 		}
 
