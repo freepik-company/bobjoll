@@ -173,6 +173,8 @@
 
         &--auto {
             --size: 100px;
+
+            height: auto !important;
             
             span {
                 line-height: $base-line-height;
