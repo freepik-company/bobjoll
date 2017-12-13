@@ -108,12 +108,19 @@ $global-colors: (
 	), 
 	buttons-text: (
 		'default': $color-light,
+		'default-outline': $color-main,
 		'green': $color-light,
+		'green-outline': $state-green,
 		'blue': $color-light,
+		'blue-outline': $state-blue,
 		'gray': $color-light,
+		'gray-outline': $state-gray,
 		'red': $color-light,
+		'red-outline': $state-red,
 		'yellow': $color-text,
+		'yellow-outline': $state-yellow,
 		'inverted': $color-text,
+		'inverted-outline': $color-light,
 	)
 );
 
