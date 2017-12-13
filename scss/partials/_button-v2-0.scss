@@ -71,10 +71,10 @@
         &--outline {
             --size: $base-border-width;
 
-            color: var(--bg);
+            color: var(--text);
 
             .icon {
-                color: var(--bg);
+                color: var(--text);
             }
 
             &.active, &:hover {
