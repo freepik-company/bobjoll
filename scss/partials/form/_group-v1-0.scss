@@ -78,7 +78,9 @@
             }
 
             @if ($button-v2-0) {
-                --size: 0;
+                &.button--flat:not(.button--inverted) {
+                    z-index: 2;
+                }
             }           
 
             position: relative;
