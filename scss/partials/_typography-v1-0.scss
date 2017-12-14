@@ -88,11 +88,19 @@
 	%link-hover {
 		&:hover {
 			color: color('link', 'general', 1);
+
+			.icon {
+				color: color('link', 'general', 1);
+			}
 		}
 
 		&.active {
 			color: color('link', 'general', 1);
-			font-weight: 500;		
+			font-weight: 500;
+
+			.icon {
+				color: color('link', 'general', 1);
+			}
 		}
 	}
 
@@ -107,9 +115,17 @@
 			@extend %link-hover;
 
 			color: color('text', 'general');
+
+			.icon {
+				color: color('text', 'general');
+			}
 		}
 		
 		text-decoration: none;
+
+		.icon {
+			color: color('link', 'general');
+		}
 	}
 
 	.link-inverted {
