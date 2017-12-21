@@ -141,21 +141,25 @@ export default class Feedback {
 
         let result = questions[Math.floor((Math.random() * questions.length))];
 
-        if (!result.id) {
-            result.id = this.settings.questions.reduce((acc: string, question, index: number) => {
-                if (result === question) {
-                    acc = index.toString();
-                }
-
-                return acc;
-            }, '0');
+        if (result) {
+            if (!result.id) {
+                result.id = this.settings.questions.reduce((acc: string, question, index: number) => {
+                    if (result === question) {
+                        acc = index.toString();
+                    }
+    
+                    return acc;
+                }, '0');
+            }
+    
+            if (!result.options) {
+                result.options = this.settings.default.options;
+            }
+    
+            return result;
         }
 
-        if (!result.options) {
-            result.options = this.settings.default.options;
-        }
-
-        return result;
+        return null;
     }
 
     private checkValidity(form: HTMLFormElement) {
@@ -251,6 +255,10 @@ export default class Feedback {
         if (wrapper) {
             if (!this.fixed.classList.contains('active')) {
                 let question = this.get();
+
+                if (!question) {
+                    return;
+                }
 
                 if (question.id) {
                     wrapper.id = question.id;
