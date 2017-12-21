@@ -110,6 +110,11 @@
 		color: color('link', 'general');
 
 		cursor: pointer;
+		text-decoration: none;
+		
+		.icon {
+			color: color('link', 'general');
+		}
 		
 		@include modifier('text') {
 			@extend %link-hover;
@@ -119,12 +124,6 @@
 			.icon {
 				color: color('text', 'general');
 			}
-		}
-		
-		text-decoration: none;
-
-		.icon {
-			color: color('link', 'general');
 		}
 	}
 
