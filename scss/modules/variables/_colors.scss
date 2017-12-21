@@ -74,7 +74,7 @@ $global-colors: (
 		'red': $color-light,
 		'yellow': $color-dark
 	),
-	general: (		
+	general: (
 		'border': $color-border,
 		'border-inverted': $color-light,
 		'button': $color-main,
@@ -96,6 +96,11 @@ $global-colors: (
 		'text': $color-text,
 		'text-inverted': $color-light,
 		'text-secondary': ($color-text, 1, -2),
+	),
+	feedback: (
+		wrapper: $color-light,
+		secondary: $color-main,
+		text: $color-main,
 	),
 	buttons: (
 		'default': $color-main,
