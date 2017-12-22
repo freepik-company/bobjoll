@@ -1,6 +1,19 @@
+import { KEvent, KEventTarget } from 'BobjollPath/library/event';
+
 const extend = require('BobjollPath/library/extend');
 
+export class KEventView extends KEvent {
+    constructor(public view: string | undefined) {
+        super();
+        this.type = 'feedback:view';
+        this.view = view;
+    }
+}
+
 interface DefaultSettings {
+    default: {
+        defaults: boolean;
+    }
     templates: {
         'fixed': Function;
         'fixed_question': Function;
@@ -23,7 +36,9 @@ interface UserSettings {
         'email_placeholder': string;
         'request_error': string;
     };
-    default: {        
+    default: {
+        overlay?: boolean;
+        defaults?: boolean;
         options: {
             id?: string;
             icon?: string;
@@ -41,6 +56,7 @@ interface UserSettings {
             value: string;
         }[];
         success_msg?: string;
+        view?: string;
     }
     questions: {
         id?: string;
@@ -82,11 +98,14 @@ interface Settings extends UserSettings {
     };
 }
 
-export default class Feedback {
+export default class Feedback extends KEventTarget {
     private view: string | undefined;
-    private fixed: HTMLElement;
+    private fixed: HTMLElement | undefined;
     private settings: Settings;
     private defaultSettings: DefaultSettings = {
+        default: {
+            defaults: true
+        },
         templates: {
             'fixed': require('BobjollPath/templates/feedback-v1.0/fixed.hbs'),
             'fixed_question': require('BobjollPath/templates/feedback-v1.0/fixed-question.hbs'),
@@ -94,9 +113,34 @@ export default class Feedback {
             'static': require('BobjollPath/templates/feedback-v1.0/static.hbs'),
         }
     };
+    
     constructor(settings: UserSettings) {
+        super();
+        
         this.settings = extend(this.defaultSettings, settings);
 
+        if (this.settings.default.view) {
+            this.view = this.settings.default.view;
+
+            this.dispatchEvent(new KEventView(this.settings.default.view));
+        }
+
+        if (this.settings.default.overlay) {
+            this.addEventListener('feedback:view', (view) => {
+                let question = this.get();
+
+                console.log('feedback',view);
+    
+                if (question) {
+                    this.setup();
+                } else {
+                    this.destroy();
+                }
+            });
+        }
+    }
+
+    private setup() {
         document.body.insertAdjacentHTML('beforeend', this.settings.templates.fixed());
 
         let feedback = document.getElementById('feedback');
@@ -140,6 +184,16 @@ export default class Feedback {
         }
 
         let result = questions[Math.floor((Math.random() * questions.length))];
+
+        if (this.settings.default.defaults && !result) {
+            let questions = this.settings.questions;
+
+            questions = questions.filter((question) => {
+                return !question.views;
+            });
+
+            result = questions[Math.floor((Math.random() * questions.length))];
+        }
 
         if (result) {
             if (!result.id) {
@@ -233,8 +287,9 @@ export default class Feedback {
                     if (response.success) {
                         if (msg) {
                             form.classList.add('hide');
-                            form.insertAdjacentHTML('afterend', this.settings.templates.success_msg({
-                                message: msg
+                            form.insertAdjacentHTML('afterend', this.settings.templates.message({
+                                status: 'success',
+                                message: msg,
                             }));
                         } else {
                             this.hide();
@@ -250,85 +305,89 @@ export default class Feedback {
     }
 
     private show() {
-        let wrapper = <HTMLElement>this.fixed.querySelector('.feedback__wrapper');
-
-        if (wrapper) {
-            if (!this.fixed.classList.contains('active')) {
-                let question = this.get();
-
-                if (!question) {
-                    return;
-                }
-
-                if (question.id) {
-                    wrapper.id = question.id;
-                }
-
-                if (question.class) {
-                    wrapper.classList.add(question.class);
-                }
-
-                wrapper.innerHTML = this.settings.templates.fixed_question(extend(question, {
-                    text: this.settings.text,
-                    email: this.settings.email || '',
-                }));
-
-                let forms: HTMLFormElement[] = Array.prototype.slice.call(this.fixed.querySelectorAll('form'));
-
-                forms.forEach((form) => {
-                    let submit = form.querySelector('.button[type="submit"]');
-                    let reset = form.querySelector('.button[type="reset"]');
-
-                    if (submit) {
-                        submit.addEventListener('click', async (e: Event) => {
-                            e.preventDefault();
+        if (this.fixed) {
+            let wrapper = <HTMLElement>this.fixed.querySelector('.feedback__wrapper');
     
-                            if (form.checkValidity()) {
-                                try {
-                                    let request = await this.submit(form);
+            if (wrapper) {
+                if (!this.fixed.classList.contains('active')) {
+                    let question = this.get();
     
-                                    if (submit) {
-                                        form.classList.add('disabled');
-                                        submit.classList.add('button--loading');
+                    if (!question) {
+                        return;
+                    }
+    
+                    if (question.id) {
+                        wrapper.id = question.id;
+                    }
+    
+                    if (question.class) {
+                        wrapper.classList.add(question.class);
+                    }
+    
+                    wrapper.innerHTML = this.settings.templates.fixed_question(extend(question, {
+                        text: this.settings.text,
+                        email: this.settings.email || '',
+                    }));
+    
+                    let forms: HTMLFormElement[] = Array.prototype.slice.call(this.fixed.querySelectorAll('form'));
+    
+                    forms.forEach((form) => {
+                        let submit = form.querySelector('.button[type="submit"]');
+                        let reset = form.querySelector('.button[type="reset"]');
+    
+                        if (submit) {
+                            submit.addEventListener('click', async (e: Event) => {
+                                e.preventDefault();
+        
+                                if (form.checkValidity()) {
+                                    try {
+                                        let request = await this.submit(form);
+        
+                                        if (submit) {
+                                            form.classList.add('disabled');
+                                            submit.classList.add('button--loading');
+                                        }
+                                    } catch(err) {
+                                        this.message(form, 'error');
+    
+                                        if (Raven) {
+                                            Raven.captureException(err);
+                                        }
+                                    } finally {
+                                        if (submit) {
+                                            form.classList.remove('disabled');
+                                            submit.classList.remove('button--loading');
+                                        }
                                     }
-                                } catch(err) {
-                                    this.message(form, 'error');
-
-                                    if (Raven) {
-                                        Raven.captureException(err);
-                                    }
-                                } finally {
-                                    if (submit) {
-                                        form.classList.remove('disabled');
-                                        submit.classList.remove('button--loading');
-                                    }
+                                } else {
+                                    this.checkValidity(form);
                                 }
-                            } else {
-                                this.checkValidity(form);
-                            }
-                        });
-                    }
-
-                    if (reset) {
-                        reset.addEventListener('click', (e: Event) => this.hide());
-                    }
-                });                
-            } else {
-                wrapper.innerHTML = '';
-            }
+                            });
+                        }
     
-            this.fixed.classList.toggle('active');
+                        if (reset) {
+                            reset.addEventListener('click', (e: Event) => this.hide());
+                        }
+                    });                
+                } else {
+                    wrapper.innerHTML = '';
+                }
+        
+                this.fixed.classList.toggle('active');
+            }
         }
     }
 
     private hide() {
-        let wrapper = <HTMLElement>this.fixed.querySelector('.feedback__wrapper');
+        if (this.fixed) {
+            let wrapper = <HTMLElement>this.fixed.querySelector('.feedback__wrapper');
+    
+            if (wrapper) {
+                wrapper.innerHTML = '';
+            }
 
-        if (wrapper) {
-            wrapper.innerHTML = '';
+            this.fixed.classList.remove('active');
         }
-
-        this.fixed.classList.remove('active');
     }
 
     private message(form: HTMLFormElement, status: 'success' | 'error' = 'success', msg?: string) {
@@ -369,6 +428,18 @@ export default class Feedback {
 
     public updateView(view ?: string) {
         this.view = view || undefined;
-        this.fixed.classList.remove('active');
+
+        if ('undefined' !== typeof this.fixed) {
+            this.fixed.classList.remove('active');
+        }
+
+        this.dispatchEvent(new KEventView(view));
+    }
+
+    public destroy() {
+        if (this.fixed) {
+            this.fixed.parentNode!.removeChild(this.fixed);
+            this.fixed = undefined;
+        }
     }
 }
