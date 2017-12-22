@@ -1,4 +1,5 @@
 import { KEvent, KEventTarget } from 'BobjollPath/library/event';
+import { localStorage as storage } from 'BobjollPath/library/storage';
 
 const extend = require('BobjollPath/library/extend');
 
@@ -13,6 +14,8 @@ export class KEventView extends KEvent {
 interface DefaultSettings {
     default: {
         defaults: boolean;
+        history: boolean;
+        historyMax: number;
     }
     templates: {
         'fixed': Function;
@@ -56,6 +59,8 @@ interface UserSettings {
             value: string;
         }[];
         success_msg?: string;
+        history?: boolean;
+        historyMax?: number;
         view?: string;
     }
     questions: {
@@ -90,6 +95,30 @@ interface UserSettings {
 }
 
 interface Settings extends UserSettings {
+    default: {
+        overlay?: boolean;
+        defaults: boolean;
+        options: {
+            id?: string;
+            icon?: string;
+            order?: number;
+            class?: string;
+            feedback?: {
+                contact?: boolean;
+                contactRequired?: boolean;
+                label?: string;
+                required?: boolean;
+                placeholder: string;
+            };
+            success_msg?: string;
+            text?: string;
+            value: string;
+        }[];
+        success_msg?: string;
+        history: boolean;
+        historyMax: number;
+        view?: string;
+    }
     templates: {
         'fixed': Function;
         'fixed_question': Function;
@@ -98,13 +127,30 @@ interface Settings extends UserSettings {
     };
 }
 
+interface History {
+    view: string;
+    url: string;
+}
+
+declare module "BobjollPath/library/storage" {
+    interface ClientStorage {
+        get(namespace: 'feedback', key: string): History[];
+        set(namespace: 'feedback', key: string, value: History[]): void;
+    }
+}
+
 export default class Feedback extends KEventTarget {
     private view: string | undefined;
     private fixed: HTMLElement | undefined;
+    private history: History[];
+    private namespace: string = 'feedback';
+    private historyNamespace: string = 'history';
     private settings: Settings;
     private defaultSettings: DefaultSettings = {
         default: {
-            defaults: true
+            defaults: true,
+            history: false,
+            historyMax: 10,
         },
         templates: {
             'fixed': require('BobjollPath/templates/feedback-v1.0/fixed.hbs'),
@@ -118,12 +164,7 @@ export default class Feedback extends KEventTarget {
         super();
         
         this.settings = extend(this.defaultSettings, settings);
-
-        if (this.settings.default.view) {
-            this.view = this.settings.default.view;
-
-            this.dispatchEvent(new KEventView(this.settings.default.view));
-        }        
+        this.updateView(this.settings.default.view);
 
         if (this.settings.default.overlay) {
             this.addEventListener('feedback:view', () => {
@@ -278,6 +319,12 @@ export default class Feedback extends KEventTarget {
                     let option = question.options ? question.options[optionID] : this.settings.default.options[optionID];
                     let msg = option.success_msg || this.settings.default.success_msg;
 
+                    if (this.settings.default.history) {
+                        data.append('history', JSON.stringify(
+                            storage.get(this.namespace, this.historyNamespace))
+                        );
+                    }
+
                     let request = await fetch(this.settings.action, {
                         body: data,
                         method: this.settings.method
@@ -424,13 +471,28 @@ export default class Feedback extends KEventTarget {
 
     public insert(id: string) {
 
-    }    
+    }
 
-    public updateView(view ?: string) {
+    public updateView(view: string, url?: string) {
         this.view = view || undefined;
 
         if ('undefined' !== typeof this.fixed) {
             this.fixed.classList.remove('active');
+        }
+
+        if (this.settings.default.history && view) {
+            let history: History[] = storage.get(this.namespace, this.historyNamespace) || [];
+
+            history.unshift({
+                view: view,
+                url: url || window.location.href,
+            });
+
+            if (history.length > this.settings.default.historyMax) {
+                history.pop();
+            }
+
+            storage.set(this.namespace, this.historyNamespace, history);
         }
 
         this.dispatchEvent(new KEventView(view));
