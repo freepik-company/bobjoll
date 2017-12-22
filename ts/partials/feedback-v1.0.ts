@@ -123,16 +123,16 @@ export default class Feedback extends KEventTarget {
             this.view = this.settings.default.view;
 
             this.dispatchEvent(new KEventView(this.settings.default.view));
-        }
+        }        
 
         if (this.settings.default.overlay) {
-            this.addEventListener('feedback:view', (view) => {
+            this.addEventListener('feedback:view', () => {
                 let question = this.get();
 
-                console.log('feedback',view);
-    
                 if (question) {
-                    this.setup();
+                    if ('undefined' === typeof this.fixed) {
+                        this.setup();
+                    }
                 } else {
                     this.destroy();
                 }
