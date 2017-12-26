@@ -9,7 +9,8 @@
         {{#each options}}
         <label 
         for="option-{{@key}}" 
-        class="button button--xl{{#if icon}} button--icon{{#if text}}{{else}} button--icon--only{{/if}}{{/if}}{{#if class}} {{class}}{{/if}}"
+        class="{{#if feedback.staged}}feedback__submit {{/if}}button button--xl{{#if icon}} button--icon{{#if text}}{{else}} button--icon--only{{/if}}{{/if}}{{#if class}} {{class}}{{/if}}"
+        data-question="{{@key}}"
         {{#if order}}style="order: {{order}};" {{/if}} data-form="{{#if feedback}}true{{else}}false{{/if}}">
             {{#if icon}}
             <img class="icon--xl icon--mg-xl" class="feedback__icon" src="{{icon}}" alt="">
