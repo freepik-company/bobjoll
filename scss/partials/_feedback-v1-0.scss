@@ -21,6 +21,8 @@
 
                 .feedback__box {
                     transform: translateX(0);
+
+                    box-shadow: 0 0 60px color('shadow', 'general', .25);
                 }
 
                 .feedback__trigger {
@@ -50,12 +52,12 @@
 
         &__box {
             position: absolute;
-            bottom: 10%;
+            bottom: 5%;
             right: 0;
     
             width: 100%;
             max-width: 380px;
-            min-height: $extra-small-button-height;
+            min-height: 148px;
     
             transform: translateX(100%);  
     
@@ -63,7 +65,9 @@
     
             background-color: color('wrapper', 'feedback');
             
-            box-shadow: $base-box-shadow;
+            box-shadow: 0 0 0px color('shadow', 'general', .25);
+
+            transition: $feedback-duration $feedback-timing;
 
             pointer-events: all;            
         }

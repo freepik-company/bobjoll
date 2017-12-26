@@ -1,6 +1,7 @@
 import { KEvent, KEventTarget } from 'BobjollPath/library/event';
 import { localStorage as storage } from 'BobjollPath/library/storage';
 import { HexBase64BinaryEncoding } from 'crypto';
+import * as Settings from 'Settings';
 
 const extend = require('BobjollPath/library/extend');
 
@@ -523,8 +524,6 @@ export default class Feedback extends KEventTarget {
                             }
                         })
                     );
-                } else {
-                    wrapper.innerHTML = '';
                 }
         
                 this.fixed.classList.toggle('active');
@@ -535,10 +534,6 @@ export default class Feedback extends KEventTarget {
     private hide() {
         if (this.fixed) {
             let wrapper = <HTMLElement>this.fixed.querySelector('.feedback__wrapper');
-    
-            if (wrapper) {
-                wrapper.innerHTML = '';
-            }
 
             this.fixed.classList.remove('active');
         }
