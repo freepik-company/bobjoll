@@ -50,6 +50,7 @@ interface UserSettings {
             feedback?: {
                 contact?: boolean;
                 contactRequired?: boolean;
+                staged?: boolean;
                 label?: string;
                 required?: boolean;
                 placeholder: string;
@@ -62,6 +63,10 @@ interface UserSettings {
         history?: boolean;
         historyMax?: number;
         view?: string;
+        viewCounter?: {
+            view?: string;
+            '%': number;
+        }[];
     }
     questions: {
         id?: string;
@@ -76,6 +81,7 @@ interface UserSettings {
             feedback?: {
                 contact?: boolean;
                 contactRequired?: boolean;
+                staged?: boolean;
                 label?: string;
                 required?: boolean;
                 placeholder: string;
@@ -118,6 +124,10 @@ interface Settings extends UserSettings {
         history: boolean;
         historyMax: number;
         view?: string;
+        viewCounter?: {
+            view?: string;
+            '%': number;
+        }[];
     }
     templates: {
         'fixed': Function;
@@ -134,8 +144,11 @@ interface History {
 
 declare module "BobjollPath/library/storage" {
     interface ClientStorage {
-        get(namespace: 'feedback', key: string): History[];
-        set(namespace: 'feedback', key: string, value: History[]): void;
+        get(namespace: 'feedback-history', key: string): History[];
+        set(namespace: 'feedback-history', key: string, value: History[]): void;
+
+        get(namespace: 'feedback-counter', key: string): number;
+        set(namespace: 'feedback-counter', key: string, value: number): void;
     }
 }
 
@@ -143,8 +156,9 @@ export default class Feedback extends KEventTarget {
     private view: string | undefined;
     private fixed: HTMLElement | undefined;
     private history: History[];
-    private namespace: string = 'feedback';
-    private historyNamespace: string = 'history';
+    private historyNS: string = 'feedback-history';
+    private historyKey: string = 'history';
+    private counterNS: string = 'feedback-counter';
     private settings: Settings;
     private defaultSettings: DefaultSettings = {
         default: {
@@ -164,7 +178,10 @@ export default class Feedback extends KEventTarget {
         super();
         
         this.settings = extend(this.defaultSettings, settings);
-        this.updateView(this.settings.default.view);
+
+        if (this.settings.default.view) {
+            this.view = this.settings.default.view;
+        }
 
         if (this.settings.default.overlay) {
             this.addEventListener('feedback:view', () => {
@@ -306,7 +323,7 @@ export default class Feedback extends KEventTarget {
         });
     }
 
-    private async submit(form: HTMLFormElement) {
+    private async submit(form: HTMLFormElement, confirmation: boolean = true) {
         let data = new FormData(form);
 
         if (data) {           
@@ -321,25 +338,30 @@ export default class Feedback extends KEventTarget {
 
                     if (this.settings.default.history) {
                         data.append('history', JSON.stringify(
-                            storage.get(this.namespace, this.historyNamespace))
+                            storage.get(this.historyNS, this.historyKey))
                         );
+
+                        storage.remove(this.historyNS, this.historyKey);
                     }
 
                     let request = await fetch(this.settings.action, {
                         body: data,
                         method: this.settings.method
                     });
-                    let response = await request.json();
+                    
+                    if (confirmation) {
+                        let response = await request.json();
 
-                    if (response.success) {
-                        if (msg) {
-                            form.classList.add('hide');
-                            form.insertAdjacentHTML('afterend', this.settings.templates.message({
-                                status: 'success',
-                                message: msg,
-                            }));
-                        } else {
-                            this.hide();
+                        if (response.success) {
+                            if (msg) {
+                                form.classList.add('hide');
+                                form.insertAdjacentHTML('afterend', this.settings.templates.message({
+                                    status: 'success',
+                                    message: msg,
+                                }));
+                            } else {
+                                this.hide();
+                            }
                         }
                     }
                 } else {
@@ -377,6 +399,7 @@ export default class Feedback extends KEventTarget {
                     }));
     
                     let forms: HTMLFormElement[] = Array.prototype.slice.call(this.fixed.querySelectorAll('form'));
+                    let buttons: HTMLButtonElement[] = Array.prototype.slice.call(this.fixed.getElementsByClassName('feedback__submit'));
     
                     forms.forEach((form) => {
                         let submit = form.querySelector('.button[type="submit"]');
@@ -415,7 +438,17 @@ export default class Feedback extends KEventTarget {
                         if (reset) {
                             reset.addEventListener('click', (e: Event) => this.hide());
                         }
-                    });                
+                    });           
+                    
+                    buttons.forEach((button) => button.addEventListener('click', (e: Event) => {
+                        if (this.fixed) {
+                            let form = <HTMLFormElement>this.fixed.querySelector(`#form-${(button.dataset.question || '')}`);
+
+                            if (form) {
+                                this.submit(form, false);
+                            }
+                        }
+                    }));
                 } else {
                     wrapper.innerHTML = '';
                 }
@@ -481,7 +514,7 @@ export default class Feedback extends KEventTarget {
         }
 
         if (this.settings.default.history && view) {
-            let history: History[] = storage.get(this.namespace, this.historyNamespace) || [];
+            let history: History[] = storage.get(this.historyNS, this.historyKey) || [];
 
             history.unshift({
                 view: view,
@@ -492,7 +525,23 @@ export default class Feedback extends KEventTarget {
                 history.pop();
             }
 
-            storage.set(this.namespace, this.historyNamespace, history);
+            storage.set(this.historyNS, this.historyKey, history);
+
+            if (this.settings.default.viewCounter) {
+                let counterSettings = this.settings.default.viewCounter.filter((settings) => {
+                    return settings.view === view || !settings.view;
+                }).pop();
+
+                if (counterSettings) {
+                    let counter = storage.get(this.counterNS, (counterSettings.view || 'all')) || 0; counter++;
+
+                    storage.set(this.counterNS, (counterSettings.view || 'all'), counter);
+
+                    if (0 === counter % counterSettings['%']) {
+                        this.show();
+                    }
+                }
+            }
         }
 
         this.dispatchEvent(new KEventView(view));
