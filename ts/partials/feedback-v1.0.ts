@@ -1,5 +1,6 @@
 import { KEvent, KEventTarget } from 'BobjollPath/library/event';
 import { localStorage as storage } from 'BobjollPath/library/storage';
+import { HexBase64BinaryEncoding } from 'crypto';
 
 const extend = require('BobjollPath/library/extend');
 
@@ -97,7 +98,17 @@ interface UserSettings {
         'message': Function;
         'static': Function;
     },
-    email?: string | FunctionStringCallback;
+    user?: () => {
+        id: number;
+        login: string;
+        email: string;
+        avatar: string;
+        premium: boolean;
+        cc_will_expire: boolean;
+        connected_google?: boolean;
+        connected_facebook?: boolean;
+        connected_twitter?: boolean;
+    };
 }
 
 interface Settings extends UserSettings {
@@ -144,8 +155,8 @@ interface History {
 
 declare module "BobjollPath/library/storage" {
     interface ClientStorage {
-        get(namespace: 'feedback-history', key: string): History[];
-        set(namespace: 'feedback-history', key: string, value: History[]): void;
+        get(namespace: 'feedback-history', key: string): string[];
+        set(namespace: 'feedback-history', key: string, value: string[]): void;
 
         get(namespace: 'feedback-counter', key: string): number;
         set(namespace: 'feedback-counter', key: string, value: number): void;
@@ -198,6 +209,22 @@ export default class Feedback extends KEventTarget {
         }
     }
 
+    private browser() {
+        var N = navigator.appName;
+        var UA = navigator.userAgent;
+        var temp;
+        var browserVersion = UA.match(/(opera|chrome|safari|firefox|msie|maxthon|lunascape)\/?\s*(\.?\d+(\.\d+)*)/i);
+
+        if (browserVersion && (temp = UA.match(/version\/([\.\d]+)/i)) != null) {
+            browserVersion[2] = temp[1];
+            
+            return {
+                name: browserVersion[1],
+                version: browserVersion[2],
+            };
+        }
+    }
+
     private setup() {
         document.body.insertAdjacentHTML('beforeend', this.settings.templates.fixed());
 
@@ -211,14 +238,57 @@ export default class Feedback extends KEventTarget {
             if (trigger) {
                 trigger.addEventListener('click', () => this.show());
 
-                this.fixed.addEventListener('mouseup', (e: Event) => {
-                    let target: EventTarget = e.target;
-
-                    if (target === this.fixed) {
-                        this.hide();
-                    }
-                });
+                if (!this.settings.default.viewCounter) {
+                    this.fixed.addEventListener('mouseup', (e: Event) => {
+                        let target: EventTarget = e.target;
+    
+                        if (target === this.fixed) {
+                            this.hide();
+                        }
+                    });
+                } else {
+                    this.fixed.classList.add('feedback--pointer-events');
+                }
             }
+        }
+    }    
+
+    private form(form: HTMLFormElement, id?: string) {
+        let submit = form.querySelector('.button[type="submit"]');
+        let reset = form.querySelector('.button[type="reset"]');
+
+        if (submit) {
+            submit.addEventListener('click', async (e: Event) => {
+                e.preventDefault();
+
+                if (form.checkValidity()) {
+                    try {
+                        let request = await this.submit(form, id);
+
+                        if (submit) {
+                            form.classList.add('disabled');
+                            submit.classList.add('button--loading');
+                        }
+                    } catch (err) {
+                        this.message(form, 'error');
+
+                        if (Raven) {
+                            Raven.captureException(err);
+                        }
+                    } finally {
+                        if (submit) {
+                            form.classList.remove('disabled');
+                            submit.classList.remove('button--loading');
+                        }
+                    }
+                } else {
+                    this.checkValidity(form);
+                }
+            });
+        }
+
+        if (reset) {
+            reset.addEventListener('click', (e: Event) => this.hide());
         }
     }
 
@@ -323,18 +393,35 @@ export default class Feedback extends KEventTarget {
         });
     }
 
-    private async submit(form: HTMLFormElement, confirmation: boolean = true) {
+    private async submit(form: HTMLFormElement, id?: string) {
         let data = new FormData(form);
+        let questionID = <number | null>Number(form.dataset.questionId);
+        let optionID = <number | null>Number(form.dataset.optionId);
 
-        if (data) {           
+        if (data && 'number' === typeof questionID && 'number' === typeof optionID) {
+            let question = this.settings.questions[questionID];
+            let option = question.options ? question.options[optionID] : this.settings.default.options[optionID];
+
             try {
-                let questionID = <number | null>data.get('question_id');
-                let optionID = <number | null>data.get('option_id');
+                if (id) {
+                    data.append('id', id);
+                } else {
+                    let browser = this.browser();
 
-                if (questionID && optionID) {
-                    let question = this.settings.questions[questionID];
-                    let option = question.options ? question.options[optionID] : this.settings.default.options[optionID];
-                    let msg = option.success_msg || this.settings.default.success_msg;
+                    data.append('question', question!.question);
+                    data.append('option', option!.value);
+
+                    if (browser) {
+                        data.append('browser_name', browser.name);
+                        data.append('browser_version', browser.version);
+                    }
+
+                    if (this.settings.user) {
+                        let user = this.settings.user();
+
+                        data.append('user_id', user.id.toString());
+                        data.append('user_premium', user.premium.toString());
+                    }
 
                     if (this.settings.default.history) {
                         data.append('history', JSON.stringify(
@@ -343,32 +430,33 @@ export default class Feedback extends KEventTarget {
 
                         storage.remove(this.historyNS, this.historyKey);
                     }
+                }
 
-                    let request = await fetch(this.settings.action, {
-                        body: data,
-                        method: this.settings.method
-                    });
-                    
-                    if (confirmation) {
-                        let response = await request.json();
+                let request = await fetch(this.settings.action, {
+                    body: data,
+                    method: this.settings.method
+                });
+                let response = await request.json();
 
-                        if (response.success) {
-                            if (msg) {
-                                form.classList.add('hide');
-                                form.insertAdjacentHTML('afterend', this.settings.templates.message({
-                                    status: 'success',
-                                    message: msg,
-                                }));
-                            } else {
-                                this.hide();
-                            }
+                if (id) {                    
+                    let msg = option.success_msg || this.settings.default.success_msg;
+
+                    if (response.success) {
+                        if (msg) {
+                            form.classList.add('hide');
+                            form.insertAdjacentHTML('afterend', this.settings.templates.message({
+                                status: 'success',
+                                message: msg,
+                            }));
+                        } else {
+                            this.hide();
                         }
                     }
-                } else {
-                    throw Error("Couldn't find question.");
                 }
+
+                return response;
             } catch(err) {
-                throw err;                
+                throw err;
             }
         }
     }
@@ -380,6 +468,20 @@ export default class Feedback extends KEventTarget {
             if (wrapper) {
                 if (!this.fixed.classList.contains('active')) {
                     let question = this.get();
+                    let params: {
+                        text: UserSettings['text'];
+                        userEmail?: string;
+                    } = {
+                        text: this.settings.text
+                    }
+
+                    if (this.settings.user) {
+                        let user = this.settings.user();
+
+                        if (user.id) {
+                            params.userEmail = user.email;
+                        }
+                    }
     
                     if (!question) {
                         return;
@@ -393,62 +495,34 @@ export default class Feedback extends KEventTarget {
                         wrapper.classList.add(question.class);
                     }
     
-                    wrapper.innerHTML = this.settings.templates.fixed_question(extend(question, {
-                        text: this.settings.text,
-                        email: this.settings.email || '',
-                    }));
-    
-                    let forms: HTMLFormElement[] = Array.prototype.slice.call(this.fixed.querySelectorAll('form'));
-                    let buttons: HTMLButtonElement[] = Array.prototype.slice.call(this.fixed.getElementsByClassName('feedback__submit'));
-    
-                    forms.forEach((form) => {
-                        let submit = form.querySelector('.button[type="submit"]');
-                        let reset = form.querySelector('.button[type="reset"]');
-    
-                        if (submit) {
-                            submit.addEventListener('click', async (e: Event) => {
-                                e.preventDefault();
-        
-                                if (form.checkValidity()) {
-                                    try {
-                                        let request = await this.submit(form);
-        
-                                        if (submit) {
-                                            form.classList.add('disabled');
-                                            submit.classList.add('button--loading');
-                                        }
-                                    } catch(err) {
-                                        this.message(form, 'error');
-    
-                                        if (Raven) {
-                                            Raven.captureException(err);
-                                        }
-                                    } finally {
-                                        if (submit) {
-                                            form.classList.remove('disabled');
-                                            submit.classList.remove('button--loading');
-                                        }
-                                    }
-                                } else {
-                                    this.checkValidity(form);
-                                }
-                            });
-                        }
-    
-                        if (reset) {
-                            reset.addEventListener('click', (e: Event) => this.hide());
-                        }
-                    });           
+                    wrapper.innerHTML = this.settings.templates.fixed_question(extend(question, params));
                     
-                    buttons.forEach((button) => button.addEventListener('click', (e: Event) => {
-                        if (this.fixed) {
-                            let form = <HTMLFormElement>this.fixed.querySelector(`#form-${(button.dataset.question || '')}`);
+                    Array.prototype.slice.call(this.fixed.getElementsByClassName('feedback__submit')).forEach((button: HTMLButtonElement) => 
+                        button.addEventListener('click', async (e: Event) => {
+                            if (this.fixed) {
+                                let form = <HTMLFormElement>this.fixed.querySelector(`#form-${button.dataset.question}`);
 
-                            if (form) {
-                                this.submit(form, false);
+                                if (form) {
+                                    if (button.classList.contains('feedback__submit--staged')) {
+                                        try {
+                                            let response = await this.submit(form);
+                                            let id = response && response.params && response.params.id ? response.params.id : null;
+    
+                                            this.form(form, id);
+                                        } catch(err) {
+                                            this.message(form, 'error');
+
+                                            if (Raven) {
+                                                Raven.captureException(err);
+                                            }
+                                        }
+                                    } else {
+                                        this.form(form);
+                                    }
+                                }
                             }
-                        }
-                    }));
+                        })
+                    );
                 } else {
                     wrapper.innerHTML = '';
                 }
@@ -509,17 +583,15 @@ export default class Feedback extends KEventTarget {
     public updateView(view: string, url?: string) {
         this.view = view || undefined;
 
-        if ('undefined' !== typeof this.fixed) {
-            this.fixed.classList.remove('active');
-        }
-
         if (this.settings.default.history && view) {
-            let history: History[] = storage.get(this.historyNS, this.historyKey) || [];
+            let history: string[] = storage.get(this.historyNS, this.historyKey) || [];
 
-            history.unshift({
-                view: view,
-                url: url || window.location.href,
-            });
+            history.unshift(
+                btoa(JSON.stringify({
+                    view: view,
+                    url: url || window.location.href,
+                }))
+            );
 
             if (history.length > this.settings.default.historyMax) {
                 history.pop();
@@ -537,7 +609,7 @@ export default class Feedback extends KEventTarget {
 
                     storage.set(this.counterNS, (counterSettings.view || 'all'), counter);
 
-                    if (0 === counter % counterSettings['%']) {
+                    if (0 === counter % counterSettings['%'] && this.fixed && !this.fixed.classList.contains('active')) {
                         this.show();
                     }
                 }

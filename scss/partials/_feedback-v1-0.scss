@@ -20,12 +20,20 @@
                 pointer-events: all;
 
                 .feedback__box {
-                    transform: translate(0, -50%);
+                    transform: translateX(0);
                 }
 
                 .feedback__trigger {
                     @extend .button--state.active;
                 }
+            }
+        }
+
+        &--pointer-events {
+            &.active {
+                // background-color: color('overlay', 'background');
+
+                pointer-events: none;
             }
         }
         
@@ -42,13 +50,14 @@
 
         &__box {
             position: absolute;
-            top: 50%;
+            bottom: 10%;
             right: 0;
     
             width: 100%;
             max-width: 380px;
+            min-height: $extra-small-button-height;
     
-            transform: translate(100%, -50%);  
+            transform: translateX(100%);  
     
             border-top: 5px solid color('secondary', 'feedback');
     
