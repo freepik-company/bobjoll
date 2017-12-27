@@ -425,8 +425,15 @@ export default class Feedback extends KEventTarget {
                     if (this.settings.user) {
                         let user = this.settings.user();
 
-                        data.append('user_id', user.id.toString());
-                        data.append('user_premium', user.premium.toString());
+                        if (user) {
+                            if (user.id) {
+                                data.append('user_id', user.id.toString());
+                            }
+
+                            if (user.premium) {
+                                data.append('user_premium', user.premium.toString());
+                            }
+                        }
                     }
 
                     if (this.settings.default.history) {
@@ -484,7 +491,7 @@ export default class Feedback extends KEventTarget {
                     if (this.settings.user) {
                         let user = this.settings.user();
 
-                        if (user.id) {
+                        if (user && user.email) {
                             params.userEmail = user.email;
                         }
                     }
