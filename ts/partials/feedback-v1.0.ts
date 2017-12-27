@@ -536,6 +536,10 @@ export default class Feedback extends KEventTarget {
             let wrapper = <HTMLElement>this.fixed.querySelector('.feedback__wrapper');
 
             this.fixed.classList.remove('active');
+
+            setTimeout(() => {
+                wrapper.innerHTML = '';
+            }, parseFloat(Settings['feedback-duration']))
         }
     }
 

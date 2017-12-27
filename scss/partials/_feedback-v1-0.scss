@@ -22,7 +22,7 @@
                 .feedback__box {
                     transform: translateX(0);
 
-                    box-shadow: 0 0 60px color('shadow', 'general', .25);
+                    box-shadow: 0 0 30px color('shadow', 'general', .25);
                 }
 
                 .feedback__trigger {
@@ -33,8 +33,6 @@
 
         &--pointer-events {
             &.active {
-                // background-color: color('overlay', 'background');
-
                 pointer-events: none;
             }
         }
