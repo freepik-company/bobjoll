@@ -12,12 +12,16 @@
             
             transform: translateZ(0) scale(1.0, 1.0);
             
-            pointer-events: none; 
+            pointer-events: none !important; 
             
-            z-index: 300;
+            z-index: 400;
 
             &.active {
-                pointer-events: all;
+                pointer-events: all !important;
+
+                * {
+                    pointer-events: all !important;
+                }
 
                 .feedback__box {
                     transform: translateX(0);
@@ -33,7 +37,7 @@
 
         &--pointer-events {
             &.active {
-                pointer-events: none;
+                pointer-events: none !important;
             }
         }
         
@@ -67,7 +71,11 @@
 
             transition: $feedback-duration $feedback-timing;
 
-            pointer-events: all;            
+            pointer-events: all;  
+            
+            * {
+                pointer-events: all !important;
+            }
         }
 
         &__trigger {
