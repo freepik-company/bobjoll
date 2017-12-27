@@ -218,7 +218,9 @@ export default class Feedback extends KEventTarget {
 
         if (browserVersion && (temp = UA.match(/version\/([\.\d]+)/i)) != null) {
             browserVersion[2] = temp[1];
-            
+        }
+        
+        if (browserVersion && browserVersion[1] && browserVersion[2]) {
             return {
                 name: browserVersion[1],
                 version: browserVersion[2],
@@ -412,6 +414,9 @@ export default class Feedback extends KEventTarget {
                     data.append('question', question!.question);
                     data.append('option', option!.value);
 
+                    data.delete('email');
+                    data.delete('message');
+
                     if (browser) {
                         data.append('browser_name', browser.name);
                         data.append('browser_version', browser.version);
@@ -428,8 +433,6 @@ export default class Feedback extends KEventTarget {
                         data.append('history', JSON.stringify(
                             storage.get(this.historyNS, this.historyKey))
                         );
-
-                        storage.remove(this.historyNS, this.historyKey);
                     }
                 }
 
@@ -445,14 +448,16 @@ export default class Feedback extends KEventTarget {
                     if (response.success) {
                         if (msg) {
                             form.classList.add('hide');
-                            form.insertAdjacentHTML('afterend', this.settings.templates.message({
-                                status: 'success',
-                                message: msg,
-                            }));
+
+                            this.message(form, 'success', msg);
                         } else {
                             this.hide();
                         }
                     }
+                }
+
+                if (!response.success) {
+                    throw Error(response.message);
                 }
 
                 return response;
@@ -507,8 +512,8 @@ export default class Feedback extends KEventTarget {
                                     if (button.classList.contains('feedback__submit--staged')) {
                                         try {
                                             let response = await this.submit(form);
-                                            let id = response && response.params && response.params.id ? response.params.id : null;
-    
+                                            let id = response && response.data && response.data.id ? response.data.id : null;
+
                                             this.form(form, id);
                                         } catch(err) {
                                             this.message(form, 'error');
