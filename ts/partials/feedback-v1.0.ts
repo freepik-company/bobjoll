@@ -1,5 +1,5 @@
 import { KEvent, KEventTarget } from 'BobjollPath/library/event';
-import { localStorage as storage } from 'BobjollPath/library/storage';
+import { sessionStorage as storage } from 'BobjollPath/library/storage';
 import { HexBase64BinaryEncoding } from 'crypto';
 import * as Settings from 'Settings';
 
