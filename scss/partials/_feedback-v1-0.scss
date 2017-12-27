@@ -20,12 +20,20 @@
                 pointer-events: all;
 
                 .feedback__box {
-                    transform: translate(0, -50%);
+                    transform: translateX(0);
+
+                    box-shadow: 0 0 30px color('shadow', 'general', .25);
                 }
 
                 .feedback__trigger {
                     @extend .button--state.active;
                 }
+            }
+        }
+
+        &--pointer-events {
+            &.active {
+                pointer-events: none;
             }
         }
         
@@ -42,19 +50,22 @@
 
         &__box {
             position: absolute;
-            top: 50%;
+            bottom: 5%;
             right: 0;
     
             width: 100%;
             max-width: 380px;
+            min-height: 148px;
     
-            transform: translate(100%, -50%);  
+            transform: translateX(100%);  
     
             border-top: 5px solid color('secondary', 'feedback');
     
             background-color: color('wrapper', 'feedback');
             
-            box-shadow: $base-box-shadow;
+            box-shadow: 0 0 0px color('shadow', 'general', .25);
+
+            transition: $feedback-duration $feedback-timing;
 
             pointer-events: all;            
         }
