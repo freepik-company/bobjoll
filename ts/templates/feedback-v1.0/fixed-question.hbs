@@ -9,7 +9,7 @@
         {{#each options}}
         <label 
         for="option-{{@key}}" 
-        class="{{#if feedback.staged}}feedback__submit {{/if}}button button--xl{{#if icon}} button--icon{{#if text}}{{else}} button--icon--only{{/if}}{{/if}}{{#if class}} {{class}}{{/if}}"
+        class="feedback__submit{{#if feedback.staged}} feedback__submit--staged {{/if}}button button--xl{{#if icon}} button--icon{{#if text}}{{else}} button--icon--only{{/if}}{{/if}}{{#if class}} {{class}}{{/if}}"
         data-question="{{@key}}"
         {{#if order}}style="order: {{order}};" {{/if}} data-form="{{#if feedback}}true{{else}}false{{/if}}">
             {{#if icon}}
@@ -26,11 +26,7 @@
 
 <div class="form-content content">
 {{#each options}}
-    <form id="form-{{@key}}" class="{{class}}" data-id="{{id}}">
-        <input type="hidden" name="question_id" value="{{@root.id}}">
-        <input type="hidden" name="option_id" value="{{@key}}">
-        <input type="hidden" name="option_value" value="{{value}}">
-
+    <form id="form-{{@key}}" class="{{class}}" data-question-id="{{@root.id}}" data-option-id="{{@key}}">
         {{#if feedback.label}}
         <label>{{feedback.label}}</label>
         {{/if}}
@@ -39,7 +35,7 @@
         {{#if feedback.contact}}
         <div class="mg-top-lv2">
             <label>{{@root.text.email_label}}</label>
-            <input class="mg-none" type="email" name="email" value="{{@root.email}}" placeholder="{{@root.text.email_placeholder}}" data-error="{{@root.text.email_error}}"{{#if feedback.contactRequired}} required{{/if}}>
+            <input class="mg-none" type="email" name="email" value="{{@root.userEmail}}" placeholder="{{@root.text.email_placeholder}}" data-error="{{@root.text.email_error}}"{{#if feedback.contactRequired}} required{{/if}}>
             <span class="font-xs text__general--text-secondary">{{@root.text.email_info}}</span>
         </div>
         {{/if}}        
