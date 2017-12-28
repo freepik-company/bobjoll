@@ -68,6 +68,7 @@ interface UserSettings {
         viewCounter?: {
             view?: string;
             '%': number;
+            times?: number;
         }[];
     }
     questions: {
@@ -138,6 +139,7 @@ interface Settings extends UserSettings {
         view?: string;
         viewCounter?: {
             view?: string;
+            times?: number;
             '%': number;
         }[];
     }
@@ -616,12 +618,16 @@ export default class Feedback extends KEventTarget {
                 }).pop();
 
                 if (counterSettings) {
-                    let counter = storage.get(this.counterNS, (counterSettings.view || 'all')) || 0; counter++;
+                    let counter = storage.get(this.counterNS, (counterSettings.view || 'all')) || 0;
 
-                    storage.set(this.counterNS, (counterSettings.view || 'all'), counter);
-
-                    if (0 === counter % counterSettings['%'] && this.fixed && !this.fixed.classList.contains('active')) {
-                        this.show();
+                    if ('undefined' !== typeof counter && (!counterSettings.times || counter < (counterSettings.times * this.settings.default.historyMax))) {
+                        counter++;
+    
+                        storage.set(this.counterNS, (counterSettings.view || 'all'), counter);
+    
+                        if (0 === counter % counterSettings['%'] && this.fixed && !this.fixed.classList.contains('active')) {
+                            this.show();
+                        }
                     }
                 }
             }
