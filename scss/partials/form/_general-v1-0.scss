@@ -137,3 +137,23 @@
 		line-height: $base-line-height;
 	}
 } // End if
+
+.error-msg {
+	position: relative;
+
+	margin: $extra-small-spacing 0 0 0;
+	padding: 0 0 0 $base-icon-height+$extra-small-spacing;
+
+	color: color('red', 'state');
+	line-height: 20px;
+
+	.icon {
+		position: absolute;
+		top: 9px;
+		left: 0;
+
+		transform: translateY(-50%);
+
+		color: color('red', 'state');
+	}
+}
