@@ -47,7 +47,7 @@
                 text-align: center;
 
                 label {
-                    margin: 0 $small-spacing;
+                    margin: 0 $extra-small-spacing;
                 }
             }
         }
@@ -75,6 +75,10 @@
             
             * {
                 pointer-events: all !important;
+            }
+
+            @include breakpoint('xs') {
+                max-width: calc(100% - #{$extra-small-button-height + $extra-small-spacing});
             }
         }
 

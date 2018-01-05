@@ -288,5 +288,11 @@
                 display: none;
             }
         }
+
+        @include modifier('hide-close') {
+            .notification__close {
+                display: none;
+            }
+        }
     }
 }
