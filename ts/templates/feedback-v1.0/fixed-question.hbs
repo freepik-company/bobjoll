@@ -7,7 +7,8 @@
 
     <div class="row row--horizontal-center mg-none">
         {{#each options}}
-        <label 
+        <label class="track"
+        data-track-arguments="event, valuation, {{value}}"
         for="option-{{@key}}" 
         class="feedback__submit{{#if feedback.staged}} feedback__submit--staged {{/if}}button button--xl{{#if icon}} button--icon{{#if text}}{{else}} button--icon--only{{/if}}{{/if}}{{#if class}} {{class}}{{/if}}"
         data-question="{{@key}}"
