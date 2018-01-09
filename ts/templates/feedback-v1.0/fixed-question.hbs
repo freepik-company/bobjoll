@@ -7,10 +7,10 @@
 
     <div class="row row--horizontal-center mg-none">
         {{#each options}}
-        <label class="track"
+        <label
         data-track-arguments="event, valuation, {{value}}"
         for="option-{{@key}}" 
-        class="feedback__submit{{#if feedback.staged}} feedback__submit--staged {{/if}}button button--xl{{#if icon}} button--icon{{#if text}}{{else}} button--icon--only{{/if}}{{/if}}{{#if class}} {{class}}{{/if}}"
+        class="track feedback__submit{{#if feedback.staged}} feedback__submit--staged {{/if}}button button--xl{{#if icon}} button--icon{{#if text}}{{else}} button--icon--only{{/if}}{{/if}}{{#if class}} {{class}}{{/if}}"
         data-question="{{@key}}"
         {{#if order}}style="order: {{order}};" {{/if}} data-form="{{#if feedback}}true{{else}}false{{/if}}">
             {{#if icon}}
@@ -27,7 +27,7 @@
 
 <div class="form-content content">
 {{#each options}}
-    <form id="form-{{@key}}" class="{{class}}" data-question-id="{{@root.id}}" data-option-id="{{@key}}">
+    <form id="form-{{@key}}" class="{{class}}" data-question-id="{{@root.id}}" data-option-id="{{@key}}" novalidate>
         {{#if feedback.label}}
         <label>{{feedback.label}}</label>
         {{/if}}
