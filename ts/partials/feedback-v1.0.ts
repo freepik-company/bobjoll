@@ -277,9 +277,7 @@ export default class Feedback extends KEventTarget {
                     } catch (err) {
                         this.message(form, 'error');
 
-                        if (Raven) {
-                            Raven.captureException(err);
-                        }
+                        console.error(err);
                     } finally {
                         if (submit) {
                             form.classList.remove('disabled');
@@ -527,9 +525,7 @@ export default class Feedback extends KEventTarget {
                                         } catch(err) {
                                             this.message(form, 'error');
 
-                                            if (Raven) {
-                                                Raven.captureException(err);
-                                            }
+                                            console.error(err);
                                         }
                                     } else {
                                         this.form(form);
