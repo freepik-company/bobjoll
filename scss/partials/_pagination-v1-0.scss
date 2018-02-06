@@ -6,13 +6,25 @@
 		}
 
 		ul {
-			display: inline-block;
+			@extend %row-flexbox;
 
-			text-align: center;
-		}
+			margin: 0 (($extra-small-spacing / 2) * -1);
 
-		li {
-			display: inline;
+			& > li {
+				padding: 0 ($extra-small-spacing / 2);
+			}
+
+			.button {
+				padding: 0 $extra-small-spacing;
+
+				text-align: center;
+
+				@each $size in $sizes {
+					&--#{$size} {
+						min-width: map-get($base-sizes, $size);
+					}
+				}
+			}
 		}
 
 		a:not(.button) {
