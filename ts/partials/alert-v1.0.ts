@@ -40,11 +40,6 @@ export default class Alert extends Notification {
     }
 
     public new(html: string, type: AlertType, fixed = false) {
-        console.log({
-            fixed: fixed,
-            html: html,
-            class: `notification--${type}`
-        });
         return super.insert({
             fixed: fixed,
             html: html,
