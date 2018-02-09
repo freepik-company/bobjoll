@@ -228,6 +228,8 @@ export default class Feedback extends KEventTarget {
                 version: browserVersion[2],
             };
         }
+
+        return null;
     }
 
     private setup() {
