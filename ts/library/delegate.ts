@@ -35,6 +35,8 @@ class DelegateListeners {
                 })[0];
             } catch (err) { };
         }
+
+        return null;
     }
 
     public static delete(selector: string, eventType: Event['type'], eventHandler: Function) {
