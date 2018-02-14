@@ -2,12 +2,16 @@ import { q, qq, delegate, delegateRemove } from 'BobjollPath/library/dom';
 import Autocomplete from 'BobjollPath/partials/autocomplete-v1.0';
 import { KEvent, KEventTarget } from 'BobjollPath/library/event';
 
-class KEventChange extends KEvent {
-    type: string;
+export class KEventChange extends KEvent {
+    public type: string;
+    public tag: string;
+    public tags: string[];
 
     constructor(tag: string, tags: string[]) {
         super();
         this.type = 'field:change'
+        this.tag = tag;
+        this.tags = tags;
     }
 }
 
@@ -33,7 +37,7 @@ interface CustomSettings {
     }
 }
 
-export default class TagsField extends KEventTarget {
+export class TagsField extends KEventTarget {
     private items: HTMLElement;
     private input: HTMLInputElement;
     private content: HTMLElement;
@@ -64,6 +68,8 @@ export default class TagsField extends KEventTarget {
             }));
 
             this.update();
+
+            this.dispatchEvent(new KEventChange(value, this.settings.input.value.split(',')));
         }
     }
 
@@ -97,8 +103,6 @@ export default class TagsField extends KEventTarget {
         if (0 < tags.length) {
             options.tags = tags;
         }
-
-        console.log(tags);
 
         this.settings.selector.insertAdjacentHTML('beforeend', this.settings.templates.field(options));
 
