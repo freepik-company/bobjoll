@@ -1,4 +1,5 @@
 // Enable Partials
+$autocomplete-v1-0:		false 		!default;
 $accordion-v1-0: 		false 		!default;
 $avatar-v1-0: 			false 		!default;
 $badge-v1-0: 			false 		!default;
@@ -9,8 +10,11 @@ $caption-v1-0: 			false 		!default;
 $comment-v1-0: 			false 		!default;
 $expandable-v1-0:		false 		!default;
 $feedback-v1-0:		    false 		!default;
-$form-v1-0: 			false 		!default;
 $general-v1-0: 			false 		!default;
+
+// Form
+$form-v1-0: 			false 		!default;
+$tag-field-v1-0:        false       !default;
 
 // Grid
 $grid-v1-0: 			false 		!default;

@@ -1,0 +1,55 @@
+@if $accordion-v1-0 {
+    .autocomplete {
+        @include position(absolute, null null null null);
+
+        overflow: auto;
+
+        display: none;
+
+        width: 100%;
+
+        border-bottom-left-radius: $base-border-radius;
+        border-bottom-right-radius: $base-border-radius;
+
+        transform: translateY(-1px);
+
+        background-color: color('input', 'background');
+
+        box-shadow: $base-box-shadow;
+
+        z-index: 100;
+
+        @include breakpoint('md') {
+            height: ($small-element-height * 5) + ($small-element-height / 2);
+        }
+
+        @include element('item') {
+            height: $small-element-height;
+            
+            padding: 0 $base-spacing;
+            
+            color: color('text-secondary', 'general');
+            text-align: left;
+            text-transform: lowercase;
+            line-height: $small-element-height;
+
+            cursor: pointer;
+
+            &:hover {
+                background-color: color('border', 'general', 1, -4);
+            }
+
+            &.selected {
+                background-color: color('border', 'general', 1, -1);
+            }
+            
+            b {
+                color: color('text', 'general');
+            }
+        }
+
+        @include modifier('show') {
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,218 @@
+@if $icon-v2-0 {
+    $webfont: "bobjoll" !global;
+
+	@font-face {
+		font-family: $webfont;
+		src: url("../bobjoll/fonts/bobjoll.woff2?b01f099a86202f6e731ff54f78dfa7af") format("woff2"),
+url("../bobjoll/fonts/bobjoll.woff?b01f099a86202f6e731ff54f78dfa7af") format("woff");
+	}
+
+    .icon {
+		display: block;
+
+        width: $base-icon-width;
+        height: $base-icon-height;
+
+        font-size: $base-icon-width;
+        line-height: $base-icon-height;
+
+        color: color('icon', 'general');
+        fill: color('icon', 'general');
+        
+        text-transform: none;
+
+        -webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+
+		speak: none;
+		
+		&::before {
+			font-family: $webfont;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+		}
+    }
+
+    .icon--inverted {
+        color: color('icon-inverted', 'general');
+        fill: color('icon-inverted', 'general');
+    }
+
+    $map: map-get($colors, 'social');
+
+    @each $color, $hex in $map {
+        .icon--#{$color} {
+            color: $hex;
+            fill: $hex;
+        }
+    }
+
+    @each $size1 in $sizes {
+        $map: map-get($icon-sizes, $size1);
+
+            .icon--#{$size1} {
+            width: map-get($map, 'width');
+            height: map-get($map, 'height');
+
+            font-size: map-get($map, 'width');
+            line-height: map-get($map, 'height');
+
+            @each $size2 in $sizes {
+                $icon-spacing: ((map-get($base-sizes, $size2) - map-get($map, 'height')) / 2);
+
+                &.icon--mg-#{$size2} { padding: $icon-spacing; box-sizing: content-box; }
+            } // End spacing
+        }       
+    }
+    
+    .icon--addcollection { &::before { content: "\f101"; } }
+    .icon--advanced { &::before { content: "\f102"; } }
+    .icon--aligncenter { &::before { content: "\f103"; } }
+    .icon--alignleft { &::before { content: "\f104"; } }
+    .icon--alignright { &::before { content: "\f105"; } }
+    .icon--amex { &::before { content: "\f106"; } }
+    .icon--archive { &::before { content: "\f107"; } }
+    .icon--backwards { &::before { content: "\f108"; } }
+    .icon--beginner { &::before { content: "\f109"; } }
+    .icon--behance { &::before { content: "\f10a"; } }
+    .icon--bold { &::before { content: "\f10b"; } }
+    .icon--book { &::before { content: "\f10c"; } }
+    .icon--bookmark-filled { &::before { content: "\f10d"; } }
+    .icon--bookmark { &::before { content: "\f10e"; } }
+    .icon--bug { &::before { content: "\f10f"; } }
+    .icon--calendar { &::before { content: "\f110"; } }
+    .icon--check { &::before { content: "\f111"; } }
+    .icon--checkbox { &::before { content: "\f112"; } }
+    .icon--clip { &::before { content: "\f113"; } }
+    .icon--cloud { &::before { content: "\f114"; } }
+    .icon--collection { &::before { content: "\f115"; } }
+    .icon--comment { &::before { content: "\f116"; } }
+    .icon--cookie { &::before { content: "\f117"; } }
+    .icon--copyright { &::before { content: "\f118"; } }
+    .icon--coupon { &::before { content: "\f119"; } }
+    .icon--credit-card { &::before { content: "\f11a"; } }
+    .icon--cross-small { &::before { content: "\f11b"; } }
+    .icon--cross { &::before { content: "\f11c"; } }
+    .icon--crown { &::before { content: "\f11d"; } }
+    .icon--disabled { &::before { content: "\f11e"; } }
+    .icon--dollar { &::before { content: "\f11f"; } }
+    .icon--down-small { &::before { content: "\f120"; } }
+    .icon--down { &::before { content: "\f121"; } }
+    .icon--download { &::before { content: "\f122"; } }
+    .icon--dribbble { &::before { content: "\f123"; } }
+    .icon--duplicate { &::before { content: "\f124"; } }
+    .icon--earnings { &::before { content: "\f125"; } }
+    .icon--edit { &::before { content: "\f126"; } }
+    .icon--envelope { &::before { content: "\f127"; } }
+    .icon--exclamation { &::before { content: "\f128"; } }
+    .icon--eye-line-through { &::before { content: "\f129"; } }
+    .icon--eye { &::before { content: "\f12a"; } }
+    .icon--facebook { &::before { content: "\f12b"; } }
+    .icon--file { &::before { content: "\f12c"; } }
+    .icon--filter { &::before { content: "\f12d"; } }
+    .icon--flame { &::before { content: "\f12e"; } }
+    .icon--flip { &::before { content: "\f12f"; } }
+    .icon--folder { &::before { content: "\f130"; } }
+    .icon--following { &::before { content: "\f131"; } }
+    .icon--font { &::before { content: "\f132"; } }
+    .icon--forwards { &::before { content: "\f133"; } }
+    .icon--fullscreen { &::before { content: "\f134"; } }
+    .icon--globe { &::before { content: "\f135"; } }
+    .icon--google { &::before { content: "\f136"; } }
+    .icon--grid { &::before { content: "\f137"; } }
+    .icon--heart-filled { &::before { content: "\f138"; } }
+    .icon--heart { &::before { content: "\f139"; } }
+    .icon--home { &::before { content: "\f13a"; } }
+    .icon--inbox { &::before { content: "\f13b"; } }
+    .icon--info { &::before { content: "\f13c"; } }
+    .icon--instagram { &::before { content: "\f13d"; } }
+    .icon--intermediate { &::before { content: "\f13e"; } }
+    .icon--interogation { &::before { content: "\f13f"; } }
+    .icon--italic { &::before { content: "\f140"; } }
+    .icon--justify { &::before { content: "\f141"; } }
+    .icon--laptop { &::before { content: "\f142"; } }
+    .icon--layers { &::before { content: "\f143"; } }
+    .icon--left-small { &::before { content: "\f144"; } }
+    .icon--left { &::before { content: "\f145"; } }
+    .icon--linkedin { &::before { content: "\f146"; } }
+    .icon--list { &::before { content: "\f147"; } }
+    .icon--lock { &::before { content: "\f148"; } }
+    .icon--logo-symbol { &::before { content: "\f149"; } }
+    .icon--logo-text { &::before { content: "\f14a"; } }
+    .icon--logout { &::before { content: "\f14b"; } }
+    .icon--marker { &::before { content: "\f14c"; } }
+    .icon--master-card { &::before { content: "\f14d"; } }
+    .icon--menuburger { &::before { content: "\f14e"; } }
+    .icon--menudots-vertical { &::before { content: "\f14f"; } }
+    .icon--menudots { &::before { content: "\f150"; } }
+    .icon--minus-small { &::before { content: "\f151"; } }
+    .icon--minus { &::before { content: "\f152"; } }
+    .icon--next-small { &::before { content: "\f153"; } }
+    .icon--next { &::before { content: "\f154"; } }
+    .icon--notification { &::before { content: "\f155"; } }
+    .icon--opacity { &::before { content: "\f156"; } }
+    .icon--palette { &::before { content: "\f157"; } }
+    .icon--paper-plane { &::before { content: "\f158"; } }
+    .icon--paper-plane2 { &::before { content: "\f159"; } }
+    .icon--pause { &::before { content: "\f15a"; } }
+    .icon--paypal { &::before { content: "\f15b"; } }
+    .icon--pencil { &::before { content: "\f15c"; } }
+    .icon--phone { &::before { content: "\f15d"; } }
+    .icon--photo { &::before { content: "\f15e"; } }
+    .icon--pinterest { &::before { content: "\f15f"; } }
+    .icon--pixabay { &::before { content: "\f160"; } }
+    .icon--play { &::before { content: "\f161"; } }
+    .icon--plus-small { &::before { content: "\f162"; } }
+    .icon--plus { &::before { content: "\f163"; } }
+    .icon--prev-small { &::before { content: "\f164"; } }
+    .icon--prev { &::before { content: "\f165"; } }
+    .icon--projects { &::before { content: "\f166"; } }
+    .icon--psd { &::before { content: "\f167"; } }
+    .icon--quote { &::before { content: "\f168"; } }
+    .icon--receipt { &::before { content: "\f169"; } }
+    .icon--refresh { &::before { content: "\f16a"; } }
+    .icon--removecollection { &::before { content: "\f16b"; } }
+    .icon--right-small { &::before { content: "\f16c"; } }
+    .icon--right { &::before { content: "\f16d"; } }
+    .icon--rotate { &::before { content: "\f16e"; } }
+    .icon--save { &::before { content: "\f16f"; } }
+    .icon--search { &::before { content: "\f170"; } }
+    .icon--security { &::before { content: "\f171"; } }
+    .icon--settings { &::before { content: "\f172"; } }
+    .icon--share { &::before { content: "\f173"; } }
+    .icon--shopping-cart { &::before { content: "\f174"; } }
+    .icon--shuffle { &::before { content: "\f175"; } }
+    .icon--sortcollection { &::before { content: "\f176"; } }
+    .icon--squares { &::before { content: "\f177"; } }
+    .icon--star-filled { &::before { content: "\f178"; } }
+    .icon--star { &::before { content: "\f179"; } }
+    .icon--stats { &::before { content: "\f17a"; } }
+    .icon--stop { &::before { content: "\f17b"; } }
+    .icon--stumbleupon { &::before { content: "\f17c"; } }
+    .icon--subtitles { &::before { content: "\f17d"; } }
+    .icon--support { &::before { content: "\f17e"; } }
+    .icon--tablet { &::before { content: "\f17f"; } }
+    .icon--tag { &::before { content: "\f180"; } }
+    .icon--thumb-down { &::before { content: "\f181"; } }
+    .icon--thumb-up { &::before { content: "\f182"; } }
+    .icon--time { &::before { content: "\f183"; } }
+    .icon--trash { &::before { content: "\f184"; } }
+    .icon--twitter { &::before { content: "\f185"; } }
+    .icon--underline { &::before { content: "\f186"; } }
+    .icon--undo { &::before { content: "\f187"; } }
+    .icon--unlock { &::before { content: "\f188"; } }
+    .icon--up-small { &::before { content: "\f189"; } }
+    .icon--up { &::before { content: "\f18a"; } }
+    .icon--upload { &::before { content: "\f18b"; } }
+    .icon--url { &::before { content: "\f18c"; } }
+    .icon--user { &::before { content: "\f18d"; } }
+    .icon--vector { &::before { content: "\f18e"; } }
+    .icon--video { &::before { content: "\f18f"; } }
+    .icon--vimeo { &::before { content: "\f190"; } }
+    .icon--visa { &::before { content: "\f191"; } }
+    .icon--volume { &::before { content: "\f192"; } }
+    .icon--youtube { &::before { content: "\f193"; } }
+    .icon--zoom-in { &::before { content: "\f194"; } }
+    .icon--zoom-out { &::before { content: "\f195"; } }
+}
