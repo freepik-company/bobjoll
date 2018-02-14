@@ -47,8 +47,8 @@ export default class Autocomplete {
 		this.settings = extend({
 			delay: 400,
 			minChars: 0,
-			templateWrapper: require('ProjectPath/ts/templates/parts/autocomplete.hbs'),
-			templateList: require('ProjectPath/ts/templates/parts/autocomplete-list.hbs')
+			templateWrapper: require('BobjollPath/templates/autocomplete.hbs'),
+			templateList: require('BobjollPath/templates/autocomplete-list.hbs')
 		}, options);
 
 		if (/^\[object (HTMLCollection|NodeList|Object)\]$/.test(Object.prototype.toString.call(this.settings.fields))) {
