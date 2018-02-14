@@ -1,5 +1,3 @@
 *.gz
 
 node_modules/
-fonts/bobjoll.*
-scss/partials/_icon-v2-0.scss
