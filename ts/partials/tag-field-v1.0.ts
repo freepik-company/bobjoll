@@ -77,18 +77,28 @@ export default class TagsField extends KEventTarget {
         this.input.removeAttribute('style');
         this.content.innerText = '';
         this.autocomplete.hide();
-        this.settings.input.value = tags.join(' ');
+        this.settings.input.value = tags.join(',');
     }
 
     private render() {
-        let tags = this.settings.input.value.split(',').filter((value) => {
-            return value !== '';
-        });
-        let options: { tags?: string[] } = {};
+        let tags = this.settings.input.value.split(',').reduce((acc: {value: string; }[], value: string) => {
+            value = value.trim();
+
+            if ('' !== value) {
+                acc.push({
+                    value: value
+                });
+            }
+
+            return acc;
+        }, []);
+        let options: { tags?: {value: string}[] } = {};
 
         if (0 < tags.length) {
             options.tags = tags;
         }
+
+        console.log(tags);
 
         this.settings.selector.insertAdjacentHTML('beforeend', this.settings.templates.field(options));
 
