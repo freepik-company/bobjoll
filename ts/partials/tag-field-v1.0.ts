@@ -1,40 +1,44 @@
-import { q, qq, delegate, delegateRemove } from 'BobjollPath/library/dom';
-import Autocomplete from 'BobjollPath/partials/autocomplete-v1.0';
+import { q, qq, delegate } from 'BobjollPath/library/dom';
+import autocompleteV10 from 'BobjollPath/partials/autocomplete-v1.0';
 import { KEvent, KEventTarget } from 'BobjollPath/library/event';
 
+// tslint:disable-next-line:no-var-requires
+const extend = require('BobjollPath/library/extend');
+
 export class KEventChange extends KEvent {
-    public type: string;
     public tag: string;
     public tags: string[];
 
     constructor(tag: string, tags: string[]) {
         super();
-        this.type = 'field:change'
         this.tag = tag;
         this.tags = tags;
     }
 }
 
-var extend = require('BobjollPath/library/extend');
+type TSourceMethod = (query: string) => {
+    text: string;
+    value: string;
+}[];
 
 interface Settings {
     selector: HTMLElement;
     input: HTMLInputElement;
-    source: (query: string) => {text: string; value: string;} | string[]
+    source: TSourceMethod;
     templates: {
         field: Function;
         tag: Function;
-    }
+    };
 }
 
 interface CustomSettings {
     selector?: HTMLElement;
     input?: HTMLInputElement;
-    source: (query: string) => {text: string; value: string;}[];
+    source: TSourceMethod;
     templates?: {
         field?: Function;
         tag?: Function;
-    }
+    };
 }
 
 export class TagsField extends KEventTarget {
@@ -42,21 +46,22 @@ export class TagsField extends KEventTarget {
     private input: HTMLInputElement;
     private content: HTMLElement;
     private settings: Settings;
-    private autocomplete: Autocomplete;    
+    private autocomplete: autocompleteV10;
+    private settingsDefault = {
+        input: q('.tag-field input') as HTMLInputElement,
+        selector: q('.tag-field')!,
+        templates: {
+            field: require('BobjollPath/templates/tags/field.hbs'),
+            tag: require('BobjollPath/templates/tags/tag.hbs'),
+        }
+    };
 
-    constructor(settings?: CustomSettings) {
+    constructor(settings: CustomSettings) {
         super();
-        
-        this.settings = extend({
-            input: q('.tag-field input'),
-            selector: q('.tag-field'),
-            templates: {
-                field: require('BobjollPath/templates/tags/field.hbs'),
-                tag: require('BobjollPath/templates/tags/tag.hbs'),
-            }
-        }, settings);        
-        
-        this.render();        
+
+        this.settings = extend(this.settingsDefault, settings);
+
+        this.render();
     }
 
     private add(value: string) {
@@ -74,12 +79,12 @@ export class TagsField extends KEventTarget {
     }
 
     private update() {
-        let tags: string[] = qq('.tag-field__item').reduce((acc: string[], tag) => {
+        const tags: string[] = qq('.tag-field__item').reduce((acc: string[], tag) => {
             acc.push(tag.innerText.trim());
 
             return acc;
         }, []);
-        
+
         this.input.removeAttribute('style');
         this.content.innerText = '';
         this.autocomplete.hide();
@@ -87,7 +92,7 @@ export class TagsField extends KEventTarget {
     }
 
     private render() {
-        let tags = this.settings.input.value.split(',').reduce((acc: {value: string; }[], value: string) => {
+        const tags = this.settings.input.value.split(',').reduce((acc: {value: string; }[], value: string) => {
             value = value.trim();
 
             if ('' !== value) {
@@ -98,7 +103,7 @@ export class TagsField extends KEventTarget {
 
             return acc;
         }, []);
-        let options: { tags?: {value: string}[] } = {};
+        const options: { tags?: {value: string}[] } = {};
 
         if (0 < tags.length) {
             options.tags = tags;
@@ -106,11 +111,11 @@ export class TagsField extends KEventTarget {
 
         this.settings.selector.insertAdjacentHTML('beforeend', this.settings.templates.field(options));
 
-        let items = <HTMLElement>this.settings.selector.querySelector('.tag-field__items');
+        const items = <HTMLElement>this.settings.selector.querySelector('.tag-field__items');
 
         if (items) {
-            let input = <HTMLInputElement>items.querySelector('.tag-field__input');
-            let content = <HTMLElement>this.settings.selector.querySelector('.tag-field__content span');
+            const input = <HTMLInputElement>items.querySelector('.tag-field__input');
+            const content = <HTMLElement>this.settings.selector.querySelector('.tag-field__content span');
 
             this.items = items;
 
@@ -124,9 +129,10 @@ export class TagsField extends KEventTarget {
     }
 
     private addEventListeners() {
-        let self = this;
+        // tslint:disable-next-line:no-var-self
+        const self = this;
 
-        this.autocomplete = new Autocomplete({
+        this.autocomplete = new autocompleteV10({
             fields: this.input,
             source: this.settings.source
         });
@@ -136,46 +142,41 @@ export class TagsField extends KEventTarget {
         this.input.addEventListener('change', () => this.add(this.input.value));
 
         this.input.addEventListener('keydown', (e: any) => {
-            let key = window.event ? e.keyCode : e.which;
+            const key = window.event ? e.keyCode : e.which;
 
             if (0 === this.input.value.length && 8 === key) { //return
-                let lastItem = qq('.tag-field__item').pop();
+                const lastItem = qq('.tag-field__item').pop();
 
                 if (lastItem) {
                     this.items.removeChild(lastItem);
                     this.update();
                 }
             }
-        })
+        });
 
         this.input.addEventListener('keyup', async (e: any) => {
-            let key = window.event ? e.keyCode : e.which;
+            const key = window.event ? e.keyCode : e.which;
 
             if (13 === key || 9 === key) { //enter
                 await new Promise((resolve) => setTimeout(resolve, 100));
 
                 this.add(this.input.value);
-            }            
+            }
 
             this.content.innerText = this.input.value;
 
             this.input.style.width = `${this.content.getBoundingClientRect().width + 20}px`;
-        });        
+        });
 
-        let removeHandler = function(this: HTMLElement, e: Event) {
-            let item = this.parentElement;
+        const removeHandler = function(this: HTMLElement) {
+            const item = this.parentElement;
 
             if (item) {
                 self.items.removeChild(item);
 
                 self.update();
             }
-        }
+        };
         delegate('.remove', 'click', removeHandler, this.items);
-    }
-
-    addEventListener(type: 'field:change', listener: (ev: KEventChange) => any, useCapture?: boolean): void;
-    addEventListener(type: string, listener: (ev: KEvent) => any, useCapture: boolean = true): void {
-        super.addEventListener(type, listener, useCapture);
     }
 }
