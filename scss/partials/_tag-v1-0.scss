@@ -8,7 +8,7 @@
 
 		font-size: 0;
 
-		li {
+		&__item, li {
 			@include transition($base-duration $base-timing); 
 
 			overflow: hidden;
@@ -45,26 +45,11 @@
 
 					float: right;
 
-					margin: 0 ($extra-small-spacing * -1) 0 $extra-small-spacing;				
-					padding: 0 0 0 ($base-triangle-size / 2);
+					margin: 0 ($extra-small-spacing * -1) 0 0;				
 
 					box-sizing: content-box; 
 
 					cursor: pointer;
-
-					&::before {
-						@include position(absolute, 50% null null ($base-border-width * -1));
-						@include transform(translate(($tag-triangle-size / 2) * -1, -50%) rotate(45deg));
-						
-						width: $tag-triangle-size;
-						height: $tag-triangle-size;
-
-						border: $base-border;
-
-						background-color: color('tags', 'background');
-
-						content: '';
-					}
 
 					&:hover {
 						&::before {
@@ -83,7 +68,7 @@
 
 		@each $size in $sizes {
 			@include modifier($size) {
-				li {
+				.tags__item, li {
 					height: map-get($button-sizes, $size);
 
 					font-size: map-get($font-sizes, $size);

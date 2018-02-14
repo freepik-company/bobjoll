@@ -1,0 +1,69 @@
+@if $form-v1-0 and $tag-field-v1-0 {
+    .tag-field {        
+        $tags-spacing: (($base-element-height - $small-button-height) / 2) - $base-border-width;
+
+        @extend input;
+
+        position: relative;
+
+        height: auto !important;
+        min-height: $base-element-height;
+
+        .autocomplete {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1;
+
+            width: calc(100% + #{($base-spacing - $tags-spacing) * 2});
+
+            margin: 0 (($base-spacing - $tags-spacing) * -1);
+        }
+
+        &__content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+
+            visibility: hidden;
+
+            width: 100%;
+            height: 100%;
+
+            pointer-events: none !important;
+
+            font-size: $base-font-size;
+        }
+
+        &__items {
+            @extend %row-flexbox;
+            @extend .tags--sm;
+
+            margin: 0 ($tags-spacing * -1);
+            padding-top: $tags-spacing;
+
+            .tag-field__item ~ input {
+                margin: 0 0 0 $extra-small-spacing;
+            }
+        }
+
+        &__item {
+            @extend .tags__item;
+
+            margin: 0 $tags-spacing $tags-spacing $tags-spacing;
+        }
+        
+        input {
+            width: 10px;
+            height: $small-button-height;
+
+            margin: 0;
+            padding: 0;
+
+            border: none;
+            background: none;
+
+            white-space: nowrap;
+        }
+    }
+}

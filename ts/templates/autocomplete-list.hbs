@@ -1,0 +1,10 @@
+<ul class="autocomplete__list">
+	{{#each keywords}}
+		<li class="autocomplete__item" data-value="{{#if value}}{{value}}{{else}}{{text}}{{/if}}">
+			<span class="autocomplete__context">{{{text}}}</span>
+			{{#if count}}
+			<span class="badge badge--sm">{{count}}</span>
+			{{/if}}
+		</li>
+	{{/each}}
+</ul>
