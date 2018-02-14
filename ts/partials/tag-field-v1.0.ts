@@ -133,12 +133,10 @@ export class TagsField extends KEventTarget {
 
         this.settings.selector.addEventListener('click', () => this.input.focus());
 
-        this.input.addEventListener('keyup', (e: any) => {
-            let key = window.event ? e.keyCode : e.which;
+        this.input.addEventListener('change', () => this.add(this.input.value));
 
-            if (13 === key || 9 === key) { //enter
-                this.add(this.input.value);
-            }
+        this.input.addEventListener('keydown', (e: any) => {
+            let key = window.event ? e.keyCode : e.which;
 
             if (0 === this.input.value.length && 8 === key) { //return
                 let lastItem = qq('.tag-field__item').pop();
@@ -148,13 +146,21 @@ export class TagsField extends KEventTarget {
                     this.update();
                 }
             }
+        })
+
+        this.input.addEventListener('keyup', async (e: any) => {
+            let key = window.event ? e.keyCode : e.which;
+
+            if (13 === key || 9 === key) { //enter
+                await new Promise((resolve) => setTimeout(resolve, 100));
+
+                this.add(this.input.value);
+            }            
 
             this.content.innerText = this.input.value;
 
             this.input.style.width = `${this.content.getBoundingClientRect().width + 20}px`;
-        });
-
-        this.input.addEventListener('change', () => this.add(this.input.value));
+        });        
 
         let removeHandler = function(this: HTMLElement, e: Event) {
             let item = this.parentElement;
