@@ -100,7 +100,7 @@ export default class Autocomplete {
             /**
              * Keydown handler
              */
-            field.keydownHandler = ((e: KeyboardEvent) => {
+            field.keydownHandler = (function(e: KeyboardEvent) {
                 const key = window.event ? e.keyCode : e.which;
 
                 if ((38 === key || 40 === key) && self.index < field.results.length) {
