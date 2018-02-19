@@ -100,6 +100,7 @@ export default class Autocomplete {
             /**
              * Keydown handler
              */
+            // tslint:disable-next-line:no-function-expression
             field.keydownHandler = (function(e: KeyboardEvent) {
                 const key = window.event ? e.keyCode : e.which;
 
@@ -149,7 +150,7 @@ export default class Autocomplete {
                             const value = selected.dataset.value;
 
                             if (value) {
-                                this.value = self.value = value;
+                                field.value = self.value = value;
                             }
                         }
 
