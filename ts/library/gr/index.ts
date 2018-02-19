@@ -14,11 +14,13 @@ export interface GrUser {
 }
 
 type RegisterError = { username: string[] } | { email: string[] } | { facebook_id: string[] } | { google_id: string[] } | { twitter_id: string[] };
+type ResponseError = { message: string | string[] | RegisterError; error_code?: string; };
 
 export interface LoginResponse {
     data: {
         status: boolean,
         redirect_url: string,
+        error_code: string;
         message?: string | string[],
         post_callback: string,
         identity?: string,
@@ -28,6 +30,19 @@ export interface LoginResponse {
     },
 
     callback: string
+}
+
+export interface ResponseErrors {
+    [key: string]: string;
+    E_UNKNOW: string;
+    E_CHECK_RECAPTCHA: string;
+    E_USER_NOT_FOUND: string;
+    E_LOGIN_ATTEMPTS_REACHED: string;
+    E_EMPTY_IDENTITY: string;
+    E_BANNED_ACCOUNT: string;
+    E_DISABLED_ACCOUNT: string;
+    E_EMPTY_PASSWORD: string;
+    E_WRONG_PASSWORD: string;    
 }
 
 function phpToJson(phpStr: string): any {
@@ -55,7 +70,7 @@ function deleteCookie(name: string) {
 */
 
 export class KEventLogin extends KEvent {
-    constructor(public user: GrUser) {
+    constructor(user: GrUser) {
         super();
         this.type = 'gr:login';
     }
@@ -68,22 +83,37 @@ export class KEventRegister extends KEvent {
     }
 }
 
-export function showMessage(form: HTMLElement, msgHtml: string | string[] | RegisterError, type: 'error' | 'success') {
+export function showMessage(form: HTMLElement, error: ResponseError, type: 'error' | 'success') {
+    console.log(error);
+
     const messageBlock = q("p.message", form);
+
+    let message = error.message;
+
+    if (GrSession.errorCodes && error.error_code) {
+        try {
+            if (GrSession.errorCodes[error.error_code]) {
+                message = GrSession.errorCodes[error.error_code];
+            }
+        } catch(err) {};
+    }
+
     if (!messageBlock) return;
 
-    if (msgHtml instanceof Array) {
-        messageBlock.innerHTML = msgHtml.join('<br>');
+    if (message instanceof Array) {
+        messageBlock.innerHTML = message.join('<br>');
     }
-    else if (typeof msgHtml === 'string') {
-        messageBlock.innerHTML = msgHtml;
+    else if (typeof message === 'string') {
+        messageBlock.innerHTML = message;
     } else {
         let err: string[] = [];
-        for (const field in msgHtml) {
-            err = err.concat((msgHtml as {[key: string]: string[]})[field]);
+
+        for (const field in message) {
+            err = err.concat((message as {[key: string]: string[]})[field]);
             const input = qi('input[name=' + field + ']', form);
             input.classList.add('error');
         }
+
         messageBlock.innerHTML = err.join('<br>');
     }
 
@@ -104,10 +134,16 @@ export function hideMessage(form: HTMLElement) {
 
 export class GrSession extends KEventTarget {
     private static _instance: GrSession;
+    public static errorCodes: ResponseErrors;
     public user: GrUser | null;
 
-    private constructor() {
+    private constructor(errorCodes?: ResponseErrors) {
         super();
+
+        if (errorCodes) {
+            GrSession.errorCodes = errorCodes;
+        }
+
         this.init();
     }
 
@@ -144,9 +180,9 @@ export class GrSession extends KEventTarget {
         return this.dispatchEvent(KEvent.fromType('gr:logout'));
     }
 
-    public static getInstance()
+    public static getInstance(errorCodes?: ResponseErrors)
     {
-        return this._instance || (this._instance = new this());
+        return this._instance || (this._instance = new this(errorCodes));
     }
 
     isLogged() {
@@ -194,7 +230,7 @@ export class GrSession extends KEventTarget {
                             this.user = user;
                             this.updateUI();
                             this.triggerLogin(this.user);
-                        }).catch((error: string | string[] | RegisterError) => {
+                        }).catch((error: ResponseError) => {
                             showMessage(f, error, 'error');
 
                             this.triggerError(formName);
@@ -320,7 +356,10 @@ export class GrSession extends KEventTarget {
                         }
                         else {
                             // TODO: on register the errors are contained in ret.data.errors
-                            reject(ret.data.message || ret.data.errors);
+                            reject({
+                                message: ret.data.message || ret.data.errors,
+                                error_code: ret.data.error_code || 'E_UNKNOW',
+                            });
                         }
                     }
                     else {
@@ -349,7 +388,10 @@ export class GrSession extends KEventTarget {
                     const ret = JSON.parse(req.response);
 
                     if (req.status !== 200) {
-                        reject(ret.data.message || ret.data.errors);
+                        reject({
+                            message: ret.data.message || ret.data.errors,
+                            error_code: ret.data.error_code || 'E_UNKNOW',
+                        });
                     }
                     
                     resolve(ret.data.message);
@@ -388,8 +430,8 @@ export class GrSession extends KEventTarget {
 
                         await this.passwordRecovery(data).then((message: string) => {
                             hideMessage(f);
-                            showMessage(f, message, 'success');
-                        }).catch((error: string | string[] | RegisterError) => {
+                            showMessage(f, {message: message}, 'success');
+                        }).catch((error: ResponseError) => {
                             showMessage(f, error, 'error');
 
                             this.triggerError('forgot-password');
@@ -409,5 +451,4 @@ export class GrSession extends KEventTarget {
     }
 }
 
-export const gr = GrSession.getInstance();
 document.addEventListener('DOMContentLoaded', () => gr.updateUI());
