@@ -70,7 +70,7 @@ function deleteCookie(name: string) {
 */
 
 export class KEventLogin extends KEvent {
-    constructor(public user: GrUser) {
+    constructor(user: GrUser) {
         super();
         this.type = 'gr:login';
     }
