@@ -152,7 +152,7 @@ export class GrSession extends KEventTarget {
         this.user = parseUser(grSessionTxt2);
     }    
 
-    addEventListener(type: 'gr:login', listener: (ev: KEventLogin) => any, useCapture?: boolean): void;
+    addEventListener(type: 'gr:login', listener: (ev: KEventLogin) => any, useCapture?: boolean): any;
     addEventListener(type: 'gr:register', listener: (ev: KEventRegister) => any, useCapture?: boolean): void;
     addEventListener(type: 'gr:logout', listener: (ev: KEvent) => any, useCapture?: boolean): void;
     addEventListener(type: 'gr:login-error', listener: (ev: KEvent) => any, useCapture?: boolean): void;

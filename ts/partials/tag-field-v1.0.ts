@@ -6,20 +6,22 @@ import { KEvent, KEventTarget } from 'BobjollPath/library/event';
 const extend = require('BobjollPath/library/extend');
 
 export class KEventChange extends KEvent {
-    public tag: string;
-    public tags: string[];
-
     constructor(tag: string, tags: string[]) {
         super();
-        this.tag = tag;
-        this.tags = tags;
+
+        this.type = 'change';
+        this.extra = {
+            tag: tag,
+            tags: tags,
+        };
     }
 }
 
-type TSourceMethod = (query: string) => {
+type TReturnType = {
     text: string;
     value: string;
 }[];
+type TSourceMethod = (query: string) => Promise<TReturnType>;
 
 interface Settings {
     selector: HTMLElement;
@@ -58,10 +60,14 @@ export class TagsField extends KEventTarget {
 
     constructor(settings: CustomSettings) {
         super();
-
         this.settings = extend(this.settingsDefault, settings);
-
         this.render();
+    }
+
+    public addEventListener(t: 'change', listener: (ev: KEvent) => any, useCapture?: boolean): void;
+    // tslint:disable-next-line:no-unnecessary-override
+    public addEventListener(t: string, listener: (ev: KEvent) => any, useCapture: boolean = true): void {
+        super.addEventListener(t, listener, useCapture);
     }
 
     private add(value: string) {
