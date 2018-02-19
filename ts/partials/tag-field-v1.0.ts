@@ -13,14 +13,15 @@ export class KEventChange extends KEvent {
         this.extra = {
             tag: tag,
             tags: tags,
-        }
+        };
     }
 }
 
-type TSourceMethod = (query: string) => {
+type TReturnType = {
     text: string;
     value: string;
 }[];
+type TSourceMethod = (query: string) => Promise<TReturnType>;
 
 interface Settings {
     selector: HTMLElement;
@@ -59,14 +60,13 @@ export class TagsField extends KEventTarget {
 
     constructor(settings: CustomSettings) {
         super();
-
         this.settings = extend(this.settingsDefault, settings);
-
         this.render();
     }
 
-    addEventListener(t: 'change', listener: (ev: KEvent) => any, useCapture?: boolean): void;
-    addEventListener(t: string, listener: (ev: KEvent) => any, useCapture: boolean = true): void {
+    public addEventListener(t: 'change', listener: (ev: KEvent) => any, useCapture?: boolean): void;
+    // tslint:disable-next-line:no-unnecessary-override
+    public addEventListener(t: string, listener: (ev: KEvent) => any, useCapture: boolean = true): void {
         super.addEventListener(t, listener, useCapture);
     }
 
