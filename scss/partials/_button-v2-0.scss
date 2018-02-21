@@ -164,8 +164,13 @@
                 }
             }
 
+            span, i {
+                margin-left: auto;
+            }
+
             span ~ i, i ~ span {
                 margin-left: $extra-small-spacing !important;
+                margin-right: auto;
             }
 
             &--only {
