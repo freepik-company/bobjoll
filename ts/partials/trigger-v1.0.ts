@@ -45,7 +45,7 @@ import { EventListenerOn } from 'Helpers';
 	})
 
 	function closeTrigger(current?: string) {
-		let triggerActive = document.querySelectorAll('.trigger__button.active');
+		let triggerActive: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.trigger__button.active');
 
 		if (triggerActive && triggerActive.length > 0) {
 			[].forEach.call(triggerActive, (element: HTMLElement) => {
@@ -62,7 +62,10 @@ import { EventListenerOn } from 'Helpers';
 				}
 			});
 
-			document.body.classList.remove('overflow-hidden');
+			if (triggerActive[0] && triggerActive[0].dataset['lockScroll']) {
+				document.body.classList.remove('overflow-hidden');
+			}
+
 			document.body.removeAttribute('data-trigger');
 		}
 	}
