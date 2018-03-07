@@ -94,6 +94,8 @@
 
 		@include element('search') {
 			input {
+				max-width: calc(100% - #{$base-element-height});
+
 				border-radius: 0 !important;
 				border-top-left-radius: $base-border-radius !important;
 			}
@@ -253,6 +255,12 @@
 					line-height: map-get($button-sizes, $size);
 
 					font-size: map-get($font-sizes, $size);
+				}
+
+				.dropdown__search {
+					input {
+						max-width: calc(100% - #{map-get($input-sizes, $size)});
+					}
 				}
 
 				.dropdown__button {
