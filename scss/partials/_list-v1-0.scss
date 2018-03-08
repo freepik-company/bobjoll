@@ -80,11 +80,11 @@
 				padding: 0;
 			}
 
-			li:not(:last-child)::after {
+			li:not(:last-child) a::after {
 				content: ',\00a0'
 			}
 
-			li:last-child::after {
+			li:last-child a::after {
 				content: '.'
 			}
 		}
