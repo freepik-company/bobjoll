@@ -27,5 +27,9 @@
         @include element('premium') {
             display: none;
         }
+
+        button, a {
+            font-weight: 400;
+        }
     }
 }

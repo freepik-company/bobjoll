@@ -3,18 +3,18 @@
 {{/each}}
 
 <div class="feedback-content content">
-    <h6 class="feedback__title first">{{question}}</h6>
+    <h6 class="feedback__title first font-md">{{question}}</h6>
 
     <div class="row row--horizontal-center mg-none">
         {{#each options}}
         <label
         data-track-arguments="event, valuation, {{value}}"
         for="option-{{@key}}" 
-        class="track feedback__submit{{#if feedback.staged}} feedback__submit--staged {{/if}}button button--xl{{#if icon}} button--icon{{#if text}}{{else}} button--icon--only{{/if}}{{/if}}{{#if class}} {{class}}{{/if}}"
+        class="track feedback__submit{{#if feedback.staged}} feedback__submit--staged {{/if}}{{#if icon}} button--icon{{#if text}}{{else}} button--icon--only{{/if}}{{/if}}{{#if class}} {{class}}{{/if}}"
         data-question="{{@key}}"
         {{#if order}}style="order: {{order}};" {{/if}} data-form="{{#if feedback}}true{{else}}false{{/if}}">
             {{#if icon}}
-            <img class="icon--xl icon--mg-xl" class="feedback__icon" src="{{icon}}" alt="">
+            <img class="feedback__icon" src="{{icon}}" alt="">
             {{/if}} 
             
             {{#if text}}
