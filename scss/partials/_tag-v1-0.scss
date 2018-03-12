@@ -62,7 +62,8 @@
 			button, a {
 				@include transition($base-duration $base-timing);
 
-				color: color('tags', 'general');			
+				color: color('tags', 'general');
+				font-weight: 400;
 			}
 		}
 
