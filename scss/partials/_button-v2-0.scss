@@ -14,7 +14,7 @@
 		cursor: pointer;
     }
     
-    .button {
+    .button { 
         --bg: color('default', 'buttons');
         --size: 0;
         --font: $base-font-size;
@@ -27,7 +27,7 @@
 
         height: var(--height);
         
-        padding: 0 1.6em;
+        padding: 0 1.4em;
 
         border-radius: $base-border-radius;
 
