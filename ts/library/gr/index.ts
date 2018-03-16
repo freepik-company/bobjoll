@@ -113,23 +113,37 @@ export function showMessage(form: HTMLElement, error: ResponseError, type: 'erro
     let message = error.message;
 
     if (GrSession.errorCodes && error.error_code) {
+        const errorMessages = qq('p.message--field', form);
+
+        if (errorMessages) {
+            errorMessages.forEach((errorField) => {
+                if (errorField.parentElement) {
+                    errorField.parentElement.removeChild(errorField);
+                }
+            });
+        }
+
         try {
             if ('string' === typeof error.error_code && GrSession.errorCodes[error.error_code]) {
                 message = GrSession.errorCodes[error.error_code];
             }
 
             if (Array.isArray(error.error_code)) {
-                let errMessage = '';
-
                 error.error_code.forEach((error) => {
-                    if (GrSession.errorCodes[error.code]) {
-                        errMessage += `<p class="error">${GrSession.errorCodes[error.code]}</p>`;
+                    let field = q(`input[name="${error.field}"]`, form);
+                    
+                    if (field) {
+                        let group = field.parentElement && field.parentElement.classList.contains('group') ? field.parentElement : false;
+
+                        if (GrSession.errorCodes[error.code]) {
+                            let insertElement = group ? group : field;
+
+                            insertElement.insertAdjacentHTML('afterend', `<p class="message message--field error message--show">${GrSession.errorCodes[error.code]}</p>`);
+                        }
                     }
                 });
 
-                if (errMessage.length > 0) {
-                    message = errMessage;
-                }
+                return;
             }
         } catch(err) {};
     }
