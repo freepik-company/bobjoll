@@ -3,8 +3,8 @@
 
 	@font-face {
 		font-family: $webfont;
-		src: url("../bobjoll/fonts/bobjoll.woff2?b01f099a86202f6e731ff54f78dfa7af") format("woff2"),
-url("../bobjoll/fonts/bobjoll.woff?b01f099a86202f6e731ff54f78dfa7af") format("woff");
+		src: url("../bobjoll/fonts/bobjoll.woff2?9d15fae9938419196067050475ba9636") format("woff2"),
+url("../bobjoll/fonts/bobjoll.woff?9d15fae9938419196067050475ba9636") format("woff");
 	}
 
     .icon {
@@ -35,8 +35,8 @@ url("../bobjoll/fonts/bobjoll.woff?b01f099a86202f6e731ff54f78dfa7af") format("wo
     }
 
     .icon--inverted {
-        color: color('icon-inverted', 'general');
-        fill: color('icon-inverted', 'general');
+        color: color('icon-inverted', 'general') !important;
+        fill: color('icon-inverted', 'general') !important;
     }
 
     $map: map-get($colors, 'social');

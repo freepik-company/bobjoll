@@ -26,6 +26,10 @@
 		font-size: $base-font-size;
 		line-height: $base-input-height;
 
+		&:-webkit-autofill {
+			box-shadow: inset 0 0 0 $extra-large-element-height color('input', 'background');
+		}
+
 		&:hover {
 			outline: none;
 
