@@ -14,7 +14,7 @@ export interface GrUser {
 }
 
 type RegisterError = { username: string[] } | { email: string[] } | { facebook_id: string[] } | { google_id: string[] } | { twitter_id: string[] };
-type ResponseError = { message: string | string[] | RegisterError; error_code?: string; };
+type ResponseError = { message: string | string[] | RegisterError; error_code?: string | {code: string, field: string}[]; };
 
 export interface LoginResponse {
     data: {
@@ -42,7 +42,7 @@ export interface ResponseErrors {
     E_BANNED_ACCOUNT: string;
     E_DISABLED_ACCOUNT: string;
     E_EMPTY_PASSWORD: string;
-    E_WRONG_PASSWORD: string;    
+    E_WRONG_PASSWORD: string;
 }
 
 function phpToJson(phpStr: string): any {
@@ -92,8 +92,22 @@ export function showMessage(form: HTMLElement, error: ResponseError, type: 'erro
 
     if (GrSession.errorCodes && error.error_code) {
         try {
-            if (GrSession.errorCodes[error.error_code]) {
+            if ('string' === typeof error.error_code && GrSession.errorCodes[error.error_code]) {
                 message = GrSession.errorCodes[error.error_code];
+            }
+
+            if (Array.isArray(error.error_code)) {
+                let errMessage = '';
+
+                error.error_code.forEach((error) => {
+                    if (GrSession.errorCodes[error.code]) {
+                        errMessage += `<p class="error">${GrSession.errorCodes[error.code]}</p>`;
+                    }
+                });
+
+                if (errMessage.length > 0) {
+                    message = errMessage;
+                }
             }
         } catch(err) {};
     }
