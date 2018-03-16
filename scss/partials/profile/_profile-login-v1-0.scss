@@ -25,6 +25,14 @@
 		p.message {
 			display: none;
 
+			&--field {
+				margin: ($small-spacing * -1) 0 $small-spacing !important;
+			}
+
+			&--show {
+				display: block !important;
+			}
+
 			&.error,
 			&.success {
 				width: 100%;
