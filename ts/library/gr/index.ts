@@ -43,6 +43,28 @@ export interface ResponseErrors {
     E_DISABLED_ACCOUNT: string;
     E_EMPTY_PASSWORD: string;
     E_WRONG_PASSWORD: string;
+    E_VALIDATION_RULEUNDEFINED: string;
+    E_VALIDATION_ISDOMAIN: string;
+    E_VALIDATION_ISVALIDIDNUMBER: string;
+    E_VALIDATION_ISENDING: string;
+    E_VALIDATION_ISSTARTING: string;
+    E_VALIDATION_ISNUMERIC: string;
+    E_VALIDATION_ISURL: string;
+    E_VALIDATION_ISEMAIL: string;
+    E_VALIDATION_ISSOCIAL: string;
+    E_VALIDATION_ISSOCIAL2: string;
+    E_VALIDATION_ISUSERNAME: string;
+    E_VALIDATION_ISDIFFERENT: string;
+    E_VALIDATION_ISDIFFERENT_PASSWORD: string;
+    E_VALIDATION_ISEQUAL: string;
+    E_VALIDATION_ISEQUAL_PASSWORD: string;
+    E_VALIDATION_ISSECURE: string;
+    E_VALIDATION_ISALPHALOGIN: string;
+    E_VALIDATION_ISALPHA: string;
+    E_VALIDATION_ISMAX: string;
+    E_VALIDATION_ISMIN: string;
+    E_VALIDATION_ISREQUIRED: string;
+    E_VALIDATION_ISBETWEEN: string;
 }
 
 function phpToJson(phpStr: string): any {
