@@ -106,8 +106,6 @@ export class KEventRegister extends KEvent {
 }
 
 export function showMessage(form: HTMLElement, error: ResponseError, type: 'error' | 'success') {
-    console.log(error);
-
     const messageBlock = q("p.message", form);
 
     let message = error.message;
