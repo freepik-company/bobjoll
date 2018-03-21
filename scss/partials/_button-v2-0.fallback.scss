@@ -1,5 +1,5 @@
 .button {
-    $box-shadow-size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
+    $box-shadow-size: $extra-large-element-height !global;
 
     &--outline {
         box-shadow: inset 0px 0px 0px $base-border-width color('default', 'buttons', 1);
@@ -41,6 +41,10 @@
         }
     }
 
+    &--pill {
+        border-radius: 50%;
+    }
+
     &--text,
     &--text-inverted {
         box-shadow: inset 0px 0px 0px 0px transparent;
@@ -75,7 +79,7 @@
     /**
     * Colors
     */
-    @each $color, $hex in map-get($colors, 'buttons') {
+    @each $color, $hex in map-get($colors, 'buttons') {        
         @if ($color != 'default') {
             &--#{$color} {
                 &.button--flat {
@@ -183,8 +187,16 @@
 
 .group {
     input {
-        &:focus ~ .button {
-            @extend .button--flat.active;
+        &:focus ~ .button, & ~ .button:hover {
+            overflow: hidden;
+
+            box-shadow: inset 0 0 0 $box-shadow-size color('default', 'buttons');
+            
+            color: color('default', 'buttons-text');
+
+            .icon {
+                color: color('default', 'buttons-text');
+            }
         }
     }
 }
