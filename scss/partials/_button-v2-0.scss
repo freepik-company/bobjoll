@@ -155,7 +155,6 @@
         &--icon {
             @extend %row-flexbox;
             @extend .row--vertical-center;
-            @extend .row--horizontal-center;
 
             &:not(.button--icon--only) {
                 .icon {
