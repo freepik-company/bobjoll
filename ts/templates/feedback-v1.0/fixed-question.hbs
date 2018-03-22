@@ -10,7 +10,7 @@
         <label
         data-track-arguments="event, valuation, {{value}}"
         for="option-{{@key}}" 
-        class="track feedback__submit{{#if feedback.staged}} feedback__submit--staged {{/if}}{{#if icon}} button--icon{{#if text}}{{else}} button--icon--only{{/if}}{{/if}}{{#if class}} {{class}}{{/if}}"
+        class="track feedback__submit{{#if feedback.staged}} feedback__submit--staged {{/if}}{{#if icon}} button--icon{{#if text}}{{else}} button--icon--only button--xl{{/if}}{{/if}}{{#if class}} {{class}}{{/if}}"
         data-question="{{@key}}"
         {{#if order}}style="order: {{order}};" {{/if}} data-form="{{#if feedback}}true{{else}}false{{/if}}">
             {{#if icon}}
