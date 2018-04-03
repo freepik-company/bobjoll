@@ -122,7 +122,7 @@ if (window.Element && !Element.prototype.closest) {
             'en-GB': commaThousDotDec,
             'en-US': commaThousDotDec,
             it: dotThousCommaDec,
-            es: dotThousDotDec,
+            es: dotThousCommaDec,
             fr: spaceThousCommaDec,
             de: dotThousCommaDec,
             "de-DE": dotThousCommaDec,
