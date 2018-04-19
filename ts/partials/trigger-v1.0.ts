@@ -45,7 +45,7 @@ import { EventListenerOn } from 'Helpers';
 	})
 
 	function closeTrigger(current?: string) {
-		let triggerActive: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.trigger__button.active');
+		let triggerActive = (document.querySelectorAll('.trigger__button.active') as NodeListOf<HTMLButtonElement>);
 
 		if (triggerActive && triggerActive.length > 0) {
 			[].forEach.call(triggerActive, (element: HTMLElement) => {
