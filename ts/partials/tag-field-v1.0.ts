@@ -44,11 +44,11 @@ interface CustomSettings {
 }
 
 export class TagsField extends KEventTarget {
-    private items: HTMLElement;
-    private input: HTMLInputElement;
-    private content: HTMLElement;
+    private items: HTMLElement | null = null;
+    private input: HTMLInputElement | null = null;
+    private content: HTMLElement | null = null;
     private settings: Settings;
-    private autocomplete: autocompleteV10;
+    private autocomplete: autocompleteV10 | null = null;
     private settingsDefault = {
         input: q('.tag-field input') as HTMLInputElement,
         selector: q('.tag-field')!,
@@ -72,14 +72,13 @@ export class TagsField extends KEventTarget {
 
     private add(value: string) {
         if (0 < value.length) {
-            this.input.value = '';
-
-            this.input.insertAdjacentHTML('beforebegin', this.settings.templates.tag({
-                value: value
-            }));
-
+            if (this.input) {
+                this.input.value = '';
+                this.input.insertAdjacentHTML('beforebegin', this.settings.templates.tag({
+                    value: value
+                }));
+            }
             this.update();
-
             this.dispatchEvent(new KEventChange(value, this.settings.input.value.split(',')));
         }
     }
@@ -91,9 +90,15 @@ export class TagsField extends KEventTarget {
             return acc;
         }, []);
 
-        this.input.removeAttribute('style');
-        this.content.innerText = '';
-        this.autocomplete.hide();
+        if (this.input) {
+            this.input.removeAttribute('style');
+        }
+        if (this.content) {
+            this.content.innerText = '';
+        }
+        if (this.autocomplete) {
+            this.autocomplete.hide();
+        }
         this.settings.input.value = tags.join(',');
     }
 
@@ -137,24 +142,27 @@ export class TagsField extends KEventTarget {
     private addEventListeners() {
         // tslint:disable-next-line:no-var-self
         const self = this;
+        if (!this.input) {
+            return null;
+        }
 
         this.autocomplete = new autocompleteV10({
             fields: this.input,
             source: this.settings.source
         });
 
-        this.settings.selector.addEventListener('click', () => this.input.focus());
-
-        this.input.addEventListener('change', () => this.add(this.input.value));
-
+        this.settings.selector.addEventListener('click', () => this.input!.focus());
+        this.input.addEventListener('change', () => this.add(this.input!.value));
         this.input.addEventListener('keydown', (e: any) => {
             const key = window.event ? e.keyCode : e.which;
 
-            if (0 === this.input.value.length && 8 === key) { //return
+            if (0 === this.input!.value.length && 8 === key) { //return
                 const lastItem = qq('.tag-field__item').pop();
 
                 if (lastItem) {
-                    this.items.removeChild(lastItem);
+                    if (this.items) {
+                        this.items.removeChild(lastItem);
+                    }
                     this.update();
                 }
             }
@@ -166,23 +174,28 @@ export class TagsField extends KEventTarget {
             if (13 === key || 9 === key) { //enter
                 await new Promise((resolve) => setTimeout(resolve, 100));
 
-                this.add(this.input.value);
+                this.add(this.input!.value);
             }
 
-            this.content.innerText = this.input.value;
-
-            this.input.style.width = `${this.content.getBoundingClientRect().width + 20}px`;
+            if (this.content) {
+                this.content.innerText = this.input!.value;
+                this.input!.style.width = `${this.content.getBoundingClientRect().width + 20}px`;
+            }
         });
 
         const removeHandler = function(this: HTMLElement) {
             const item = this.parentElement;
 
             if (item) {
-                self.items.removeChild(item);
-
+                if (self.items) {
+                    self.items.removeChild(item);
+                }
                 self.update();
             }
         };
-        delegate('.remove', 'click', removeHandler, this.items);
+        if (this.items) {
+            delegate('.remove', 'click', removeHandler, this.items);
+        }
+        return null;
     }
 }
