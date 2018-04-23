@@ -68,48 +68,48 @@ $base-font-family: 'Proxima Nova' !default;
 $title-font-family: $base-font-family !default;
 
 // Typography Sizes
-$extra-large-font-size: 22px;
-$large-font-size: 18px;
-$base-font-size: 16px;
-$small-font-size: 14px;
-$extra-small-font-size: 13px;
+$extra-large-font-size: 22px !default;
+$large-font-size: 18px !default;
+$base-font-size: 16px !default;
+$small-font-size: 14px !default;
+$extra-small-font-size: 13px !default;
 
 $h1-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
     'max-vw': map-get($breakpoints, 'xl'),
     'min-value': 40px,
     'max-value': 46px,
-);
+) !default;
 $h2-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
     'max-vw': map-get($breakpoints, 'xl'),
     'min-value': 36px,
     'max-value': 42px,
-);
+) !default;
 $h3-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
     'max-vw': map-get($breakpoints, 'xl'),
     'min-value': 32px,
     'max-value': 38px,
-);
+) !default;
 $h4-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
     'max-vw': map-get($breakpoints, 'xl'),
     'min-value': 28px,
     'max-value': 34px,
-);
+) !default;
 $h5-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
     'max-vw': map-get($breakpoints, 'xl'),
     'min-value': 24px,
     'max-value': 30px,
-);
+) !default;
 $h6-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
     'max-vw': map-get($breakpoints, 'xl'),
     'min-value': 20px,
     'max-value': 26px,
-);   
+) !default;   
 
 $font-sizes: (
 	'xs': $extra-small-font-size,
