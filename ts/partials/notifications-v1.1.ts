@@ -58,7 +58,7 @@ export interface InsertSettings extends Settings {
 
 export default class Notifications {
     public settings: DefaultSettings;
-    private wrapper: HTMLElement;
+    private wrapper: HTMLElement | null = null;
     public active: any;
 
     constructor(settings?: Settings) {
@@ -81,10 +81,9 @@ export default class Notifications {
 
         if (!wrapper) {
             document.body.insertAdjacentHTML('beforeend', template());
-
             wrapper = document.getElementById('notifications');
         }
-        
+
         if (wrapper) {
             this.wrapper = wrapper;
         }
@@ -98,7 +97,9 @@ export default class Notifications {
             anchor = document.createElement('div');
             anchor.className = name;
 
-            this.wrapper.insertAdjacentElement('afterbegin', anchor);
+            if (this.wrapper) {
+                this.wrapper.insertAdjacentElement('afterbegin', anchor);
+            }
         }
 
         return anchor;
@@ -188,7 +189,7 @@ export default class Notifications {
                             notificationTriangle.style.bottom = '100%';
                             notificationTriangle.style.left = '50%';
                             notificationTriangle.style.transform = 'translateX(-50%) rotate(180deg)';
-                        }    
+                        }
                     }
 
                     if (options.position.match(/left/)) {
@@ -197,7 +198,7 @@ export default class Notifications {
                         if (notificationTriangle) {
                             notificationTriangle.style.left = `${Settings['base-spacing']}`;
                             notificationTriangle.style.right = "";
-                        } 
+                        }
                     }
 
                     if (options.position.match(/right/)) {
@@ -206,7 +207,7 @@ export default class Notifications {
                         if (notificationTriangle) {
                             notificationTriangle.style.left = "";
                             notificationTriangle.style.right = `${Settings['base-spacing']}`;
-                        } 
+                        }
                     }
 
                     if (options.position.match(/-center/)) {
@@ -253,11 +254,11 @@ export default class Notifications {
                     storage.set(STORAGE_VISIBILITY_NS, id, false);
                 } else if (recurrentMax) {
                     let count: number = storage.get(STORAGE_COUNT_NS, `${id}_count`) | 0;
-                
+
                     if (!recurrentPrint && 'undefined' !== typeof count) {
-                        count++;          
+                        count++;
                     }
-                    
+
                     storage.set(STORAGE_COUNT_NS, `${id}_count`, count);
 
                     if (count && count >= parseFloat(recurrentMax)) {
@@ -270,7 +271,7 @@ export default class Notifications {
             if (this.active[id]) {
                 clearTimeout(this.active[id].timeout);
                 delete this.active[id];
-            }            
+            }
 
             setTimeout(() => {
                 if (notification.parentNode) {

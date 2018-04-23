@@ -59,7 +59,7 @@ import * as Settings from 'Settings';
 	});
 
 	window.addEventListener('mouseup', (e: Event) => {
-		let target: EventTarget = e.target;
+		let target: EventTarget|null = e.target;
 
 		if (target instanceof HTMLElement) {
 			let popover = target.parents('.popover');
@@ -70,7 +70,7 @@ import * as Settings from 'Settings';
 		}
 	});
 
-	function mobile(popover: Element) {		
+	function mobile(popover: Element) {
 		if (popover && window.innerWidth <= Settings.breakpoints.md) {
 			let container: HTMLElement | null = (<HTMLElement>popover.querySelector('.popover__container'));
 
@@ -80,7 +80,7 @@ import * as Settings from 'Settings';
 				let containerBounding = container.getBoundingClientRect();
 
 				if (!container.hasAttribute('style')) {
-					container.classList.add('notransition');				
+					container.classList.add('notransition');
 					container.style.width = document.body.clientWidth + 'px';
 
 					if (containerScrollable) {

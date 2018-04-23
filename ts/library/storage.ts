@@ -14,7 +14,7 @@ function getStorage(storageType: string): Storage | null {
 export class ClientStorage
 {
     private backend: Storage | null;
-    private dummy: { [key: string]: string };
+    private dummy: { [key: string]: string } = {};
 
     constructor(storageType: 'local' | 'session') {
         this.backend = getStorage(storageType);
@@ -62,7 +62,7 @@ export class ClientStorage
 
         if (this.backend) {
             for (let i = 0; i < this.backend.length; i++) {
-                let key = this.backend.key(i);                
+                let key = this.backend.key(i);
 
                 if (key && key.match(new RegExp(namespace, 'i'))) {
                     namespaceKeys.push(key);
@@ -76,7 +76,7 @@ export class ClientStorage
     getItem(namespace: string, key: string): string | null {
         const k = namespace + '/' + key;
         return this.backend ? this.backend.getItem(k) : this.dummy[k];
-    }    
+    }
 
     setItem(namespace: string, key: string, value: string) {
         const k = namespace + '/' + key;
