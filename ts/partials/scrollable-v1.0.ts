@@ -23,7 +23,7 @@ interface TouchEvent extends UIEvent {
 };
 
 import { EventListenerOn } from 'Helpers';
-import * as Settings from 'Settings';
+import { Settings } from 'Settings';
 
 (function() {
     let touch = (('ontouchstart' in window) || ((navigator as any).MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
@@ -50,7 +50,7 @@ import * as Settings from 'Settings';
                 let touch = getTouchEvent(e);
                 let move = start - touch.pageY;
 
-                if(this.scrollTop + move >= this.scrollHeight - this.clientHeight) {                 
+                if(this.scrollTop + move >= this.scrollHeight - this.clientHeight) {
                     e.preventDefault();
                     e.returnValue = false;
                 }
@@ -69,12 +69,12 @@ import * as Settings from 'Settings';
             if ((!up && c === 1) || (up && c === 0) || h === 0) {
                 e.preventDefault();
                 e.returnValue = false;
-            }      
+            }
         }
     });
 
     function disable(element: HTMLElement) {
-        if(element.classList.contains('scrollable--xs') && window.innerWidth >= Settings.breakpoints.xs) return true; 
+        if(element.classList.contains('scrollable--xs') && window.innerWidth >= Settings.breakpoints.xs) return true;
         if(element.classList.contains('scrollable--sm') && window.innerWidth >= Settings.breakpoints.sm) return true;
         if(element.classList.contains('scrollable--md') && window.innerWidth >= Settings.breakpoints.md) return true;
         if(element.classList.contains('scrollable--lg') && window.innerWidth >= Settings.breakpoints.lg) return true;
