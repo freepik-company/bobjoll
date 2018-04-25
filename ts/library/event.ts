@@ -1,28 +1,29 @@
 'use strict';
 
 export abstract class KEventTarget {
-    eventListeners: { [type: string]: ((ev: KEvent) => any)[] };
+    private eventListeners: { [type: string]: ((ev: KEvent) => any)[] };
 
     constructor() {
         this.eventListeners = {};
     }
 
-    addEventListener(type: string, listener: (ev: KEvent) => any, useCapture: boolean = true) {
-        let listeners = this.getListeners(type, useCapture);
+    public addEventListener(type: string, listener: (ev: KEvent) => any, useCapture: boolean = true) {
+        const listeners = this.getListeners(type, useCapture);
         listeners.push(listener);
     }
 
-    removeEventListener(type: string, listener: (ev: KEvent) => any, useCapture: boolean = true) {
-        let listeners = this.getListeners(type, useCapture),
-            i = listeners.indexOf(listener);
+    public removeEventListener(type: string, listener: (ev: KEvent) => any, useCapture: boolean = true) {
+        const listeners = this.getListeners(type, useCapture);
+        const i = listeners.indexOf(listener);
         if (i !== -1) {
             listeners.splice(i, 1);
         }
     }
 
-    dispatchEvent(evt: KEvent): boolean {
-        let ancestors: KEventTarget[] = [this],
-            parent = this.getParent();
+    public dispatchEvent(evt: KEvent): boolean {
+        // console.log('Dispatching', evt, this);
+        const ancestors: KEventTarget[] = [this];
+        let parent = this.getParent();
 
         while (parent != null) {
             ancestors.push(parent);
@@ -31,7 +32,7 @@ export abstract class KEventTarget {
 
         evt._target = this;
         ancestors.reverse();
-        for (let target of ancestors) {
+        for (const target of ancestors) {
             target.fireEvent(evt, true);
             if (evt.stopPropagationFlag) {
                 return true;
@@ -39,7 +40,7 @@ export abstract class KEventTarget {
         }
 
         ancestors.reverse();
-        for (let target of ancestors) {
+        for (const target of ancestors) {
             target.fireEvent(evt, false);
             if (evt.stopPropagationFlag) {
                 return true;
@@ -50,10 +51,10 @@ export abstract class KEventTarget {
     }
 
     private fireEvent(evt: KEvent, capture: boolean): void {
-        let listeners = this.getListeners(evt.type, capture);
+        const listeners = this.getListeners(evt.type, capture);
         evt._currentTarget = this;
 
-        for (let l of listeners) {
+        for (const l of listeners) {
             l.call(this, evt);
             if (evt.stopImmediatePropagationFlag) {
                 break;
@@ -62,7 +63,7 @@ export abstract class KEventTarget {
     }
 
     private getListeners(type: string, capture: boolean) {
-        let key = type + (capture ? 'c' : 'b');
+        const key = type + (capture ? 'c' : 'b');
         let listeners = this.eventListeners[key];
         if (!listeners) {
             listeners = this.eventListeners[key] = [];
@@ -70,55 +71,65 @@ export abstract class KEventTarget {
         return listeners;
     }
 
-    getParent(): KEventTarget | null {
+    private getParent(): KEventTarget | null {
         return null;
     }
 }
 
+class KDummyEventTarget extends KEventTarget {
+}
+
 export class KEvent {
-    type: string;
-    _target: KEventTarget;
-    _currentTarget: KEventTarget;
-    stopPropagationFlag: boolean;
-    stopImmediatePropagationFlag: boolean;
-    extra: { [key: string]: any };
+    public type: string;
+    public _target: KEventTarget;
+    public _currentTarget: KEventTarget;
+    public stopPropagationFlag: boolean;
+    public stopImmediatePropagationFlag: boolean;
+    public extra: { [key: string]: any };
 
     constructor(public wrappedEvent?: Event) {
         if (wrappedEvent) {
             this.type = wrappedEvent.type;
+        } else {
+            this.type = 'unknown';
         }
+        this._target = this._currentTarget = new KDummyEventTarget();
+        this.extra = {};
         this.stopPropagationFlag = false;
         this.stopImmediatePropagationFlag = false;
     }
 
-    static fromType(type: string, extra?: { [key: string]: any }): KEvent {
-        let ev = new KEvent();
+    // tslint:disable-next-line:function-name
+    public static fromType(type: string, extra?: { [key: string]: any }): KEvent {
+        const ev = new KEvent();
         ev.type = type;
-        if (extra) ev.setExtra(extra);
+        if (extra) {
+            ev.setExtra(extra);
+        }
         return ev;
     }
 
-    get target() {
+    public get target() {
         return this._target;
     }
 
-    get currentTarget() {
+    public get currentTarget() {
         return this._currentTarget;
     }
 
-    setExtra(e: { [key: string]: any }): this {
+    public setExtra(e: { [key: string]: any }): this {
         this.extra = e;
         return this;
     }
 
-    stopPropagation() {
+    public stopPropagation() {
         this.stopPropagationFlag = true;
         if (this.wrappedEvent) {
             this.wrappedEvent.stopPropagation();
         }
     }
 
-    stopImmediatePropagation() {
+    public stopImmediatePropagation() {
         this.stopPropagationFlag = true;
         this.stopImmediatePropagationFlag = true;
         if (this.wrappedEvent) {
