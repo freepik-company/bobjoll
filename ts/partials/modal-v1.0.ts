@@ -1,21 +1,21 @@
 interface ModalAddSettings {
-	name: string;
-	html?: string;
-	media?: string;
-	multilayer?: boolean;
+    name: string;
+    html?: string;
+    media?: string;
+    multilayer?: boolean;
 }
 
 interface ModalHideSettings {
-	show?: string;
-	dispatch?: boolean;
+    show?: string;
+    dispatch?: boolean;
 }
 
 interface ModalPrintSettings {
-	name: string;
-	html: string;
-	show?: boolean;
-	media?: string;
-	multilayer?: boolean;
+    name: string;
+    html: string;
+    show?: boolean;
+    media?: string;
+    multilayer?: boolean;
 }
 
 import { EventListenerOn } from 'Helpers';
@@ -24,170 +24,168 @@ import 'BobjollPath/library/common';
 var extend = require('BobjollPath/library/extend');
 
 class Modal {
-	modalsActive: string[];
-	modalsMultilayer: string[];
-	modalsAddSettings: ModalAddSettings;
-	modalsPrintSettings: ModalPrintSettings;
-	modalsWrapper: HTMLElement;
+    modalsActive: string[];
+    modalsMultilayer: string[];
+    modalsAddSettings: ModalAddSettings;
+    modalsPrintSettings: ModalPrintSettings;
+    modalsWrapper: HTMLElement;
 
-	constructor() {
-		this.modalsActive = [];
-		this.modalsMultilayer = [];
-		this.modalsAddSettings = {
-			name: '',
-			multilayer: false
-		};
-		this.modalsPrintSettings = {
-			name: '',
-			html: '',
-			multilayer: false
-		};
-		var modalsWrapper = document.getElementById('modals');
+    constructor() {
+        this.modalsActive = [];
+        this.modalsMultilayer = [];
+        this.modalsAddSettings = {
+            name: '',
+            multilayer: false
+        };
+        this.modalsPrintSettings = {
+            name: '',
+            html: '',
+            multilayer: false
+        };
+        var modalsWrapper = document.getElementById('modals');
 
-		if (!modalsWrapper) {
-			modalsWrapper = document.createElement('div');
-			modalsWrapper.id = 'modals';
+        if (!modalsWrapper) {
+            modalsWrapper = document.createElement('div');
+            modalsWrapper.id = 'modals';
 
-			document.body.insertAdjacentElement('afterend', modalsWrapper);
-		}
+            document.body.insertAdjacentElement('afterend', modalsWrapper);
+        }
 
-		this.modalsWrapper = modalsWrapper;
-		this.addEventListeners();
-	}
+        this.modalsWrapper = modalsWrapper;
+        this.addEventListeners();
+    }
 
-	add(settings: ModalAddSettings) {
-		let config = extend(this.modalsAddSettings, settings);
-		let modal = document.getElementById(`modal-${config.name}`);
+    add(settings: ModalAddSettings) {
+        let config = extend(this.modalsAddSettings, settings);
+        let modal = document.getElementById(`modal-${config.name}`);
 
-		if (!modal) {
-			let template = require('BobjollPath/templates/modal.hbs');
-			
-			this.modalsWrapper.insertAdjacentHTML('beforeend', template(config));
-		}
+        if (!modal) {
+            let template = require('BobjollPath/templates/modal.hbs');
 
-		if (config.multilayer && this.modalsMultilayer.indexOf(`modal-${config.name}`) < 0) {
-			this.modalsMultilayer.push(`modal-${config.name}`);
-		}
-	}
+            this.modalsWrapper.insertAdjacentHTML('beforeend', template(config));
+        }
 
-	show(id: string) {
-		let modal = document.getElementById(id);
-		let modalEvent = new Event('show');
+        if (config.multilayer && this.modalsMultilayer.indexOf(`modal-${config.name}`) < 0) {
+            this.modalsMultilayer.push(`modal-${config.name}`);
+        }
+    }
 
-		if (modal) {
-			modal.classList.add('active');
-			document.body.classList.add('overflow-hidden');
+    show(id: string) {
+        let modal = document.getElementById(id);
+        let modalEvent = new Event('show');
 
-			if (modal.dataset['multilayer']) {
-				if (this.modalsMultilayer.indexOf(id) < 0) {
-					this.modalsMultilayer.push(id);
-				}
-			}
+        if (modal) {
+            modal.classList.add('active');
+            document.body.classList.add('overflow-hidden');
 
-			if (this.modalsActive.indexOf(id) < 0) {
-				this.modalsActive.unshift(id);
-			}
+            if (modal.dataset['multilayer']) {
+                if (this.modalsMultilayer.indexOf(id) < 0) {
+                    this.modalsMultilayer.push(id);
+                }
+            }
 
-			modal.dispatchEvent(modalEvent);
-		}
-	}
+            if (this.modalsActive.indexOf(id) < 0) {
+                this.modalsActive.unshift(id);
+            }
 
-	hide(settings?: ModalHideSettings) {
-		if (this.modalsActive.length > 0) {
-			let modalEvent = new Event('hide');
+            modal.dispatchEvent(modalEvent);
+        }
+    }
 
-			[].forEach.call(this.modalsActive, (id: string, index: number) => {
-				let show = (settings && typeof settings.show !== 'undefined' ? (settings.show === id ? true : false) : false);
-				let modal = document.getElementById(id);
+    hide(settings?: ModalHideSettings) {
+        if (this.modalsActive.length > 0) {
+            let modalEvent = new Event('hide');
 
-				if (modal && !show) {
-					let multilayer = this.modalsMultilayer.indexOf(id) < 0 ? false : true;
+            [].forEach.call(this.modalsActive, (id: string, index: number) => {
+                let show = (settings && typeof settings.show !== 'undefined' ? (settings.show === id ? true : false) : false);
+                let modal = document.getElementById(id);
 
-					if (multilayer && this.modalsActive.length == 1 || !show && !multilayer) {
-						modal.classList.remove('active');
+                if (modal && !show) {
+                    let multilayer = this.modalsMultilayer.indexOf(id) < 0 ? false : true;
 
-						this.modalsActive.splice(index, 1);
+                    if (multilayer && this.modalsActive.length == 1 || !show && !multilayer) {
+                        modal.classList.remove('active');
 
-						if (typeof settings === 'undefined' || typeof settings.dispatch === 'undefined' || settings.dispatch) modal.dispatchEvent(modalEvent);
-					}							
-				}
-			});
-		}
+                        this.modalsActive.splice(index, 1);
 
-		if (this.modalsActive.length === 0) {
-			document.body.classList.remove('overflow-hidden');
-		}
-	}
+                        if (typeof settings === 'undefined' || typeof settings.dispatch === 'undefined' || settings.dispatch) modal.dispatchEvent(modalEvent);
+                    }
+                }
+            });
+        }
 
-	print(settings: ModalPrintSettings, show: boolean = true) {
-		let config = extend(this.modalsPrintSettings, settings);
-		let modal = document.getElementById(`modal-${config.name}`);
+        if (this.modalsActive.length === 0) {
+            document.body.classList.remove('overflow-hidden');
+        }
+    }
 
-		if (!modal) {
-			let addSettings: ModalAddSettings = {
-				name: config.name,
-				multilayer: config.multilayer
-			};
+    print(settings: ModalPrintSettings, show: boolean = true) {
+        let config = extend(this.modalsPrintSettings, settings);
+        let modal = document.getElementById(`modal-${config.name}`);
 
-			if (config.media) {
-				addSettings.media = config.media;
-			}
+        if (!modal) {
+            let addSettings: ModalAddSettings = {
+                name: config.name,
+                multilayer: config.multilayer
+            };
 
-			this.add(addSettings);
+            if (config.media) {
+                addSettings.media = config.media;
+            }
 
-			modal = document.getElementById(`modal-${config.name}`);
-		}
+            this.add(addSettings);
 
-		if (modal) {
-			let modalContent = modal.querySelector('.content');
+            modal = document.getElementById(`modal-${config.name}`);
+        }
 
-			if (modalContent) {
-				modalContent.innerHTML = config.html;
-			}
+        if (modal) {
+            let modalContent = modal.querySelector('.content');
 
-			if (show) {
-				this.show(`modal-${config.name}`);
-			}			
-		}
-	}
+            if (modalContent) {
+                modalContent.innerHTML = config.html;
+            }
 
-	addEventListeners() {
-		let modal = this;
+            if (show) {
+                this.show(`modal-${config.name}`);
+            }
+        }
+    }
 
-		window.addEventListener('mouseup', (e: Event) => {
-			let target: EventTarget = e.target;
+    addEventListeners() {
+        let modal = this;
 
-			if (target instanceof HTMLElement) {
-				let wrapper = target.parents('.modal');
-				let container = target.parents('.modal__container');
+        window.addEventListener('mouseup', (e: Event) => {
+            const target: EventTarget | null = e.target;
 
-				if ((0 < wrapper.length || target.classList && target.classList.contains('modal')) && 0 === container.length) {
-					this.hide();
-				}
-			}
-		})
+            if (target instanceof HTMLElement) {
+                const wrapper = target.parents('.modal');
+                const container = target.parents('.modal__container');
+                if ((0 < wrapper.length || target.classList && target.classList.contains('modal')) && 0 === container.length) {
+                    this.hide();
+                }
+            }
+        });
 
-		EventListenerOn('body', '.modal__close', 'click', function(this: HTMLElement, e: Event) {
-			e.preventDefault();
+        EventListenerOn('body', '.modal__close', 'click', function(this: HTMLElement, e: Event) {
+            e.preventDefault();
+            modal.hide();
+        });
 
-			modal.hide();
-		});
+        EventListenerOn('body', '.modal__trigger', 'click', function(this: HTMLElement, e: Event) {
+            e.preventDefault();
 
-		EventListenerOn('body', '.modal__trigger', 'click', function(this: HTMLElement, e: Event) {
-			e.preventDefault();
+            let id = this.dataset['modal'];
 
-			let id = this.dataset['modal'];
+            if (id) {
+                modal.show(id);
+                modal.hide({show: id});
+            }
+        });
 
-			if (id) {
-				modal.show(id);
-				modal.hide({show: id});
-			}
-		});
-
-		window.addEventListener('keyup', (e) => {
-			if (e.keyCode === 27) this.hide();
-		});
-	}
+        window.addEventListener('keyup', (e) => {
+            if (e.keyCode === 27) this.hide();
+        });
+    }
 }
 
 export var modal = new Modal();
