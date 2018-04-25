@@ -1,6 +1,6 @@
 import { EventListenerOn } from 'Helpers';
 import 'Common';
-import * as Settings from 'Settings';
+import { Settings } from 'Settings';
 
 (function() {
 	let timeout: number;
