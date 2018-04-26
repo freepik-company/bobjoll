@@ -1,4 +1,4 @@
-import * as Settings from 'Settings';
+import { Settings } from 'Settings';
 import {localStorage as storage} from 'BobjollPath/library/storage';
 
 declare module "BobjollPath/library/storage" {
