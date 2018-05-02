@@ -1,3 +1,8 @@
+$color-gray-1: #e3e3e3;
+$color-gray-2: #b4b4b4;
+$color-gray-3: #6d6d6d;
+$color-gray-4: #4a4a4a;
+
 $color-main: #1FB6FF !default;
 $color-dark: #222 !default;
 $color-border: #e8e8e8 !default;
@@ -126,9 +131,15 @@ $global-colors: (
 		'yellow-outline': $state-yellow,
 		'inverted': $color-text,
 		'inverted-outline': $color-light,
+	),
+	'gray': (
+		'1': $color-gray-1,
+		'2': $color-gray-2,
+		'3': $color-gray-3,
+		'4': $color-gray-4,
 	)
 );
 
 // Colors
-$colors-keys: ( 'social', 'state' ) !default;
+$colors-keys: ( 'social', 'state', ) !default;
 $colors: $global-colors !default;
