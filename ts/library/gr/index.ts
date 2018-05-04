@@ -182,14 +182,19 @@ export function hideMessage(form: HTMLElement) {
 
 export class GrSession extends KEventTarget {
     private static _instance: GrSession;
+    private static noAvatar: string;
     public static errorCodes: ResponseErrors;
     public user: GrUser | null;
 
-    private constructor(errorCodes?: ResponseErrors) {
+    private constructor(errorCodes?: ResponseErrors, noAvatar?: string) {
         super();
 
         if (errorCodes) {
             GrSession.errorCodes = errorCodes;
+        }
+
+        if (noAvatar) {
+            GrSession.noAvatar = noAvatar;
         }
 
         this.init();
@@ -228,9 +233,9 @@ export class GrSession extends KEventTarget {
         return this.dispatchEvent(KEvent.fromType('gr:logout'));
     }
 
-    public static getInstance(errorCodes?: ResponseErrors)
+    public static getInstance(errorCodes?: ResponseErrors, noAvatar?: string)
     {
-        return this._instance || (this._instance = new this(errorCodes));
+        return this._instance || (this._instance = new this(errorCodes, noAvatar));
     }
 
     isLogged() {
@@ -312,6 +317,10 @@ export class GrSession extends KEventTarget {
                 if (!(e instanceof HTMLImageElement)) return;
                 e.alt = u.login;
                 e.src = u.avatar;
+
+                if (GrSession.noAvatar) {
+                    e.onerror = () => e.src = GrSession.noAvatar;
+                }
             }
         }
 
