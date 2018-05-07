@@ -15,7 +15,7 @@
 				display: none;
 
 				@include breakpoint('sm', 'min') {
-					@include size(20% $tabs-height);
+					@include size(30% $tabs-height);
 
 					position: relative;
 
@@ -32,23 +32,18 @@
 
 				margin: 0 auto;
 
-				border-left: $base-border;
-				border-color: color('tabs-border', 'general');
-
 				white-space: wrap;
 
-				.tabs__link[data-tab]::before {
-					border: none;
-
-					@include triangle($base-triangle-size, color('tabs-triangle', 'general'), down);
-				}
 
 				@include breakpoint('sm', 'min') {
-					@include size(80% $tabs-height);
+					@include size(70% $tabs-height);
 
 					display: inline-block;
 
 					float: left;
+
+					border-left: $base-border;
+					border-color: color('tabs-border', 'general');
 				}
 			} // End container
 
@@ -94,30 +89,6 @@
 
 				cursor: pointer;
 
-				&[data-tab]::before {
-					@include position(absolute, 50% $small-spacing null null);
-					@include transform(translateY(-50%));
-					@include transition($base-duration $base-timing);
-					@include triangle($base-triangle-size, color('tabs-triangle', 'general'), right);
-
-					opacity: 1;
-
-					content: ''; 
-				}
-
-				&[data-tab]::after {
-					@include position(absolute, 50% 0 null null);
-					@include transform(translate(100%, -50%));
-					@include transition($base-duration $base-timing);
-					@include triangle($base-icon-height, color('tabs-triangle-active', 'general'), left);
-
-					opacity: 0;
-
-					background-color: transparent;
-
-					content: ''; 
-				}
-
 				&.button--icon {
 					@include justify-content(flex-start !important);
 				}
@@ -148,55 +119,18 @@
 
 				&.active,
 				&:hover {
-					width: calc(100% + 1px);
-
-					border-bottom-color: color('tabs-active', 'background');
-
 					background-color: color('tabs-active', 'background');
 
 					color: color('tabs-active', 'general');
 				}
 
-				&:hover {
-					border-bottom-color: color('tabs-active', 'background', 1, -5);
-
-					background-color: color('tabs-active', 'background', 1, -5);
-
-					&::before {
-						@include triangle($base-triangle-size, color('tabs-triangle-active', 'general'), right);
-					}
-				}
-
 				&.active {
-					&[data-tab]::before {
-						opacity: 0;
-					}
-
-					&[data-tab]::after {
-						@include transform(translate(0, -50%));
-
-						opacity: 1;
-					}
+					width: calc(100% + 1px);
 				}
+
 
 				@include breakpoint('sm', 'min') {
 					position: relative;
-
-					&::after {
-						@include size($base-border-width 100%);
-
-						display: block;
-
-						background-color: color('tabs', 'background');
-
-						content: '';
-					}
-
-					&.active {
-						margin: 0 -1px 0 0;
-						
-						// border-right: 3px solid color('tabs-active', 'general');
-					}
 				}
 			} // End link 
 		}

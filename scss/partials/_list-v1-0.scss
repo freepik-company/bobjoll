@@ -29,7 +29,7 @@
 				width: $bullet-width;
 				height: $bullet-height;
 
-				margin: ($bullet-spacing - 1) $extra-small-spacing $bullet-spacing ($small-spacing * -1);
+				margin: ($bullet-spacing - 1) $small-spacing $bullet-spacing ($small-spacing * -1);
 
 				border-radius: 50%;
 
@@ -80,11 +80,11 @@
 				padding: 0;
 			}
 
-			li:not(:last-child) a::after {
+			li:not(:last-child)::after {
 				content: ',\00a0'
 			}
 
-			li:last-child a::after {
+			li:last-child::after {
 				content: '.'
 			}
 		}

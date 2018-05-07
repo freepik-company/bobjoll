@@ -15,27 +15,22 @@
 			@include breakpoint('xs', 'min') {
 				.accordion__container {
 					display: inline;
+
+					border: none;
 				}
 
 				.accordion__content {
 					float: left;
 
-					border-top: 0;
+					border-top: $base-border;
 				}
 
 				.accordion__link {
 					&:not(.nostyle) {
 						display: inline-block;
 
-						border-top: 0;
-
 						&.active {
-							margin: 0 0 -1px;
-
-							border: $base-border;
-							border-bottom-color: #fff;
-							border-top-left-radius: $base-border-radius;
-							border-top-right-radius: $base-border-radius;
+							border-bottom: 1px solid color('text', 'general');
 						}						
 					}
 				}
@@ -43,9 +38,15 @@
 		}
 
 		@include element('container') {
-			margin: 0;
+			margin: 0 0 $small-spacing;
 
 			list-style: none;
+
+			border: $base-border;
+			
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 
 		@include element('content') {
@@ -64,14 +65,27 @@
 			&:not(.nostyle) {
 				display: block;
 
-				border-top: $base-border;
-
-				padding: $small-spacing $base-spacing;
+				padding: $small-spacing $small-spacing $small-spacing $base-spacing;
 
 				text-decoration: none;
 
+				.icon {
+					color: color('link', 'general');
+				}
+
+				.state--active {
+					display: none;
+				}
+
 				&.active {
-					border-bottom: 0;
+					color: color('link', 'general');
+
+					.state--active {
+						display: block;
+					}
+					.state--inactive {
+						display: none;
+					}
 				}
 			}			
 
@@ -79,8 +93,6 @@
 				position: relative;
 
 				display: block;
-
-				border-top: $base-border;
 			}
 		}
 

@@ -55,8 +55,11 @@
 			}
 
 			.group {
-				border-bottom: $base-border;
+				&:before {
+					border-radius: 0;
 
+					box-shadow: none;
+				}
 				& > div > * {
 					border: 0 !important;
 				}
@@ -66,16 +69,14 @@
 				height: $base-input-height;
 
 				margin: 0;
-				padding: 0 $base-spacing;
-
-				border-bottom: $base-border;
+				padding: 0 $small-spacing;
 
 				cursor: pointer;
 
 				line-height: $base-input-height;
 
 				&:hover {
-					background-color: color('button-inverted', 'general', 1, 15);
+					background-color: color('secondary', 'background');
 
 					color: pick-visible-color(
 						color('button-inverted', 'general', 1, 15),
@@ -98,6 +99,10 @@
 
 				border-radius: 0 !important;
 				border-top-left-radius: $base-border-radius !important;
+			}
+
+			.icon {
+				background: color('light', 'background');
 			}
 		}
 
@@ -132,7 +137,7 @@
 			}
 
 			&:hover {
-				background-color: color('button-inverted', 'general', 1, 10);
+				background-color: color('secondary', 'background');
 
 				color: pick-visible-color(
 					color('button-inverted', 'general', 1, 10),

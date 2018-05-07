@@ -13,7 +13,7 @@
 		height: $base-input-height;
 
 		margin: 0 0 $small-spacing;
-		padding: 0 $base-spacing;
+		padding: 0 $small-spacing;
 
 		border: $base-border;
 		border-radius: $base-border-radius;
@@ -134,7 +134,7 @@
 	}
 	
 	textarea {
-		padding: $small-spacing $base-spacing;
+		padding: $small-spacing;
 
 		min-height: $base-input-height * 4;
 

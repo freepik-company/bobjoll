@@ -11,7 +11,7 @@
         
         box-sizing: border-box;
 
-        background-color: color('border', 'general', 1, -5);
+        background-color: color('secondary', 'background');
 
         &::before {
             @include position(absolute, 0 null null 0);

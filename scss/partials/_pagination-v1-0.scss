@@ -27,22 +27,24 @@
 			}
 		}
 
-		a:not(.button) {
+		a {
 			padding: ($small-spacing / 2) $small-spacing;
 
-			border: $base-border;
+			// border: $base-border;
 			border-radius: $base-border-radius;
 
 			text-decoration: none;
 
+			color: color('gray', 'state');
+
 			&.active {
 				border: none;
 
-				background-color: color('link', 'general');
+				// background-color: color('link', 'general');
 
-				box-shadow: $inner-box-shadow;
+				box-shadow: none;
 
-				color: color('link-inverted', 'general');
+				color: color('link', 'general');
 			}
 		}
 
