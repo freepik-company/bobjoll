@@ -1,5 +1,3 @@
-require('BobjollTemplate/helpers.js');
-
 import View from 'BobjollView';
 import { EventListenerOn } from 'Helpers';
 import 'Bobjoll/ts/library/common';

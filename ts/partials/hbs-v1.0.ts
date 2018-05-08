@@ -1,3 +1,5 @@
+require('BobjollTemplate/helpers.js');
+
 interface Template {
     (data?: Object): string;
 }
