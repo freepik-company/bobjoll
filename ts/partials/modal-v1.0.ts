@@ -6,6 +6,7 @@ interface ModalAddSettings {
 }
 
 interface ModalHideSettings {
+    all?: boolean;
     show?: string;
     dispatch?: boolean;
 }
@@ -94,24 +95,30 @@ class Modal {
 
     hide(settings?: ModalHideSettings) {
         if (this.modalsActive.length > 0) {
+            let modalSpliceList: number[] = [];
+            let modalHideAll = settings && settings.all ? true : false;
             let modalEvent = new Event('hide');
 
             [].forEach.call(this.modalsActive, (id: string, index: number) => {
                 let show = (settings && typeof settings.show !== 'undefined' ? (settings.show === id ? true : false) : false);
                 let modal = document.getElementById(id);
 
-                if (modal && !show) {
+                if (modal && (modalHideAll || !show)) {
                     let multilayer = this.modalsMultilayer.indexOf(id) < 0 ? false : true;
 
-                    if (multilayer && this.modalsActive.length == 1 || !show && !multilayer) {
+                    if (modalHideAll || (multilayer && this.modalsActive.length == 1 || !show && !multilayer)) {
                         modal.classList.remove('active');
 
-                        this.modalsActive.splice(index, 1);
+                        modalSpliceList.push(index);                        
 
                         if (typeof settings === 'undefined' || typeof settings.dispatch === 'undefined' || settings.dispatch) modal.dispatchEvent(modalEvent);
                     }
                 }
             });
+
+            modalSpliceList
+                .sort((a, b) => b - a)
+                .forEach((position) => this.modalsActive.splice(position, 1));
         }
 
         if (this.modalsActive.length === 0) {
