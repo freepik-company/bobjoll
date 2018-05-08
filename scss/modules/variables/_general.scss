@@ -64,13 +64,53 @@ $base-border-style: solid !default;
 $base-border: $base-border-width $base-border-style color('border', 'general') !default;
 
 // Typography
-$base-font-family: 'Open Sans' !default;
+$base-font-family: 'Proxima Nova' !default;
 $title-font-family: $base-font-family !default;
-$base-font-size: 16px !default;
-$extra-large-font-size: 20px !default;
+
+// Typography Sizes
+$extra-large-font-size: 22px !default;
 $large-font-size: 18px !default;
+$base-font-size: 16px !default;
 $small-font-size: 14px !default;
-$extra-small-font-size: 12px !default;
+$extra-small-font-size: 13px !default;
+
+$h1-font-size: (
+    'min-vw': map-get($breakpoints, 'xs'),
+    'max-vw': map-get($breakpoints, 'xl'),
+    'min-value': 40px,
+    'max-value': 46px,
+) !default;
+$h2-font-size: (
+    'min-vw': map-get($breakpoints, 'xs'),
+    'max-vw': map-get($breakpoints, 'xl'),
+    'min-value': 36px,
+    'max-value': 42px,
+) !default;
+$h3-font-size: (
+    'min-vw': map-get($breakpoints, 'xs'),
+    'max-vw': map-get($breakpoints, 'xl'),
+    'min-value': 32px,
+    'max-value': 38px,
+) !default;
+$h4-font-size: (
+    'min-vw': map-get($breakpoints, 'xs'),
+    'max-vw': map-get($breakpoints, 'xl'),
+    'min-value': 28px,
+    'max-value': 34px,
+) !default;
+$h5-font-size: (
+    'min-vw': map-get($breakpoints, 'xs'),
+    'max-vw': map-get($breakpoints, 'xl'),
+    'min-value': 24px,
+    'max-value': 30px,
+) !default;
+$h6-font-size: (
+    'min-vw': map-get($breakpoints, 'xs'),
+    'max-vw': map-get($breakpoints, 'xl'),
+    'min-value': 20px,
+    'max-value': 26px,
+) !default;   
+
 $font-sizes: (
 	'xs': $extra-small-font-size,
 	'sm': $small-font-size,
@@ -79,21 +119,14 @@ $font-sizes: (
 	'xl': $extra-large-font-size
 ) !default;
 
-$h1-font-size: ( null: 32px, 'xs': 36px, 'sm': 40px, 'lg': 48px) !default;
-$h2-font-size: ( null: 21px, 'lg': 24px) !default;
-$h3-font-size: ( null: 19px, 'lg': 21px) !default;
-$h4-font-size: ( null: 18px) !default;
-$h5-font-size: ( null: 18px) !default;
-$h6-font-size: ( null: $base-font-size) !default;
-
 // Icons
-$extra-large-icon-width: 44px !default;
+$extra-large-icon-width: 30px !default;
 $extra-large-icon-height: $extra-large-icon-width !default;
-$large-icon-width: 36px !default;
+$large-icon-width: 26px !default;
 $large-icon-height: $large-icon-width !default;
-$base-icon-width: 28px !default;
+$base-icon-width: 20px !default;
 $base-icon-height: $base-icon-width !default;
-$small-icon-width: 24px !default;
+$small-icon-width: 16px !default;
 $small-icon-height: $small-icon-width !default;
 $extra-small-icon-width: 12px !default;
 $extra-small-icon-height: $extra-small-icon-width !default;

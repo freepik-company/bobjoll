@@ -1,7 +1,7 @@
 import { KEvent, KEventTarget } from 'BobjollPath/library/event';
 import { sessionStorage as storage } from 'BobjollPath/library/storage';
 import { HexBase64BinaryEncoding } from 'crypto';
-import * as Settings from 'Settings';
+import { Settings } from 'Settings';
 
 const extend = require('BobjollPath/library/extend');
 
@@ -416,8 +416,10 @@ export default class Feedback extends KEventTarget {
                     data.append('question', question!.question);
                     data.append('option', option!.value);
 
-                    data.delete('email');
-                    data.delete('message');
+                    try {
+                        data.delete('email');
+                        data.delete('message');
+                    } catch(err) {};
 
                     if (browser) {
                         data.append('browser_name', browser.name);

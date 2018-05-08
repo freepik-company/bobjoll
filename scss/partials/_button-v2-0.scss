@@ -14,7 +14,7 @@
 		cursor: pointer;
     }
     
-    .button {
+    .button { 
         --bg: color('default', 'buttons');
         --size: 0;
         --font: $base-font-size;
@@ -27,7 +27,7 @@
 
         height: var(--height);
         
-        padding: 0 1.6em;
+        padding: 0 1.4em;
 
         border-radius: $base-border-radius;
 
@@ -155,7 +155,6 @@
         &--icon {
             @extend %row-flexbox;
             @extend .row--vertical-center;
-            @extend .row--horizontal-center;
 
             &:not(.button--icon--only) {
                 .icon {
@@ -164,8 +163,13 @@
                 }
             }
 
+            span, i {
+                margin-left: auto;
+            }
+
             span ~ i, i ~ span {
                 margin-left: $extra-small-spacing !important;
+                margin-right: auto;
             }
 
             &--only {

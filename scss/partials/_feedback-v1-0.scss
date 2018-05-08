@@ -1,5 +1,8 @@
 @if $feedback-v1-0 {
     .feedback {
+        $icon-width: 50px;
+        $icon-height: 50px;
+
         &--fixed {
             @include prefixer(font-smoothing, subpixel-antialiased, webkit spec);
             
@@ -94,8 +97,15 @@
         }
 
         &__icon {
-            width: 64px;
-            height: 64px;
+            width: $icon-width;
+            height: $icon-height;
+
+            padding: 0 $extra-small-spacing;
+
+            font-size: $icon-width;
+            line-height: $icon-height;
+
+            box-sizing: content-box;
         }        
 
         #{$all-headings} {

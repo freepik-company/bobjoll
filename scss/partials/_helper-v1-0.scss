@@ -49,6 +49,7 @@
 		.capitalize { text-transform: capitalize; }
 
 		.strike { text-decoration: line-through; }
+		.underline { text-decoration: underline; }
 
 		.text-inverted { color: color('text-inverted', 'general'); }
 
@@ -87,6 +88,11 @@
 
 			@include breakpoint('md') {
 				overflow-y: scroll;
+
+				&>.container,
+				&>.container-fluid {
+					min-height: calc(100% + 10px)
+				}
 			}
 
 			height: 100%;
@@ -95,7 +101,7 @@
 				@include position(absolute, 0 null null 0);
 
 				max-height: 100%;
-			}
+			}			
 		}
 		.v-alignc { vertical-align: middle; }
 		.v-alignc-transform { @include transform(translateY(-25%)); }

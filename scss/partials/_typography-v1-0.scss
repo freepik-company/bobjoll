@@ -87,19 +87,19 @@
 
 	%link-hover {
 		&:hover {
-			color: color('link', 'general', 1);
+			color: color('link', 'general', 1, 4);
 
 			.icon {
-				color: color('link', 'general', 1);
+				color: color('link', 'general', 1, 4);
 			}
 		}
 
 		&.active {
-			color: color('link', 'general', 1);
+			color: color('link', 'general', 1, 4);
 			font-weight: 500;
 
 			.icon {
-				color: color('link', 'general', 1);
+				color: color('link', 'general', 1, 4);
 			}
 		}
 	}
@@ -110,6 +110,7 @@
 		color: color('link', 'general');
 
 		cursor: pointer;
+		font-weight: 500;
 		text-decoration: none;
 		
 		.icon {
@@ -119,10 +120,10 @@
 		@include modifier('text') {
 			@extend %link-hover;
 
-			color: color('text', 'general');
+			color: color('text', 'general', 1, 4);
 
 			.icon {
-				color: color('text', 'general');
+				color: color('text', 'general', 1, 4);
 			}
 		}
 	}
