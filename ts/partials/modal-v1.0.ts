@@ -21,9 +21,9 @@ interface ModalPrintSettings {
 
 import View from 'BobjollView';
 import { EventListenerOn } from 'Helpers';
-import 'Bobjoll/ts/library/common';
+import 'bobjoll/ts/library/common';
 
-var extend = require('Bobjoll/ts/library/extend');
+var extend = require('bobjoll/ts/library/extend');
 
 class Modal {
     modalsActive: string[];

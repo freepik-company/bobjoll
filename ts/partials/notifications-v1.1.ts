@@ -1,9 +1,9 @@
 import View from 'BobjollView';
 import { Settings } from 'Settings';
-import {localStorage as storage} from 'Bobjoll/ts/library/storage';
+import {localStorage as storage} from 'bobjoll/ts/library/storage';
 import { POINT_CONVERSION_COMPRESSED } from 'constants';
 
-declare module "Bobjoll/ts/library/storage" {
+declare module "bobjoll/ts/library/storage" {
     interface ClientStorage {
         get(namespace: 'notification-visibility', key: string): boolean;
         set(namespace: 'notification-visibility', key: string, value: boolean): void;
@@ -15,7 +15,7 @@ declare module "Bobjoll/ts/library/storage" {
 
 const STORAGE_VISIBILITY_NS = 'notification-visibility';
 const STORAGE_COUNT_NS = 'notification-count';
-const extend = require('Bobjoll/ts/library/extend');
+const extend = require('bobjoll/ts/library/extend');
 
 export interface Position {
     'static': string;

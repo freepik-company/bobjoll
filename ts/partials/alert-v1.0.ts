@@ -2,7 +2,7 @@
 import Notification, { Position } from 'BobjollNotifications';
 import View from 'BobjollView';
 
-const extend = require('Bobjoll/ts/library/extend');
+const extend = require('bobjoll/ts/library/extend');
 
 type AlertType = 'success' | 'warning' | 'error';
 

@@ -1,10 +1,10 @@
 import View from 'BobjollView';
-import { q, qq, delegate } from 'Bobjoll/ts/library/dom';
-import autocompleteV10 from 'Bobjoll/ts/partials/autocomplete-v1.0';
-import { KEvent, KEventTarget } from 'Bobjoll/ts/library/event';
+import { q, qq, delegate } from 'bobjoll/ts/library/dom';
+import autocompleteV10 from 'bobjoll/ts/partials/autocomplete-v1.0';
+import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
 
 // tslint:disable-next-line:no-var-requires
-const extend = require('Bobjoll/ts/library/extend');
+const extend = require('bobjoll/ts/library/extend');
 
 export class KEventChange extends KEvent {
     constructor(tag: string, tags: string[]) {

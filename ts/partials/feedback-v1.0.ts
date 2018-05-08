@@ -1,9 +1,9 @@
 import View from 'BobjollView';
-import { KEvent, KEventTarget } from 'Bobjoll/ts/library/event';
-import { sessionStorage as storage } from 'Bobjoll/ts/library/storage';
+import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
+import { sessionStorage as storage } from 'bobjoll/ts/library/storage';
 import { Settings } from 'Settings';
 
-const extend = require('Bobjoll/ts/library/extend');
+const extend = require('bobjoll/ts/library/extend');
 
 export class KEventView extends KEvent {
     constructor(public view: string | undefined) {
@@ -156,7 +156,7 @@ interface History {
     url: string;
 }
 
-declare module "Bobjoll/ts/library/storage" {
+declare module "bobjoll/ts/library/storage" {
     interface ClientStorage {
         get(namespace: 'feedback-history', key: string): string[];
         set(namespace: 'feedback-history', key: string, value: string[]): void;

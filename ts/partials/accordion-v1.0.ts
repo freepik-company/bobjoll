@@ -1,5 +1,5 @@
 import { EventListenerOn } from 'Helpers';
-import 'Bobjoll/ts/library/common';
+import 'bobjoll/ts/library/common';
 
 (function() {
 	// var accordion_resize_timeout: any;

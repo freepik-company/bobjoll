@@ -1,6 +1,6 @@
 import View from 'BobjollView';
 import { EventListenerOn } from 'Helpers';
-import 'Bobjoll/ts/library/common';
+import 'bobjoll/ts/library/common';
 
 (function() {
 	let template = require(`BobjollTemplate/dropdown-v1.0/element.${View.ext}`);
