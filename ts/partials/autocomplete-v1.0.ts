@@ -2,7 +2,7 @@ import { clearTimeout } from 'timers';
 import View from 'BobjollView';
 
 // tslint:disable-next-line:no-var-requires
-const extend = require('Bobjoll/ts/library/extend');
+const extend = require('bobjoll/ts/library/extend');
 
 type AutocompleteSourceFunction = (query: string) => { [name: string]: any; };
 

@@ -29,7 +29,7 @@ interface NotificationsInsertSettings {
 import View from 'BobjollView';
 import * as Settings from 'Settings';
 
-var extend = require('Bobjoll/ts/library/extend');
+var extend = require('bobjoll/ts/library/extend');
 
 class Notifications {
 	active: string[];
