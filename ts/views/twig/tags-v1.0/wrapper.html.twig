@@ -1,8 +1,8 @@
 <div class="tag-field__items">
     <div class="tag-field__content"><span></span></div>
 
-    {% for tags as tag %}
-        {{ include('element.html.twig') }}
+    {% for tag in tags %}
+        {% include './element.html.twig' with tag %}
     {% endfor %}
 
     <input class="tag-field__input" type="text">

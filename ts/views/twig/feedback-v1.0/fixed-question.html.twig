@@ -3,16 +3,16 @@
 {% endfor %}
 
 <div class="feedback-content content">
-    <h6 class="feedback__title first font-md">{{question}}</h6>
+    <h6 class="feedback__title first font-md">{{ question }}</h6>
 
     <div class="row row--horizontal-center mg-none">
-        {% for key, option is options %}
+        {% for key, option in options %}
         <label
-        data-track-arguments="event, valuation, {{option.value}}"
-        for="option-{{@key}}" 
+        data-track-arguments="event, valuation, {{ option.value }}"
+        for="option-{{key}}" 
         class="track feedback__submit{% if option.feedback.staged is defined %} feedback__submit--staged {% endif %}{% if option.icon is defined %} button--icon{% if option.text is defined %}{% else %} button--icon--only button--xl{% endif %}{% endif %}{% if option.class is defined %} {{option.class}}{% endif %}"
-        data-question="{{@key}}"
-        {% if option.order is defined %}style="order: {{option.order}};" {% endif %} data-form="{% if option.feedback is defined %}true{% else %}false{% endif %}">
+        data-question="{{key}}"
+        {% if option.order is defined %}style="order: {{ option.order }};" {% endif %} data-form="{% if option.feedback is defined %}true{% else %}false{% endif %}">
             {% if option.icon is defined %}
             <img class="feedback__icon" src="{{option.icon}}" alt="">
             {% endif %} 
@@ -27,12 +27,12 @@
 
 <div class="form-content content">
 {% for key, option in options %}
-    <form id="form-{{@key}}" class="{{class}}" data-question-id="{{id}}" data-option-id="{{key}}" novalidate>
+    <form id="form-{{key}}" class="{{class}}" data-question-id="{{id}}" data-option-id="{{key}}" novalidate>
         {% if option.feedback.label is defined %}
         <label>{{option.feedback.label}}</label>
         {% endif %}
 
-        <textarea class="mg-none" name="message" placeholder="{{option.feedback.placeholder}}"{% if option.feedback.required is defined %} required{% endif %}></textarea>
+        <textarea class="mg-none" name="message" placeholder="{{ option.feedback.placeholder }}"{% if option.feedback.required is defined %} required{% endif %}></textarea>
         
         {% if option.feedback.contact is defined %}
         <div class="mg-top-lv2">
@@ -60,6 +60,6 @@
     .feedback input#option-{{key}}:checked ~ .content #form-{{key}} {
         display: inherit !important;
     }
-    {{/if}}
+    {% endif %}
     {% endfor %}
 </style>
