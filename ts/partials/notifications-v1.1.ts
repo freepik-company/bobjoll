@@ -1,7 +1,9 @@
+import View from 'BobjollView';
 import { Settings } from 'Settings';
-import {localStorage as storage} from 'BobjollPath/library/storage';
+import {localStorage as storage} from 'Bobjoll/ts/library/storage';
+import { POINT_CONVERSION_COMPRESSED } from 'constants';
 
-declare module "BobjollPath/library/storage" {
+declare module "Bobjoll/ts/library/storage" {
     interface ClientStorage {
         get(namespace: 'notification-visibility', key: string): boolean;
         set(namespace: 'notification-visibility', key: string, value: boolean): void;
@@ -13,7 +15,7 @@ declare module "BobjollPath/library/storage" {
 
 const STORAGE_VISIBILITY_NS = 'notification-visibility';
 const STORAGE_COUNT_NS = 'notification-count';
-const extend = require('BobjollPath/library/extend');
+const extend = require('Bobjoll/ts/library/extend');
 
 export interface Position {
     'static': string;
@@ -66,7 +68,7 @@ export default class Notifications {
             fixed: false,
             recurrent: false,
             timeout: 5000,
-            template: require('BobjollPath/templates/notifications-v1.1/element.hbs'),
+            template: require(`BobjollTemplate/notification-v1.1/element.${View.ext}`),
             position: 'bottom-left'
         }
 
@@ -76,11 +78,11 @@ export default class Notifications {
     }
 
     private setup() {
-        let template = require('BobjollPath/templates/notifications-v1.1/wrapper.hbs');
+        let template = require(`BobjollTemplate/notification-v1.1/wrapper.${View.ext}`);
         let wrapper = document.getElementById('notifications');
 
         if (!wrapper) {
-            document.body.insertAdjacentHTML('beforeend', template());
+            document.body.insertAdjacentHTML('beforeend', View.render(template));
             wrapper = document.getElementById('notifications');
         }
 
@@ -140,7 +142,7 @@ export default class Notifications {
                 position = options.insert.position;
             }
 
-            anchor.insertAdjacentHTML(position, options.template(options));
+            anchor.insertAdjacentHTML(position, View.render(options.template, options));
 
             notification = document.getElementById(options.id);
 

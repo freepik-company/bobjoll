@@ -26,9 +26,10 @@ interface NotificationsInsertSettings {
 	additional?: Object;
 }
 
+import View from 'BobjollView';
 import * as Settings from 'Settings';
 
-var extend = require('BobjollPath/library/extend');
+var extend = require('Bobjoll/ts/library/extend');
 
 class Notifications {
 	active: string[];
@@ -37,9 +38,9 @@ class Notifications {
 	wrapper: HTMLElement;
 
 	constructor() {
-		let template = require('BobjollPath/templates/notifications.hbs');
+		let template = require(`BobjollTemplate/notification-v1.0/wrapper.${View.ext}`);
 
-		document.body.insertAdjacentHTML('beforeend', template());
+		document.body.insertAdjacentHTML('beforeend', View.render(template));
 
 		let notifications = document.getElementById('notifications');
 
@@ -119,12 +120,12 @@ class Notifications {
 		let anchor = settings.position ? this.anchor[settings.position] : (this.wrapper ? this.wrapper : null);
 		let notification: HTMLElement | null;
 		let show = this.show(settings);
-		let template = require('BobjollPath/templates/notification.hbs');
+		let template = require(`BobjollTemplate/notification-v1.0/element.${View.ext}`);
 
 		if (anchor && show) {
 			let position: any = settings.position ? (settings.position.indexOf('top') < 0 ? 'beforeend' : 'afterbegin') : 'beforeend';
 
-			anchor.insertAdjacentHTML(position, template(settings));
+			anchor.insertAdjacentHTML(position, View.render(template, settings));
 			notification = document.getElementById(settings.id);
 
 			if (notification) {

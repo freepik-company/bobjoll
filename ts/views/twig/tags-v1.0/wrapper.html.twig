@@ -1,7 +1,9 @@
 <div class="tag-field__items">
     <div class="tag-field__content"><span></span></div>
 
-    {{#each tags}}@require('tag.hbs'){{/each}}
+    {% for tags as tag %}
+        {{ include('element.html.twig') }}
+    {% endfor %}
 
     <input class="tag-field__input" type="text">
 </div>

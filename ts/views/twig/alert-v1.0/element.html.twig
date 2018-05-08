@@ -1,0 +1,21 @@
+<div 
+	id="{{id}}" 
+	class="notification notification--alert{% if class is defined %} {{class}}{% endif %}"
+    {% if recurrent is defined %} data-recurrent="true" {% endif %}>
+
+	{% if fixed %}
+	<button class="notification__close button button--sm button--pill button--flat button--icon button--icon--only">
+		<i class="icon icon--xs icon--mg-sm icon--cross"></i>
+	</button>
+	{% endif %} 
+
+	<div class="notification__content">
+		<div class="notification__state">
+			<i class="icon icon--sm"></i>
+		</div>
+
+		<div class="notification__message">
+			{{html|raw}}
+		</div>		
+	</div>
+</div>
