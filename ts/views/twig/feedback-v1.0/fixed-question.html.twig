@@ -1,0 +1,65 @@
+{% for key, option in options %}
+<input id="option-{{key}}" type="radio" name="option"> 
+{% endfor %}
+
+<div class="feedback-content content">
+    <h6 class="feedback__title first font-md">{{ question }}</h6>
+
+    <div class="row row--horizontal-center mg-none">
+        {% for key, option in options %}
+        <label
+        data-track-arguments="event, valuation, {{ option.value }}"
+        for="option-{{key}}" 
+        class="track feedback__submit{% if option.feedback.staged is defined %} feedback__submit--staged {% endif %}{% if option.icon is defined %} button--icon{% if option.text is defined %}{% else %} button--icon--only button--xl{% endif %}{% endif %}{% if option.class is defined %} {{option.class}}{% endif %}"
+        data-question="{{key}}"
+        {% if option.order is defined %}style="order: {{ option.order }};" {% endif %} data-form="{% if option.feedback is defined %}true{% else %}false{% endif %}">
+            {% if option.icon is defined %}
+            <img class="feedback__icon" src="{{option.icon}}" alt="">
+            {% endif %} 
+            
+            {% if option.text is defined %}
+            <span>{{option.text}}</span>
+            {% endif %}
+        </label>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="form-content content">
+{% for key, option in options %}
+    <form id="form-{{key}}" class="{{class}}" data-question-id="{{id}}" data-option-id="{{key}}" novalidate>
+        {% if option.feedback.label is defined %}
+        <label>{{option.feedback.label}}</label>
+        {% endif %}
+
+        <textarea class="mg-none" name="message" placeholder="{{ option.feedback.placeholder }}"{% if option.feedback.required is defined %} required{% endif %}></textarea>
+        
+        {% if option.feedback.contact is defined %}
+        <div class="mg-top-lv2">
+            <label>{{text.email_label}}</label>
+            <input class="mg-none" type="email" name="email" value="{{userEmail}}" placeholder="{{text.email_placeholder}}" data-error="{{text.email_error}}"{% if option.feedback.contactRequired is defined %} required{% endif %}>
+            <span class="font-xs text__general--text-secondary">{{text.email_info}}</span>
+        </div>
+        {% endif %}
+
+        <div class="row pd-top-lv2">
+            <div class="col__xs--6 mg-none-i">
+                <button class="button button--md button--outline full-width" type="reset">{{text.cancel}}</button>
+            </div>
+            <div class="col__xs--6 mg-none-i">
+                <button class="button button--md button--flat full-width" type="submit">{{text.submit}}</button>
+            </div>
+        </div>
+    </form>
+{% endfor %}
+</div>
+
+<style>
+    {% for key, option in options %}
+    {% if option.feedback is defined %}
+    .feedback input#option-{{key}}:checked ~ .content #form-{{key}} {
+        display: inherit !important;
+    }
+    {% endif %}
+    {% endfor %}
+</style>

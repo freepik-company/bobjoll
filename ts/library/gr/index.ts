@@ -1,5 +1,5 @@
 import { qq, q, qi } from './dom.q';
-import { KEvent, KEventTarget } from 'BobjollPath/library/event';
+import { KEvent, KEventTarget } from 'Bobjoll/ts/library/event';
 
 export interface GrUser {
     id: number;

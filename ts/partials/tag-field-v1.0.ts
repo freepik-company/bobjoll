@@ -1,9 +1,10 @@
-import { q, qq, delegate } from 'BobjollPath/library/dom';
-import autocompleteV10 from 'BobjollPath/partials/autocomplete-v1.0';
-import { KEvent, KEventTarget } from 'BobjollPath/library/event';
+import View from 'BobjollView';
+import { q, qq, delegate } from 'Bobjoll/ts/library/dom';
+import autocompleteV10 from 'Bobjoll/ts/partials/autocomplete-v1.0';
+import { KEvent, KEventTarget } from 'Bobjoll/ts/library/event';
 
 // tslint:disable-next-line:no-var-requires
-const extend = require('BobjollPath/library/extend');
+const extend = require('Bobjoll/ts/library/extend');
 
 export class KEventChange extends KEvent {
     constructor(tag: string, tags: string[]) {
@@ -53,8 +54,8 @@ export class TagsField extends KEventTarget {
         input: q('.tag-field input') as HTMLInputElement,
         selector: q('.tag-field')!,
         templates: {
-            field: require('BobjollPath/templates/tags/field.hbs'),
-            tag: require('BobjollPath/templates/tags/tag.hbs'),
+            field: require(`BobjollTemplate/tags-v1.0/wrapper.${View.ext}`),
+            tag: require(`BobjollTemplate/tags-v1.0/element.${View.ext}`),
         }
     };
 
@@ -74,7 +75,7 @@ export class TagsField extends KEventTarget {
         if (0 < value.length) {
             if (this.input) {
                 this.input.value = '';
-                this.input.insertAdjacentHTML('beforebegin', this.settings.templates.tag({
+                this.input.insertAdjacentHTML('beforebegin', View.render(this.settings.templates.tag, {
                     value: value
                 }));
             }
@@ -120,7 +121,7 @@ export class TagsField extends KEventTarget {
             options.tags = tags;
         }
 
-        this.settings.selector.insertAdjacentHTML('beforeend', this.settings.templates.field(options));
+        this.settings.selector.insertAdjacentHTML('beforeend', View.render(this.settings.templates.field, options));
 
         const items = <HTMLElement>this.settings.selector.querySelector('.tag-field__items');
 

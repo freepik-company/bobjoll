@@ -1,7 +1,8 @@
-const extend = require('BobjollPath/library/extend');
-
 // tslint:disable-next-line:import-name
-import Notification, { Position } from 'BobjollPath/partials/notifications-v1.1';
+import Notification, { Position } from 'BobjollNotifications';
+import View from 'BobjollView';
+
+const extend = require('Bobjoll/ts/library/extend');
 
 type AlertType = 'success' | 'warning' | 'error';
 
@@ -32,7 +33,7 @@ export default class Alert extends Notification {
             recurrent: false,
             fixed: false,
             timeout: 5000,
-            template: require('BobjollPath/templates/alert.hbs'),
+            template: require(`BobjollTemplate/alert-v1.0/element.${View.ext}`),
             position: 'top-right'
         };
 

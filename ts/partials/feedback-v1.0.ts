@@ -1,9 +1,9 @@
-import { KEvent, KEventTarget } from 'BobjollPath/library/event';
-import { sessionStorage as storage } from 'BobjollPath/library/storage';
-import { HexBase64BinaryEncoding } from 'crypto';
+import View from 'BobjollView';
+import { KEvent, KEventTarget } from 'Bobjoll/ts/library/event';
+import { sessionStorage as storage } from 'Bobjoll/ts/library/storage';
 import { Settings } from 'Settings';
 
-const extend = require('BobjollPath/library/extend');
+const extend = require('Bobjoll/ts/library/extend');
 
 export class KEventView extends KEvent {
     constructor(public view: string | undefined) {
@@ -156,7 +156,7 @@ interface History {
     url: string;
 }
 
-declare module "BobjollPath/library/storage" {
+declare module "Bobjoll/ts/library/storage" {
     interface ClientStorage {
         get(namespace: 'feedback-history', key: string): string[];
         set(namespace: 'feedback-history', key: string, value: string[]): void;
@@ -181,10 +181,10 @@ export default class Feedback extends KEventTarget {
             historyMax: 10,
         },
         templates: {
-            'fixed': require('BobjollPath/templates/feedback-v1.0/fixed.hbs'),
-            'fixed_question': require('BobjollPath/templates/feedback-v1.0/fixed-question.hbs'),
-            'message': require('BobjollPath/templates/feedback-v1.0/message.hbs'),
-            'static': require('BobjollPath/templates/feedback-v1.0/static.hbs'),
+            'fixed': require(`BobjollTemplate/feedback-v1.0/fixed.${View.ext}`),
+            'fixed_question': require(`BobjollTemplate/feedback-v1.0/fixed-question.${View.ext}`),
+            'message': require(`BobjollTemplate/feedback-v1.0/message.${View.ext}`),
+            'static': require(`BobjollTemplate/feedback-v1.0/static.${View.ext}`),
         }
     };
     
@@ -233,7 +233,7 @@ export default class Feedback extends KEventTarget {
     }
 
     private setup() {
-        document.body.insertAdjacentHTML('beforeend', this.settings.templates.fixed());
+        document.body.insertAdjacentHTML('beforeend', View.render(this.settings.templates.fixed));
 
         let feedback = document.getElementById('feedback');
 
@@ -512,7 +512,7 @@ export default class Feedback extends KEventTarget {
                         wrapper.classList.add(question.class);
                     }
     
-                    wrapper.innerHTML = this.settings.templates.fixed_question(extend(question, params));
+                    wrapper.innerHTML = View.render(this.settings.templates.fixed_question, extend(question, params));
                     
                     Array.prototype.slice.call(this.fixed.getElementsByClassName('feedback__submit')).forEach((button: HTMLButtonElement) => 
                         button.addEventListener('click', async (e: Event) => {
@@ -575,7 +575,7 @@ export default class Feedback extends KEventTarget {
         }
         
         form.insertAdjacentHTML('afterend', 
-            this.settings.templates.message(extend(settings, {
+            View.render(this.settings.templates.message, extend(settings, {
                 text: this.settings.text
             })
         ));

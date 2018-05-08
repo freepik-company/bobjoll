@@ -1,7 +1,8 @@
 import { clearTimeout } from 'timers';
+import View from 'BobjollView';
 
 // tslint:disable-next-line:no-var-requires
-const extend = require('BobjollPath/library/extend');
+const extend = require('Bobjoll/ts/library/extend');
 
 type AutocompleteSourceFunction = (query: string) => { [name: string]: any; };
 
@@ -48,8 +49,8 @@ export default class Autocomplete {
         this.settings = extend({
             delay: 400,
             minChars: 0,
-            templateWrapper: require('BobjollPath/templates/autocomplete.hbs'),
-            templateList: require('BobjollPath/templates/autocomplete-list.hbs')
+            templateWrapper: require(`BobjollTemplate/autocomplete-v1.0/wrapper.${View.ext}`),
+            templateList: require(`BobjollTemplate/autocomplete-v1.0/container.${View.ext}`)
         }, options);
 
         if (/^\[object (HTMLCollection|NodeList|Object)\]$/.
@@ -80,7 +81,7 @@ export default class Autocomplete {
 
     private render() {
         this.fields.forEach((field) => {
-            field.insertAdjacentHTML('afterend', this.settings.templateWrapper());
+            field.insertAdjacentHTML('afterend', View.render(this.settings.templateWrapper));
 
             field.parentElement!.style.position = 'relative';
 
@@ -246,7 +247,7 @@ export default class Autocomplete {
                 this.cache.pop();
             }
 
-            field.container.innerHTML = this.settings.templateList({
+            field.container.innerHTML = View.render(this.settings.templateList, {
                 keywords: source
             });
 
