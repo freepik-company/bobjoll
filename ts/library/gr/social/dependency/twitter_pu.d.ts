@@ -1,0 +1,1 @@
+export function pu(pu_url: string): Window;
