@@ -1,0 +1,29 @@
+<div class="dropdown__container">
+	<p class="dropdown__button">
+		{% for key, option in options %}
+			{% if option.key == options.selectedIndex %}
+				{{option.innerText}}
+			{% endif %}
+		{% endfor %}
+	</p>
+	<div class="dropdown__select">		
+		{% if dataset.search is defined %}
+			<div class="dropdown__search">
+				<div class="group mg-none">
+					<input type="text" name="{{name}}-search" placeholder="Search">
+					<i class="icon icon--sm icon--mg-md icon--search"></i>
+				</div>
+			</div>
+		{% endif %}
+
+		<div class="scrollable">
+			<ul>
+			{% for key, option in options %}
+				{% if option.value is defined %}
+				<li data-value="{{option.value}}">{{option.innerText}}</li>
+				{% endif %}
+			{% endfor %}
+			</ul>			
+		</div>
+	</div>
+</div>

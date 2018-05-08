@@ -1,5 +1,5 @@
 import { EventListenerOn } from 'Helpers';
-import 'BobjollPath/library/common';
+import 'Bobjoll/ts/library/common';
 
 class Tabs {
 	constructor() {

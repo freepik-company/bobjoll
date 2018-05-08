@@ -1,5 +1,5 @@
 import { EventListenerOn } from 'Helpers';
-import 'BobjollPath/library/common';
+import 'Bobjoll/ts/library/common';
 
 (function() {
     EventListenerOn('body', '.password__toggle', 'click', function (this: HTMLElement, e: Event) {

@@ -1,0 +1,17 @@
+<div 
+	id="{{id}}" 
+	class="notification{% if class is defined %} {{class}}{% endif %}" 
+	{% if group is defined %} data-group="{{group}}" {% endif %}
+	{% if persistant is defined %} data-persistant="true" {% endif %}>
+	<button class="notification__close notification__close--absolute notification__close--top-right button button--sm button--pill button--flat button--icon button--icon--only">
+		<i class="icon icon--xs icon--mg-sm icon--cross"></i>
+	</button>
+
+	<div class="notification__content">
+		{{html|raw}}
+
+		{% if persistant is defined %}
+			{% include './element-disable.html.twig' %}
+		{% endif %}
+	</div>
+</div>

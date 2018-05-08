@@ -1,0 +1,21 @@
+<div 
+	id="{{id}}" 
+	class="notification{% if class is defined %} {{class}}{% endif %}" 
+    {% if recurrent is defined %} data-recurrent="true" {% endif %}>
+
+    {% if fixed is defined %}
+	<button class="notification__close button button--sm button--pill button--flat button--icon button--icon--only">
+		<i class="icon icon--xs icon--mg-sm icon--cross"></i>
+	</button>
+    {% endif %}
+
+	<div class="notification__content">
+		{{html|raw}}
+
+		{% if recurrent is defined %}
+			{% include './element-disable.html.twig' %}
+		{% endif %}
+	</div>
+
+	{% if target is defined %}<div class="notification__triangle"></div>{% endif %}
+</div>

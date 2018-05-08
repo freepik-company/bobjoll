@@ -1,0 +1,19 @@
+<div class="notification__disable">
+    {{#if group}}
+    	<label class="checkbox checkbox--sm checkbox--left mg-none-i">
+            <input type="checkbox" name="notification-group">
+            <span class="checkbox__indicator">
+                <i class="icon icon--check"></i>
+            </span>
+            <span class="checkbox__link font-xs">Don't show any "{{group}}" notifications again.</span>
+        </label>
+    {{else}}
+    	<label class="checkbox checkbox--sm checkbox--left mg-none-i">
+            <input type="checkbox" name="notification-persistant">
+            <span class="checkbox__indicator">
+                <i class="icon icon--check"></i>
+            </span>
+            <span class="checkbox__link font-xs">Don't show this notification again.</span>
+        </label>
+    {{/if}}
+</div>

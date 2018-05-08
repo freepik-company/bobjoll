@@ -19,10 +19,11 @@ interface ModalPrintSettings {
     multilayer?: boolean;
 }
 
+import View from 'BobjollView';
 import { EventListenerOn } from 'Helpers';
-import 'BobjollPath/library/common';
+import 'Bobjoll/ts/library/common';
 
-var extend = require('BobjollPath/library/extend');
+var extend = require('Bobjoll/ts/library/extend');
 
 class Modal {
     modalsActive: string[];
@@ -61,9 +62,9 @@ class Modal {
         let modal = document.getElementById(`modal-${config.name}`);
 
         if (!modal) {
-            let template = require('BobjollPath/templates/modal.hbs');
+            let template = require(`BobjollTemplate/modal-v1.0/element.${View.ext}`);
 
-            this.modalsWrapper.insertAdjacentHTML('beforeend', template(config));
+            this.modalsWrapper.insertAdjacentHTML('beforeend', View.render(template, config));
         }
 
         if (config.multilayer && this.modalsMultilayer.indexOf(`modal-${config.name}`) < 0) {

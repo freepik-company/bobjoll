@@ -1,15 +1,14 @@
-require('BobjollPath/templates/helpers.js');
-
+import View from 'BobjollView';
 import { EventListenerOn } from 'Helpers';
-import 'BobjollPath/library/common';
+import 'Bobjoll/ts/library/common';
 
 (function() {
-	let template = require('../templates/dropdown.hbs');
+	let template = require(`BobjollTemplate/dropdown-v1.0/element.${View.ext}`);
 	let dropdown: NodeListOf<Element> = document.querySelectorAll('.dropdown select');
 
 	// Build Dropdown
 	[].forEach.call(dropdown, (element: HTMLElement) => {
-		element.insertAdjacentHTML('afterend', template(element));
+		element.insertAdjacentHTML('afterend', View.render(template, element));
 	});
 
 	EventListenerOn('body', '.dropdown__button', 'click', function(this: HTMLElement, e: Event) {
