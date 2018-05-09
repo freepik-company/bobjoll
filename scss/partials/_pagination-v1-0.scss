@@ -19,6 +19,8 @@
 
 				text-align: center;
 
+				font-weight: normal;
+
 				@each $size in $sizes {
 					&--#{$size} {
 						min-width: map-get($base-sizes, $size);
@@ -30,21 +32,19 @@
 		a {
 			padding: ($small-spacing / 2) $small-spacing;
 
-			// border: $base-border;
 			border-radius: $base-border-radius;
 
 			text-decoration: none;
 
-			color: color('gray', 'state');
-
 			&.active {
 				border: none;
 
-				// background-color: color('link', 'general');
-
 				box-shadow: none;
 
-				color: color('link', 'general');
+				color: color('text', 'general');
+				font-weight: bold;
+
+				background: none;
 			}
 		}
 

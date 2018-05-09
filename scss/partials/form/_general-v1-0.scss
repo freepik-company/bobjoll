@@ -16,6 +16,8 @@
 		padding: 0 $small-spacing;
 
 		border: $base-border;
+		border-color: color('border', 'general', 1, 10);
+
 		border-radius: $base-border-radius;
 
 		background-color: color('input', 'background');
@@ -100,6 +102,7 @@
 			@extend .row--vertical-center;
 
 			border-bottom: $base-border;
+			border-color: color('border', 'general', 1, 10);
 
 			&:last-child {
 				border: none;

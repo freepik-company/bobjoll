@@ -1,11 +1,11 @@
-$color-main: #1FB6FF;
-$color-dark: #222;
-$color-border: #e8e8e8;
-$color-secondary: #f8f8f8;
+$color-main: #1273eb;
+$color-dark: #0E2A47;
+$color-border: #e3e9ed;
+$color-secondary: #F8FAFB;
 $color-light: #fff;
 $color-heading: #273444;
 $color-text: #3C4858;
-$color-premium: #FFC82C;
+$color-premium: #FFB229;
 
 $social-behance: #1769ff;
 $social-dribbble: #ea4c89;
@@ -18,8 +18,9 @@ $social-twitter: #55acee;
 $social-vimeo: #aad450;
 $social-youtube: #bb0000;
 
-$state-green: #13CE66;
-// $state-blue: $color-main;
-$state-gray: #7F7F7F;
-$state-red: #FF4949;
-$state-yellow: #FFC82C;
+$state-green: #69E781 !default;
+$state-blue: #1273EB !default;
+$state-gray: #869FB2 !default;
+$state-red: #FB5252 !default;
+$state-yellow: #FFB229 !default;
+$state-purple: #4949E7 !default;

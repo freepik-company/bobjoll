@@ -116,6 +116,7 @@
 			padding: 0 (($base-spacing + $small-spacing) + $base-triangle-size) 0 $base-spacing;
 
 			border: $base-border;
+			border-color: color('border', 'general', 1, 10);
 			border-radius: $base-border-radius;
 
 			background-color: color('input', 'background');
