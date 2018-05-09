@@ -212,3 +212,8 @@ $spacing-sizes: (
 
 // Triangle
 $base-triangle-size: 10px !default;
+
+// Shadow
+$base-box-shadow: 0 0 60px color('shadow', 'general', .25);
+$small-box-shadow: 0 0 30px color('shadow', 'general', .25);
+$inner-box-shadow: inset $base-box-shadow;
