@@ -21,7 +21,7 @@ fontsGenerator({
     },
     cssDest: './scss/partials/_icon-v2-0.scss',
     cssTemplate: './fonts/webfontsGenerator.templates.scss.hbs',
-    cssFontsUrl: '~Fonts',
+    cssFontsUrl: '~bobjoll',
     types: ['woff', 'woff2'],
     order: ['woff2', 'woff']
 }, function (error) {
