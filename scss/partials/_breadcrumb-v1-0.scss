@@ -8,11 +8,6 @@
 
 		margin: 0 0 $base-spacing;
 
-		border: $base-border;
-		border-radius: $base-border-radius;
-
-		background-color: color('body', 'background');
-
 		@include element('link') {
 			position: relative;
 
@@ -22,60 +17,37 @@
 
 			padding: ($small-spacing / 2) $base-spacing;
 
-			color: color('text', 'general', .6);
 			font-size: $small-font-size;
 			text-decoration: none;
+
+			a {
+				color: color('text', 'general', .6);
+			}
 
 			@include breakpoint('sm') {
 				padding: ($small-spacing / 4) $small-spacing;
 
 				font-size: $extra-small-font-size;
-
-				&::before,
-				&::after {
-				    border-bottom-width: $small-spacing;
-				    border-left-width: ($small-spacing / 4);
-				    border-top-width: $small-spacing;
-				}
 			} 
 
-			&::before,
 			&::after {
-				@include position(absolute, 50% auto 0 100%);
-				@include transform(translate(-50%, -50%));
-				    
-			    display: block;
+				content: '/';
 
-			    margin: auto;
+				color: color('text', 'general', .4);
 
-			    border-bottom: $base-spacing solid transparent;
-			    border-left: ($small-spacing / 2) solid transparent;
-			    border-top: $base-spacing solid transparent;
-
-			    z-index: 2;
-
-			    content: '';
-			}
-
-			&::before {
-				margin: 0 0 0 1px;
-
-				border-left-color: color('border', 'general');
-
-				z-index: 1;
-			}
-
-			&::after {
-				border-left-color: color('body', 'background');	
+				position: absolute;
+				right: 0;
 			}
 
 			&:last-child {
-				color: color('text', 'general');
-				font-weight: bold;
 
-				&::before,
+				a {
+					color: color('text', 'general');
+					font-weight: semibold;
+				}
+
 				&::after {
-					border: none;
+					content: '';
 				}
 			}
 		}

@@ -12,7 +12,7 @@
 
 		&:hover {
 			.switch__indicator::after {
-				background-color: color('border', 'general', 1, -5);
+				background-color: color('secondary', 'background');
 			}
 
 			.switch__link {
@@ -30,7 +30,7 @@
 			display: none;
 
 			&:checked ~ .switch__indicator {
-				background-color: color('link', 'general');
+				background-color: color('green', 'state');
 
 				&::before {
 					@include transform(scale(0));
@@ -61,7 +61,7 @@
 				@include transform(scale(1));
 				@include transition(all $base-duration $base-timing);
 
-				background-color: color('input', 'background');
+				// background-color: color('input', 'background');
 
 				z-index: 1;
 

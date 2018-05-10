@@ -42,29 +42,29 @@ $extra-small-font-size: 12px;
 $h1-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
     'max-vw': map-get($breakpoints, 'xl'),
-    'min-value': 29px,
-    'max-value': 36px,
+    'min-value': 46px,
+    'max-value': 40px,
 );
 $h2-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
     'max-vw': map-get($breakpoints, 'xl'),
-    'min-value': 25px,
-    'max-value': 32px,
+    'min-value': 42px,
+    'max-value': 38px,
 );
 $h3-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
     'max-vw': map-get($breakpoints, 'xl'),
-    'min-value': 23px,
-    'max-value': 28px,
+    'min-value': 38px,
+    'max-value': 34px,
 );
 $h4-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
     'max-vw': map-get($breakpoints, 'xl'),
-    'min-value': 20px,
-    'max-value': 28px,
+    'min-value': 34px,
+    'max-value': 32px,
 );
-$h5-font-size: 18px;
-$h6-font-size: $base-font-size;   
+$h5-font-size: 30px;
+$h6-font-size: 26px;   
 
 // Icons
 $extra-large-icon-width: 34px;

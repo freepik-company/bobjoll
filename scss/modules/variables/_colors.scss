@@ -1,15 +1,16 @@
-$color-gray-1: #e3e3e3;
-$color-gray-2: #b4b4b4;
-$color-gray-3: #6d6d6d;
-$color-gray-4: #4a4a4a;
+$color-gray-1: #e3e3e3 !default;
+$color-gray-2: #b4b4b4 !default;
+$color-gray-3: #6d6d6d !default;
+$color-gray-4: #4a4a4a !default;
 
-$color-main: #1FB6FF !default;
-$color-dark: #222 !default;
-$color-border: #e8e8e8 !default;
-$color-secondary: #f8f8f8 !default;
+$color-main: #1273eb !default;
+$color-dark: #0E2A47 !default;
+$color-border: #e3e9ed !default;
+$color-secondary: #F8FAFB !default;
 $color-light: #fff !default;
 $color-heading: #273444 !default;
 $color-text: #3C4858 !default;
+$color-premium: #FFB229 !default;
 
 $social-behance: #1769ff !default;
 $social-dribbble: #ea4c89 !default;
@@ -22,17 +23,19 @@ $social-twitter: #55acee !default;
 $social-vimeo: #aad450 !default;
 $social-youtube: #bb0000 !default;
 
-$state-green: #13CE66 !default;
-$state-blue: $color-main !default;
-$state-gray: #7F7F7F !default;
-$state-red: #FF4949 !default;
-$state-yellow: #FFC82C !default;
+$state-green: #69E781 !default;
+$state-blue: #1273EB !default;
+$state-gray: #869FB2 !default;
+$state-red: #FB5252 !default;
+$state-yellow: #FFB229 !default;
+$state-purple: #4949E7 !default;
 
 $global-colors: ( 
 	background:(
 		'badge': $color-dark,
 		'badge-inverted': $color-light,
 		'body': $color-light,
+		'body-inverted': $color-dark,
 		'dropdown': $color-light,
 		'footer': $color-secondary,
 		'header': $color-secondary,
@@ -48,7 +51,7 @@ $global-colors: (
 		'table-head': ($color-secondary, 1, +2),
 		'table-odd': ($color-secondary, 1, -2),
 		'tabs': $color-secondary,	
-		'tabs-active': $color-secondary,
+		'tabs-active': $color-light,
 		'tags': $color-light, 
 		'tags-inverted': $color-dark, 
 		'tooltip': $color-light
@@ -70,14 +73,16 @@ $global-colors: (
 		'blue': $state-blue,
 		'gray': $state-gray,
 		'red': $state-red,
-		'yellow': $state-yellow
+		'yellow': $state-yellow,
+		'purple': $state-purple
 	),
 	state-text: (
 		'green': $color-light,
 		'blue': $color-light,
 		'gray': $color-light,
 		'red': $color-light,
-		'yellow': $color-dark
+		'yellow': $color-light,
+		'purple': $color-light
 	),
 	general: (
 		'border': $color-border,
@@ -90,14 +95,14 @@ $global-colors: (
 		'icon-inverted': $color-light,
 		'link': $color-main,
 		'link-inverted': $color-light,
-		'shadow': ($color-dark, .75, 0),
+		'shadow': $color-dark,
 		'tabs': $color-text,
-		'tabs-border': $color-border,
+		'tabs-border': ($color-secondary, 1, 10),
 		'tabs-active': ($color-main, 1, 1),
 		'tabs-triangle': $color-text,
 		'tabs-triangle-active': $color-border, 
-		'tags': $color-light,
-		'tags-inverted': ($color-main, 1, 1),
+		'tags': $color-text,
+		'tags-inverted': $color-light,
 		'text': $color-text,
 		'text-inverted': $color-light,
 		'text-secondary': ($color-text, 1, -2),
@@ -114,6 +119,7 @@ $global-colors: (
 		'gray': $state-gray,
 		'red': $state-red,
 		'yellow': $state-yellow,
+		'purple': $state-purple,
 		'inverted': $color-light,
 	), 
 	buttons-text: (
@@ -127,8 +133,10 @@ $global-colors: (
 		'gray-outline': $state-gray,
 		'red': $color-light,
 		'red-outline': $state-red,
-		'yellow': $color-text,
+		'yellow': $color-light,
 		'yellow-outline': $state-yellow,
+		'purple': $color-light,
+		'purple-outline': $state-purple,
 		'inverted': $color-text,
 		'inverted-outline': $color-light,
 	),
@@ -141,5 +149,5 @@ $global-colors: (
 );
 
 // Colors
-$colors-keys: ( 'social', 'state', ) !default;
+$colors-keys: ( 'general', 'background', 'state' ) !default;;
 $colors: $global-colors !default;

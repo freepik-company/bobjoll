@@ -75,10 +75,10 @@
         opacity: 0;
 
         width: 90vw;
-        max-width: 360px;
+        max-width: 680px;
 
         margin: $base-spacing;
-        padding: $small-spacing $base-spacing;
+        padding: $base-spacing;
 
         border-radius: $base-border-radius;
 
@@ -92,6 +92,10 @@
             @include flex(1);
 
             padding: $small-spacing $base-spacing;
+
+            font-size: $small-font-size;
+
+            font-weight: 500;
         }
 
         @include element('state') {
@@ -101,10 +105,15 @@
 
             position: relative;
 
-            width: $base-element-height;
+            top: $extra-small-spacing;
+            left: $extra-small-spacing;
 
-            border-top-left-radius: $base-border-radius;
-            border-bottom-left-radius: $base-border-radius;
+            width: $small-element-height;
+            height: $small-element-height;
+
+            border-radius: $base-border-radius;
+
+            background-color: rgba(#fff, .2);
 
             .icon {
                 @include position(absolute, 50% null null 50%);
@@ -115,7 +124,7 @@
         @include element('close') {
             &:not(.nostyle) {
                 @include position(absolute, 0 0 null null);
-                @include transform(translate(50%, -50%));
+                // @include transform(translate(50%, -50%));
             }
         }
 
@@ -164,7 +173,7 @@
         }
 
         @include modifier('error') {
-            background-color: color('red', 'state');
+            background-color: #fb5252;
 
             color: color('red', 'state-text');
 
@@ -178,15 +187,10 @@
             }
 
             .notification__state {
-                background-color: color('red', 'state', 1, 5);
 
                 .icon:not(.nostyle) {
-                    @extend .icon--cross;
+                    @extend .icon--exclamation;
                 }
-            }
-
-            .notification__close {
-                background-color: color('red', 'state', 1, 15);
             }
 
             .icon {
@@ -195,7 +199,7 @@
         }
 
         @include modifier('warning') {
-            background-color: color('yellow', 'state');
+            background-color: #fca120;
 
             color: color('yellow', 'state-text');
 
@@ -209,15 +213,10 @@
             }
 
             .notification__state {
-                background-color: color('yellow', 'state', 1, 5);
 
                 .icon:not(.nostyle) {
                     @extend .icon--exclamation;
                 }
-            }
-
-            .notification__close {
-                background-color: color('yellow', 'state', 1, 15);
             }
 
             .icon {
@@ -226,7 +225,7 @@
         }
 
         @include modifier('success') {
-            background-color: color('green', 'state');
+            background-color: #49d295;
 
             color: color('green', 'state-text');
 
@@ -240,15 +239,10 @@
             }
 
             .notification__state {
-                background-color: color('green', 'state', 1, 5);
 
                 .icon:not(.nostyle) {
                     @extend .icon--check;
                 }
-            }
-
-            .notification__close {
-                background-color: color('green', 'state', 1, 15);
             }
 
             .icon {
@@ -268,14 +262,6 @@
                 &:hover {
                     color: color('blue', 'state-text');
                 }
-            }
-
-            .notification__state {
-                background-color: color('blue', 'state', 1, 5);
-            }
-
-            .notification__close {
-                background-color: color('blue', 'state', 1, 15);
             }
 
             .icon {

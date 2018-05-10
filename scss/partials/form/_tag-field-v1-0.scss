@@ -51,6 +51,7 @@
             @extend .tags__item;
 
             margin: 0 $tags-spacing $tags-spacing $tags-spacing;
+            padding-right: 0 !important;
         }
         
         input {

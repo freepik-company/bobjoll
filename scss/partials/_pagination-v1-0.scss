@@ -19,6 +19,8 @@
 
 				text-align: center;
 
+				font-weight: normal;
+
 				@each $size in $sizes {
 					&--#{$size} {
 						min-width: map-get($base-sizes, $size);
@@ -27,10 +29,9 @@
 			}
 		}
 
-		a:not(.button) {
+		a {
 			padding: ($small-spacing / 2) $small-spacing;
 
-			border: $base-border;
 			border-radius: $base-border-radius;
 
 			text-decoration: none;
@@ -38,11 +39,12 @@
 			&.active {
 				border: none;
 
-				background-color: color('link', 'general');
+				box-shadow: none;
 
-				box-shadow: $inner-box-shadow;
+				color: color('text', 'general');
+				font-weight: bold;
 
-				color: color('link-inverted', 'general');
+				background: none;
 			}
 		}
 
