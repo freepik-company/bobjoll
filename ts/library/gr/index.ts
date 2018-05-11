@@ -76,8 +76,8 @@ function phpToJson(phpStr: string): any {
 function parseUser(phpStr: string): GrUser | null {
     const user = phpToJson(phpStr);
     if (user && 'id' in user && 'login' in user && 'email' in user && 'avatar' in user && 'premium' in user && 'cc_will_expire' in user) {
-        user.premium = user.premium === '1';
-        user.cc_will_expire = user.cc_will_expire === '1';
+        user.premium = user.premium == '1';
+        user.cc_will_expire = user.cc_will_expire == '1';
         return user;
     }
     return null;

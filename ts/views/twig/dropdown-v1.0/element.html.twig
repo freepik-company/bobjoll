@@ -1,7 +1,7 @@
 <div class="dropdown__container">
 	<p class="dropdown__button">
 		{% for key, option in options %}
-			{% if option.key == options.selectedIndex %}
+			{% if loop.index0 == selectedIndex %}
 				{{option.innerText}}
 			{% endif %}
 		{% endfor %}
