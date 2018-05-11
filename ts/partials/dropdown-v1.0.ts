@@ -7,8 +7,18 @@ import 'bobjoll/ts/library/common';
 	let dropdown: NodeListOf<Element> = document.querySelectorAll('.dropdown select');
 
 	// Build Dropdown
-	[].forEach.call(dropdown, (element: HTMLElement) => {
-		element.insertAdjacentHTML('afterend', View.render(template, element));
+	[].forEach.call(dropdown, (element: HTMLSelectElement) => {
+		console.log({
+			options: Array.prototype.slice.call(element.options),
+			dataset: element.dataset,
+			selectedIndex: element.options.selectedIndex
+		});
+
+		element.insertAdjacentHTML('afterend', View.render(template, {
+			options: Array.prototype.slice.call(element.options),
+			dataset: element.dataset,
+			selectedIndex: element.options.selectedIndex
+		}));
 	});
 
 	EventListenerOn('body', '.dropdown__button', 'click', function(this: HTMLElement, e: Event) {
