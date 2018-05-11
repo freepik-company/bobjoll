@@ -1,7 +1,7 @@
 <div class="dropdown__container">
 	<p class="dropdown__button">
 		{{#each options}}
-			{{#compare @key '==' @root.options.selectedIndex}}
+			{{#compare @key '==' @root.selectedIndex}}
 				{{innerText}}
 			{{/compare}}
 		{{/each}}
