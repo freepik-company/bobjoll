@@ -40,11 +40,7 @@ export default class Twitter extends Social {
     }
 
     public static async connect() {
-        let response: any = await Twitter.request('POST', '/profile/request/twitter/authorize_url');
-
-        if (response && response.data && response.data.authorize_url) {
-            pu(response.data.authorize_url);
-        }
+        pu('/profile/twitter/redirect_authorize_url');
     }
 
     public static disconnect() {
