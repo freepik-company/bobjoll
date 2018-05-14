@@ -11,7 +11,11 @@
 
         %notification-position {
             @include position(absolute, null null null null);
-        }        
+        }
+
+        &__content {
+            padding-right: ($base-button-height - $base-spacing) + $extra-small-spacing;
+        }
 
         @include element('top-left') {
             @extend %notification-position;
