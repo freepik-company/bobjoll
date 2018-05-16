@@ -13,7 +13,7 @@
 
 			padding: $base-spacing;
 
-			background-color: color('overlay', 'background', .65);
+			background-color: color('overlay', 'background');
 
 			@include modifier('full-size') {
 				width: 100%;

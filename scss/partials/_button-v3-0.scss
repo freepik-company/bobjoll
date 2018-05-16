@@ -253,14 +253,22 @@
                     .icon {
                         color: color(#{$color}-outline, 'buttons-text');
                     }
+
+                    &:hover {
+                        box-shadow: inset 0px 0px 0px 100px color($color, 'buttons');
+                    }
+
+                    &.active, &:active {
+                        box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-hover');
+                    }
                 }
 
                 &.button--flat {
                     box-shadow: inset 0px 0px 0px 100px $hex;
                 }
                 
-                &.active, &:hover {
-                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons', 1, 5);
+                &:hover {
+                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-hover');
 
                     color: color($color, 'buttons-text');
                     
@@ -270,13 +278,13 @@
                 }
 
                 &.active, &:active {
-                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons',1, 12);
+                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-active');
                 }
             }
 
             &--#{$color}--hover {
                 &.active, &:hover {
-                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons', 1, 5) !important;
+                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-hover') !important;
 
                     color: color($color, 'buttons-text') !important;
                     
@@ -286,7 +294,7 @@
                 }
                 
                 &.active, &:active {
-                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons', 1, 12) !important;
+                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-active') !important;
                 }
             }
         }
@@ -324,7 +332,7 @@
                     }
 
                     &.active, &:active {
-                        box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 12);
+                        box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 7);
                     }
                 }
 
@@ -343,7 +351,7 @@
                 }
 
                 &.active, &:active {
-                    box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 12);
+                    box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 7);
                 }
             }
         }

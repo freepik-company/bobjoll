@@ -124,11 +124,6 @@
 					color: color('tabs-active', 'general');
 				}
 
-				&.active {
-					width: calc(100% + 1px);
-				}
-
-
 				@include breakpoint('sm', 'min') {
 					position: relative;
 				}

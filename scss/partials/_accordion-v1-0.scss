@@ -69,8 +69,10 @@
 
 				text-decoration: none;
 
+				color: color('accordion', 'general');
+
 				.icon {
-					color: color('link', 'general');
+					color: color('accordion', 'general');
 				}
 
 				.state--active {
@@ -79,6 +81,10 @@
 
 				&.active {
 					color: color('link', 'general');
+
+					.icon {
+						color: color('link', 'general');
+					}
 
 					.state--active {
 						display: block;
