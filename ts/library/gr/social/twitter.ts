@@ -20,8 +20,6 @@ export default class Twitter extends Social {
     }) {
         let data = new FormData();
 
-        console.log('args', args);
-
         if ('function' === typeof Twitter.register) {
             data.append('twitter_id', args.twitter_id || '0');
 
