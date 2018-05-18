@@ -175,13 +175,10 @@ class Modal {
         });
 
         EventListenerOn('body', '.modal__close', 'click', function(this: HTMLElement, e: Event) {
-            e.preventDefault();
             modal.hide();
         });
 
         EventListenerOn('body', '.modal__trigger', 'click', function(this: HTMLElement, e: Event) {
-            e.preventDefault();
-
             let id = this.dataset['modal'];
 
             if (id) {
