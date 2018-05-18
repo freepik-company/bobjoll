@@ -8,12 +8,6 @@ import 'bobjoll/ts/library/common';
 
 	// Build Dropdown
 	[].forEach.call(dropdown, (element: HTMLSelectElement) => {
-		console.log({
-			options: Array.prototype.slice.call(element.options),
-			dataset: element.dataset,
-			selectedIndex: element.options.selectedIndex
-		});
-
 		element.insertAdjacentHTML('afterend', View.render(template, {
 			options: Array.prototype.slice.call(element.options),
 			dataset: element.dataset,
