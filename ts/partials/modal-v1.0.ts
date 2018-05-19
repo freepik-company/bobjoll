@@ -180,7 +180,8 @@ class Modal {
 
         EventListenerOn('body', '.modal__trigger', 'click', function(this: HTMLElement, e: Event) {
             if (!this.dataset.allowDefault) {
-                e.preventDefault;
+                e.preventDefault();
+                e.stopPropagation();
             }
 
             let id = this.dataset['modal'];
