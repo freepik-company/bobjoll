@@ -1,6 +1,6 @@
 import View from 'BobjollView';
 import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
-import { sessionStorage as storage } from 'bobjoll/ts/library/storage';
+import { localStorage as storage } from 'bobjoll/ts/library/storage';
 import { Settings } from 'Settings';
 
 const extend = require('bobjoll/ts/library/extend');
