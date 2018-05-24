@@ -596,8 +596,6 @@ export default class Feedback extends KEventTarget {
     public updateView(view: string, url?: string) {
         this.view = view || undefined;
 
-        this.hide();
-
         if (this.settings.default.history && view) {
             let history: string[] = storage.get(this.historyNS, this.historyKey) || [];
 
@@ -631,6 +629,8 @@ export default class Feedback extends KEventTarget {
                             this.show();
                         }
                     }
+                } else {
+                    this.hide();
                 }
             }
         }
