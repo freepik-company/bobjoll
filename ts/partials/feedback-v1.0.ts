@@ -1,6 +1,7 @@
 import View from 'BobjollView';
 import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
-import { localStorage as storage } from 'bobjoll/ts/library/storage';
+import { localStorage } from 'bobjoll/ts/library/storage';
+import { sessionStorage } from 'bobjoll/ts/library/storage';
 import { Settings } from 'Settings';
 
 const extend = require('bobjoll/ts/library/extend');
@@ -442,7 +443,7 @@ export default class Feedback extends KEventTarget {
 
                     if (this.settings.default.history) {
                         data.append('history', JSON.stringify(
-                            storage.get(this.historyNS, this.historyKey))
+                            sessionStorage.get(this.historyNS, this.historyKey))
                         );
                     }
                 }
@@ -596,12 +597,8 @@ export default class Feedback extends KEventTarget {
     public updateView(view: string, url?: string) {
         this.view = view || undefined;
 
-        if (this.fixed && this.fixed.classList.contains('active')) {
-            this.hide();
-        }
-
         if (this.settings.default.history && view) {
-            let history: string[] = storage.get(this.historyNS, this.historyKey) || [];
+            let history: string[] = sessionStorage.get(this.historyNS, this.historyKey) || [];
 
             history.unshift(
                 btoa(JSON.stringify({
@@ -614,7 +611,7 @@ export default class Feedback extends KEventTarget {
                 history.pop();
             }
 
-            storage.set(this.historyNS, this.historyKey, history);
+            sessionStorage.set(this.historyNS, this.historyKey, history);
 
             if (this.settings.default.viewCounter) {
                 let counterSettings = this.settings.default.viewCounter.filter((settings) => {
@@ -622,17 +619,19 @@ export default class Feedback extends KEventTarget {
                 }).pop();
 
                 if (counterSettings) {
-                    let counter = storage.get(this.counterNS, (counterSettings.view || 'all')) || 0;
+                    let counter = localStorage.get(this.counterNS, (counterSettings.view || 'all')) || 0;
 
                     if ('undefined' !== typeof counter && (!counterSettings.times || counter < (counterSettings.times * this.settings.default.historyMax))) {
                         counter++;
 
-                        storage.set(this.counterNS, (counterSettings.view || 'all'), counter);
+                        localStorage.set(this.counterNS, (counterSettings.view || 'all'), counter);
 
                         if (0 === counter % counterSettings['%'] && this.fixed && !this.fixed.classList.contains('active')) {
                             this.show();
                         }
                     }
+                } else {
+                    this.hide();
                 }
             }
         }
@@ -645,5 +644,9 @@ export default class Feedback extends KEventTarget {
             this.fixed.parentNode!.removeChild(this.fixed);
             this.fixed = undefined;
         }
+    }
+
+    public getHistoryLength() {
+        return this.history.length;
     }
 }
