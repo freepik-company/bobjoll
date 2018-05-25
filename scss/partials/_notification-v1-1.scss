@@ -80,6 +80,7 @@
 
         width: 90vw;
         max-width: 680px;
+        min-height: $base-element-height;
 
         margin: $base-spacing;
         padding: $base-spacing;
@@ -95,7 +96,7 @@
         @include element('message') {
             @include flex(1);
 
-            padding: $small-spacing $base-spacing;
+            padding: $small-spacing $base-element-height $small-spacing $base-spacing;
 
             font-size: $small-font-size;
 
@@ -177,7 +178,7 @@
         }
 
         @include modifier('error') {
-            background-color: #fb5252;
+            background-color: color('red', 'state');
 
             color: color('red', 'state-text');
 
@@ -203,7 +204,7 @@
         }
 
         @include modifier('warning') {
-            background-color: #fca120;
+            background-color: $yellow-shade-5;
 
             color: color('yellow', 'state-text');
 
@@ -229,7 +230,7 @@
         }
 
         @include modifier('success') {
-            background-color: #49d295;
+            background-color: $green-shade-5;
 
             color: color('green', 'state-text');
 

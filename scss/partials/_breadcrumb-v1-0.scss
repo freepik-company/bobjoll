@@ -20,6 +20,10 @@
 			font-size: $small-font-size;
 			text-decoration: none;
 
+			&:first-child {
+				padding-left: 0;
+			}
+
 			a {
 				color: color('text', 'general', .6);
 			}
