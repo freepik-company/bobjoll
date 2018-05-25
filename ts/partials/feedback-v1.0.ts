@@ -1,7 +1,6 @@
 import View from 'BobjollView';
 import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
-import { localStorage } from 'bobjoll/ts/library/storage';
-import { sessionStorage } from 'bobjoll/ts/library/storage';
+import { localStorage, sessionStorage } from 'bobjoll/ts/library/storage';
 import { Settings } from 'Settings';
 
 const extend = require('bobjoll/ts/library/extend');
@@ -598,7 +597,7 @@ export default class Feedback extends KEventTarget {
         this.view = view || undefined;
 
         if (this.settings.default.history && view) {
-            let history: string[] = sessionStorage.get(this.historyNS, this.historyKey) || [];
+            let history: string[] = this.history = sessionStorage.get(this.historyNS, this.historyKey) || [];
 
             history.unshift(
                 btoa(JSON.stringify({
@@ -647,6 +646,6 @@ export default class Feedback extends KEventTarget {
     }
 
     public getHistoryLength() {
-        return this.history.length;
+        return this.history ? this.history.length : 0;
     }
 }
