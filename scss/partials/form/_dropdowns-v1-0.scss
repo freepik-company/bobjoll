@@ -79,7 +79,7 @@
 					background-color: color('secondary', 'background');
 
 					color: pick-visible-color(
-						color('button-inverted', 'general', 1, 15),
+						color('secondary', 'background'),
 						color('text', 'general'),
 						color('text-inverted', 'general')
 					);
