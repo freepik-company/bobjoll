@@ -3,13 +3,76 @@ $color-gray-2: #b4b4b4 !default;
 $color-gray-3: #6d6d6d !default;
 $color-gray-4: #4a4a4a !default;
 
+// Gray
+$gray-shade-9: #1D262D;
+$gray-shade-8: #374957;
+$gray-shade-7: #5F7D95;
+$gray-shade-5: #A5B7C6;
+$gray-shade-4: #BAC8D3;
+$gray-shade-3: #CFD9E0;
+$gray-shade-2: #E3E9ED;
+$gray-shade-1: #F8FAFB;
+
+// Dark blue
+$dark-blue-shade-6: #08192B;
+$dark-blue-shade-5: #0B2239;
+$dark-blue-shade-4: #113255;
+$dark-blue-shade-3: #143B63;
+$dark-blue-shade-2: #164372;
+$dark-blue-shade-1: #194C80;
+
+// Purple
+$purple-shade-7: #202095;
+$purple-shade-6: #2D2DB0;
+$purple-shade-5: #3636CC;
+$purple-shade-4: #5F5FF6;
+$purple-shade-3: #8080F1;
+$purple-shade-2: #B3B3FC;
+$purple-shade-1: #D7D7FF;
+
+// Blue
+$blue-shade-7: #04458F;
+$blue-shade-6: #0353A7;
+$blue-shade-5: #0161CD;
+$blue-shade-4: #2C8CF4;
+$blue-shade-3: #5EB2FC;
+$blue-shade-2: #92CDFA;
+$blue-shade-1: #C7EBFF;
+
+// Green
+$green-shade-7: #00AF80;
+$green-shade-6: #2BC48A;
+$green-shade-5: #4AD295;
+$green-shade-4: #8DF690;
+$green-shade-3: #ABFFAD;
+$green-shade-2: #C7FFC7;
+$green-shade-1: #E2FFE2;
+
+// Yellow
+$yellow-shade-7: #EB7D16;
+$yellow-shade-6: #F69110;
+$yellow-shade-5: #FCA120;
+$yellow-shade-4: #FCBD24;
+$yellow-shade-3: #FCD250;
+$yellow-shade-2: #FCDB7E;
+$yellow-shade-1: #FFEEB6;
+
+// Red
+$red-shade-7: #C12020;
+$red-shade-6: #D53232;
+$red-shade-5: #EC3A3B;
+$red-shade-4: #FF8578;
+$red-shade-3: #FFA68F;
+$red-shade-2: #FFC8AF;
+$red-shade-1: #FFDECC;
+
 $color-main: #1273eb !default;
 $color-dark: #0E2A47 !default;
-$color-border: #e3e9ed !default;
-$color-secondary: #F8FAFB !default;
+$color-border: $gray-shade-2 !default;
+$color-secondary: $gray-shade-1 !default;
 $color-light: #fff !default;
-$color-heading: #273444 !default;
-$color-text: #3C4858 !default;
+$color-heading: $gray-shade-8 !default;
+$color-text: $gray-shade-7 !default;
 $color-premium: #FFB229 !default;
 
 $social-behance: #1769ff !default;
@@ -41,19 +104,20 @@ $global-colors: (
 		'header': $color-secondary,
 		'input': $color-light,
 		'input-inverted': $color-dark,
+		'switch': $gray-shade-3,
 		'modal': $color-light,
 		'notification': $color-light,
-		'overlay': ($color-dark, .75, 0),		
+		'overlay': ($dark-blue-shade-6, .75, 0),
 		'popover': $color-light,
 		'secondary': $color-secondary,
 		'light': $color-light,
 		'table': $color-light,
 		'table-head': ($color-secondary, 1, +2),
 		'table-odd': ($color-secondary, 1, -2),
-		'tabs': $color-secondary,	
-		'tabs-active': $color-light,
+		'tabs': $color-light,	
+		'tabs-active': $color-secondary,
 		'tags': $color-light, 
-		'tags-inverted': $color-dark, 
+		'tags-inverted': $gray-shade-1, 
 		'tooltip': $color-light
 	),
 	social: (
@@ -87,7 +151,7 @@ $global-colors: (
 	general: (
 		'border': $color-border,
 		'border-inverted': $color-light,
-		'group-border': $color-border,
+		'form-border': $gray-shade-4,
 		'button': $color-main,
 		'button-inverted': $color-light,
 		'heading': $color-heading,
@@ -102,6 +166,7 @@ $global-colors: (
 		'tabs-active': ($color-main, 1, 1),
 		'tabs-triangle': $color-text,
 		'tabs-triangle-active': $color-border, 
+		'accordion': $gray-shade-8, 
 		'tags': $color-text,
 		'tags-inverted': $color-light,
 		'text': $color-text,
@@ -122,6 +187,26 @@ $global-colors: (
 		'yellow': $state-yellow,
 		'purple': $state-purple,
 		'inverted': $color-light,
+	), 
+	buttons-hover: (
+		'default': ($color-main, 1, 5),
+		'green': $green-shade-5,
+		'blue': $blue-shade-5,
+		'gray': $gray-shade-7,
+		'red': $red-shade-5,
+		'yellow': $yellow-shade-5,
+		'purple': $purple-shade-5,
+		'inverted': $gray-shade-2,
+	), 
+	buttons-active: (
+		'default': ($color-main, 1, 10),
+		'green': $green-shade-6,
+		'blue': $blue-shade-6,
+		'gray': $gray-shade-8,
+		'red': $red-shade-6,
+		'yellow': $yellow-shade-6,
+		'purple': $purple-shade-6,
+		'inverted': $gray-shade-2,
 	), 
 	buttons-text: (
 		'default': $color-light,

@@ -16,7 +16,7 @@
 		padding: 0 $small-spacing;
 
 		border: $base-border;
-		border-color: color('border', 'general', 1, 10);
+		border-color: color('form-border', 'general');
 
 		border-radius: $base-border-radius;
 
@@ -102,7 +102,7 @@
 			@extend .row--vertical-center;
 
 			border-bottom: $base-border;
-			border-color: color('border', 'general', 1, 10);
+			border-color: color('form-border', 'general');
 
 			&:last-child {
 				border: none;

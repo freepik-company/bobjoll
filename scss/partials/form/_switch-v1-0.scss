@@ -1,6 +1,6 @@
 @if $form-v1-0 {
-	$switch-padding: $base-border-width;
-	$switch-shadow: 0 0 0 $base-border-width color('border', 'general');
+	$switch-padding: 2px;
+	$switch-shadow: 0 $base-border-width 0 0 color('gray', 'state');
 
 	.switch {
 		@extend %row-flexbox;
@@ -13,10 +13,6 @@
 		&:hover {
 			.switch__indicator::after {
 				background-color: color('secondary', 'background');
-			}
-
-			.switch__link {
-				color: color('text', 'general');
 			}
 		}	
 
@@ -54,7 +50,7 @@
 
 			display: block;
 
-			background: color('border', 'general');			
+			background: color('switch', 'background');			
 
 			&::before {
 				@include position(absolute, $switch-padding null null $switch-padding);
@@ -82,12 +78,6 @@
 
 				content: '';
 			}
-		}
-
-		@include element('link') {
-			@include transition(color $base-duration $base-timing);
-
-			color: color('text', 'general', .6);
 		}
 
 		// Sizes

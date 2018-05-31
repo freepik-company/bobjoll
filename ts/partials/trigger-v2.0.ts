@@ -105,7 +105,7 @@ class Trigger extends KEventTarget {
         const settings = Trigger.getSettings(container);
 
         if (settings.lockscroll) {
-            Trigger.container.classList.add('overflow-hidden');
+            Trigger.wrapper.classList.add('overflow-hidden');
         }
 
         Trigger.getActiveTrigger()
@@ -121,7 +121,7 @@ class Trigger extends KEventTarget {
             const settings = Trigger.active[container.id];
 
             if (settings.lockscroll) {
-                Trigger.container.classList.remove('overflow-hidden');
+                Trigger.wrapper.classList.remove('overflow-hidden');
             }
 
             delete Trigger.active[container.id];

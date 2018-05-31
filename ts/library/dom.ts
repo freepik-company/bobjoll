@@ -87,7 +87,7 @@ export function delegate(selector: string, eventType: Event['type'], eventHandle
 
             while (target && target !== elementScope) {
                 if (target.matches(selector)) {
-                    eventHandler.call(target, [event]);
+                    eventHandler.call(target, event);
                     break;
                 }
 
