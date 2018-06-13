@@ -1,5 +1,8 @@
+import View from 'BobjollView';
 import { qq, q, qi } from './dom.q';
 import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
+
+const messageTemplate = require(`BobjollTemplate/alert-v1.0/element.${View.ext}`);
 
 export interface GrUser {
     id: number;
@@ -14,7 +17,7 @@ export interface GrUser {
 }
 
 type RegisterError = { username: string[] } | { email: string[] } | { facebook_id: string[] } | { google_id: string[] } | { twitter_id: string[] };
-type ResponseError = { message: string | string[] | RegisterError; error_code?: string | {code: string, field: string}[]; };
+type ResponseError = { message: string | string[] | RegisterError; error_code?: string | { code: string, field: string }[]; };
 
 export interface LoginResponse {
     data: {
@@ -106,12 +109,12 @@ export class KEventRegister extends KEvent {
 }
 
 export function showMessage(form: HTMLElement, error: ResponseError, type: 'error' | 'success') {
-    const messageBlock = q("p.message", form);
+    const messageBlock = q(".message", form);
 
     let message = error.message;
 
     if (GrSession.errorCodes && error.error_code) {
-        const errorMessages = qq('p.message--field', form);
+        const errorMessages = qq('.message--field', form);
 
         if (errorMessages) {
             errorMessages.forEach((errorField) => {
@@ -129,40 +132,52 @@ export function showMessage(form: HTMLElement, error: ResponseError, type: 'erro
             if (Array.isArray(error.error_code)) {
                 error.error_code.forEach((error) => {
                     let field = q(`input[name="${error.field}"]`, form);
-                    
+
                     if (field) {
                         let group = field.parentElement && field.parentElement.classList.contains('group') ? field.parentElement : false;
 
                         if (GrSession.errorCodes[error.code]) {
                             let insertElement = group ? group : field;
 
-                            insertElement.insertAdjacentHTML('afterend', `<p class="message message--field error message--show">${GrSession.errorCodes[error.code]}</p>`);
+                            insertElement.insertAdjacentHTML('afterend', View.render(messageTemplate, {
+                                class: `notification--${type} notification--static animation--fade-in`,
+                                html: `${GrSession.errorCodes[error.code]}`
+                            }));
                         }
                     }
                 });
 
                 return;
             }
-        } catch(err) {};
+        } catch (err) { };
     }
 
     if (!messageBlock) return;
 
     if (message instanceof Array) {
-        messageBlock.innerHTML = message.join('<br>');
+        messageBlock.innerHTML = message.map(html => View.render(messageTemplate, {
+            class: `notification--${type} notification--static animation--fade-in`,
+            html: html
+        })).join('');
     }
     else if (typeof message === 'string') {
-        messageBlock.innerHTML = message;
+        messageBlock.innerHTML = View.render(messageTemplate, {
+            class: `notification--${type} notification--static animation--fade-in`,
+            html: message
+        });
     } else {
         let err: string[] = [];
 
         for (const field in message) {
-            err = err.concat((message as {[key: string]: string[]})[field]);
+            err = err.concat((message as { [key: string]: string[] })[field]);
             const input = qi('input[name=' + field + ']', form);
             input.classList.add('error');
         }
 
-        messageBlock.innerHTML = err.join('<br>');
+        messageBlock.innerHTML = err.map(html => View.render(messageTemplate, {
+            class: `notification--${type} notification--static animation--fade-in`,
+            html: html
+        })).join('');
     }
 
     messageBlock.classList.add(type);
@@ -170,7 +185,7 @@ export function showMessage(form: HTMLElement, error: ResponseError, type: 'erro
 }
 
 export function hideMessage(form: HTMLElement) {
-    const messageBlock = q("p.message", form);
+    const messageBlock = q(".message", form);
     if (!messageBlock) return;
     messageBlock.innerHTML = '';
     messageBlock.style.display = 'none';
@@ -203,7 +218,7 @@ export class GrSession extends KEventTarget {
     private init() {
         var grSessionTxt2 = decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*gr_session2\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1"));
         this.user = parseUser(grSessionTxt2);
-    }    
+    }
 
     addEventListener(type: 'gr:login', listener: (ev: KEventLogin) => any, useCapture?: boolean): any;
     addEventListener(type: 'gr:register', listener: (ev: KEventRegister) => any, useCapture?: boolean): void;
@@ -212,10 +227,9 @@ export class GrSession extends KEventTarget {
     addEventListener(type: 'gr:register-error', listener: (ev: KEvent) => any, useCapture?: boolean): void;
     addEventListener(type: 'gr:forgot-password', listener: (ev: KEvent) => any, useCapture?: boolean): void;
     addEventListener(type: 'gr:forgot-password-error', listener: (ev: KEvent) => any, useCapture?: boolean): void;
-    addEventListener(type: string, listener: (ev: KEvent) => any, useCapture: boolean = true): void
-    {
+    addEventListener(type: string, listener: (ev: KEvent) => any, useCapture: boolean = true): void {
         super.addEventListener(type, listener, useCapture);
-    }    
+    }
 
     triggerError(type: string) {
         return this.dispatchEvent(KEvent.fromType(`gr:${type}-error`));
@@ -228,13 +242,12 @@ export class GrSession extends KEventTarget {
     triggerRegister(data: FormData) {
         return this.dispatchEvent(new KEventRegister(data));
     }
-    
+
     triggerLogout() {
         return this.dispatchEvent(KEvent.fromType('gr:logout'));
     }
 
-    public static getInstance(errorCodes?: ResponseErrors, noAvatar?: string)
-    {
+    public static getInstance(errorCodes?: ResponseErrors, noAvatar?: string) {
         return this._instance || (this._instance = new this(errorCodes, noAvatar));
     }
 
@@ -264,7 +277,7 @@ export class GrSession extends KEventTarget {
                     try {
                         let data = new FormData(ev.target as HTMLFormElement);
 
-                        await this.loginOrRegister(formName, data).then((user) => {                            
+                        await this.loginOrRegister(formName, data).then((user) => {
                             hideMessage(f);
                             // if we don't get any information about the user we have to reload as we can not customize the header
 
@@ -288,7 +301,7 @@ export class GrSession extends KEventTarget {
 
                             this.triggerError(formName);
                         });
-                    } catch(e) {
+                    } catch (e) {
                         console.error(e);
                     } finally {
                         if (submitButton) {
@@ -440,7 +453,7 @@ export class GrSession extends KEventTarget {
         return new Promise((resolve, reject) => {
             const req = new XMLHttpRequest();
 
-            req.addEventListener('load', () => {                
+            req.addEventListener('load', () => {
                 try {
                     const ret = JSON.parse(req.response);
 
@@ -450,7 +463,7 @@ export class GrSession extends KEventTarget {
                             error_code: ret.data.error_code || 'E_UNKNOW',
                         });
                     }
-                    
+
                     resolve(ret.data.message);
                 }
                 catch (e) {
@@ -487,13 +500,13 @@ export class GrSession extends KEventTarget {
 
                         await this.passwordRecovery(data).then((message: string) => {
                             hideMessage(f);
-                            showMessage(f, {message: message}, 'success');
+                            showMessage(f, { message: message }, 'success');
                         }).catch((error: ResponseError) => {
                             showMessage(f, error, 'error');
 
                             this.triggerError('forgot-password');
                         });
-                    } catch(e) {
+                    } catch (e) {
                         console.error(e);
                     } finally {
                         f.classList.remove('disabled');
