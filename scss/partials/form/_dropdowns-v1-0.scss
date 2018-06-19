@@ -76,7 +76,7 @@
 				line-height: $base-input-height;
 
 				&:hover {
-					background-color: color('secondary', 'background');
+					background-color: color('link', 'general');
 
 					color: pick-visible-color(
 						color('secondary', 'background'),
