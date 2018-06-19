@@ -5,9 +5,7 @@
 			background-color $base-duration $base-timing
 		);
 
-		background-color: color('link', 'general');
-
-		// box-shadow: inset 0 0 0 2px color('input', 'background');
+		box-shadow: inset 0 0 0 $extra-large-input-height color('input', 'background');
 
 		.icon {
 			@include transform(scale(1));
