@@ -10,10 +10,10 @@
 		display: block;
 
 		width: 100%;
-		height: $base-input-height;
+		height: ($base-input-height - $base-spacing);
 
 		margin: 0 0 $small-spacing;
-		padding: 0 $small-spacing;
+		padding: $small-spacing;
 
 		border: $base-border;
 		border-color: color('form-border', 'general');
@@ -26,7 +26,7 @@
 
 		color: color('text', 'general');
 		font-size: $base-font-size;
-		line-height: $base-input-height;
+		line-height: ($base-input-height - $base-spacing);
 
 		&:-webkit-autofill {
 			box-shadow: inset 0 0 0 $extra-large-element-height color('input', 'background');
