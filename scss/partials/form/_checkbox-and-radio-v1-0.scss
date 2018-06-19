@@ -5,14 +5,14 @@
 			background-color $base-duration $base-timing
 		);
 
-		background-color: color('input', 'background');
+		background-color: color('link', 'general');
 
-		box-shadow: inset 0 0 0 2px color('link', 'general');
+		// box-shadow: inset 0 0 0 2px color('input', 'background');
 
 		.icon {
 			@include transform(scale(1));
 			@include transition(
-				opaicty $base-duration $base-duration $base-timing,
+				opacity $base-duration $base-duration $base-timing,
 				transform $base-duration $base-duration $base-timing
 			);
 
@@ -88,8 +88,8 @@
 
 				padding: (($base-input-ui-height - ($base-input-ui-height * .8)) / 2);
 				
-				color: color('link', 'general');
-				fill: color('link', 'general');
+				color: color('input', 'background');
+				fill: color('input', 'background');
 				font-size: $base-input-ui-height * .8;
 				line-height: $base-input-ui-height * .8;
 			}
@@ -111,16 +111,15 @@
 		@include modifier('inverted') {
 			color: color('text-inverted', 'general', 1);
 
-			&:hover .checkbox__indicator,
-			&:hover .radio__indicator {
-				background-color: lighten(color('border', 'general'), 5);
-			}
-
 			input[type="checkbox"]:checked + .checkbox__indicator,
 			input[type="radio"]:checked + .radio__indicator {
 				background-color: color('input', 'background');
 
-				box-shadow: inset 0 0 0 ($base-input-ui-height) color('link', 'general');
+				// box-shadow: inset 0 0 0 ($base-input-ui-height) color('link', 'general');
+
+				.icon {
+					color: color('link', 'general');
+				}
 			}
 		}
 
@@ -177,7 +176,13 @@
 		}
 
 		input[type="radio"]:checked ~ .radio__indicator {
-			box-shadow: inset 0 0 0 5px color('link', 'general');
+			box-shadow: inset 0 0 0 5px color('input', 'background');
+		}
+
+		@include modifier('inverted') {
+			input[type="radio"]:checked ~ .radio__indicator {
+				box-shadow: inset 0 0 0 5px color('link', 'general');
+			}
 		}
 	}
 }
