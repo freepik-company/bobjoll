@@ -42,6 +42,10 @@ export class TagsField extends KEventTarget {
         super.addEventListener(t, listener, useCapture);
     }
 
+    public addItems(arr: string[]) {
+        arr.forEach(value => this.add(value));
+    }
+
     private add(value: string) {
         if (0 < value.length) {
             if (this.input) {
