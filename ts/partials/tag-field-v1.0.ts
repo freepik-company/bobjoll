@@ -46,6 +46,16 @@ export class TagsField extends KEventTarget {
         arr.forEach(value => this.add(value));
     }
 
+    public removeItems(arr: string[]) {
+        qq('.tag-field__item', this.settings.selector).forEach(item => {
+            if (arr.indexOf(item.innerText.trim()) >= 0 && item.parentElement) {
+                item.parentElement.removeChild(item);
+            }
+        });
+
+        this.update();
+    }
+
     private add(value: string) {
         if (0 < value.length) {
             if (this.input) {
