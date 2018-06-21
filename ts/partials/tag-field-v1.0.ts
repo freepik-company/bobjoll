@@ -5,45 +5,6 @@ import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
 
 // tslint:disable-next-line:no-var-requires
 const extend = require('bobjoll/ts/library/extend');
-
-export class KEventChange extends KEvent {
-    constructor(tag: string, tags: string[]) {
-        super();
-
-        this.type = 'change';
-        this.extra = {
-            tag: tag,
-            tags: tags,
-        };
-    }
-}
-
-type TReturnType = {
-    text: string;
-    value: string;
-}[];
-type TSourceMethod = (query: string) => Promise<TReturnType>;
-
-interface Settings {
-    selector: HTMLElement;
-    input: HTMLInputElement;
-    source: TSourceMethod;
-    templates: {
-        field: Function;
-        tag: Function;
-    };
-}
-
-interface CustomSettings {
-    selector?: HTMLElement;
-    input?: HTMLInputElement;
-    source: TSourceMethod;
-    templates?: {
-        field?: Function;
-        tag?: Function;
-    };
-}
-
 export class TagsField extends KEventTarget {
     private items: HTMLElement | null = null;
     private input: HTMLInputElement | null = null;
@@ -51,7 +12,6 @@ export class TagsField extends KEventTarget {
     private settings: Settings;
     private autocomplete: autocompleteV10 | null = null;
     private settingsDefault = {
-        input: q('.tag-field input') as HTMLInputElement,
         selector: q('.tag-field')!,
         templates: {
             field: require(`BobjollTemplate/tags-v1.0/wrapper.${View.ext}`),
@@ -62,7 +22,18 @@ export class TagsField extends KEventTarget {
     constructor(settings: CustomSettings) {
         super();
         this.settings = extend(this.settingsDefault, settings);
-        this.render();
+
+        if (this.settings.selector) {
+            this.settings.input = (q('input', this.settings.selector) as HTMLInputElement);
+
+            if (this.settings.input) {
+                this.render();
+            } else {
+                console.error(`TagField couldn't be initialized due to missing input element.`);    
+            }
+        } else {
+            console.error(`TagField couldn't be initialized due to missing wrapper element.`);
+        }
     }
 
     public addEventListener(t: 'change', listener: (ev: KEvent) => any, useCapture?: boolean): void;
@@ -85,7 +56,7 @@ export class TagsField extends KEventTarget {
     }
 
     private update() {
-        const tags: string[] = qq('.tag-field__item').reduce((acc: string[], tag) => {
+        const tags: string[] = qq('.tag-field__item', this.settings.selector).reduce((acc: string[], tag) => {
             acc.push(tag.innerText.trim());
 
             return acc;
@@ -158,7 +129,7 @@ export class TagsField extends KEventTarget {
             const key = window.event ? e.keyCode : e.which;
 
             if (0 === this.input!.value.length && 8 === key) { //return
-                const lastItem = qq('.tag-field__item').pop();
+                const lastItem = qq('.tag-field__item', this.settings.selector).pop();
 
                 if (lastItem) {
                     if (this.items) {
@@ -199,4 +170,41 @@ export class TagsField extends KEventTarget {
         }
         return null;
     }
+}
+
+export class KEventChange extends KEvent {
+    constructor(tag: string, tags: string[]) {
+        super();
+
+        this.type = 'change';
+        this.extra = {
+            tag: tag,
+            tags: tags,
+        };
+    }
+}
+
+type TReturnType = {
+    text: string;
+    value: string;
+}[];
+type TSourceMethod = (query: string) => Promise<TReturnType>;
+
+interface Settings {
+    selector: HTMLElement;
+    input: HTMLInputElement;
+    source: TSourceMethod;
+    templates: {
+        field: Function;
+        tag: Function;
+    };
+}
+
+interface CustomSettings {
+    selector?: HTMLElement;
+    source: TSourceMethod;
+    templates?: {
+        field?: Function;
+        tag?: Function;
+    };
 }
