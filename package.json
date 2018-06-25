@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/twig": "^1.10.1",
+    "cookie-storage": "^3.1.0",
     "twig": "^1.11.0",
     "twig-loader": "^0.3.1",
     "webfonts-generator": "^0.4.0"
