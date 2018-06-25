@@ -1,62 +1,13 @@
 import View from 'BobjollView';
 import { Settings } from 'Settings';
-import {localStorage as storage} from 'bobjoll/ts/library/storage';
+import { CookieStorage } from 'cookie-storage';
 import { POINT_CONVERSION_COMPRESSED } from 'constants';
-
-declare module "bobjoll/ts/library/storage" {
-    interface ClientStorage {
-        get(namespace: 'notification-visibility', key: string): boolean;
-        set(namespace: 'notification-visibility', key: string, value: boolean): void;
-
-        get(namespace: 'notification-count', key: string): number;
-        set(namespace: 'notification-count', key: string, value: boolean): void;
-    }
-}
 
 const STORAGE_VISIBILITY_NS = 'notification-visibility';
 const STORAGE_COUNT_NS = 'notification-count';
+const Cookies = new CookieStorage();
 const extend = require('bobjoll/ts/library/extend');
 
-export interface Position {
-    'static': string;
-    'bottom-center': HTMLElement;
-    'bottom-left': HTMLElement;
-    'bottom-right': HTMLElement;
-    'center': HTMLElement;
-    'top-center': HTMLElement;
-    'top-left': HTMLElement;
-    'top-right': HTMLElement;
-};
-
-export interface DefaultSettings {
-    fixed: boolean;
-    recurrent: boolean;
-    timeout: number;
-    template: Function;
-    position: keyof Position;
-}
-
-export interface Settings {
-    fixed?: boolean;
-    recurrent?: boolean;
-    recurrentMax?: number;
-    recurrentPrint?: boolean;
-    timeout?: number;
-    template?: Function;
-    position?: keyof Position;
-}
-
-export interface InsertSettings extends Settings {
-    id?: string;
-    class?: string;
-    html: string;
-    target?: string | Element;
-    insert?: {
-        element: Element;
-        position: 'beforeend' | 'beforebegin' | 'afterend' | 'afterbegin';
-    }
-    position?: keyof Position;
-}
 
 export default class Notifications {
     public settings: DefaultSettings;
@@ -69,7 +20,8 @@ export default class Notifications {
             recurrent: false,
             timeout: 5000,
             template: require(`BobjollTemplate/notification-v1.1/element.${View.ext}`),
-            position: 'bottom-left'
+            position: 'bottom-left',
+            cookieExpiry: new Date(new Date().getTime() + (365 * 24 * 60 * 60 * 1000)),
         }
 
         this.setup();
@@ -115,18 +67,18 @@ export default class Notifications {
         let notification = document.getElementById(options.id);
         let staticNotification = 'static' === options.position;
 
-        if (!notification || !options.id) {
+        if (!notification || !options.id) {
             if (!options.id && options.recurrent) {
                 options.recurrent = false;
 
                 console.warn('You have to define a fixed ID for this notification in order for recurrent to work properly.');
             }
 
-            if (options.recurrent && storage.get(STORAGE_VISIBILITY_NS, options.id) === false) {
+            if (options.recurrent && (Cookies.getItem(`${STORAGE_VISIBILITY_NS}--${options.id}`) === 'false')) {
                 return;
             }
 
-            options.id = options.id || `notifications_${new Date().getTime()}`;
+            options.id = options.id || `notifications_${new Date().getTime()}`;
 
             if (target) {
                 anchor = staticNotification ? target : document.body;
@@ -153,16 +105,28 @@ export default class Notifications {
             if (notification && options.recurrentPrint && options.recurrentMax) {
                 notification.dataset.recurrentPrint = 'true';
 
-                let count: number = storage.get(STORAGE_COUNT_NS, `${options.id}_count`) | 0;
+                let count: number = parseFloat(Cookies.getItem(`${STORAGE_COUNT_NS}--${options.id}_count`) || '0');
 
                 count++;
 
-                storage.set(STORAGE_COUNT_NS, `${options.id}_count`, count);
+                Cookies.setItem(`${STORAGE_COUNT_NS}--${options.id}_count`, count.toString(), {
+                    path: '/',
+                    domain: document.domain,
+                    expires: options.cookieExpiry || this.settings.cookieExpiry
+                });
 
                 if (count && count >= parseFloat(options.recurrentMax)) {
-                    storage.remove(STORAGE_COUNT_NS, `${options.id}_count`);
-                    storage.set(STORAGE_VISIBILITY_NS, options.id, false);
+                    Cookies.removeItem(`${STORAGE_COUNT_NS}--${options.id}_count`);
+                    Cookies.setItem(`${STORAGE_VISIBILITY_NS}--${options.id}`, 'false', {
+                        path: '/',
+                        domain: document.domain,
+                        expires: options.cookieExpiry || this.settings.cookieExpiry
+                    });
                 }
+            }
+
+            if (notification && options.cookieExpiry) {
+                notification.dataset.cookieExpiry = options.cookieExpiry.getTime();
             }
 
             if (target) {
@@ -251,21 +215,35 @@ export default class Notifications {
                 const userDisable = (<HTMLInputElement>notification.querySelector('.notification__disable input'));
                 const recurrentMax = notification.dataset.recurrentMax;
                 const recurrentPrint = notification.dataset.recurrenPrint;
+                const cookieExpiry = notification.dataset.cookieExpiry;
+                const cookieExpiryDate = new Date(parseFloat(cookieExpiry || '0'));
 
                 if (userDisable && userDisable.checked || hideRecurrent) {
-                    storage.set(STORAGE_VISIBILITY_NS, id, false);
+                    Cookies.setItem(`${STORAGE_VISIBILITY_NS}--${id}`, 'false', {
+                        path: '/',
+                        domain: document.domain,
+                        expires: cookieExpiry ? cookieExpiryDate : this.settings.cookieExpiry
+                    });
                 } else if (recurrentMax) {
-                    let count: number = storage.get(STORAGE_COUNT_NS, `${id}_count`) | 0;
+                    let count: number = parseFloat(Cookies.getItem(`${STORAGE_COUNT_NS}--${id}_count`) || '0');
 
                     if (!recurrentPrint && 'undefined' !== typeof count) {
                         count++;
                     }
 
-                    storage.set(STORAGE_COUNT_NS, `${id}_count`, count);
+                    Cookies.setItem(`${STORAGE_COUNT_NS}--${id}_count`, count.toString(), {
+                        path: '/',
+                        domain: document.domain,
+                        expires: cookieExpiry ? cookieExpiryDate : this.settings.cookieExpiry
+                    });
 
                     if (count && count >= parseFloat(recurrentMax)) {
-                        storage.remove(STORAGE_COUNT_NS, `${id}_count`);
-                        storage.set(STORAGE_VISIBILITY_NS, id, false);
+                        Cookies.removeItem(`${STORAGE_COUNT_NS}--${id}_count`);
+                        Cookies.setItem(`${STORAGE_VISIBILITY_NS}--${id}`, 'false', {
+                            path: '/',
+                            domain: document.domain,
+                            expires: cookieExpiry ? cookieExpiryDate : this.settings.cookieExpiry
+                        });
                     }
                 }
             }
@@ -292,8 +270,10 @@ export default class Notifications {
     }
 
     public getSettings(id: string) {
-        let itemCount = storage.get(STORAGE_COUNT_NS, `${id}_count`) || undefined;
-        let itemVisibility = storage.get(STORAGE_VISIBILITY_NS, id);
+        const cookieItemCount = Cookies.getItem(`${STORAGE_COUNT_NS}--${id}_count`);
+        const cookieItemVisibility = Cookies.getItem(`${STORAGE_VISIBILITY_NS}--${id}`);
+        const itemCount = cookieItemCount ? parseFloat(cookieItemCount) : undefined;
+        const itemVisibility = cookieItemVisibility ? true : false;
 
         let item: {
             count?: number;
@@ -314,4 +294,49 @@ export default class Notifications {
     getScrollPosition(): number {
         return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
     }
+}
+
+
+export interface Position {
+    'static': string;
+    'bottom-center': HTMLElement;
+    'bottom-left': HTMLElement;
+    'bottom-right': HTMLElement;
+    'center': HTMLElement;
+    'top-center': HTMLElement;
+    'top-left': HTMLElement;
+    'top-right': HTMLElement;
+};
+
+export interface DefaultSettings {
+    fixed: boolean;
+    recurrent: boolean;
+    timeout: number;
+    template: Function;
+    position: keyof Position;
+    cookieExpiry: Date;
+}
+
+export interface Settings {
+    fixed?: boolean;
+    recurrent?: boolean;
+    recurrentMax?: number;
+    recurrentPrint?: boolean;
+    timeout?: number;
+    template?: Function;
+    position?: keyof Position;
+    cookieExpiry?: Date;
+}
+
+export interface InsertSettings extends Settings {
+    id?: string;
+    class?: string;
+    html: string;
+    target?: string | Element;
+    insert?: {
+        element: Element;
+        position: 'beforeend' | 'beforebegin' | 'afterend' | 'afterbegin';
+    }
+    position?: keyof Position;
+    cookieExpiry?: Date;
 }
