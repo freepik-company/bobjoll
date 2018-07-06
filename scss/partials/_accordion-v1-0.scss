@@ -11,7 +11,20 @@
 
 		line-height: $base-line-height;
 
-		@include modifier('tabs') {
+		&:not(.accordion--ready) {
+			.accordion__mobile-nav {
+				position: absolute;
+
+				visibility: hidden;
+			}
+
+			.accordion__container > a,
+			.accordion__container > button {
+				visibility: hidden;
+			}
+		}
+
+		&--tabs {
 			@include breakpoint('xs', 'min') {
 				.accordion__container {
 					display: inline;
@@ -37,7 +50,7 @@
 			}		
 		}
 
-		@include element('container') {
+		&__container {
 			margin: 0 0 $small-spacing;
 
 			list-style: none;
@@ -49,7 +62,7 @@
 			}
 		}
 
-		@include element('content') {
+		&__content {
 			@include position(absolute, 100% null null 0);
 
 			width: 100%;
@@ -61,7 +74,43 @@
 			}
 		}
 
-		@include element('link') {
+		&__mobile-nav {
+			padding: 0 $base-spacing;
+		}
+
+		&__select {
+			@include appearance(none);
+
+			height: $base-element-height;
+
+			border: none;
+
+			background: transparent;
+
+			text-align: center;
+
+			&__wrapper {
+				position: relative;
+				
+				display: inline-block;
+
+				padding: 0 ($base-triangle-size + $extra-small-spacing) 0 0;
+
+				&::after {
+					@include triangle($base-triangle-size, color('text', 'general'), down);
+
+					position: absolute;
+					top: 50%;
+					right: 0;					
+
+					transform: translateY(-50%);
+
+					content: '';
+				}
+			}
+		}
+
+		&__link {
 			&:not(.nostyle) {
 				display: block;
 
@@ -102,7 +151,7 @@
 			}
 		}
 
-		@include modifier('inverted') {
+		&--inverted {
 			color: color('text-inverted', 'general');
 
 			a:not(.button) {
