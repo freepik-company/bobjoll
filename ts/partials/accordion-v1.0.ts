@@ -7,7 +7,7 @@ class Accordion {
 	constructor() {
 		if (!Accordion.instance) {
 			Accordion.instance = this;
-			this.setup();
+			this.setup();	
 		}
 
 		return Accordion.instance;
@@ -31,8 +31,6 @@ class Accordion {
 	}
 
 	private static addEventListeners() {
-		qq('.accordion__select').forEach(select => select.addEventListener('change', Accordion.eventSelectChangeHandler));
-
 		delegate('.accordion__link', 'click', Accordion.eventClickHandler);
 	}
 
@@ -56,6 +54,8 @@ class Accordion {
 
 			accordion.classList.add('accordion--ready');
 		});
+
+		qq('.accordion__select').forEach(select => select.addEventListener('change', Accordion.eventSelectChangeHandler));
 	}
 
 	private static eventClickHandler(this: HTMLElement) {
