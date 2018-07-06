@@ -7,6 +7,7 @@ $color-gray-4: #4a4a4a !default;
 $gray-shade-9: #1D262D;
 $gray-shade-8: #374957;
 $gray-shade-7: #5F7D95;
+$gray-shade-6: #869FB2;
 $gray-shade-5: #A5B7C6;
 $gray-shade-4: #BAC8D3;
 $gray-shade-3: #CFD9E0;
@@ -227,11 +228,69 @@ $global-colors: (
 		'inverted-outline': $color-light,
 	),
 	'gray': (
-		'1': $color-gray-1,
-		'2': $color-gray-2,
-		'3': $color-gray-3,
-		'4': $color-gray-4,
-	)
+		'9': $gray-shade-9,
+		'8': $gray-shade-8,
+		'7': $gray-shade-7,
+		'6': $gray-shade-6,
+		'5': $gray-shade-5,
+		'4': $gray-shade-4,
+		'3': $gray-shade-3,
+		'2': $gray-shade-2,
+		'1': $gray-shade-1,
+	),
+	'dark-blue': (
+		'6': $dark-blue-shade-6,
+		'5': $dark-blue-shade-5,
+		'4': $dark-blue-shade-4,
+		'3': $dark-blue-shade-3,
+		'2': $dark-blue-shade-2,
+		'1': $dark-blue-shade-1,
+	),
+	'purple': (
+		'7': $purple-shade-7,
+		'6': $purple-shade-6,
+		'5': $purple-shade-5,
+		'4': $purple-shade-4,
+		'3': $purple-shade-3,
+		'2': $purple-shade-2,
+		'1': $purple-shade-1,
+	),
+	'blue': (
+		'7': $blue-shade-7,
+		'6': $blue-shade-6,
+		'5': $blue-shade-5,
+		'4': $blue-shade-4,
+		'3': $blue-shade-3,
+		'2': $blue-shade-2,
+		'1': $blue-shade-1,
+	),
+	'green': (
+		'7': $green-shade-7,
+		'6': $green-shade-6,
+		'5': $green-shade-5,
+		'4': $green-shade-4,
+		'3': $green-shade-3,
+		'2': $green-shade-2,
+		'1': $green-shade-1,
+	),
+	'yellow': (
+		'7': $yellow-shade-7,
+		'6': $yellow-shade-6,
+		'5': $yellow-shade-5,
+		'4': $yellow-shade-4,
+		'3': $yellow-shade-3,
+		'2': $yellow-shade-2,
+		'1': $yellow-shade-1,
+	),
+	'red': (
+		'7': $red-shade-7,
+		'6': $red-shade-6,
+		'5': $red-shade-5,
+		'4': $red-shade-4,
+		'3': $red-shade-3,
+		'2': $red-shade-2,
+		'1': $red-shade-1,
+	),
 );
 
 // Colors
