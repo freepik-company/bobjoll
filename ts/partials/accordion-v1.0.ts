@@ -77,6 +77,8 @@ class Accordion {
 		if (accordion && 'number' === typeof indexActive) {
 			qq('.accordion__container > a, .accordion__container > button', (accordion as HTMLElement)).forEach((button: HTMLLinkElement, index) => {
 				if (button.classList.contains('accordion__link')) {
+					button.dispatchEvent(new Event('click'));
+					
 					button.classList[indexActive === index ? 'add' : 'remove']('active');
 				} else if (button.href && indexActive === index) {
 					window.location.href = button.href;
