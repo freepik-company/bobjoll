@@ -174,7 +174,7 @@ class Modal {
             }
         });
 
-        EventListenerOn('body', '.modal__close', 'click', function(this: HTMLElement, e: Event) {
+        EventListenerOn('body', '.modal__close', 'click', function(this: HTMLElement) {
             modal.hide();
         });
 
