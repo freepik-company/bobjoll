@@ -13,49 +13,34 @@ class Accordion {
 		return Accordion.instance;
 	}
 
-	private setup() {
-		Accordion.setupMobileNavigation();
-		Accordion.addEventListeners();
-	}
-
-	public refresh() {
-		Accordion.setupMobileNavigation();
-	}
-
-	public destroy() {
-		qq('.accordion__select').forEach(select => select.removeEventListener('change', Accordion.eventSelectChangeHandler));
-
-		delegateRemove('.accordion__link', 'click', Accordion.addEventListeners);
-
-		Accordion.instance = null;
-	}
-
 	private static addEventListeners() {
 		delegate('.accordion__link', 'click', Accordion.eventClickHandler);
 	}
 
 	private static setupMobileNavigation() {
-		qq('.accordion:not(.accordion--ready)').forEach(accordion => {
-			const options = qq('.accordion__container > a, .accordion__container > button', accordion).reduce((acc, link: HTMLLinkElement, index) => {
-				link.classList.add('hide-tablet');
+		qq('.accordion:not(.accordion--ready)').forEach(element => {
+			const options = qq('.accordion__container > a, .accordion__container > button', element)
+				.reduce((acc, link, index) => {
+					link.classList.add('hide-tablet');
 
-				acc += `<option value="${index}">${link.innerHTML}</option>`;
+					acc += `<option value="${index}">${link.innerHTML}</option>`;
 
-				return acc;
-			}, '');
+					return acc;
+				}, '');
 
-			accordion.insertAdjacentHTML('afterbegin', `
-				<li class="accordion__mobile-nav show-tablet">
-					<div class="accordion__select__wrapper">
-						<select class="accordion__select">${options}</select>
-					</div>
-				</li>
-			`);
+			element.insertAdjacentHTML('afterbegin', `
+                <li class="accordion__mobile-nav show-tablet">
+                    <div class="accordion__select__wrapper">
+                        <select class="accordion__select">${options}</select>
+                    </div>
+                </li>
+            `);
 
-			accordion.classList.add('accordion--ready');
+			element.classList.add('accordion--ready');
 		});
 
-		qq('.accordion__select').forEach(select => select.addEventListener('change', Accordion.eventSelectChangeHandler));
+		qq('.accordion__select')
+			.forEach(select => select.addEventListener('change', Accordion.eventSelectChangeHandler));
 	}
 
 	private static eventClickHandler(this: HTMLElement) {
@@ -72,21 +57,42 @@ class Accordion {
 
 	private static eventSelectChangeHandler(this: HTMLSelectElement) {
 		const indexActive = parseFloat(this.value);
-		const accordion = this.parent('.accordion');
+		const wrapper = this.parent('.accordion');
 
-		if (accordion && 'number' === typeof indexActive) {
-			qq('.accordion__container > a, .accordion__container > button', (accordion as HTMLElement)).forEach((button: HTMLLinkElement, index) => {
-				if (button.classList.contains('accordion__link')) {
-					if (indexActive === index) {
-						button.click();
+		if (wrapper && 'number' === typeof indexActive) {
+			qq('.accordion__container > a, .accordion__container > button', (wrapper as HTMLElement))
+				.forEach((button, index) => {
+					const href = button.getAttribute('href');
+
+					if (button.classList.contains('accordion__link')) {
+						if (indexActive === index) {
+							button.click();
+						}
+
+						button.classList[indexActive === index ? 'add' : 'remove']('active');
+					} else if (href && indexActive === index) {
+						window.location.href = href;
 					}
-
-					button.classList[indexActive === index ? 'add' : 'remove']('active');
-				} else if (button.href && indexActive === index) {
-					window.location.href = button.href;
-				}
-			});
+				});
 		}
+	}
+
+	public refresh() {
+		Accordion.setupMobileNavigation();
+	}
+
+	public destroy() {
+		qq('.accordion__select')
+			.forEach(select => select.removeEventListener('change', Accordion.eventSelectChangeHandler));
+
+		delegateRemove('.accordion__link', 'click', Accordion.addEventListeners);
+
+		Accordion.instance = null;
+	}
+
+	private setup() {
+		Accordion.setupMobileNavigation();
+		Accordion.addEventListeners();
 	}
 }
 
