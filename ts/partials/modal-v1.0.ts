@@ -25,7 +25,7 @@ import 'bobjoll/ts/library/common';
 
 var extend = require('bobjoll/ts/library/extend');
 
-class Modal {
+export class Modal {
     modalsActive: string[];
     modalsMultilayer: string[];
     modalsAddSettings: ModalAddSettings;
