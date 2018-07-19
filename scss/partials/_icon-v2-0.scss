@@ -3,8 +3,8 @@
 
 	@font-face {
 		font-family: $webfont;
-		src: url("~bobjoll/fonts/bobjoll.woff2?e00ac9205064525f644cc3849a343ba9") format("woff2"),
-url("~bobjoll/fonts/bobjoll.woff?e00ac9205064525f644cc3849a343ba9") format("woff");
+		src: url("~bobjoll/fonts/bobjoll.woff2?126a4075b1e12fc8f5e911e66940bec5") format("woff2"),
+url("~bobjoll/fonts/bobjoll.woff?126a4075b1e12fc8f5e911e66940bec5") format("woff");
 	}
 
     .icon {
@@ -138,9 +138,9 @@ url("~bobjoll/fonts/bobjoll.woff?e00ac9205064525f644cc3849a343ba9") format("woff
     .icon--linkedin { &::before { content: "\f146"; } }
     .icon--list { &::before { content: "\f147"; } }
     .icon--lock { &::before { content: "\f148"; } }
-    .icon--logo-symbol-new { &::before { content: "\f149"; } }
+    .icon--logo-symbol-old { &::before { content: "\f149"; } }
     .icon--logo-symbol { &::before { content: "\f14a"; } }
-    .icon--logo-text-new { &::before { content: "\f14b"; } }
+    .icon--logo-text-old { &::before { content: "\f14b"; } }
     .icon--logo-text { &::before { content: "\f14c"; } }
     .icon--logout { &::before { content: "\f14d"; } }
     .icon--marker { &::before { content: "\f14e"; } }

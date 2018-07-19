@@ -174,7 +174,7 @@
 		}
 
 		input[type="radio"]:checked ~ .radio__indicator {
-			box-shadow: inset 0 0 0 5px color('input', 'background');
+			box-shadow: inset 0 0 0 5px color('link', 'general');
 		}
 
 		@include modifier('inverted') {
