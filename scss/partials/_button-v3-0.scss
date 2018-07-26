@@ -255,11 +255,17 @@
                     }
 
                     &:hover {
-                        box-shadow: inset 0px 0px 0px 100px color($color, 'buttons');
+                        box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-hover');
                     }
 
                     &.active, &:active {
+                        color: color($color, 'buttons-text');
+
                         box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-hover');
+
+                        .icon {
+                            color: color($color, 'buttons-text');
+                        }
                     }
                 }
 
