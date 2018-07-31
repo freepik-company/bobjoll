@@ -85,6 +85,33 @@
 	h5 { @include font-size($h5-font-size); }
 	h6 { @include font-size($h6-font-size); }
 
+	%link-inverted {
+		color: color('link-inverted', 'general', 1);
+
+		&:hover {
+			color: color('link-inverted', 'general', 1);
+			text-decoration: underline;
+
+			svg {
+				opacity: .8;
+			}
+		}
+
+		&.active {
+			color: color('link-inverted', 'general', 1);
+			font-weight: bold;
+			text-decoration: underline;
+
+			svg {
+				opacity: 1;
+			}
+		}
+
+		svg {
+			opacity: .4;
+		}			
+	}
+
 	%link-hover {
 		&:hover {
 			color: color('link', 'general', 1, 4);
@@ -117,7 +144,7 @@
 			color: color('link', 'general');
 		}
 		
-		@include modifier('text') {
+		&--text {
 			@extend %link-hover;
 
 			color: color('text', 'general', 1, 4);
@@ -126,31 +153,14 @@
 				color: color('text', 'general', 1, 4);
 			}
 		}
+
+		&--inverted {
+			@extend %link-inverted;
+		}
 	}
 
 	.link-inverted {
-		color: color('link-inverted', 'general', .9);
-
-		&:hover {
-			color: color('link-inverted', 'general', 1);
-
-			svg {
-				opacity: .8;
-			}
-		}
-
-		&.active {
-			color: color('link-inverted', 'general', 1);
-			font-weight: bold;
-
-			svg {
-				opacity: 1;
-			}
-		}
-
-		svg {
-			opacity: .4;
-		}			
+		@extend %link-inverted;
 	}
 
 	.text, p {
