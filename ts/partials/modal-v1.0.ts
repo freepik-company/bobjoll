@@ -26,11 +26,11 @@ import 'bobjoll/ts/library/common';
 var extend = require('bobjoll/ts/library/extend');
 
 export class Modal {
-    modalsActive: string[];
-    modalsMultilayer: string[];
-    modalsAddSettings: ModalAddSettings;
-    modalsPrintSettings: ModalPrintSettings;
-    modalsWrapper: HTMLElement;
+    private modalsActive: string[];
+    private modalsMultilayer: string[];
+    private modalsAddSettings: ModalAddSettings;
+    private modalsPrintSettings: ModalPrintSettings;
+    private modalsWrapper: HTMLElement;
 
     constructor() {
         this.modalsActive = [];
@@ -65,14 +65,18 @@ export class Modal {
             let template = require(`BobjollTemplate/modal-v1.0/element.${View.ext}`);
 
             this.modalsWrapper.insertAdjacentHTML('beforeend', View.render(template, config));
+
+            modal = document.getElementById(`modal-${config.name}`);
         }
 
         if (config.multilayer && this.modalsMultilayer.indexOf(`modal-${config.name}`) < 0) {
             this.modalsMultilayer.push(`modal-${config.name}`);
         }
+
+        return modal;
     }
 
-    show(id: string) {
+    public show(id: string) {
         let modal = document.getElementById(id);
         let modalEvent = new Event('show');
 
@@ -94,7 +98,7 @@ export class Modal {
         }
     }
 
-    hide(settings?: ModalHideSettings) {
+    public hide(settings?: ModalHideSettings) {
         if (this.modalsActive.length > 0) {
             let modalSpliceList: number[] = [];
             let modalHideAll = settings && settings.all ? true : false;
@@ -157,6 +161,8 @@ export class Modal {
                 this.show(`modal-${config.name}`);
             }
         }
+
+        return modal;
     }
 
     addEventListeners() {
@@ -168,7 +174,9 @@ export class Modal {
             if (target instanceof HTMLElement) {
                 const wrapper = target.parents('.modal');
                 const container = target.parents('.modal__container');
-                if ((0 < wrapper.length || target.classList && target.classList.contains('modal')) && 0 === container.length) {
+                const disabled = ('' === target.dataset.disableMouseUp) ? true : false;
+
+                if ((0 < wrapper.length || target.classList && target.classList.contains('modal') && !disabled) && 0 === container.length) {
                     this.hide();
                 }
             }
