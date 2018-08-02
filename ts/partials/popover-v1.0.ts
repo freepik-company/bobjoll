@@ -1,12 +1,12 @@
-import { EventListenerOn } from 'Helpers';
 import 'Common';
 import { Settings } from 'Settings';
+import { delegate } from 'bobjoll/ts/library/dom';
 
 (function() {
 	let timeout: number;
 	let active: Element[] = [];
 
-	EventListenerOn('body', '.popover__trigger', 'click', function(this: HTMLElement, e: Event) {
+	delegate('.popover__trigger', 'click', function(this: HTMLElement, e: Event) {
 		e.preventDefault();
 
 		let popover: Element | null = this.parentElement;
@@ -30,7 +30,7 @@ import { Settings } from 'Settings';
 		}
 	});
 
-	EventListenerOn('body', '.popover__close', 'click', (e: Event) => {
+	delegate('.popover__close', 'click', (e: Event) => {
 		e.preventDefault();
 
 		hide();

@@ -1,7 +1,7 @@
-import { EventListenerOn } from 'Helpers';
+import { delegate } from 'bobjoll/ts/library/dom';
 
 (function() {
-	EventListenerOn('body', '.tags .remove', 'click', function(this: HTMLElement, e: Event) {
+	delegate('.tags .remove', 'click', function(this: HTMLElement, e: Event) {
 		e.preventDefault();
 
 		let id: string | null = this.getAttribute('for');

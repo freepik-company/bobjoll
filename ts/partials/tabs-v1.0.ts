@@ -1,5 +1,5 @@
-import { EventListenerOn } from 'Helpers';
 import 'bobjoll/ts/library/common';
+import { delegate } from 'bobjoll/ts/library/dom';
 
 class Tabs {
 	constructor() {
@@ -34,7 +34,7 @@ class Tabs {
 	private addEventListeners() {
 		const self = this;
 
-		EventListenerOn('body', '.tabs__link', 'click', function (this: HTMLElement, e: Event) {
+		delegate('.tabs__link', 'click', function (this: HTMLElement, e: Event) {
 			let id: string | undefined = this.dataset['tab'];
 
 			if (id) {
