@@ -23,6 +23,7 @@ import View from 'BobjollView';
 import 'bobjoll/ts/library/common';
 import { delegate } from 'bobjoll/ts/library/dom';
 
+const EXT = View.ext;
 var extend = require('bobjoll/ts/library/extend');
 
 export class Modal {
@@ -62,7 +63,7 @@ export class Modal {
         let modal = document.getElementById(`modal-${config.name}`);
 
         if (!modal) {
-            let template = require(`BobjollTemplate/modal-v1.0/element.${View.ext}`);
+            let template = require(`BobjollTemplate/modal-v1.0/element.${EXT}`);
 
             this.modalsWrapper.insertAdjacentHTML('beforeend', View.render(template, config));
 
