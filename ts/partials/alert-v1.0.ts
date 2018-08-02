@@ -2,6 +2,7 @@
 import Notification, { Position } from 'BobjollNotifications';
 import View from 'BobjollView';
 
+const EXT = View.ext;
 const extend = require('bobjoll/ts/library/extend');
 
 type AlertType = 'success' | 'warning' | 'error';
@@ -33,7 +34,7 @@ export default class Alert extends Notification {
             recurrent: false,
             fixed: false,
             timeout: 5000,
-            template: require(`BobjollTemplate/alert-v1.0/element.${View.ext}`),
+            template: require(`BobjollTemplate/alert-v1.0/element.${EXT}`),
             position: 'top-right'
         };
 

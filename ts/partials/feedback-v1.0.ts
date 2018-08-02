@@ -3,6 +3,7 @@ import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
 import { localStorage, sessionStorage } from 'bobjoll/ts/library/storage';
 import { Settings } from 'Settings';
 
+const EXT = View.ext;
 const extend = require('bobjoll/ts/library/extend');
 
 export class KEventView extends KEvent {
@@ -181,10 +182,10 @@ export default class Feedback extends KEventTarget {
             historyMax: 10,
         },
         templates: {
-            'fixed': require(`BobjollTemplate/feedback-v1.0/fixed.${View.ext}`),
-            'fixed_question': require(`BobjollTemplate/feedback-v1.0/fixed-question.${View.ext}`),
-            'message': require(`BobjollTemplate/feedback-v1.0/message.${View.ext}`),
-            'static': require(`BobjollTemplate/feedback-v1.0/static.${View.ext}`),
+            'fixed': require(`BobjollTemplate/feedback-v1.0/fixed.${EXT}`),
+            'fixed_question': require(`BobjollTemplate/feedback-v1.0/fixed-question.${EXT}`),
+            'message': require(`BobjollTemplate/feedback-v1.0/message.${EXT}`),
+            'static': require(`BobjollTemplate/feedback-v1.0/static.${EXT}`),
         }
     };
 
