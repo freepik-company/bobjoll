@@ -152,6 +152,8 @@ export default class Autocomplete {
 
                             if (value) {
                                 field.value = self.value = value;
+
+                                field.dispatchEvent(new Event('change'));
                             }
                         }
 
