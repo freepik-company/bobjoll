@@ -22,8 +22,8 @@ interface TouchEvent extends UIEvent {
     originalEvent: any;
 };
 
-import { EventListenerOn } from 'Helpers';
 import { Settings } from 'Settings';
+import { delegate } from 'bobjoll/ts/library/dom';
 
 (function() {
     let touch = (('ontouchstart' in window) || ((navigator as any).MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
@@ -31,7 +31,7 @@ import { Settings } from 'Settings';
     let timeout: number;
 
     if (touch) {
-        EventListenerOn('body', '.scrollable', 'touchstart', function(this: HTMLElement, e: TouchEvent) {
+        delegate('.scrollable', 'touchstart', function(this: HTMLElement, e: TouchEvent) {
             e.stopPropagation();
 
             if (timeout) clearTimeout(timeout);
@@ -43,7 +43,7 @@ import { Settings } from 'Settings';
             }
         });
 
-        EventListenerOn('body', '.scrollable', 'touchmove', function(this: HTMLElement, e: TouchEvent) {
+        delegate('.scrollable', 'touchmove', function(this: HTMLElement, e: TouchEvent) {
             e.stopPropagation();
 
             if (!disable(this)) {
@@ -58,7 +58,7 @@ import { Settings } from 'Settings';
         });
     }
 
-    EventListenerOn('body', '.scrollable', 'DOMMouseScroll mousewheel', function(this: HTMLElement, e: any) {
+    delegate('.scrollable', 'DOMMouseScroll mousewheel', function(this: HTMLElement, e: any) {
         e.stopPropagation();
 
         if(!disable(this) && this.scrollHeight > this.clientHeight) {

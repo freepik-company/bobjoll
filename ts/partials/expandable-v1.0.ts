@@ -1,7 +1,7 @@
-import { EventListenerOn } from 'Helpers';
+import { delegate } from 'bobjoll/ts/library/dom';
 
 (function() {
-	EventListenerOn('body', '.expandable__more', 'click', function(this: HTMLElement, e: Event) {
+	delegate('.expandable__more', 'click', function(this: HTMLElement, e: Event) {
 		e.preventDefault();
 
 		let parent = this.parentElement;

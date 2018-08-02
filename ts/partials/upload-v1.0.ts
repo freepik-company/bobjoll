@@ -1,9 +1,9 @@
-import { EventListenerOn } from 'Helpers';
+import { delegate } from 'bobjoll/ts/library/dom';
 
 (function() {
 	var upload_wrapper: any = document.querySelectorAll(upload_wrapper);
 
-	EventListenerOn('body', '.upload input', 'change', function(this: HTMLInputElement) {
+	delegate('.upload input', 'change', function(this: HTMLInputElement) {
 		let label = (this.nextElementSibling as HTMLElement | null);
 
 		if (label && this.files && this.files.length > 0) {

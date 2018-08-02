@@ -20,8 +20,8 @@ interface ModalPrintSettings {
 }
 
 import View from 'BobjollView';
-import { EventListenerOn } from 'Helpers';
 import 'bobjoll/ts/library/common';
+import { delegate } from 'bobjoll/ts/library/dom';
 
 var extend = require('bobjoll/ts/library/extend');
 
@@ -182,11 +182,11 @@ export class Modal {
             }
         });
 
-        EventListenerOn('body', '.modal__close', 'click', function(this: HTMLElement) {
+        delegate('.modal__close', 'click', function(this: HTMLElement) {
             modal.hide();
         });
 
-        EventListenerOn('body', '.modal__trigger', 'click', function(this: HTMLElement, e: Event) {
+        delegate('.modal__trigger', 'click', function(this: HTMLElement, e: Event) {
             if (!this.dataset.allowDefault) {
                 e.preventDefault();
                 e.stopPropagation();
