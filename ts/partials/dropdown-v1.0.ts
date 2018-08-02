@@ -3,7 +3,9 @@ import 'bobjoll/ts/library/common';
 import { delegate } from 'bobjoll/ts/library/dom';
 
 (function() {
-	let template = require(`BobjollTemplate/dropdown-v1.0/element.${View.ext}`);
+	const EXT = View.ext;
+	
+	let template = require(`BobjollTemplate/dropdown-v1.0/element.${EXT}`);
 	let dropdown: NodeListOf<Element> = document.querySelectorAll('.dropdown select');
 
 	// Build Dropdown
