@@ -19,8 +19,8 @@
 		<div class="scrollable">
 			<ul>
 			{% for key, option in options %}
-				{% if option.value is defined %}
-				<li data-value="{{option.value}}">{{option.innerText}}</li>
+				{% if option.value is defined and option.disabled == false %}
+				<li data-value="{{option.value}}" data-disabled="{{ option.disabled }}">{{option.innerText}}</li>
 				{% endif %}
 			{% endfor %}
 			</ul>			
