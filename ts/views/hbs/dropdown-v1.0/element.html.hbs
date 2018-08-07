@@ -18,9 +18,11 @@
 		<div class="scrollable">
 			<ul>
 			{{#each options}}
+			    {{#compare disabled '==' false}}
 				{{#if value}}
 				<li data-value="{{value}}">{{innerText}}</li>
 				{{/if}}
+				{{/compare}}
 			{{/each}}		
 			</ul>			
 		</div>
