@@ -71,7 +71,7 @@
 		}
 
 		@if nth($hex, 3) and nth($hex, 3) != 0 {
-			$color: call(if(nth($hex, 3) >= 0, darken, lighten), $color, abs(nth($hex, 3)));
+			$color: call(get-function(if(nth($hex, 3) >=0, darken, lighten)), $color, abs(nth($hex, 3)));
 		}
 
 		@if type-of($hex) == 'list' {
@@ -80,7 +80,7 @@
 			}
 
 			@if $darken != 1 {
-				$color: call(if($darken >= 0, darken, lighten), $color, abs($darken));
+				$color: call(get-function(if($darken >=0, darken, lighten)), $color, abs($darken));
 			}
 		}
 
