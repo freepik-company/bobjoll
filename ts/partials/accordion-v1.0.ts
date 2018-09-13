@@ -1,5 +1,6 @@
 import 'bobjoll/ts/library/common';
 import { delegate, delegateRemove, qq } from 'bobjoll/ts/library/dom';
+import { IsUrlValid } from 'bobjoll/ts/library/helpers';
 
 class Accordion {
 	private static instance: Accordion | null;
@@ -70,7 +71,7 @@ class Accordion {
 						}
 
 						button.classList[indexActive === index ? 'add' : 'remove']('active');
-					} else if (href && indexActive === index) {
+					} else if (href && indexActive === index && IsUrlValid(href)) {
 						window.location.href = href;
 					}
 				});

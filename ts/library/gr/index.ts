@@ -2,7 +2,8 @@ import View from 'BobjollView';
 import { qq, q, qi } from './dom.q';
 import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
 
-const messageTemplate = require(`BobjollTemplate/alert-v1.0/element.${View.ext}`);
+const EXT = View.ext;
+const messageTemplate = require(`BobjollTemplate/alert-v1.0/element.${EXT}`);
 
 export interface GrUser {
     id: number;

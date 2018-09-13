@@ -2,6 +2,7 @@ import View from 'BobjollView';
 import { Settings } from 'Settings';
 import { CookieStorage } from 'cookie-storage';
 
+const EXT = View.ext;
 const STORAGE_VISIBILITY_NS = 'notification-visibility';
 const STORAGE_COUNT_NS = 'notification-count';
 const Cookies = new CookieStorage();
@@ -18,7 +19,7 @@ export default class Notifications {
             fixed: false,
             recurrent: false,
             timeout: 5000,
-            template: require(`BobjollTemplate/notification-v1.1/element.${View.ext}`),
+            template: require(`BobjollTemplate/notification-v1.1/element.${EXT}`),
             position: 'bottom-left',
             cookieExpiry: new Date(new Date().getTime() + (365 * 24 * 60 * 60 * 1000)),
         }
@@ -29,7 +30,7 @@ export default class Notifications {
     }
 
     private setup() {
-        let template = require(`BobjollTemplate/notification-v1.1/wrapper.${View.ext}`);
+        let template = require(`BobjollTemplate/notification-v1.1/wrapper.${EXT}`);
         let wrapper = document.getElementById('notifications');
 
         if (!wrapper) {

@@ -4,6 +4,7 @@ import autocompleteV10 from 'bobjoll/ts/partials/autocomplete-v1.0';
 import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
 
 // tslint:disable-next-line:no-var-requires
+const EXT = View.ext;
 const extend = require('bobjoll/ts/library/extend');
 export class TagsField extends KEventTarget {
     private items: HTMLElement | null = null;
@@ -14,8 +15,8 @@ export class TagsField extends KEventTarget {
     private settingsDefault = {
         selector: q('.tag-field')!,
         templates: {
-            field: require(`BobjollTemplate/tags-v1.0/wrapper.${View.ext}`),
-            tag: require(`BobjollTemplate/tags-v1.0/element.${View.ext}`),
+            field: require(`BobjollTemplate/tags-v1.0/wrapper.${EXT}`),
+            tag: require(`BobjollTemplate/tags-v1.0/element.${EXT}`),
         }
     };
 

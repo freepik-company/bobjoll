@@ -1,8 +1,8 @@
-import { EventListenerOn } from 'Helpers';
+import { delegate } from 'bobjoll/ts/library/dom';
 import 'bobjoll/ts/library/common';
 
 (function() {
-    EventListenerOn('body', '.password__toggle', 'click', function (this: HTMLElement, e: Event) {
+    delegate('.password__toggle', 'click', function (this: HTMLElement, e: Event) {
         const parents = this.parents('.password');
 
         if (parents.length > 0) {

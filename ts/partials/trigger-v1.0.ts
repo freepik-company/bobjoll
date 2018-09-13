@@ -1,7 +1,7 @@
-import { EventListenerOn } from 'Helpers';
+import { delegate } from 'bobjoll/ts/library/dom';
 
 (function() {
-	EventListenerOn('body', '.trigger__button', 'click', function(this: HTMLElement, e: Event) {
+	delegate('.trigger__button', 'click', function(this: HTMLElement, e: Event) {
 		e.preventDefault();
 
 		let id: string | undefined = this.dataset['trigger'];
@@ -30,7 +30,7 @@ import { EventListenerOn } from 'Helpers';
 		this.dispatchEvent(new Event(`toggle`));
 	});
 
-	EventListenerOn('body', '.trigger__close', 'click', function(this: HTMLElement, e: Event) {
+	delegate('.trigger__close', 'click', function(this: HTMLElement, e: Event) {
 		e.preventDefault();
 
 		let parents = this.parents('.trigger');

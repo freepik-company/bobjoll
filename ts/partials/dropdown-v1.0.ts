@@ -1,9 +1,11 @@
 import View from 'BobjollView';
-import { EventListenerOn } from 'Helpers';
 import 'bobjoll/ts/library/common';
+import { delegate } from 'bobjoll/ts/library/dom';
 
 (function() {
-	let template = require(`BobjollTemplate/dropdown-v1.0/element.${View.ext}`);
+	const EXT = View.ext;
+	
+	let template = require(`BobjollTemplate/dropdown-v1.0/element.${EXT}`);
 	let dropdown: NodeListOf<Element> = document.querySelectorAll('.dropdown select');
 
 	// Build Dropdown
@@ -15,7 +17,7 @@ import 'bobjoll/ts/library/common';
 		}));
 	});
 
-	EventListenerOn('body', '.dropdown__button', 'click', function(this: HTMLElement, e: Event) {
+	delegate('.dropdown__button', 'click', function(this: HTMLElement, e: Event) {
 		e.preventDefault();
 
 		let parents = this.parents('.dropdown');
@@ -36,7 +38,7 @@ import 'bobjoll/ts/library/common';
 		}
 	});
 
-	EventListenerOn('body', '.dropdown__select li', 'click', function(this: HTMLElement, e: Event) {
+	delegate('.dropdown__select li', 'click', function(this: HTMLElement, e: Event) {
 		e.preventDefault();
 
 		let parents = this.parents('.dropdown');
@@ -64,7 +66,7 @@ import 'bobjoll/ts/library/common';
 		}
 	});
 
-	EventListenerOn('body', '.dropdown__search input', 'keyup', function(this: HTMLInputElement, e: KeyboardEvent) {
+	delegate('.dropdown__search input', 'keyup', function(this: HTMLInputElement, e: KeyboardEvent) {
 		e.preventDefault();
 
 		let value: string = this.value.trim();
