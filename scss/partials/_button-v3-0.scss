@@ -317,6 +317,30 @@
                 .icon {
                     color: color('inverted', 'buttons');
                 }
+
+                &.button--flat.button--inverted {
+                    box-shadow: inset 0px 0px 0px 100px color('inverted', 'buttons');
+
+                    color: color($color, 'social');
+
+                    .icon {
+                        color: color($color, 'social');
+                    }
+
+                    &.active, &:hover {
+                        box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 5);
+
+                        color: color('inverted', 'buttons');
+
+                        .icon {
+                            color: color('inverted', 'buttons');
+                        }
+                    }
+
+                    &.active, &:active {
+                        box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 7);
+                    }
+                }
                 
                 &.button--outline {
                     box-shadow: inset 0px 0px 0px $base-border-width $hex;
