@@ -3,8 +3,8 @@
 
 	@font-face {
 		font-family: $webfont;
-		src: url("~bobjoll/fonts/bobjoll.woff2?c0d31471080473ef78586af5943d3314") format("woff2"),
-url("~bobjoll/fonts/bobjoll.woff?c0d31471080473ef78586af5943d3314") format("woff");
+		src: url("~bobjoll/fonts/bobjoll.woff2?383513c84ca5521a716694512e7851d2") format("woff2"),
+url("~bobjoll/fonts/bobjoll.woff?383513c84ca5521a716694512e7851d2") format("woff");
 	}
 
     .icon {
@@ -204,26 +204,28 @@ url("~bobjoll/fonts/bobjoll.woff?c0d31471080473ef78586af5943d3314") format("woff
     .icon--support { &::before { content: "\f188"; } }
     .icon--tablet { &::before { content: "\f189"; } }
     .icon--tag { &::before { content: "\f18a"; } }
-    .icon--thumb-down { &::before { content: "\f18b"; } }
-    .icon--thumb-up { &::before { content: "\f18c"; } }
-    .icon--time { &::before { content: "\f18d"; } }
-    .icon--trash { &::before { content: "\f18e"; } }
-    .icon--twitter { &::before { content: "\f18f"; } }
-    .icon--underline { &::before { content: "\f190"; } }
-    .icon--undo { &::before { content: "\f191"; } }
-    .icon--unlock { &::before { content: "\f192"; } }
-    .icon--up-small { &::before { content: "\f193"; } }
-    .icon--up { &::before { content: "\f194"; } }
-    .icon--upload { &::before { content: "\f195"; } }
-    .icon--url { &::before { content: "\f196"; } }
-    .icon--user { &::before { content: "\f197"; } }
-    .icon--vector { &::before { content: "\f198"; } }
-    .icon--video { &::before { content: "\f199"; } }
-    .icon--vimeo { &::before { content: "\f19a"; } }
-    .icon--visa { &::before { content: "\f19b"; } }
-    .icon--volume { &::before { content: "\f19c"; } }
-    .icon--world { &::before { content: "\f19d"; } }
-    .icon--youtube { &::before { content: "\f19e"; } }
-    .icon--zoom-in { &::before { content: "\f19f"; } }
-    .icon--zoom-out { &::before { content: "\f1a0"; } }
+    .icon--telegram { &::before { content: "\f18b"; } }
+    .icon--thumb-down { &::before { content: "\f18c"; } }
+    .icon--thumb-up { &::before { content: "\f18d"; } }
+    .icon--time { &::before { content: "\f18e"; } }
+    .icon--trash { &::before { content: "\f18f"; } }
+    .icon--twitter { &::before { content: "\f190"; } }
+    .icon--underline { &::before { content: "\f191"; } }
+    .icon--undo { &::before { content: "\f192"; } }
+    .icon--unlock { &::before { content: "\f193"; } }
+    .icon--up-small { &::before { content: "\f194"; } }
+    .icon--up { &::before { content: "\f195"; } }
+    .icon--upload { &::before { content: "\f196"; } }
+    .icon--url { &::before { content: "\f197"; } }
+    .icon--user { &::before { content: "\f198"; } }
+    .icon--vector { &::before { content: "\f199"; } }
+    .icon--video { &::before { content: "\f19a"; } }
+    .icon--vimeo { &::before { content: "\f19b"; } }
+    .icon--visa { &::before { content: "\f19c"; } }
+    .icon--volume { &::before { content: "\f19d"; } }
+    .icon--whatsapp { &::before { content: "\f19e"; } }
+    .icon--world { &::before { content: "\f19f"; } }
+    .icon--youtube { &::before { content: "\f1a0"; } }
+    .icon--zoom-in { &::before { content: "\f1a1"; } }
+    .icon--zoom-out { &::before { content: "\f1a2"; } }
 }
