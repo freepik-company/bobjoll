@@ -50,7 +50,7 @@ class Accordion {
 		if (wrapper) {
 			const collapsible = 'true' === (wrapper.dataset.collapsible || wrapper.dataset.closable);
 
-			qq('.accordion__link', wrapper).forEach(item => item.classList.remove('active'));
+			qq('.accordion__link', wrapper).forEach(item => item !== this ? item.classList.remove('active') : null);
 
 			(this.classList as any)[collapsible ? 'toggle' : 'add']('active');
 		}
