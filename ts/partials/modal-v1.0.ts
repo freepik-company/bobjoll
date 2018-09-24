@@ -3,6 +3,7 @@ interface ModalAddSettings {
     html?: string;
     media?: string;
     multilayer?: boolean;
+    containerHtml?: string;
 }
 
 interface ModalHideSettings {
@@ -17,6 +18,7 @@ interface ModalPrintSettings {
     show?: boolean;
     media?: string;
     multilayer?: boolean;
+    containerHtml?: string;
 }
 
 import View from 'BobjollView';
