@@ -1,4 +1,4 @@
-interface ModalAddSettings {
+export interface ModalAddSettings {
     name: string;
     html?: string;
     media?: string;
@@ -6,13 +6,13 @@ interface ModalAddSettings {
     containerHtml?: string;
 }
 
-interface ModalHideSettings {
+export interface ModalHideSettings {
     all?: boolean;
     show?: string;
     dispatch?: boolean;
 }
 
-interface ModalPrintSettings {
+export interface ModalPrintSettings {
     name: string;
     html: string;
     show?: boolean;
