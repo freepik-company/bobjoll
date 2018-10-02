@@ -13,6 +13,7 @@ export class TagsField extends KEventTarget {
     private settings: Settings;
     private autocomplete: autocompleteV10 | null = null;
     private settingsDefault = {
+        lowercase: false,
         selector: q('.tag-field')!,
         templates: {
             field: require(`BobjollTemplate/tags-v1.0/wrapper.${EXT}`),
@@ -73,6 +74,10 @@ export class TagsField extends KEventTarget {
 
     private add(value: string) {
         if (0 < value.length) {
+            if (this.settings.lowercase) {
+                value = value.toLowerCase();
+            }
+
             if (this.input) {
                 this.input.value = '';
                 this.input.insertAdjacentHTML('beforebegin', View.render(this.settings.templates.tag, {
@@ -100,6 +105,7 @@ export class TagsField extends KEventTarget {
         if (this.autocomplete) {
             this.autocomplete.hide();
         }
+
         this.settings.input.value = tags.join(',');
     }
 
@@ -223,6 +229,7 @@ interface Settings {
     selector: HTMLElement;
     input: HTMLInputElement;
     source: TSourceMethod;
+    lowercase: boolean;
     templates: {
         field: Function;
         tag: Function;
@@ -231,6 +238,7 @@ interface Settings {
 
 interface CustomSettings {
     selector?: HTMLElement;
+    lowercase?: boolean;
     source: TSourceMethod;
     templates?: {
         field?: Function;
