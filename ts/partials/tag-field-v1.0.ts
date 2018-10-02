@@ -86,6 +86,8 @@ export class TagsField extends KEventTarget {
         const val = value.trim().toLowerCase();
 
         if (0 < value.length) {
+            value = value.trim();
+
             if (this.settings.lowercase) {
                 value = value.toLowerCase();
             }
