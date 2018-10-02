@@ -13,6 +13,7 @@ export class TagsField extends KEventTarget {
     private settings: Settings;
     private autocomplete: autocompleteV10 | null = null;
     private settingsDefault = {
+        allowDuplicates: true,
         lowercase: false,
         selector: q('.tag-field')!,
         templates: {
@@ -73,6 +74,8 @@ export class TagsField extends KEventTarget {
     }
 
     private add(value: string) {
+        const values = this.getItems();
+
         if (0 < value.length) {
             if (this.settings.lowercase) {
                 value = value.toLowerCase();
@@ -80,12 +83,16 @@ export class TagsField extends KEventTarget {
 
             if (this.input) {
                 this.input.value = '';
-                this.input.insertAdjacentHTML('beforebegin', View.render(this.settings.templates.tag, {
-                    value: value
-                }));
+
+                if ((!this.settings.allowDuplicates && 0 > values.indexOf(value)) || this.settings.allowDuplicates) {
+                    this.input.insertAdjacentHTML('beforebegin', View.render(this.settings.templates.tag, {
+                        value: value
+                    }));
+
+                    this.update();
+                    this.dispatchEvent(new KEventChange(value, this.settings.input.value.split(',')));
+                }
             }
-            this.update();
-            this.dispatchEvent(new KEventChange(value, this.settings.input.value.split(',')));
         }
     }
 
@@ -226,6 +233,7 @@ type TReturnType = {
 type TSourceMethod = (query: string) => Promise<TReturnType>;
 
 interface Settings {
+    allowDuplicates: boolean;
     selector: HTMLElement;
     input: HTMLInputElement;
     source: TSourceMethod;
@@ -237,6 +245,7 @@ interface Settings {
 }
 
 interface CustomSettings {
+    allowDuplicates?: boolean;
     selector?: HTMLElement;
     lowercase?: boolean;
     source: TSourceMethod;
