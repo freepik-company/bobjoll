@@ -59,8 +59,16 @@ export class TagsField extends KEventTarget {
         this.update();
     }
 
-    public getItems(): string[] {
-        return this.settings.input.value.split(',');
+    public getItems(lowercase: boolean = false): string[] {
+        return this.settings.input.value.split(',').reduce((acc, value) => {
+            if (lowercase) {
+                value = value.toLocaleLowerCase();
+            }
+
+            acc.push(value.trim());
+
+            return acc;
+        }, <string[]>[]);
     }
 
     public clear() {
@@ -74,7 +82,8 @@ export class TagsField extends KEventTarget {
     }
 
     private add(value: string) {
-        const values = this.getItems();
+        const values = this.getItems(true);
+        const val = value.trim().toLowerCase();
 
         if (0 < value.length) {
             if (this.settings.lowercase) {
@@ -84,7 +93,7 @@ export class TagsField extends KEventTarget {
             if (this.input) {
                 this.input.value = '';
 
-                if ((!this.settings.allowDuplicates && 0 > values.indexOf(value)) || this.settings.allowDuplicates) {
+                if ((!this.settings.allowDuplicates && (-1) === values.indexOf(val)) || this.settings.allowDuplicates) {
                     this.input.insertAdjacentHTML('beforebegin', View.render(this.settings.templates.tag, {
                         value: value
                     }));
