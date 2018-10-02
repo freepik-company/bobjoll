@@ -35,6 +35,8 @@ export class TagsField extends KEventTarget {
         } else {
             console.error(`TagField couldn't be initialized due to missing wrapper element.`);
         }
+
+        console.log(this.getItems());
     }
 
     public addEventListener(t: 'change', listener: (ev: KEvent) => any, useCapture?: boolean): void;
@@ -55,6 +57,10 @@ export class TagsField extends KEventTarget {
         });
 
         this.update();
+    }
+
+    public getItems(): string[] {
+        return this.settings.input.value.split(',');
     }
 
     private add(value: string) {
