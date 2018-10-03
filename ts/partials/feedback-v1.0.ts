@@ -248,7 +248,7 @@ export default class Feedback extends KEventTarget {
 
                 if (!this.settings.default.viewCounter) {
                     this.fixed.addEventListener('mouseup', (e: Event) => {
-                        let target: EventTarget = e.target;
+                        let target = e.target;
 
                         if (target === this.fixed) {
                             this.hide();
