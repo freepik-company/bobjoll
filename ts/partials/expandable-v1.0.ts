@@ -1,21 +1,19 @@
-import { delegate } from 'bobjoll/ts/library/dom';
+import { delegate, qq } from 'bobjoll/ts/library/dom';
 
-(function() {
-	delegate('.expandable__more', 'click', function(this: HTMLElement, e: Event) {
+(function () {
+	delegate('.expandable__more', 'click', function (this: HTMLElement, e: Event) {
 		e.preventDefault();
 
 		let parent = this.parentElement;
 
 		if (parent) {
-			let children: NodeListOf<Element> | null = parent.getElementsByTagName('li');
+			let children = qq('li', parent);
 
-			if (children && children.length > 0) {
-				[].forEach.call(children, (element: HTMLElement) => {
-					element.classList.remove('hide');
-				});			
-			}
+			children.forEach(element => {
+				element.classList.remove('hide');
+			});
 
-			parent.removeChild(this);		
+			parent.removeChild(this);
 		}
 	});
 })();
