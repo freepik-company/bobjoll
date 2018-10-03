@@ -292,7 +292,8 @@ export default class Notifications {
     }
 
     getScrollPosition(): number {
-        return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        // return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        return window.pageYOffset || document.body.scrollTop;
     }
 }
 
