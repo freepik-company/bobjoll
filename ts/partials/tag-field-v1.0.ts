@@ -65,7 +65,11 @@ export class TagsField extends KEventTarget {
                 value = value.toLocaleLowerCase();
             }
 
-            acc.push(value.trim());
+            value = value.trim();
+
+            if ('' !== value) {
+                acc.push(value);
+            }
 
             return acc;
         }, <string[]>[]);
