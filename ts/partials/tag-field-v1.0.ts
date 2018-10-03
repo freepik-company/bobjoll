@@ -50,13 +50,22 @@ export class TagsField extends KEventTarget {
     }
 
     public removeItems(arr: string[]) {
+        let valuesRemoved: string[] = [];
+        let value: string | string[] = '';
         qq('.tag-field__item', this.settings.selector).forEach(item => {
             if (arr.indexOf(item.innerText.trim()) >= 0 && item.parentElement) {
+                const value = item.dataset.value;
                 item.parentElement.removeChild(item);
+                if (value) {
+                    valuesRemoved.push(value);
+                }
             }
         });
-
+        if (1 === valuesRemoved.length) {
+            value = valuesRemoved.pop() || '';
+        }
         this.update();
+        this.dispatchEvent(new KEventChange(value, this.settings.input.value.split(','), 'remove' ) );
     }
 
     public getItems(lowercase: boolean = false): string[] {
@@ -76,13 +85,8 @@ export class TagsField extends KEventTarget {
     }
 
     public clear() {
-        qq('.tag-field__item', this.settings.selector).forEach(item => {
-            if (item.parentElement) {
-                item.parentElement.removeChild(item);
-            }
-        });
-
-        this.update();
+        const values = this.getItems();
+        this.removeItems(values);
     }
 
     private add(value: string) {
@@ -213,13 +217,9 @@ export class TagsField extends KEventTarget {
         });
 
         const removeHandler = function(this: HTMLElement) {
-            const item = this.parentElement;
-
+            const item = <HTMLElement | undefined>this.parent('.tag-field__item');
             if (item) {
-                if (self.items) {
-                    self.items.removeChild(item);
-                }
-                self.update();
+                self.removeItems([item.dataset.value || '']);
             }
         };
         if (this.items) {
@@ -230,13 +230,14 @@ export class TagsField extends KEventTarget {
 }
 
 export class KEventChange extends KEvent {
-    constructor(tag: string, tags: string[]) {
+    constructor(tag: string | string[], tags: string[], action: ('add' | 'remove') = 'add') {
         super();
 
         this.type = 'change';
         this.extra = {
             tag: tag,
             tags: tags,
+            action: action,
         };
     }
 }
