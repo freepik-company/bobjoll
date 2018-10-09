@@ -1,71 +1,72 @@
-$color-gray-1: #e3e3e3 !default;
-$color-gray-2: #b4b4b4 !default;
-$color-gray-3: #6d6d6d !default;
-$color-gray-4: #4a4a4a !default;
-
 // Gray
-$gray-shade-9: #1D262D;
-$gray-shade-8: #374957;
-$gray-shade-7: #5F7D95;
-$gray-shade-6: #869FB2;
-$gray-shade-5: #A5B7C6;
-$gray-shade-4: #BAC8D3;
-$gray-shade-3: #CFD9E0;
-$gray-shade-2: #E3E9ED;
-$gray-shade-1: #F8FAFB;
+$gray-shade-9: #1D262D !default;
+$gray-shade-8: #374957 !default;
+$gray-shade-7: #5F7D95 !default;
+$gray-shade-6: #869FB2 !default;
+$gray-shade-5: #A5B7C6 !default;
+$gray-shade-4: #BAC8D3 !default;
+$gray-shade-3: #CFD9E0 !default;
+$gray-shade-2: #E3E9ED !default;
+$gray-shade-1: #F8FAFB !default;
 
 // Dark blue
-$dark-blue-shade-6: #08192B;
-$dark-blue-shade-5: #0B2239;
-$dark-blue-shade-4: #113255;
-$dark-blue-shade-3: #143B63;
-$dark-blue-shade-2: #164372;
-$dark-blue-shade-1: #194C80;
+$dark-blue-shade-7: #08192B !default;
+$dark-blue-shade-6: #0B2239 !default;
+$dark-blue-shade-5: #0E2A47 !default;
+$dark-blue-shade-4: #113255 !default;
+$dark-blue-shade-3: #143B63 !default;
+$dark-blue-shade-2: #164372 !default;
+$dark-blue-shade-1: #194C80 !default;
 
 // Purple
-$purple-shade-7: #202095;
-$purple-shade-6: #2D2DB0;
-$purple-shade-5: #3636CC;
-$purple-shade-4: #5F5FF6;
-$purple-shade-3: #8080F1;
-$purple-shade-2: #B3B3FC;
-$purple-shade-1: #D7D7FF;
+$purple-shade-8: #202095 !default;
+$purple-shade-7: #2D2DB0 !default;
+$purple-shade-6: #3636CC !default;
+$purple-shade-5: #4949E7 !default;
+$purple-shade-4: #5F5FF6 !default;
+$purple-shade-3: #8080F1 !default;
+$purple-shade-2: #B3B3FC !default;
+$purple-shade-1: #D7D7FF !default;
 
 // Blue
-$blue-shade-7: #04458F;
-$blue-shade-6: #0353A7;
-$blue-shade-5: #0161CD;
-$blue-shade-4: #2C8CF4;
-$blue-shade-3: #5EB2FC;
-$blue-shade-2: #92CDFA;
-$blue-shade-1: #C7EBFF;
+$blue-shade-8: #04458F !default;
+$blue-shade-7: #0353A7 !default;
+$blue-shade-6: #0161CD !default;
+$blue-shade-5: #1273EB !default;
+$blue-shade-4: #2C8CF4 !default;
+$blue-shade-3: #5EB2FC !default;
+$blue-shade-2: #92CDFA !default;
+$blue-shade-1: #C7EBFF !default;
 
 // Green
-$green-shade-7: #00AF80;
-$green-shade-6: #2BC48A;
-$green-shade-5: #4AD295;
-$green-shade-4: #8DF690;
-$green-shade-3: #ABFFAD;
-$green-shade-2: #C7FFC7;
-$green-shade-1: #E2FFE2;
+$green-shade-8: #00AF80 !default;
+$green-shade-7: #2BC48A !default;
+$green-shade-6: #4AD295 !default;
+$green-shade-5: #69E781 !default;
+$green-shade-4: #8DF690 !default;
+$green-shade-3: #ABFFAD !default;
+$green-shade-2: #C7FFC7 !default;
+$green-shade-1: #E2FFE2 !default;
 
 // Yellow
-$yellow-shade-7: #EB7D16;
-$yellow-shade-6: #F69110;
-$yellow-shade-5: #FCA120;
-$yellow-shade-4: #FCBD24;
-$yellow-shade-3: #FCD250;
-$yellow-shade-2: #FCDB7E;
-$yellow-shade-1: #FFEEB6;
+$yellow-shade-8: #EB7D16 !default;
+$yellow-shade-7: #F69110 !default;
+$yellow-shade-6: #FCA120 !default;
+$yellow-shade-5: #FFB229 !default;
+$yellow-shade-4: #FCBD24 !default;
+$yellow-shade-3: #FCD250 !default;
+$yellow-shade-2: #FCDB7E !default;
+$yellow-shade-1: #FFEEB6 !default;
 
 // Red
-$red-shade-7: #C12020;
-$red-shade-6: #D53232;
-$red-shade-5: #EC3A3B;
-$red-shade-4: #FF8578;
-$red-shade-3: #FFA68F;
-$red-shade-2: #FFC8AF;
-$red-shade-1: #FFDECC;
+$red-shade-8: #C12020 !default;
+$red-shade-7: #D53232 !default;
+$red-shade-6: #EC3A3B !default;
+$red-shade-5: #FB5252 !default;
+$red-shade-4: #FF8578 !default;
+$red-shade-3: #FFA68F !default;
+$red-shade-2: #FFC8AF !default;
+$red-shade-1: #FFDECC !default;
 
 $color-main: #1273eb !default;
 $color-dark: #0E2A47 !default;
@@ -239,6 +240,7 @@ $global-colors: (
 		'1': $gray-shade-1,
 	),
 	'dark-blue': (
+		'7': $dark-blue-shade-7,
 		'6': $dark-blue-shade-6,
 		'5': $dark-blue-shade-5,
 		'4': $dark-blue-shade-4,
@@ -247,6 +249,7 @@ $global-colors: (
 		'1': $dark-blue-shade-1,
 	),
 	'purple': (
+		'8': $purple-shade-8,
 		'7': $purple-shade-7,
 		'6': $purple-shade-6,
 		'5': $purple-shade-5,
@@ -256,6 +259,7 @@ $global-colors: (
 		'1': $purple-shade-1,
 	),
 	'blue': (
+		'8': $blue-shade-8,
 		'7': $blue-shade-7,
 		'6': $blue-shade-6,
 		'5': $blue-shade-5,
@@ -265,6 +269,7 @@ $global-colors: (
 		'1': $blue-shade-1,
 	),
 	'green': (
+		'8': $green-shade-8,
 		'7': $green-shade-7,
 		'6': $green-shade-6,
 		'5': $green-shade-5,
@@ -274,6 +279,7 @@ $global-colors: (
 		'1': $green-shade-1,
 	),
 	'yellow': (
+		'8': $yellow-shade-8,
 		'7': $yellow-shade-7,
 		'6': $yellow-shade-6,
 		'5': $yellow-shade-5,
@@ -283,6 +289,7 @@ $global-colors: (
 		'1': $yellow-shade-1,
 	),
 	'red': (
+		'8': $red-shade-8,
 		'7': $red-shade-7,
 		'6': $red-shade-6,
 		'5': $red-shade-5,
