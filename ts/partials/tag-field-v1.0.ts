@@ -65,7 +65,7 @@ export class TagsField extends KEventTarget {
             value = valuesRemoved.pop() || '';
         }
         this.update();
-        this.dispatchEvent(new KEventChange(value, this.settings.input.value.split(','), 'remove' ) );
+        this.dispatchEvent(new KEventChange(value, this.settings.input.value.split(',').filter(value => '' !== value), 'remove' ) );
     }
 
     public getItems(lowercase: boolean = false): string[] {
@@ -109,7 +109,7 @@ export class TagsField extends KEventTarget {
                     }));
 
                     this.update();
-                    this.dispatchEvent(new KEventChange(value, this.settings.input.value.split(',')));
+                    this.dispatchEvent(new KEventChange(value, this.settings.input.value.split(',').filter(value => '' !== value)));
                 }
             }
         }
@@ -235,7 +235,7 @@ export class KEventChange extends KEvent {
 
         this.type = 'change';
         this.extra = {
-            tag: tag,
+            tag: Array.isArray(tag) ? (1 == tag.length ? tag[0] : tag) : tag,
             tags: tags,
             action: action,
         };
