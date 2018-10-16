@@ -1,148 +1,174 @@
+import '../library/common';
+import { qq, q } from "../library/dom";
 import View from 'BobjollView';
-import 'bobjoll/ts/library/common';
-import { delegate } from 'bobjoll/ts/library/dom';
 
-(function() {
-	const EXT = View.ext;
-	
-	let template = require(`BobjollTemplate/dropdown-v1.0/element.${EXT}`);
-	let dropdown: NodeListOf<Element> = document.querySelectorAll('.dropdown select');
+export class Dropdown {
+	private static readonly templateExt = View.ext;
+	private static readonly template = require(`BobjollTemplate/dropdown-v1.0/element.${Dropdown.templateExt}`);
+	private static readonly defaults: DropdownDefaults = {
+		search: false,
+	}
 
-	// Build Dropdown
-	[].forEach.call(dropdown, (element: HTMLSelectElement) => {
-		element.insertAdjacentHTML('afterend', View.render(template, {
-			options: Array.prototype.slice.call(element.options),
-			dataset: element.dataset,
-			selectedIndex: element.options.selectedIndex
-		}));
-	});
+	private settings: DropdownSettings;
+	private button: HTMLButtonElement;
+	private select: HTMLSelectElement;
+	private search: HTMLInputElement;
+	private options: HTMLUListElement[];
+	private eventHandlers: DropdownEventHanlder[] = [];
 
-	delegate('.dropdown__button', 'click', function(this: HTMLElement, e: Event) {
-		e.preventDefault();
+	constructor(options: DropdownOptions) {
+		const select = <HTMLSelectElement|undefined>q('select', options.dropdown);
 
-		let parents = this.parents('.dropdown');
-		let active = this.classList.contains('active');
+		this.settings = { ...Dropdown.defaults, ...options };
 
-		if (parents.length > 0) {
-			let search: HTMLInputElement | null = parents[0].querySelector('input');
+		if (select) {
+			this.select = select;
 
-			if (search) {
-				search.focus();
-			}
-
-			removeActive();
-
-			if (!active) {
-				this.classList.add('active');
-			}
-		}
-	});
-
-	delegate('.dropdown__select li', 'click', function(this: HTMLElement, e: Event) {
-		e.preventDefault();
-
-		let parents = this.parents('.dropdown');
-
-		if (parents.length > 0) {
-			let dropdown = parents[0];
-			let select: HTMLSelectElement | null = dropdown.querySelector('select');
-			let button: Element | null = dropdown.querySelector('.dropdown__button');
-
-			if (select) {
-				let value = this.dataset['value'];
-
-				if (value) select.value = value;
-
-				select.dispatchEvent(new Event('change'));
-			}
-
-			if (button) {
-				let text = this.innerText;
-
-				if (text) button.innerHTML = text;
-
-				button.classList.remove('active');
-			}
-		}
-	});
-
-	delegate('.dropdown__search input', 'keyup', function(this: HTMLInputElement, e: KeyboardEvent) {
-		e.preventDefault();
-
-		let value: string = this.value.trim();
-
-		if (value.length > 0) {
-			let parents = this.parents('.dropdown');
-
-			if (parents.length > 0) {
-				let dropdown = parents[0];
-				let options: NodeListOf<Element> = dropdown.querySelectorAll('.dropdown__select li');
-				let keyword = new RegExp(value, 'gi');
-
-				if (options.length > 0) {
-					[].forEach.call(options, (element: HTMLElement) => {
-						let text = element.innerText;
-						let value = element.dataset['value'];
-
-						if ((text && text.match(keyword)) || (value && value.match(keyword))) {
-							element.classList.remove('hide');
-						} else {
-							element.classList.add('hide');
-						}
-					});
-				}
+			try {
+				this.render();
+				this.addEventListeners();
+			} catch(err) {
+				console.error(err);
 			}
 		} else {
-			resetSearch(this);
-		}
-
-		if (e.keyCode === 27) {
-			if (value.length > 0) {
-				let parents = this.parents('.dropdown');
-
-				if (parents.length > 0) {
-					let dropdown = parents[0];
-					let button = dropdown.querySelector('.dropdown__button');
-
-					if (button) {
-						button.classList.remove('active');
-					}
-				}
-			}
-
-			resetSearch(this);
-		}
-	});
-
-	window.addEventListener('mouseup', (e: Event) => {
-		const target = <Element>e.target;
-		// this is a test
-		if(target.parents && target.parents('.dropdown').length == 0) {
-			removeActive();
-		}
-	});
-
-	function resetSearch(element: HTMLInputElement) {
-		element.value = '';
-
-		let parents = element.parents('.dropdown');
-
-		if (parents.length > 0) {
-			let options: NodeListOf<Element> = parents[0].querySelectorAll('.dropdown__select li');
-
-			if (options.length > 0) {
-				[].forEach.call(options, (element: HTMLElement) => {
-					element.classList.remove('hide');
-				});
-			}
+			console.error('There was no HTMLSelectElement found in the Dropdown element.');
 		}
 	}
 
-	function removeActive() {
-		let dropdown: NodeListOf<Element> = document.querySelectorAll('.dropdown__button.active');
+	private addEventListeners() {
+		this.eventHandlers.push({
+			element: this.button,
+			eventType: 'click',
+			eventHandler: this.eventHandlerButtonClick.bind(this.button, this),
+		});
 
-		[].forEach.call(dropdown, (element: HTMLElement) => {
-			element.classList.remove('active');
+		this.options.forEach(option => 
+			this.eventHandlers.push({
+				element: option,
+				eventType: 'click',
+				eventHandler: this.eventHandlerItemClick.bind(option, this)
+			})	
+		);
+
+		if (this.search) {
+			this.eventHandlers.push({
+				element: this.search,
+				eventType: 'keyup',
+				eventHandler: this.eventHandlerInputKeyup.bind(this.search, this)
+			});
+		}
+
+		this.eventHandlers.forEach(event => event.element.addEventListener(event.eventType, event.eventHandler));
+
+		window.addEventListener('mouseup', (e: Event) => {
+			const target = <Element>e.target;
+			if (target.parents && target.parents('.dropdown').length == 0) {
+				this.close();
+			}
 		});
 	}
-})();
+
+	private eventHandlerButtonClick(this: HTMLButtonElement, self: Dropdown, e: Event) {
+		if (self.search) {
+			self.search.focus();
+		}
+
+		self.close();
+
+		if (!this.classList.contains('active')) {
+			this.classList.add('active');
+		}
+	}
+
+	private eventHandlerItemClick(this: HTMLUListElement, self: Dropdown, e: Event) {
+		if (this.dataset.value) {
+			self.select.value = this.dataset.value;
+			self.select.dispatchEvent(new Event('change'));
+		}
+
+		self.button.classList.remove('active');
+		self.button.innerText = this.innerText;
+	}
+
+	private eventHandlerInputKeyup(this: HTMLInputElement, self: Dropdown, e: Event) {
+		const value = this.value.trim();
+		const keyword = new RegExp(value, 'gi');
+
+		self.options.forEach(option => {
+			const text = option.innerText || '';
+			const value = option.dataset.value || '';
+			option.classList[text.match(keyword) || value.match(keyword) ? 'remove' : 'add']('hide');
+		});
+	}
+
+	private close() {
+		qq('.dropdown__button').forEach(dropdown => dropdown.classList.remove('active'));
+	}
+
+	private render() {
+		if ('true' == this.select.dataset.search || this.settings.search) {
+			this.settings.search = true;
+			this.select.dataset.search = 'true';
+		}
+
+		this.select.insertAdjacentHTML('afterend', 
+			View.render(Dropdown.template, {
+				options: [].slice.call(this.select.options),
+				dataset: this.select.dataset,
+				selectedIndex: this.select.options.selectedIndex
+			})
+		);
+		this.options = <HTMLUListElement[]>qq('.dropdown__select li', this.settings.dropdown);
+
+		const button = <HTMLButtonElement|undefined>q('.dropdown__button', this.settings.dropdown);
+
+		if (button) {
+			this.button = button;
+		} else {
+			throw Error('Dropdown wasn\'t initialized correctly, the button element is missing, please check your template.');
+		}
+
+		if (this.settings.search) {
+			const search = <HTMLInputElement | undefined>q('input', this.settings.dropdown);
+
+			if (search) {
+				this.search = search;
+			}
+		}
+	}
+
+	private searchReset() {
+		this.search.value = '';
+		this.options.forEach(option => option.classList.remove('hide'));
+	}
+
+	public destroy() {
+		const container = q('.dropdown__container', this.settings.dropdown);
+		if (container) {
+			this.settings.dropdown.removeChild(container);
+		}
+		this.eventHandlers.forEach(event => event.element.removeEventListener(event.eventType, event.eventHandler));
+	}
+}
+
+qq('.dropdown').forEach(dropdown => new Dropdown({ dropdown: dropdown }));
+
+export interface DropdownDefaults {
+	search: boolean;
+}
+
+export interface DropdownOptions {
+	search?: boolean;
+	dropdown: HTMLElement;
+}
+
+export interface DropdownSettings {
+	search: boolean;
+	dropdown: HTMLElement;
+}
+
+export interface DropdownEventHanlder {
+	element: Element;
+	eventType: string;
+	eventHandler: EventListenerOrEventListenerObject;
+}
