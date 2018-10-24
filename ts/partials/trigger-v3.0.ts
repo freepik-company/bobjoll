@@ -2,7 +2,7 @@ import { KEvent, KEventTarget } from '../library/event';
 import { qq, delegate, delegateRemove } from '../library/dom';
 
 export class Trigger extends KEventTarget {
-    private static instance: Trigger;
+    public static instance: Trigger;
     private static active: TriggerActive = {};
 
     constructor() {
@@ -125,17 +125,20 @@ export class Trigger extends KEventTarget {
             }, []);
     }
 
-    private static eventHandlerToggleButton(this: HTMLElement, e: Event) {
+    private static eventHandlerToggleButton(this: HTMLElement) {
         const id = this.dataset.trigger || '';
         const action = this.classList.contains('active') ? 'hide' : 'show';
 
         Trigger[action](id);
-
         Trigger.instance.dispatchEvent(new KEventToggle(this, action));
     }
 
-    private static eventHandlerCloseButton(this: HTMLElement, e: Event) {
-
+    private static eventHandlerCloseButton(this: HTMLElement) {
+        const trigger = this.closest('.trigger');
+    
+        if (trigger) {
+            Trigger.hide(trigger.id || '');
+        }
     }
 }
 
