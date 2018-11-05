@@ -169,7 +169,11 @@ export default class Autocomplete extends KEventTarget {
                     e.preventDefault();
 
                     setTimeout(() => {
-                        self.cancelled = true;
+                        if ('' === self.settings.sourceMessage) {
+                            self.cancelled = true;
+
+                            self.hide();
+                        }
 
                         const selected = field.results ? (field.results[self.index] || undefined) : undefined;
 
@@ -183,8 +187,6 @@ export default class Autocomplete extends KEventTarget {
                                 field.dispatchEvent(new Event('change'));
                             }
                         }
-
-                        self.hide();
                     }, 50);
                 }
             }) as EventListener;
