@@ -1,3 +1,4 @@
+{{#compare (get_length keywords) '>' 0}}
 <ul class="autocomplete__list">
 	{{#each keywords}}
 		<li class="autocomplete__item" data-value="{{#if value}}{{value}}{{else}}{{text}}{{/if}}">
@@ -8,3 +9,6 @@
 		</li>
 	{{/each}}
 </ul>
+{{else}}
+<p class="autocomplete__no-result mg-none pd-lv2 font-sm">{{message}}</p>
+{{/compare}}
