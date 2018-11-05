@@ -1,35 +1,41 @@
 import View from 'BobjollView';
 import { q, qq, delegate } from 'bobjoll/ts/library/dom';
-import autocompleteV10 from 'bobjoll/ts/partials/autocomplete-v1.0';
+import autocompleteV10, { KEventAdd, KEventSource } from 'bobjoll/ts/partials/autocomplete-v1.0';
 import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
 
 // tslint:disable-next-line:no-var-requires
 const EXT = View.ext;
-const extend = require('bobjoll/ts/library/extend');
 export class TagsField extends KEventTarget {
     private items: HTMLElement | null = null;
-    private input: HTMLInputElement | null = null;
+    private input: HTMLInputElement;
     private content: HTMLElement | null = null;
     private settings: Settings;
     private autocomplete: autocompleteV10 | null = null;
-    private settingsDefault = {
-        allowDuplicates: true,
-        lowercase: false,
-        selector: q('.tag-field')!,
-        templates: {
-            field: require(`BobjollTemplate/tags-v1.0/wrapper.${EXT}`),
-            tag: require(`BobjollTemplate/tags-v1.0/element.${EXT}`),
-        }
-    };
 
     constructor(settings: CustomSettings) {
         super();
-        this.settings = extend(this.settingsDefault, settings);
 
-        if (this.settings.selector) {
-            this.settings.input = (q('input', this.settings.selector) as HTMLInputElement);
+        if (settings.selector) {
+            const input = (q('input', settings.selector) as HTMLInputElement);
+            const field = require(`BobjollTemplate/tags-v1.0/wrapper.${EXT}`);
+            const tag = require(`BobjollTemplate/tags-v1.0/element.${EXT}`);
 
-            if (this.settings.input) {
+            if (input) {
+                this.settings = {
+                    allowDuplicates: true,
+                    lowercase: false,
+                    selector: q('.tag-field')!,
+                    sourceOnly: false,
+                    sourceMessage: '',
+                    input: input,
+                    templates: {
+                        field: field,
+                        tag: tag,
+                    },
+                    ...settings,
+                };
+                this.input = input;
+
                 this.render();
             } else {
                 console.error(`TagField couldn't be initialized due to missing input element.`);    
@@ -175,46 +181,34 @@ export class TagsField extends KEventTarget {
     private addEventListeners() {
         // tslint:disable-next-line:no-var-self
         const self = this;
+
         if (!this.input) {
             return null;
         }
 
         this.autocomplete = new autocompleteV10({
             fields: this.input,
-            source: this.settings.source
+            source: this.settings.source,
+            sourceMessage: this.settings.sourceMessage
         });
 
-        this.settings.selector.addEventListener('click', () => this.input!.focus());
-        this.input.addEventListener('change', () => this.add(this.input!.value));
-        this.input.addEventListener('keydown', (e: any) => {
-            const key = window.event ? e.keyCode : e.which;
+        this.settings.selector.addEventListener('click', () => this.input.focus());
 
-            if (0 === this.input!.value.length && 8 === key) { //return
-                const lastItem = qq('.tag-field__item', this.settings.selector).pop();
+        if (this.settings.sourceOnly) {
+            this.autocomplete.addEventListener('add', (event) => this.eventHandlerAutocompleteAdd(event));
+            this.autocomplete.addEventListener('source', (event) => this.eventHandlerAutocompleteSource(event));
+        } else {
+            this.input.addEventListener('change', () => this.eventHandlerInputChange());
+            this.input.addEventListener('keydown', (event) => this.eventHandlerInputKeyDown(event));
+            this.input.addEventListener('keyup', (event) => this.eventHandlerInputKeyUp(event));
+        }
 
-                if (lastItem) {
-                    if (this.items) {
-                        this.items.removeChild(lastItem);
-                    }
-                    this.update();
-                }
-            }
-        });
-
-        this.input.addEventListener('keyup', async (e: any) => {
-            const key = window.event ? e.keyCode : e.which;
-
-            if (13 === key || 9 === key) { //enter
-                await new Promise((resolve) => setTimeout(resolve, 100));
-
-                this.add(this.input!.value);
-            }
-
+        this.input.addEventListener('keyup', () => {
             if (this.content) {
                 this.content.innerText = this.input!.value;
                 this.input!.style.width = `${this.content.getBoundingClientRect().width + 20}px`;
             }
-        });
+        }); 
 
         const removeHandler = function(this: HTMLElement) {
             const item = <HTMLElement | undefined>this.parent('.tag-field__item');
@@ -222,10 +216,49 @@ export class TagsField extends KEventTarget {
                 self.removeItems([item.dataset.value || '']);
             }
         };
+
         if (this.items) {
             delegate('.remove', 'click', removeHandler, this.items);
         }
+
         return null;
+    }
+
+    private eventHandlerAutocompleteAdd(event: KEventAdd) {
+        this.add(event.extra.item);
+    }
+
+    private eventHandlerAutocompleteSource(event: KEventSource) {
+        
+    }
+
+    private eventHandlerInputChange() {
+        this.add(this.input.value);
+    }
+
+    private eventHandlerInputKeyDown(event: KeyboardEvent) {
+        const key = window.event ? event.keyCode : event.which;
+
+        if (0 === this.input.value.length && 8 === key) { //return
+            const lastItem = qq('.tag-field__item', this.settings.selector).pop();
+
+            if (lastItem) {
+                if (this.items) {
+                    this.items.removeChild(lastItem);
+                }
+                this.update();
+            }
+        }
+    }
+
+    private async eventHandlerInputKeyUp(event: KeyboardEvent) {
+        const key = window.event ? event.keyCode : event.which;
+
+        if (13 === key || 9 === key) { //enter
+            await new Promise((resolve) => setTimeout(resolve, 100));
+
+            this.add(this.input.value);
+        }
     }
 }
 
@@ -253,6 +286,8 @@ interface Settings {
     selector: HTMLElement;
     input: HTMLInputElement;
     source: TSourceMethod;
+    sourceOnly: boolean;
+    sourceMessage: string;
     lowercase: boolean;
     templates: {
         field: Function;
@@ -265,6 +300,8 @@ interface CustomSettings {
     selector?: HTMLElement;
     lowercase?: boolean;
     source: TSourceMethod;
+    sourceOnly?: boolean;
+    sourceMessage?: string;
     templates?: {
         field?: Function;
         tag?: Function;

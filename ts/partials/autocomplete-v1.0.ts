@@ -1,9 +1,9 @@
 import { clearTimeout } from 'timers';
+import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
 import View from 'BobjollView';
 
 // tslint:disable-next-line:no-var-requires
 const EXT = View.ext;
-const extend = require('bobjoll/ts/library/extend');
 
 type AutocompleteSourceFunction = (query: string) => { [name: string]: any; };
 
@@ -22,6 +22,7 @@ interface AutocompleteOptions {
     fields: HTMLInputElement | NodeListOf<HTMLInputElement>;
     minChars?: number;
     source: string[] | AutocompleteSourceFunction;
+    sourceMessage?: string;
     templateList?: Function;
     templateWrapper?: Function;
 }
@@ -31,13 +32,34 @@ interface AutocompleteSettings {
     fields: HTMLInputElement | NodeListOf<HTMLInputElement>;
     minChars: number;
     source: string[] | AutocompleteSourceFunction;
+    sourceMessage: string;
     templateList: Function;
     templateWrapper: Function;
 }
 
+export class KEventSource extends KEvent {
+    constructor(source: { [name: string]: any; } | undefined) {
+        super();
+        this.type = 'source';
+        this.extra = {
+            source: source,
+        };
+    }
+}
+
+export class KEventAdd extends KEvent {
+    constructor(string: string) {
+        super();
+        this.type = 'add';
+        this.extra = {
+            item: string,
+        };
+    }
+}
+
 // tslint:disable-next-line:export-name
 // tslint:disable-next-line:no-default-export
-export default class Autocomplete {
+export default class Autocomplete extends KEventTarget {
     private cancelled = false;
     private index: number = -1;
     private cache: { query: string, value: any; }[] = [];
@@ -47,12 +69,15 @@ export default class Autocomplete {
     private settings: AutocompleteSettings;
 
     constructor(options: AutocompleteOptions) {
-        this.settings = extend({
+        super();
+        this.settings = {
             delay: 400,
             minChars: 0,
+            sourceMessage: '',
             templateWrapper: require(`BobjollTemplate/autocomplete-v1.0/wrapper.${EXT}`),
-            templateList: require(`BobjollTemplate/autocomplete-v1.0/container.${EXT}`)
-        }, options);
+            templateList: require(`BobjollTemplate/autocomplete-v1.0/container.${EXT}`),
+            ...options,
+        };
 
         if (/^\[object (HTMLCollection|NodeList|Object)\]$/.
             test(Object.prototype.toString.call(this.settings.fields))) {
@@ -154,6 +179,7 @@ export default class Autocomplete {
                             if (value) {
                                 field.value = self.value = value;
 
+                                self.dispatchEvent(new KEventAdd(field.value));
                                 field.dispatchEvent(new Event('change'));
                             }
                         }
@@ -241,7 +267,9 @@ export default class Autocomplete {
             }
         }
 
-        if (source && Object.keys(source).length && !this.cancelled) {
+        this.dispatchEvent(new KEventSource(source));
+
+        if (!this.cancelled) {
             if (!cache) {
                 this.cache.unshift({query: query, value: source});
             }
@@ -251,7 +279,8 @@ export default class Autocomplete {
             }
 
             field.container.innerHTML = View.render(this.settings.templateList, {
-                keywords: source
+                keywords: source,
+                message: this.settings.sourceMessage,
             });
 
             this.index = -1;
@@ -262,12 +291,13 @@ export default class Autocomplete {
                 item.addEventListener('mousedown', () => {
                     field.value = this.value = item.dataset.value || item.innerText;
 
+                    this.dispatchEvent(new KEventAdd(field.value));
                     field.dispatchEvent(new Event('change'));
                 });
             });
 
             field.container.classList.add('autocomplete--show');
-        } else {
+        } else if ('' === this.settings.sourceMessage) {
             field.container.classList.remove('autocomplete--show');
         }
     }
