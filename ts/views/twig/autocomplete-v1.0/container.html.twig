@@ -1,3 +1,4 @@
+{% if keyword|length > 0 %}
 <ul class="autocomplete__list">
 	{% for key, keyword in keywords %}
 		<li class="autocomplete__item" data-value="{% if keyword.value %}{{keyword.value}}{% else %}{{keyword.text}}{% endif %}">
@@ -9,3 +10,6 @@
 		</li>
 	{% endfor %}
 </ul>
+{% else %}
+<p class="autocomplete__no-result mg-none pd-lv2 font-sm">{{message}}</p>
+{% endif %}
