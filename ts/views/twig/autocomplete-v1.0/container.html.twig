@@ -1,4 +1,4 @@
-{% if keyword|length > 0 %}
+{% if keywords|length > 0 %}
 <ul class="autocomplete__list">
 	{% for key, keyword in keywords %}
 		<li class="autocomplete__item" data-value="{% if keyword.value %}{{keyword.value}}{% else %}{{keyword.text}}{% endif %}">
