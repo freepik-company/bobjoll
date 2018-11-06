@@ -14,10 +14,12 @@
             top: 100%;
             left: 0;
             z-index: 1;
-
-            width: calc(100% + #{($base-spacing - $tags-spacing) * 2});
-
-            margin: 0 (($base-spacing - $tags-spacing) * -1);
+            width: calc(100% + #{($small-spacing - $tags-spacing + ($base-border-width)) * 2});
+            margin: 
+                ($small-spacing + ($base-border-width * 2))
+                (($small-spacing - $tags-spacing + ($base-border-width)) * -1) 
+                0 
+                (($small-spacing - $tags-spacing + ($base-border-width)) * -1);
         }
 
         &__content {
