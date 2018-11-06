@@ -111,7 +111,7 @@ export interface UserSettings {
         connected_google?: boolean;
         connected_facebook?: boolean;
         connected_twitter?: boolean;
-    };
+    } | null;
 }
 
 export interface Settings extends UserSettings {
