@@ -28,7 +28,7 @@ interface DefaultSettings {
     };
 }
 
-interface UserSettings {
+export interface UserSettings {
     action: string;
     method: 'POST' | 'GET';
     text: {
@@ -114,7 +114,7 @@ interface UserSettings {
     };
 }
 
-interface Settings extends UserSettings {
+export interface Settings extends UserSettings {
     default: {
         overlay?: boolean;
         defaults: boolean;
@@ -152,7 +152,7 @@ interface Settings extends UserSettings {
     };
 }
 
-interface History {
+export interface History {
     view: string;
     url: string;
 }
