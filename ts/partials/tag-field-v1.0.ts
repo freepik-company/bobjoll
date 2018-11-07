@@ -194,9 +194,8 @@ export class TagsField extends KEventTarget {
 
         this.settings.selector.addEventListener('click', () => this.input.focus());
 
+        this.autocomplete.addEventListener('add', (event) => this.eventHandlerAutocompleteAdd(event));
         if (this.settings.sourceOnly) {
-            this.autocomplete.addEventListener('add', (event) => this.eventHandlerAutocompleteAdd(event));
-            this.autocomplete.addEventListener('source', (event) => this.eventHandlerAutocompleteSource(event));
         } else {
             this.input.addEventListener('change', () => this.eventHandlerInputChange());
             this.input.addEventListener('keydown', (event) => this.eventHandlerInputKeyDown(event));
@@ -225,11 +224,8 @@ export class TagsField extends KEventTarget {
     }
 
     private eventHandlerAutocompleteAdd(event: KEventAdd) {
+        console.log('autocomplete', event);
         this.add(event.extra.item);
-    }
-
-    private eventHandlerAutocompleteSource(event: KEventSource) {
-        
     }
 
     private eventHandlerInputChange() {

@@ -1,5 +1,6 @@
 import { clearTimeout } from 'timers';
 import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
+import { qq } from '../library/dom';
 import View from 'BobjollView';
 
 // tslint:disable-next-line:no-var-requires
@@ -167,14 +168,8 @@ export default class Autocomplete extends KEventTarget {
 
                 if (13 === key || 9 === key) { //enter
                     e.preventDefault();
-
+                    
                     setTimeout(() => {
-                        if ('' === self.settings.sourceMessage) {
-                            self.cancelled = true;
-
-                            self.hide();
-                        }
-
                         const selected = field.results ? (field.results[self.index] || undefined) : undefined;
 
                         if (selected) {
@@ -182,10 +177,14 @@ export default class Autocomplete extends KEventTarget {
 
                             if (value) {
                                 field.value = self.value = value;
-
-                                self.dispatchEvent(new KEventAdd(field.value));
                                 field.dispatchEvent(new Event('change'));
+                                self.dispatchEvent(new KEventAdd(field.value));
                             }
+                        }
+
+                        if ('' === self.settings.sourceMessage) {
+                            self.cancelled = true;
+                            self.hide();
                         }
                     }, 50);
                 }
@@ -269,8 +268,6 @@ export default class Autocomplete extends KEventTarget {
             }
         }
 
-        this.dispatchEvent(new KEventSource(source));
-
         if (!this.cancelled) {
             if (!cache) {
                 this.cache.unshift({query: query, value: source});
@@ -287,7 +284,7 @@ export default class Autocomplete extends KEventTarget {
 
             this.index = -1;
 
-            field.results = Array.prototype.slice.call(field.container.getElementsByClassName('autocomplete__item'));
+            field.results = qq('.autocomplete__item');
 
             field.results.forEach((item) => {
                 item.addEventListener('mousedown', () => {
