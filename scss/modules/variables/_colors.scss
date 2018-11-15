@@ -190,6 +190,9 @@ $global-colors: (
 		'blue': $state-blue,
 		'gray': $state-gray,
 		'red': $state-red,
+		'yellow': $state-yellow,
+		'purple': $state-purple,
+		'inverted': $color-light,
 	), 
 	buttons-hover: (
 		'default': ($color-main, 1, 5),
@@ -197,6 +200,9 @@ $global-colors: (
 		'blue': $blue-shade-5,
 		'gray': $gray-shade-7,
 		'red': $red-shade-5,
+		'yellow': $yellow-shade-5,
+		'purple': $purple-shade-5,
+		'inverted': $gray-shade-2,
 	), 
 	buttons-active: (
 		'default': ($color-main, 1, 10),
@@ -204,6 +210,9 @@ $global-colors: (
 		'blue': $blue-shade-6,
 		'gray': $gray-shade-8,
 		'red': $red-shade-6,
+		'yellow': $yellow-shade-6,
+		'purple': $purple-shade-6,
+		'inverted': $gray-shade-2,
 	), 
 	buttons-text: (
 		'default': $color-light,
@@ -219,6 +228,9 @@ $global-colors: (
 		'yellow': $color-light,
 		'yellow-outline': $state-yellow,
 		'purple': $color-light,
+		'purple-outline': $state-purple,
+		'inverted': $color-text,
+		'inverted-outline': $color-light,
 	),
 	'gray': (
 		'9': $gray-shade-9,
