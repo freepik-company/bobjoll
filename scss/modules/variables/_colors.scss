@@ -81,12 +81,14 @@ $social-behance: #1769ff !default;
 $social-dribbble: #ea4c89 !default;
 $social-facebook: #3b5998 !default;
 $social-google: #dd4b39 !default;
-$social-instagram: #e95950 !default;
+$social-instagram: #c32aa3 !default;
 $social-pinterest: #cb2027 !default;
 $social-stumbleupon: #f74425 !default;
 $social-twitter: #55acee !default;
 $social-vimeo: #aad450 !default;
 $social-youtube: #bb0000 !default;
+$social-whatsapp: #25d366 !default;
+$social-telegram: #0088cc !default;
 
 $state-green: #69E781 !default;
 $state-blue: #1273EB !default;
@@ -130,9 +132,11 @@ $global-colors: (
 		'instagram': $social-instagram,
 		'pinterest': $social-pinterest,
 		'stumbleupon': $social-stumbleupon,
+		'telegram': $social-telegram,
 		'twitter': $social-twitter,
 		'vimeo': $social-vimeo,
-		'youtube': $social-youtube
+		'whatsapp': $social-whatsapp,
+		'youtube': $social-youtube,
 	),
 	state: (
 		'green': $state-green,
@@ -186,9 +190,6 @@ $global-colors: (
 		'blue': $state-blue,
 		'gray': $state-gray,
 		'red': $state-red,
-		'yellow': $state-yellow,
-		'purple': $state-purple,
-		'inverted': $color-light,
 	), 
 	buttons-hover: (
 		'default': ($color-main, 1, 5),
@@ -196,9 +197,6 @@ $global-colors: (
 		'blue': $blue-shade-5,
 		'gray': $gray-shade-7,
 		'red': $red-shade-5,
-		'yellow': $yellow-shade-5,
-		'purple': $purple-shade-5,
-		'inverted': $gray-shade-2,
 	), 
 	buttons-active: (
 		'default': ($color-main, 1, 10),
@@ -206,9 +204,6 @@ $global-colors: (
 		'blue': $blue-shade-6,
 		'gray': $gray-shade-8,
 		'red': $red-shade-6,
-		'yellow': $yellow-shade-6,
-		'purple': $purple-shade-6,
-		'inverted': $gray-shade-2,
 	), 
 	buttons-text: (
 		'default': $color-light,
@@ -224,9 +219,6 @@ $global-colors: (
 		'yellow': $color-light,
 		'yellow-outline': $state-yellow,
 		'purple': $color-light,
-		'purple-outline': $state-purple,
-		'inverted': $color-text,
-		'inverted-outline': $color-light,
 	),
 	'gray': (
 		'9': $gray-shade-9,
