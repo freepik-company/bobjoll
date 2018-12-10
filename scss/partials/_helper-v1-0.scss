@@ -266,7 +266,7 @@
 
 					@include modifier($name) {
 						&::before {
-							padding: 0 0 $ratio + %;
+							padding: 0 0 $ratio + 0%;
 						}
 					}
 				}

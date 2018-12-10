@@ -55,36 +55,42 @@
 // Color
 @function color($color, $group, $opacity: 1, $darken: 0) {
 	$array: map-get($colors, $group);
-	$hex: map-get($array, $color);
 
-	@if $hex == null {
-		@warn "Sorry, but '#{$color}' is not found in '#{$group}'.";
+	@if type-of($array) == "map" {
+		$hex: map-get($array, $color);
+
+		@if $hex == null {
+			@warn "Sorry, but '#{$color}' is not found in '#{$group}'.";
+		} @else {
+			@if type-of($hex) == 'color' {
+				$hex: ( $hex, $opacity, $darken );
+			}
+
+			$color: nth($hex, 1);
+
+			@if nth($hex, 2) and nth($hex, 2) != 1 {
+				$color: rgba($color, nth($hex, 2));
+			}
+
+			@if nth($hex, 3) and nth($hex, 3) != 0 {
+				$color: call(get-function(if(nth($hex, 3) >=0, darken, lighten)), $color, abs(nth($hex, 3)));
+			}
+
+			@if type-of($hex) == 'list' {
+				@if $opacity != 1 {
+					$color: rgba($color, $opacity);
+				}
+
+				@if $darken != 1 {
+					$color: call(get-function(if($darken >=0, darken, lighten)), $color, abs($darken));
+				}
+			}
+
+			@return $color;
+		}
 	} @else {
-		@if type-of($hex) == 'color' {
-			$hex: ( $hex, $opacity, $darken );
-		}
-
-		$color: nth($hex, 1);
-
-		@if nth($hex, 2) and nth($hex, 2) != 1 {
-			$color: rgba($color, nth($hex, 2));
-		}
-
-		@if nth($hex, 3) and nth($hex, 3) != 0 {
-			$color: call(get-function(if(nth($hex, 3) >=0, darken, lighten)), $color, abs(nth($hex, 3)));
-		}
-
-		@if type-of($hex) == 'list' {
-			@if $opacity != 1 {
-				$color: rgba($color, $opacity);
-			}
-
-			@if $darken != 1 {
-				$color: call(get-function(if($darken >=0, darken, lighten)), $color, abs($darken));
-			}
-		}
-
-		@return $color;		
+		@debug('$array', $array);
+		@debug('$color', $color, $group);
 	}
 }
 
