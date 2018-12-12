@@ -173,6 +173,7 @@
 			border-radius: 50%;
 		}
 
+		&.active .radio__indicator, 
 		input[type="radio"]:checked ~ .radio__indicator {
 			box-shadow: inset 0 0 0 5px color('link', 'general');
 		}
