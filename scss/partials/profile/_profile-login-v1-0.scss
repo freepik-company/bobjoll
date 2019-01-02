@@ -8,6 +8,7 @@
             padding-top: $large-element-height + $base-spacing;
 
             .content {
+				overflow: visible;
                 position: relative;
             }
 
