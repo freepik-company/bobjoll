@@ -1,145 +1,200 @@
-@if $profile-login-v1-0 {
-	.profile-login {
-		.recaptcha {
-			display: none;
+@if $profile-login-v1-0 {    
+    .profile-login {
+        margin: 0;
+        padding: 0;
 
-			margin: 0 0 $small-spacing;
+        .modal__container {
+            max-width: $profile-login-max-width;
+            padding-top: $large-element-height + $base-spacing;
 
-			&.active {
-				display: block;
-			}
-		}
+            .content {
+                position: relative;
+            }
 
-		.tabs__content.disabled  {
-			opacity: 1;
-		}
+            @include breakpoint('xs') {
+                padding-top: $base-element-height + $base-spacing;
+            }           
+        }
+    
+        .group {
+            margin: 0 0 $small-spacing;
+    
+            &:last-child {
+                margin: 0;
+            }
+    
+            .group__context {
+                padding: 0;
+            }
+        }
+    
+        .tabs {
+            &__navigation {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-start;
+        
+                margin: ($extra-large-spacing * -1) ($extra-large-spacing * -1) $base-spacing ($extra-large-spacing * -1);
+    
+                [data-tab="tab-forgot-password"] {
+                    &.active ~ button {
+                        display: none;
+                    }
+                }
+    
+                button {
+                    flex: 1 0 auto;
+        
+                    height: $extra-large-element-height;
+        
+                    box-shadow: inset $small-box-shadow;
+                    
+                    background-color: color('1' , 'gray', .50);
+        
+                    color: color('link', 'general');
+                    font-size: $extra-large-font-size;
+                    font-weight: 500;
+                    text-align: center;
+                    line-height: $extra-large-element-height;
+        
+                    &.active {
+                        box-shadow: none;
+        
+                        background-color: color('light', 'background');
+                    }
+                }
+            }
+        }
+        
+        .scrollable {
+            padding: 0 $base-spacing;
+        }
+    
+        &__projects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: $large-element-height;
+            background: color('light', 'background');
+            pointer-events: all !important;
+            cursor: inherit !important;
+            line-height: 0;
 
-		.button.disabled {
-			opacity: .65;
-		}
+            & > * {
+                pointer-events: all !important;
+                cursor: inherit !important;
+            }
 
-		input.error {
-			border-left: 2px solid color('red', 'state');
-		}
+            .content {
+                max-width: $profile-login-max-width;
+                height: 100%;
+                margin: 0 auto;
+            }
 
-		p.message {
-			display: none;
+            .row {
+                height: 100%;
+            }
 
-			&--field {
-				margin: ($small-spacing * -1) 0 $small-spacing !important;
-			}
+            img {
+                display: block;
+            }
 
-			&--show {
-				display: block !important;
-			}
+            a {
+                padding: 0 $small-spacing;
 
-			&.error,
-			&.success {
-				width: 100%;
+                &:first-child img {
+                    margin-left: auto;
+                }
+            }
 
-				margin: 0;
-				padding: $extra-small-spacing 0;
-				
-				font-size: $small-font-size;
-				font-family: $base-font-family;
-				text-align: left;
-				line-height: $extra-small-element-height;
-			}
+            @include breakpoint('xs') {
+                height: $base-element-height;
 
-			&.error {
-				@extend .icon--exclamation;
+                img {
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                    max-height: 30px;
+                }
 
-				color: color('red', 'state');
+                a {
+                    width: 33.33%;
+                }
+            }
+        }
 
-				&::before {
-					color: color('red', 'state');
-				}
-			}
+        &__intro {
+            color: color('5', 'gray');
+            text-align: center;
 
-			&.success {
-				@extend .icon--check;
+            img {
+                display: block;
+                margin: 0 auto $base-spacing auto;
+            }
 
-				color: color('green', 'state');
+            a {
+                color: color('5', 'gray');
 
-				&::before {
-					color: color('green', 'state');
-				}
-			}
-
-			&::before {				
-				font-family: $webfont !important;
-				font-style: normal;
-				font-weight: normal;
-				font-variant: normal;
-				text-transform: none;
-
-				margin: 0 $extra-small-spacing 0 0;
-			}
-		}
-
-		@include element('username') {
-			margin: 0 0 $small-spacing;
-		}
-
-		@include element('password') {
-			
-		}
-
-		@include element('content') {
-			width: 100%;
-			max-width: 480px;
-
-			margin: 0 auto;
-			padding: $base-spacing $large-spacing;
-
-			border: $base-border;
-			border-radius: $base-border-radius;
-
-			background-color: color('light', 'background');
-
-			box-shadow: $base-box-shadow;
-			
-			line-height: $base-line-height;
-		}
-
-		@include modifier('fullscreen') {
-			height: 100vh;
-
-			line-height: 100vh;
-
-			.profile__container {
-				display: inline-block;
-
-				width: 100%;
-
-				padding: $base-spacing;
-
-				vertical-align: middle;
-				
-				text-align: center;
-				line-height: 0;
-			}
-		}
-
-		@include element('social') {
-			margin: $small-spacing ($large-spacing * -1) ($base-spacing * -1) ($large-spacing * -1);
-			padding: $base-spacing $large-spacing;
-
-			border-top: $base-border;
-
-			background-color: color('border', 'general', 1, -2.5);
-
-			.button {
-				margin-bottom: $small-spacing;
-
-				&:last-child {
-					margin: 0;
-				}
-
-				& ~ .message {
-					@include position(relative, ($small-spacing * -1) null null null);
-				}
-			}
-		}		
-	}
+                &:hover {
+                    color: color('5', 'gray');
+                    text-decoration: underline;
+                }
+            }
+        }
+    
+        &__hr {
+            position: relative;
+    
+            margin: 0 0 $small-spacing;
+            padding: $base-spacing;
+    
+            &::before {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+    
+                display: block;
+                
+                width: 80%;
+                height: $base-border-width;
+                
+                background-color: color('1', 'gray', .80);
+    
+                transform: translate(-50%, -50%);
+    
+                content: '';
+            }
+    
+            span {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+    
+                display: block;
+    
+                padding: $extra-small-spacing $small-spacing;;
+    
+                transform: translate(-50%, -50%);
+    
+                background-color: color('light', 'background');
+            }
+        }
+    
+        @include breakpoint('sm') {
+            .modal__container > .content {
+                padding: $base-spacing;
+            }
+    
+            .tabs {
+                &__navigation {
+                    margin: ($base-spacing * -1) ($base-spacing * -1) $base-spacing ($base-spacing * -1);
+    
+                    button {
+                        font-size: $small-font-size;
+                    }
+                }
+            }
+        }
+    }
 }
