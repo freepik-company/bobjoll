@@ -6,6 +6,9 @@ $aspect-ratios: (
 	'4-3': (4, 3)
 ) !default;
 
+// Profile login
+$profile-login-max-width: 560px !default;
+
 // Avatar
 $avatar-width-xs: 36px !default;
 $avatar-height-xs: $avatar-width-xs !default;
