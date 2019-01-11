@@ -30,6 +30,72 @@
         }
     
         .tabs {
+            #tab-subscribe {
+                overflow: hidden;
+                margin: ($base-spacing * -1) ($extra-large-spacing * -1) ($extra-large-spacing * -1) ($extra-large-spacing * -1);
+            
+                .background {
+                    position: relative;
+            
+                    .content {
+                        position: relative;
+                        top: 0;
+                        left: 0;
+                        z-index: 2;
+                    }
+            
+                    .content {
+                        padding: ($extra-large-spacing + $small-spacing) $extra-large-spacing $base-spacing $extra-large-spacing;
+            
+                        .link {
+                            &:hover {
+                                color: color('text-inverted', 'general');
+                                text-decoration: underline;
+                            }
+                        }
+            
+                        p {
+                            color: color('text-inverted', 'general');
+            
+                            &.font-xs {
+                                color: color('5', 'gray');
+            
+                                a {
+                                    color: color('5', 'gray');
+            
+                                    &:hover {
+                                        color: color('5', 'gray');
+                                        text-decoration: underline;
+                                    }
+                                }
+                            }
+                        }
+                    }
+            
+                    svg.block {
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        z-index: 1;
+                        width: 101%;
+                        transform: translate(-50%, 0);
+                    }
+                }
+            
+                .content {
+                    padding: $extra-large-spacing $extra-large-spacing $large-spacing $extra-large-spacing;
+                    text-align: center;
+            
+                    #{$all-headings} {
+                        color: color('5', 'blue');
+                    }
+            
+                    p {
+                        color: color('7', 'gray');
+                    }
+                }
+            }
+
             &__navigation {
                 display: flex;
                 flex-wrap: wrap;
@@ -38,6 +104,12 @@
                 margin: ($extra-large-spacing * -1) ($extra-large-spacing * -1) $base-spacing ($extra-large-spacing * -1);
     
                 [data-tab="tab-forgot-password"] {
+                    &.active ~ button {
+                        display: none;
+                    }
+                }
+
+                [data-tab="tab-subscribe"] {
                     &.active ~ button {
                         display: none;
                     }
