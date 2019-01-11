@@ -177,9 +177,10 @@ export class Modal {
             if (target instanceof HTMLElement) {
                 const wrapper = target.parents('.modal');
                 const container = target.parents('.modal__container');
-                const disabled = ('' === target.dataset.disableMouseUp) ? true : false;
+                const modal = (wrapper.length ? wrapper[0] : target) as HTMLElement;
+                const disabled = ("" === modal.dataset.disableMouseUp) ? true : false;
 
-                if ((0 < wrapper.length || target.classList && target.classList.contains('modal') && !disabled) && 0 === container.length) {
+                if (wrapper.length && 0 === container.length && !disabled) {
                     this.hide();
                 }
             }
