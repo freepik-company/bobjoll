@@ -19,7 +19,10 @@ export class Dropdown {
 	constructor(options: DropdownOptions) {
 		const select = <HTMLSelectElement|undefined>q('select', options.dropdown);
 
-		this.settings = { ...Dropdown.defaults, ...options };
+		this.settings = { 
+			...Dropdown.defaults, 
+			...options,
+		};
 
 		if (select) {
 			this.select = select;
@@ -47,7 +50,7 @@ export class Dropdown {
 				element: option,
 				eventType: 'click',
 				eventHandler: this.eventHandlerItemClick.bind(option, this)
-			})	
+			})
 		);
 
 		if (this.search) {
@@ -81,6 +84,19 @@ export class Dropdown {
 	}
 
 	private eventHandlerItemClick(this: HTMLUListElement, self: Dropdown, e: Event) {
+		const options = qq('option', self.select) as HTMLInputElement[];
+		const others = options.filter(option => option.dataset.other);
+
+		if (others.length) {
+			others.forEach(other => {
+				const fieldElement = q(`input[name="${other.dataset.other || ''}"]`) as HTMLInputElement | undefined;
+
+				if (fieldElement) {
+					fieldElement.classList[(this.dataset.value || '') === other.value ? 'remove' : 'add']('hide');
+				}
+			});
+		}
+
 		if (this.dataset.value) {
 			self.select.value = this.dataset.value;
 			self.select.dispatchEvent(new Event('change'));
@@ -118,6 +134,7 @@ export class Dropdown {
 				selectedIndex: this.select.options.selectedIndex
 			})
 		);
+
 		this.options = <HTMLUListElement[]>qq('.dropdown__select li', this.settings.dropdown);
 
 		const button = <HTMLButtonElement|undefined>q('.dropdown__button', this.settings.dropdown);
