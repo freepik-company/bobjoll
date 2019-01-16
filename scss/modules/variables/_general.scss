@@ -39,8 +39,8 @@ $base-sizes: (
 ) !default;
 
 // Grid Settings
-$grid-columns: 12 !default;
-$grid-columns-spacing: 6px !default;
+$grid-columns: 10 !default;
+$grid-columns-spacing: 5px !default;
 
 // Shadow
 $base-box-shadow: 0 0 60px color('shadow', 'general', .25) !default;
@@ -200,11 +200,11 @@ $line-height-sizes: (
 ) !default;
 
 // Spacing
-$base-spacing: 24px !default;
-$large-spacing: $base-spacing * 2 !default;
-$extra-large-spacing: $large-spacing * 2 !default;
-$small-spacing: $base-spacing / 2 !default;
-$extra-small-spacing: $small-spacing / 2 !default;
+$extra-large-spacing: 50px !default;
+$large-spacing: 30px !default;
+$base-spacing: 20px !default;
+$small-spacing: 10px !default;
+$extra-small-spacing: 5px !default;
 $spacing-sizes: (
 	'xs': $extra-small-spacing,
 	'sm': $small-spacing,
