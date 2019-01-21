@@ -53,25 +53,25 @@
     @extend %col;
 
     flex: 1;
-}
 
-@if $grid-v1-0 {    
-    .col--center {
+    &--center {
         align-self: center;
     }
 
-    .col--top {
+    &--top {
         align-self: flex-start;
     }
 
-    .col--bottom {
+    &--bottom {
         align-self: flex-end;
     }
 
-    .col--stretch {
+    &--stretch {
         align-self: stretch;
     }
+}
 
+@if $grid-v1-0 {    
     .container-fluid {
         @include clearfix;
 
