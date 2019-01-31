@@ -6,6 +6,7 @@ import Social from './index';
 
 export default class Google extends Social {
     private static loaded: boolean = false;
+    private static auth2: gapi.auth2.GoogleAuth;
 
     public static getInstance() {
         Google.init();
@@ -74,7 +75,7 @@ export default class Google extends Social {
                 gapi.load('client:auth2', () => resolve());                
             });
 
-            gapi.auth2.init({
+            Google.auth2 = gapi.auth2.init({
                 client_id: GOOGLE_CLIENT_ID
             });
 
@@ -85,13 +86,9 @@ export default class Google extends Social {
     }
 
     private static async status(response: GoogleApiOAuth2TokenObject)  {
-        let data: any = await new Promise(function(resolve, reject) {
+        let user: gapi.auth2.GoogleUser = await new Promise(function(resolve, reject) {
             try {
-                gapi.client.load('plus', 'v1', function() {
-                    let request = (gapi.client as any).plus.people.get( { 'userId' : 'me' });
-
-                    request.execute((response: any) => resolve(response));
-                });
+                Google.auth2.signIn().then( () => resolve(Google.auth2.currentUser.get()) );
             } catch(e) {
                 reject(e);
             }
@@ -106,21 +103,24 @@ export default class Google extends Social {
 
                 Google.connected = true;
 
-                form.append('google_id', data.result.id);
+                form.append('google_id', user.getId());
                 form.append('social_network', 'google');
             }
             else {
+                const profile = user.getBasicProfile();
+
                 action = 'login';
 
-                form.append('google_id', data.result.id);
-                form.append('email', data.emails[0].value);
-                form.append('name', data.result.name.givenName);
-                form.append('avatar', ((typeof data.image.url !== "undefined") && !data.image.isDefault) ? data.image.url.slice(0, -2) + "250" : '');
+                form.append('google_id', user.getId());
+                form.append('email', profile.getEmail());
+                form.append('name', profile.getGivenName());
+                form.append('avatar', profile.getImageUrl());
             }
 
             return Google.auth(action, form);
         } catch(e) {
-            throw Error(data.message || data.data.message);
+            throw Error(e);
+            console.error(e);
         }
     }
 }
