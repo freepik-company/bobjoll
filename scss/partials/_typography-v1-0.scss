@@ -90,7 +90,6 @@
 
 		&:hover {
 			color: color('link-inverted', 'general', 1);
-			text-decoration: underline;
 
 			svg {
 				opacity: .8;
@@ -100,7 +99,6 @@
 		&.active {
 			color: color('link-inverted', 'general', 1);
 			font-weight: bold;
-			text-decoration: underline;
 
 			svg {
 				opacity: 1;
@@ -109,7 +107,14 @@
 
 		svg {
 			opacity: .4;
-		}			
+		}
+		
+		&--hover-underline {
+			&:hover,
+			&.active {
+				text-decoration: underline;
+			}
+		}
 	}
 
 	%link-hover {
