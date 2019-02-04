@@ -86,7 +86,7 @@ export default class Google extends Social {
     }
 
     private static async status(response: GoogleApiOAuth2TokenObject)  {
-        let user: gapi.auth2.GoogleUser = await new Promise(function(resolve, reject) {
+        let user: any = await new Promise(function(resolve, reject) {
             try {
                 Google.auth2.signIn().then( () => resolve(Google.auth2.currentUser.get()) );
             } catch(e) {
