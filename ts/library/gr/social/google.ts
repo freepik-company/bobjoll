@@ -86,7 +86,7 @@ export default class Google extends Social {
     }
 
     private static async status(response: GoogleApiOAuth2TokenObject)  {
-        let user: gapi.auth2.GoogleUser;
+        let user: any;
 
         if (true == this.auth2.isSignedIn.get()) {
             user = Google.auth2.currentUser.get();
