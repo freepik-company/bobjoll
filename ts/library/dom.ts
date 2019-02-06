@@ -80,7 +80,7 @@ class DelegateListeners {
     }
 }
 
-export const ww = window;
+export const ww = (window as any);
 
 export function delegate(selector: string, eventType: Event['type'], eventHandler: Function, elementScope: HTMLElement | Document = document) {
     let listener = DelegateListeners.set(selector, eventType, eventHandler, function (event: any) {
