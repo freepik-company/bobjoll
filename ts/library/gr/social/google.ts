@@ -86,13 +86,19 @@ export default class Google extends Social {
     }
 
     private static async status(response: GoogleApiOAuth2TokenObject)  {
-        let user: any = await new Promise(function(resolve, reject) {
-            try {
-                Google.auth2.signIn().then( () => resolve(Google.auth2.currentUser.get()) );
-            } catch(e) {
-                reject(e);
-            }
-        });
+        let user: gapi.auth2.GoogleUser;
+
+        if (true == this.auth2.isSignedIn.get()) {
+            user = Google.auth2.currentUser.get();
+        }
+        else {
+            user = await new Promise(resolve => {
+                Google.auth2.signIn()
+                    .then(function() {
+                        resolve(Google.auth2.currentUser.get());
+                    });
+            });
+        }
 
         try {
             let action: 'login' | 'connect' = 'connect';
@@ -120,7 +126,6 @@ export default class Google extends Social {
             return Google.auth(action, form);
         } catch(e) {
             throw Error(e);
-            console.error(e);
         }
     }
 }
