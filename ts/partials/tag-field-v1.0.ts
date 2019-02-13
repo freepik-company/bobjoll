@@ -1,7 +1,9 @@
 import View from 'BobjollView';
 import { q, qq, delegate } from 'bobjoll/ts/library/dom';
-import autocompleteV10, { KEventAdd, KEventSource } from 'bobjoll/ts/partials/autocomplete-v1.0';
+import autocompleteV10, { KEventAdd } from 'bobjoll/ts/partials/autocomplete-v1.0';
 import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
+
+const extend = require('bobjoll/ts/library/extend');
 
 // tslint:disable-next-line:no-var-requires
 const EXT = View.ext;
@@ -17,11 +19,11 @@ export class TagsField extends KEventTarget {
 
         if (settings.selector) {
             const input = (q('input', settings.selector) as HTMLInputElement);
-            const field = require(`BobjollTemplate/tags-v1.0/wrapper.${EXT}`);
-            const tag = require(`BobjollTemplate/tags-v1.0/element.${EXT}`);
+            const field: Function = require(`BobjollTemplate/tags-v1.0/wrapper.${EXT}`);
+            const tag: Function = require(`BobjollTemplate/tags-v1.0/element.${EXT}`);
 
             if (input) {
-                this.settings = {
+                this.settings = extend({
                     allowDuplicates: true,
                     lowercase: false,
                     selector: q('.tag-field')!,
@@ -32,13 +34,12 @@ export class TagsField extends KEventTarget {
                         field: field,
                         tag: tag,
                     },
-                    ...settings,
-                };
+                }, settings);
                 this.input = input;
 
                 this.render();
             } else {
-                console.error(`TagField couldn't be initialized due to missing input element.`);    
+                console.error(`TagField couldn't be initialized due to missing input element.`);
             }
         } else {
             console.error(`TagField couldn't be initialized due to missing wrapper element.`);
@@ -207,7 +208,7 @@ export class TagsField extends KEventTarget {
                 this.content.innerText = this.input!.value;
                 this.input!.style.width = `${this.content.getBoundingClientRect().width + 20}px`;
             }
-        }); 
+        });
 
         const removeHandler = function(this: HTMLElement) {
             const item = <HTMLElement | undefined>this.parent('.tag-field__item');
