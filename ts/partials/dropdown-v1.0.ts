@@ -19,8 +19,8 @@ export class Dropdown {
 	constructor(options: DropdownOptions) {
 		const select = <HTMLSelectElement|undefined>q('select', options.dropdown);
 
-		this.settings = { 
-			...Dropdown.defaults, 
+		this.settings = {
+			...Dropdown.defaults,
 			...options,
 		};
 
@@ -45,7 +45,7 @@ export class Dropdown {
 			eventHandler: this.eventHandlerButtonClick.bind(this.button, this),
 		});
 
-		this.options.forEach(option => 
+		this.options.forEach(option =>
 			this.eventHandlers.push({
 				element: option,
 				eventType: 'click',
@@ -71,7 +71,7 @@ export class Dropdown {
 		});
 	}
 
-	private eventHandlerButtonClick(this: HTMLButtonElement, self: Dropdown, e: Event) {
+	private eventHandlerButtonClick(this: HTMLButtonElement, self: Dropdown) {
 		if (self.search) {
 			self.search.focus();
 		}
@@ -83,7 +83,7 @@ export class Dropdown {
 		}
 	}
 
-	private eventHandlerItemClick(this: HTMLUListElement, self: Dropdown, e: Event) {
+	private eventHandlerItemClick(this: HTMLUListElement, self: Dropdown) {
 		const options = qq('option', self.select) as HTMLInputElement[];
 		const others = options.filter(option => option.dataset.other);
 
@@ -106,7 +106,7 @@ export class Dropdown {
 		self.button.innerText = this.innerText;
 	}
 
-	private eventHandlerInputKeyup(this: HTMLInputElement, self: Dropdown, e: Event) {
+	private eventHandlerInputKeyup(this: HTMLInputElement, self: Dropdown) {
 		const value = this.value.trim();
 		const keyword = new RegExp(value, 'gi');
 
@@ -127,7 +127,7 @@ export class Dropdown {
 			this.select.dataset.search = 'true';
 		}
 
-		this.select.insertAdjacentHTML('afterend', 
+		this.select.insertAdjacentHTML('afterend',
 			View.render(Dropdown.template, {
 				options: [].slice.call(this.select.options),
 				dataset: this.select.dataset,
@@ -154,10 +154,6 @@ export class Dropdown {
 		}
 	}
 
-	private searchReset() {
-		this.search.value = '';
-		this.options.forEach(option => option.classList.remove('hide'));
-	}
 
 	public destroy() {
 		const container = q('.dropdown__container', this.settings.dropdown);
