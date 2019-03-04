@@ -1,8 +1,10 @@
-#header {
-	margin: 0 0 $base-spacing 0;
-	padding: $small-spacing 0;
-
-	border-bottom: $base-border;
-
-	background-color: color('header', 'background');
+@if $general-v1-0 {
+	#header {
+		margin: 0 0 $base-spacing 0;
+		padding: $small-spacing 0;
+	
+		border-bottom: $base-border;
+	
+		background-color: color('header', 'background');
+	}
 }
