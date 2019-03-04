@@ -1,8 +1,10 @@
-#footer {
-	margin: $base-spacing 0 0 0;
-	padding: $small-spacing 0;
-
-	border-top: $base-border;
-
-	background-color: color('footer', 'background');
+@if $general-v1-0 {
+	#footer {
+		margin: $base-spacing 0 0 0;
+		padding: $small-spacing 0;
+	
+		border-top: $base-border;
+	
+		background-color: color('footer', 'background');
+	}
 }
