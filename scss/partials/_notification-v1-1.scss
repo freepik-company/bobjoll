@@ -192,9 +192,10 @@
             }
 
             .notification__state {
-
-                .icon:not(.nostyle) {
-                    @extend .icon--exclamation;
+                @if $icon-v2-0 {
+                    .icon:not(.nostyle) {
+                        @extend .icon--exclamation;
+                    }
                 }
             }
 
@@ -218,9 +219,10 @@
             }
 
             .notification__state {
-
-                .icon:not(.nostyle) {
-                    @extend .icon--exclamation;
+                @if $icon-v2-0 {
+                    .icon:not(.nostyle) {
+                        @extend .icon--exclamation;
+                    }
                 }
             }
 
@@ -244,9 +246,10 @@
             }
 
             .notification__state {
-
-                .icon:not(.nostyle) {
-                    @extend .icon--check;
+                @if $icon-v2-0 {
+                    .icon:not(.nostyle) {
+                        @extend .icon--check;
+                    }
                 }
             }
 
