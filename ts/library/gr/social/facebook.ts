@@ -99,7 +99,7 @@ export default class Facebook extends Social {
                 data.append('facebook_id', response.authResponse.userID);
                 data.append('social_network', 'facebook');                
                 
-                if (Facebook.gr && !Facebook.gr.isLogged()) action = 'connect';
+                if (Facebook.gr && Facebook.gr.isLogged()) action = 'connect';
             } else if ('register' === response.status) {
                 let user = await new Promise((resolve, reject) => {
                     try {
