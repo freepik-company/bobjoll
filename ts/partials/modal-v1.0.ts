@@ -53,7 +53,7 @@ export class Modal {
             modalsWrapper = document.createElement('div');
             modalsWrapper.id = 'modals';
 
-            document.body.insertAdjacentElement('afterend', modalsWrapper);
+            document.body.insertAdjacentElement('beforeend', modalsWrapper);
         }
 
         this.modalsWrapper = modalsWrapper;
