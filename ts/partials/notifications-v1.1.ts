@@ -1,6 +1,6 @@
-import View from 'BobjollView';
-import { Settings } from 'Settings';
 import { Cookie } from 'bobjoll/ts/library/cookie';
+import { Settings } from 'Settings';
+import View from 'BobjollView';
 
 const EXT = View.ext;
 const STORAGE_VISIBILITY_NS = 'notification-visibility';
