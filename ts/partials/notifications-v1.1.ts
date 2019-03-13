@@ -1,13 +1,11 @@
-import View from 'BobjollView';
+import { Cookie } from 'bobjoll/ts/library/cookie';
 import { Settings } from 'Settings';
-import { CookieStorage } from 'cookie-storage';
+import View from 'BobjollView';
 
 const EXT = View.ext;
 const STORAGE_VISIBILITY_NS = 'notification-visibility';
 const STORAGE_COUNT_NS = 'notification-count';
-const Cookies = new CookieStorage();
 const extend = require('bobjoll/ts/library/extend');
-
 
 export default class Notifications {
     public settings: DefaultSettings;
@@ -74,7 +72,7 @@ export default class Notifications {
                 console.warn('You have to define a fixed ID for this notification in order for recurrent to work properly.');
             }
 
-            if (options.recurrent && (Cookies.getItem(`${STORAGE_VISIBILITY_NS}--${options.id}`) === 'false')) {
+            if (options.recurrent && (Cookie.getItem(`${STORAGE_VISIBILITY_NS}--${options.id}`) === 'false')) {
                 return;
             }
 
@@ -105,19 +103,19 @@ export default class Notifications {
             if (notification && options.recurrentPrint && options.recurrentMax) {
                 notification.dataset.recurrentPrint = 'true';
 
-                let count: number = parseFloat(Cookies.getItem(`${STORAGE_COUNT_NS}--${options.id}_count`) || '0');
+                let count: number = parseFloat(Cookie.getItem(`${STORAGE_COUNT_NS}--${options.id}_count`) || '0');
 
                 count++;
 
-                Cookies.setItem(`${STORAGE_COUNT_NS}--${options.id}_count`, count.toString(), {
+                Cookie.setItem(`${STORAGE_COUNT_NS}--${options.id}_count`, count.toString(), {
                     path: '/',
                     domain: document.domain,
                     expires: options.cookieExpiry || this.settings.cookieExpiry
                 });
 
                 if (count && count >= parseFloat(options.recurrentMax)) {
-                    Cookies.removeItem(`${STORAGE_COUNT_NS}--${options.id}_count`);
-                    Cookies.setItem(`${STORAGE_VISIBILITY_NS}--${options.id}`, 'false', {
+                    Cookie.removeItem(`${STORAGE_COUNT_NS}--${options.id}_count`);
+                    Cookie.setItem(`${STORAGE_VISIBILITY_NS}--${options.id}`, 'false', {
                         path: '/',
                         domain: document.domain,
                         expires: options.cookieExpiry || this.settings.cookieExpiry
@@ -219,27 +217,27 @@ export default class Notifications {
                 const cookieExpiryDate = new Date(parseFloat(cookieExpiry || '0'));
 
                 if (userDisable && userDisable.checked || hideRecurrent) {
-                    Cookies.setItem(`${STORAGE_VISIBILITY_NS}--${id}`, 'false', {
+                    Cookie.setItem(`${STORAGE_VISIBILITY_NS}--${id}`, 'false', {
                         path: '/',
                         domain: document.domain,
                         expires: cookieExpiry ? cookieExpiryDate : this.settings.cookieExpiry
                     });
                 } else if (recurrentMax) {
-                    let count: number = parseFloat(Cookies.getItem(`${STORAGE_COUNT_NS}--${id}_count`) || '0');
+                    let count: number = parseFloat(Cookie.getItem(`${STORAGE_COUNT_NS}--${id}_count`) || '0');
 
                     if (!recurrentPrint && 'undefined' !== typeof count) {
                         count++;
                     }
 
-                    Cookies.setItem(`${STORAGE_COUNT_NS}--${id}_count`, count.toString(), {
+                    Cookie.setItem(`${STORAGE_COUNT_NS}--${id}_count`, count.toString(), {
                         path: '/',
                         domain: document.domain,
                         expires: cookieExpiry ? cookieExpiryDate : this.settings.cookieExpiry
                     });
 
                     if (count && count >= parseFloat(recurrentMax)) {
-                        Cookies.removeItem(`${STORAGE_COUNT_NS}--${id}_count`);
-                        Cookies.setItem(`${STORAGE_VISIBILITY_NS}--${id}`, 'false', {
+                        Cookie.removeItem(`${STORAGE_COUNT_NS}--${id}_count`);
+                        Cookie.setItem(`${STORAGE_VISIBILITY_NS}--${id}`, 'false', {
                             path: '/',
                             domain: document.domain,
                             expires: cookieExpiry ? cookieExpiryDate : this.settings.cookieExpiry
@@ -270,8 +268,8 @@ export default class Notifications {
     }
 
     public getSettings(id: string) {
-        const cookieItemCount = Cookies.getItem(`${STORAGE_COUNT_NS}--${id}_count`);
-        const cookieItemVisibility = Cookies.getItem(`${STORAGE_VISIBILITY_NS}--${id}`);
+        const cookieItemCount = Cookie.getItem(`${STORAGE_COUNT_NS}--${id}_count`);
+        const cookieItemVisibility = Cookie.getItem(`${STORAGE_VISIBILITY_NS}--${id}`);
         const itemCount = cookieItemCount ? parseFloat(cookieItemCount) : undefined;
         const itemVisibility = cookieItemVisibility ? true : false;
 
