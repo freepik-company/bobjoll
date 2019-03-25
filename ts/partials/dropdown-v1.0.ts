@@ -99,7 +99,9 @@ export class Dropdown {
 
 		if (this.dataset.value) {
 			self.select.value = this.dataset.value;
-			self.select.dispatchEvent(new Event('change'));
+			self.select.dispatchEvent(new Event('change', {
+				bubbles: true,
+			}));
 		}
 
 		self.button.classList.remove('active');
