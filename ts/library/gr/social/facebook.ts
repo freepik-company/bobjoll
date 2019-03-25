@@ -81,7 +81,7 @@ export default class Facebook extends Social {
                 appId: FACEBOOK_APP_ID,
                 cookie: true,
                 xfbml: false,
-                version: 'v2.8'
+                version: 'v3.2'
             });
 
             FB.getLoginStatus((response) => {});
