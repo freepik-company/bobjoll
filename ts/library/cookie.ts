@@ -26,6 +26,12 @@ export class Cookie {
             expires: new Date(),
         });
     }
+
+    public static isEnabled() {
+        document.cookie = "testcookie";
+        var cookieEnabled = (document.cookie.indexOf("testcookie") != -1) ? true : false;
+        return cookieEnabled || false;
+    }
 }
 
 interface CookieOptions {
