@@ -71,7 +71,8 @@
 
 			width: 100%;
 
-			padding: $small-spacing $base-spacing;
+			margin: 0;
+			padding: 0 $large-spacing $base-spacing $large-spacing;
 
 			p:last-child {
 				margin: 0;
@@ -118,8 +119,6 @@
 			&:not(.nostyle) {
 				display: block;
 
-				padding: $small-spacing $small-spacing $small-spacing $base-spacing;
-
 				text-decoration: none;
 
 				color: color('accordion', 'general');
@@ -152,6 +151,57 @@
 				position: relative;
 
 				display: block;
+			}
+
+			position: relative;
+
+            padding: $base-spacing ($large-spacing + $base-element-height) $base-spacing $large-spacing;
+
+            border: none;
+
+            font-family: $title-font-family;
+			line-height: $extra-small-element-height;
+
+			text-align: left;
+			width: 100%;
+			
+			&.active {
+				padding-bottom: $small-spacing;
+
+				font-weight: 400;
+
+				& ~ .accordion__content {
+					border: none;
+				}
+
+				.icon {
+					@extend .icon--minus;
+				}
+			}
+
+			.icon {
+				$offset-y: ((($base-spacing * 2) + $extra-small-element-height) - $base-element-height) / 2;
+				$offset-x: $large-spacing;
+
+				position: absolute;
+				top: $offset-y;
+				right: ($offset-x / 2);
+
+				color: color('link', 'general');
+			}
+		}
+
+		&--section {
+			.accordion__container {
+				margin: 0 0 $small-spacing;
+				padding: 0;
+
+				border: $base-border;
+				border-radius: $base-border-radius;
+
+				&:last-child {
+					margin: 0;
+				}
 			}
 		}
 
