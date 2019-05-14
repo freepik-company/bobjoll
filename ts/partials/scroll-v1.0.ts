@@ -1,3 +1,6 @@
+import 'bobjoll/ts/library/common';
+import { delegate } from 'bobjoll/ts/library/dom';
+
 export default class Scroll {
     private static readonly requestAnimationFrame = (
         (window as any).requestAnimationFrame ||
@@ -12,11 +15,28 @@ export default class Scroll {
     private static position = Scroll.getPosition();
 
     constructor() {
-        if (!Scroll.instance) {
-            Scroll.instance = this;
+      this.addEventListeners();
+    }
 
-            Scroll.callback();
+    private addEventListeners() {
+      const self = this;
+
+      delegate('.scrollTo', 'click', function (this: HTMLElement, e: Event) {
+        e.preventDefault();
+
+        let id: string | null = self.getTarjetId(this.getAttribute('href')) || '';
+
+        let tarjetElement: HTMLElement | null = document.getElementById(id) || null;
+        if (tarjetElement !== null) {
+          self.scrollTo(tarjetElement, 300);
         }
+      });
+    }
+
+    private getTarjetId(anchor: string | null) {
+      return anchor !== null && anchor.split('#').length > 1
+        ? anchor.split('#')[1]
+        : anchor || null;
     }
 
     public static add(callback: Function) {
@@ -58,10 +78,10 @@ export default class Scroll {
     }
 
     public static getPosition() {
-        return window.pageYOffset || document.getPathValue('documentElement.scrollTop') || document.body.scrollTop;
+        return window.pageYOffset || document.body.scrollTop;
     }
 
-    public static scrollTo(destination: HTMLElement | number, duration = 200, easing = 'linear', callback?: Function) {
+    public scrollTo(destination: HTMLElement | number, duration = 200, easing = 'linear', callback?: Function) {
         const easings: { [key: string]: Function; } = {
             linear(t: number) {
               return t;
