@@ -12,9 +12,10 @@ export default class Scroll {
 
     private static callbacks: Function[] = [];
     private static instance: Scroll;
-    private static position = Scroll.getPosition();
+    private static position: Number;
 
     constructor() {
+      Scroll.position = Scroll.getPosition();
       this.addEventListeners();
     }
 
@@ -78,7 +79,7 @@ export default class Scroll {
     }
 
     public static getPosition() {
-        return window.pageYOffset || document.body.scrollTop;
+        return window.pageYOffset || (document.body)?document.body.scrollTop:0;
     }
 
     public scrollTo(destination: HTMLElement | number, duration = 200, easing = 'linear', callback?: Function) {
