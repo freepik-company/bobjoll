@@ -199,9 +199,9 @@ export class TagsField extends KEventTarget {
         if (this.settings.sourceOnly) {
         } else {
             this.input.addEventListener('change', () => this.eventHandlerInputChange());
-            this.input.addEventListener('keydown', (event) => this.eventHandlerInputKeyDown(event));
             this.input.addEventListener('keyup', (event) => this.eventHandlerInputKeyUp(event));
         }
+        this.input.addEventListener('keydown', (event) => this.eventHandlerInputKeyDown(event));
 
         this.input.addEventListener('keyup', () => {
             if (this.content) {
@@ -250,8 +250,10 @@ export class TagsField extends KEventTarget {
 
     private async eventHandlerInputKeyUp(event: KeyboardEvent) {
         const key = window.event ? event.keyCode : event.which;
-
-        if (13 === key || 9 === key) { //enter
+        if (13 === key || 9 === key || 188 === key) { //enter or comma
+            if(188 === key) { //remove comma
+                this.input.value = this.input.value.substr(0, this.input.value.length -1);
+            }
             await new Promise((resolve) => setTimeout(resolve, 100));
 
             this.add(this.input.value);
