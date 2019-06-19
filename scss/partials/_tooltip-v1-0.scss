@@ -4,7 +4,7 @@
 		
 		position: relative;	
 
-		&:hover .tooltip__container {
+		&:hover > .tooltip__container {
 			display: block;
 		}
 
@@ -27,7 +27,7 @@
 		}
 
 		@include modifier('permanent') {
-			&:hover .tooltip__container {
+			&:hover > .tooltip__container {
 				display: block !important;
 			}
 		}
@@ -149,7 +149,7 @@
 		}
 
 		&:hover {
-			.tooltip__container {
+			& > .tooltip__container {
 				display: block;
 			}
 		}
