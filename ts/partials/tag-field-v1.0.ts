@@ -241,7 +241,7 @@ export class TagsField extends KEventTarget {
 
             if (lastItem) {
                 if (this.items) {
-                    this.items.removeChild(lastItem);
+                    this.removeItems([lastItem.dataset.value || '']);
                 }
                 this.update();
             }
