@@ -148,7 +148,7 @@ export class Dropdown {
 			this.select.dataset.search = 'true';
 		}
 
-		if(!this.instance) {
+		if (!this.instance) {
 			this.select.insertAdjacentHTML('afterend',
 				View.render(Dropdown.template, {
 					options: [].slice.call(this.select.options),
