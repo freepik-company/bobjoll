@@ -14,6 +14,7 @@ export class Dropdown {
 	private select: HTMLSelectElement;
 	private search: HTMLInputElement;
 	private options: HTMLUListElement[];
+	private instance: Boolean = false;
 	private eventHandlers: DropdownEventHanlder[] = [];
 
 	constructor(options: DropdownOptions) {
@@ -23,6 +24,10 @@ export class Dropdown {
 			...Dropdown.defaults,
 			...options,
 		};
+
+		if(options.instance) {
+			this.instance = options.instance;
+		}
 
 		if (select) {
 			this.select = select;
@@ -103,9 +108,23 @@ export class Dropdown {
 				bubbles: true,
 			}));
 		}
-
+		
 		self.button.classList.remove('active');
 		self.button.innerText = this.innerText;
+	}
+
+	private changeValue(newVal: string) {
+		let targetOption = this.options.filter(option => option.dataset.value == newVal)[0];
+
+		this.button.innerText = targetOption.innerText;
+
+		this.select.value = newVal;
+		this.select.dispatchEvent(new Event('change', {
+		bubbles: true,
+		}));
+
+		this.button.classList.remove('active');
+		this.button.innerText = targetOption.innerText;
 	}
 
 	private eventHandlerInputKeyup(this: HTMLInputElement, self: Dropdown) {
@@ -129,13 +148,15 @@ export class Dropdown {
 			this.select.dataset.search = 'true';
 		}
 
-		this.select.insertAdjacentHTML('afterend',
-			View.render(Dropdown.template, {
-				options: [].slice.call(this.select.options),
-				dataset: this.select.dataset,
-				selectedIndex: this.select.options.selectedIndex
-			})
-		);
+		if (!this.instance) {
+			this.select.insertAdjacentHTML('afterend',
+				View.render(Dropdown.template, {
+					options: [].slice.call(this.select.options),
+					dataset: this.select.dataset,
+					selectedIndex: this.select.options.selectedIndex
+				})
+			);
+		}
 
 		this.options = <HTMLUListElement[]>qq('.dropdown__select li', this.settings.dropdown);
 
@@ -175,6 +196,7 @@ export interface DropdownDefaults {
 export interface DropdownOptions {
 	search?: boolean;
 	dropdown: HTMLElement;
+	instance?: boolean;
 }
 
 export interface DropdownSettings {
