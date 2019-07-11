@@ -202,6 +202,7 @@ export interface DropdownOptions {
 export interface DropdownSettings {
 	search: boolean;
 	dropdown: HTMLElement;
+	instance?: boolean;
 }
 
 export interface DropdownEventHanlder {
