@@ -148,7 +148,11 @@ export default class Scroll {
 
             window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - start)) + start));
         
-            if (window.pageYOffset === destinationOffsetToScroll) {
+            if (
+              Math.ceil(window.pageYOffset) === destinationOffsetToScroll ||
+              Math.ceil(window.pageYOffset) === (destinationOffsetToScroll-1) ||
+              Math.ceil(window.pageYOffset) === (destinationOffsetToScroll+1)
+              ) {
                 if (callback) {
                     callback();
                 }
