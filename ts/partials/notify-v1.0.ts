@@ -654,7 +654,7 @@ export interface NotifyUser {
     isPremiumFreepikMonthly(): boolean;
     isPremiumFlaticonAnnual(): boolean;
     isPremiumFlaticonMonthly(): boolean;
-    type(): 'guest' | 'free' | 'premium';
+    type(): "Premium" | "Free" | "Anonymous";
 }
 
 export interface NotifyHistory {
