@@ -376,7 +376,7 @@ export class Notify extends KEventTarget {
                     }
     
                     if (dialog.hideOnNavigation && Notify.History.getHistoryLength() > 1) {
-                        notify.hide(dialog.id);
+                        Notify.instance.hide(dialog.id);
                         booleanArr.push({
                             name: 'dialog.hideOnNavigation',
                             show: false,
@@ -425,7 +425,6 @@ export class Notify extends KEventTarget {
                 return false;
             });
         const settings = queue.shift();
-
 
         if (settings) {
             if ('custom' !== settings.type && settings.preload) {
@@ -655,6 +654,7 @@ export interface NotifyUser {
     isPremiumFreepikMonthly(): boolean;
     isPremiumFlaticonAnnual(): boolean;
     isPremiumFlaticonMonthly(): boolean;
+    type(): 'guest' | 'free' | 'premium';
 }
 
 export interface NotifyHistory {
