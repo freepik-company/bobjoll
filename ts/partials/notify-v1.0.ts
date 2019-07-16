@@ -358,7 +358,7 @@ export class Notify extends KEventTarget {
                     if ('undefined' !== typeof dialog.showGuestOnly) {
                         booleanArr.push({
                             name: 'dialog.showGuestOnly',
-                            show: gr && gr.user ? !!dialog.showGuestOnly : true,
+                            show: Notify.User.isLogged() ? !!dialog.showGuestOnly : true,
                         });
                     }
     
