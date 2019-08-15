@@ -1,0 +1,62 @@
+<div class="datetime-picker mg-bottom-lv2">
+    <div class='calendar-div noDisplay' data-id="{{options.id}}" data-year="{{options.year}}" data-month="{{options.month}}">
+        <div>
+            <div class='year-month-wrapper'>
+                <div class='month-setter'>
+                    <button type='button' class='nav-yl'>&#x3C;</button>
+                    <span class='year'>{{options.year}}</span>
+                    <button type='button' class='nav-yr'>&#x3E;</button>
+                </div>
+                <div class='month-setter'>
+                    <button type='button' class='nav-ml'>&#x3C;</button>
+                    <span class='month'>{{options.month}}</span>
+                    <button type='button' class='nav-mr'>&#x3E;</button>
+                </div>
+            </div>
+            <div class='headers'>
+                {% for portIndex, port in options.days %}
+                    <span class='days'>{{port}}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {% for weekIndex, week in options.weeks %}
+                    <div class="week">
+                        {% for dayIndex, day in week %}
+                            <span class="port">
+                                {{day}}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {# <div class='time-picker' class='{% hideTime ? "hideTime" : "" %}'>
+            <div class='hour-selector' >
+            <div v-on:click='showHourSelector' id='j-hour'>{{periodStyle === 12 && hour > 12 ? hour - 12 : hour}}</div>
+            <div class='scroll-hider' ref='hourScrollerWrapper' :class='{showSelector: hourSelectorVisible}'>
+                <ul ref='hourScroller'>
+                <li :key="index" v-for="(h, index) in hours" :class='{active: index == hourIndex}' v-on:click='setHour(index, true)' >{{h}}</li>
+                </ul>
+            </div>
+            </div>
+            <div class='time-separator'>
+            <span>:</span>
+            </div>
+            <div class='minute-selector' >
+            <div v-on:click='showMinuteSelector' id='j-minute'>{{minute}}</div>
+            <div class='scroll-hider' ref='minuteScrollerWrapper' :class='{showSelector: minuteSelectorVisible}'>
+                <ul ref='minuteScroller'>
+                <li :key="index" v-for="(m, index) in minutes" :class='{active: index == minuteIndex}' v-on:click='setMinute(index, true)'>{{m}}</li>
+                </ul>
+            </div>
+            </div>
+            <div class='time-separator' v-if='periodStyle === 12'>
+            <span>:</span>
+            </div>
+            <div class='minute-selector' v-if='periodStyle === 12'>
+            <div v-on:click='changePeriod'>{{period}}</div>
+            </div>
+        </div> #}
+        <button type='button' class='okButton'>OK</button>
+    </div>
+</div>
