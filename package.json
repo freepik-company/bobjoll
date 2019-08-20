@@ -16,6 +16,7 @@
     "webfonts-generator": "^0.4.0"
   },
   "dependencies": {
-    "@types/gapi": "^0.0.36"
+    "@types/gapi": "^0.0.36",
+    "date-fns": "^1.30.1"
   }
 }
