@@ -263,7 +263,7 @@ export default class Notifications {
         const notification = document.getElementById(id);
 
         if (notification) {
-            notification.classList.add('animation--fade-in');
+            notification.classList.add('notification--show');
         }
     }
 

@@ -288,5 +288,9 @@
                 display: none;
             }
         }
+
+        &--show {
+            opacity: 1;
+        }
     }
 }
