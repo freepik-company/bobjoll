@@ -232,6 +232,12 @@ $global-colors: (
 		'inverted': $color-text,
 		'inverted-outline': $color-light,
 	),
+	dropdown: (
+		bg: transparent,
+		text: $color-text,
+		bg-hover: $color-main,
+		text-hover: $color-light,
+	),
 	'gray': (
 		'9': $gray-shade-9,
 		'8': $gray-shade-8,
