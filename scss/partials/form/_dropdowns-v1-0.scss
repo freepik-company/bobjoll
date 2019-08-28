@@ -19,9 +19,6 @@
 		@include element('select') {
 			@include position(absolute, null null null null);
 
-			// overflow-x: hidden;
-			// overflow-y: auto;
-
 			display: none;
 
 			width: 100%;
@@ -67,24 +64,17 @@
 
 			li {
 				height: $base-input-height;
-
 				margin: 0;
 				padding: 0 $small-spacing;
-
 				cursor: pointer;
-
+				background-color: color('bg', 'dropdown');
+				color: color('text', 'dropdown');
 				line-height: $base-input-height;
 
 				&:hover {
-					background-color: color('link', 'general');
-
-					color: pick-visible-color(
-						color('secondary', 'background'),
-						color('text', 'general'),
-						color('text-inverted', 'general')
-					);
-
 					cursor: pointer;
+					background-color: color('bg-hover', 'dropdown');
+					color: color('text-hover', 'dropdown');
 				}
 
 				&:last-child {
