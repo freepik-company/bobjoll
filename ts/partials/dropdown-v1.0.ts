@@ -50,6 +50,12 @@ export class Dropdown {
 			eventHandler: this.eventHandlerButtonClick.bind(this.button, this),
 		});
 
+		this.eventHandlers.push({
+			element: this.select,
+			eventType: 'change',
+			eventHandler: () => this.update(),
+		});
+
 		this.options.forEach(option =>
 			this.eventHandlers.push({
 				element: option,
@@ -110,21 +116,6 @@ export class Dropdown {
 		}
 		
 		self.button.classList.remove('active');
-		self.button.innerText = this.innerText;
-	}
-
-	private changeValue(newVal: string) {
-		let targetOption = this.options.filter(option => option.dataset.value == newVal)[0];
-
-		this.button.innerText = targetOption.innerText;
-
-		this.select.value = newVal;
-		this.select.dispatchEvent(new Event('change', {
-		bubbles: true,
-		}));
-
-		this.button.classList.remove('active');
-		this.button.innerText = targetOption.innerText;
 	}
 
 	private eventHandlerInputKeyup(this: HTMLInputElement, self: Dropdown) {
@@ -135,6 +126,16 @@ export class Dropdown {
 			const text = option.innerText || '';
 			const value = option.dataset.value || '';
 			option.classList[text.match(keyword) || value.match(keyword) ? 'remove' : 'add']('hide');
+		});
+	}
+
+	private update() {
+		const options = qq('option', this.select) as HTMLInputElement[];
+
+		options.forEach(option => {
+			if (this.select.value === option.value) {
+				this.button.innerText = option.innerText;
+			}
 		});
 	}
 
