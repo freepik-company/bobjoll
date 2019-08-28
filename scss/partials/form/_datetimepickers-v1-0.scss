@@ -1,150 +1,152 @@
-.datetime-picker {
-  position: relative;
-  
-  .year-month-wrapper{
-    background-color: $color-main;
-  }
-  .calendar-div{
-    min-width: 270px;
-    box-shadow: 1px 2px 5px #ccc;
-    background: #FFF;
-    display: inline-block;
-    left: 0;
-    top: 35px;
-    color: #444;
-    font-size: 14px;
-    padding-bottom: 10px;
-    z-index: 100;
-  }
-  .port, .days{
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    padding: 5px 3px;
-    margin: 2px;
-    border-radius: 2px;
-    text-align: center;
-    vertical-align: top;
-    cursor: pointer;
-  }
-  .days{
-    color: $color-main;
-    font-weight: bold;
-  }
-  .port:hover{
-    color: $color-main;
-    font-weight: bold;
-  }
-  .activePort, .activePort:hover {
-    background-color: $color-main;
-    color: white;
-  }
-  .month-setter, .year-setter{
-    margin: 0 1px;
-    width: 48.2%;
-    color: white;
-    font-weight: 900;
-    display: inline-block;
-  }
-  .nav-yl:hover, .nav-yr:hover, .nav-ml:hover, .nav-mr:hover {
-    color: $color-dark;
-  }
-  .nav-yl, .nav-yr, .nav-ml, .nav-mr {
-    display: inline-block;
-    width: 25px;
-    background-color: $color-main;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border: 0;
-    padding: 7px;
-    margin:0;
-  }
-  .nav-yl:focus, .nav-yr:focus, .nav-ml:focus, .nav-mr:focus{
-    outline: none;
-  }
-  .nav-yl, .nav-ml{
-    float: left;
-  }
-  .nav-yr, .nav-mr{
-    float: right;
-  }
-  .month, .year{
-    width: 40px;
-    text-align: right;
-    display: inline-block;
-    color: white;
-    padding: 7px 0;
-  }
-  .hour-selector, .minute-selector{
-    width: 30px;
-    display: inline-block;
-    text-align: center;
-    font-weight: bold;
+@if $form-v1-0 and $datetimepicker-v1-0 {
+  .datetime-picker {
     position: relative;
-    cursor: pointer;
-  }
-  .time-separator{
-    display: inline-block;
-    font-weight: bold;
-  }
-  .time-picker{
-    margin: 10px
-  }
-  .nav-t, .nav-d{
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .scroll-hider {
-    display: none;
-    vertical-align:top;
-    overflow:hidden;
-    border:0;
-    position: absolute;
-    top: -40px;
-    left: 0;
-    box-shadow: 0 0 3px #333;
-    background-color: white;
-  }
-  .scroll-hider ul {
-    padding:5px;
-    margin:-5px -13px -5px -5px;
-    list-style-type: none;
-    height: 100px;
-    overflow: auto;
-    width:55px;
-    color: #999;
-    overflow-x: hidden;
-  }
-  .showSelector{
-    display:inline-block;
-  }
-  li.active{
-    background-color: $color-main;
-    color: white;
-  }
-  li{
-    padding: 4px;
-    font-size: 16px;
-    width: 100%;
-    cursor: pointer;
-  }
-  .time-picker{
-    display: inline-block;
-  }
-  .noDisplay{
-    display: none;
-  }
-  .okButton{
-    color: $color-main;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 0;
-    float: right;
-    border: 0;
-    margin-right: 10px;
-    margin-top: 10px;
-    cursor: pointer;
-    background: transparent;
+    
+    .year-month-wrapper{
+      background-color: $color-main;
+    }
+    .calendar-div{
+      min-width: 270px;
+      box-shadow: 1px 2px 5px #ccc;
+      background: #FFF;
+      display: inline-block;
+      left: 0;
+      top: 35px;
+      color: #444;
+      font-size: 14px;
+      padding-bottom: 10px;
+      z-index: 100;
+    }
+    .port, .days{
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      padding: 5px 3px;
+      margin: 2px;
+      border-radius: 2px;
+      text-align: center;
+      vertical-align: top;
+      cursor: pointer;
+    }
+    .days{
+      color: $color-main;
+      font-weight: bold;
+    }
+    .port:hover{
+      color: $color-main;
+      font-weight: bold;
+    }
+    .activePort, .activePort:hover {
+      background-color: $color-main;
+      color: white;
+    }
+    .month-setter, .year-setter{
+      margin: 0 1px;
+      width: 48.2%;
+      color: white;
+      font-weight: 900;
+      display: inline-block;
+    }
+    .nav-yl:hover, .nav-yr:hover, .nav-ml:hover, .nav-mr:hover {
+      color: $color-dark;
+    }
+    .nav-yl, .nav-yr, .nav-ml, .nav-mr {
+      display: inline-block;
+      width: 25px;
+      background-color: $color-main;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border: 0;
+      padding: 7px;
+      margin:0;
+    }
+    .nav-yl:focus, .nav-yr:focus, .nav-ml:focus, .nav-mr:focus{
+      outline: none;
+    }
+    .nav-yl, .nav-ml{
+      float: left;
+    }
+    .nav-yr, .nav-mr{
+      float: right;
+    }
+    .month, .year{
+      width: 40px;
+      text-align: right;
+      display: inline-block;
+      color: white;
+      padding: 7px 0;
+    }
+    .hour-selector, .minute-selector{
+      width: 30px;
+      display: inline-block;
+      text-align: center;
+      font-weight: bold;
+      position: relative;
+      cursor: pointer;
+    }
+    .time-separator{
+      display: inline-block;
+      font-weight: bold;
+    }
+    .time-picker{
+      margin: 10px
+    }
+    .nav-t, .nav-d{
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .scroll-hider {
+      display: none;
+      vertical-align:top;
+      overflow:hidden;
+      border:0;
+      position: absolute;
+      top: -40px;
+      left: 0;
+      box-shadow: 0 0 3px #333;
+      background-color: white;
+    }
+    .scroll-hider ul {
+      padding:5px;
+      margin:-5px -13px -5px -5px;
+      list-style-type: none;
+      height: 100px;
+      overflow: auto;
+      width:55px;
+      color: #999;
+      overflow-x: hidden;
+    }
+    .showSelector{
+      display:inline-block;
+    }
+    li.active{
+      background-color: $color-main;
+      color: white;
+    }
+    li{
+      padding: 4px;
+      font-size: 16px;
+      width: 100%;
+      cursor: pointer;
+    }
+    .time-picker{
+      display: inline-block;
+    }
+    .noDisplay{
+      display: none;
+    }
+    .okButton{
+      color: $color-main;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 0;
+      float: right;
+      border: 0;
+      margin-right: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      background: transparent;
+    }
   }
 }
