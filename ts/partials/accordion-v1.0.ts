@@ -52,6 +52,7 @@ class Accordion {
 
 			qq('.accordion__link', wrapper).forEach(item => item !== this ? item.classList.remove('active') : null);
 
+			wrapper.classList[collapsible ? 'toggle' : 'add']('active');
 			(this.classList as any)[collapsible ? 'toggle' : 'add']('active');
 		}
 	}
