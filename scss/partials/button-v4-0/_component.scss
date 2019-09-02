@@ -15,6 +15,7 @@
   .#{$defaultPrefix} {
     overflow: hidden;
     position: relative;
+    display: inline-block;
     border: none;
     border-radius: $buttonBorderRadius;
     border-width: $buttonBorderWidth;
@@ -58,6 +59,13 @@
           }
         }
       }
+    }
+
+    &--fullwidth {
+      @include prefixer(display, flex, ms spec);
+      @include prefixer(align-items, center, ms spec);
+      @include prefixer(justify-content, center, ms spec);
+      width: 100%;
     }
 
     @if $icon-v2-0 {
