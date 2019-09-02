@@ -6,18 +6,9 @@
 		src: {{{src}}};
 	}
 
-    {{baseSelector}} {
+    %{{baseSelectorPlain}} {
 		display: block;
 
-        width: $base-icon-width;
-        height: $base-icon-height;
-
-        font-size: $base-icon-width;
-        line-height: $base-icon-height;
-
-        color: color('icon', 'general');
-        fill: color('icon', 'general');
-        
         text-transform: none;
 
         -webkit-font-smoothing: antialiased;
@@ -31,6 +22,19 @@
 			font-weight: normal;
 			font-variant: normal;
 		}
+    }
+
+    {{baseSelector}} {
+        @extend %{{baseSelectorPlain}};
+
+        width: $base-icon-width;
+        height: $base-icon-height;
+
+        font-size: $base-icon-width;
+        line-height: $base-icon-height;
+
+        color: color('icon', 'general');
+        fill: color('icon', 'general');
     }
 
     {{classPrefix}}inverted {

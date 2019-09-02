@@ -1,211 +1,213 @@
-.button {
-    $box-shadow-size: $extra-large-element-height !global;
+@if $button-v2-0 {
+    .button {
+        $box-shadow-size: $extra-large-element-height !global;
 
-    &--outline {
-        box-shadow: inset 0px 0px 0px $base-border-width color('default', 'buttons', 1);
+        &--outline {
+            box-shadow: inset 0px 0px 0px $base-border-width color('default', 'buttons', 1);
 
-        color: color('default', 'buttons-text');
-
-        .icon {
-            color: color('default', 'buttons-text');
-        }
-
-        &.active {
-            box-shadow: inset 0px 0px 0px $box-shadow-size color('default', 'buttons');
-        }
-
-        &:hover, &.active {
-            box-shadow: inset 0px 0px 0px $box-shadow-size color('default', 'buttons', 1, -3);
-
-            color: color('default', 'buttons-text');
-        }
-    }
-
-    &--flat {
-        box-shadow: inset 0px 0px 0px $box-shadow-size color('default', 'buttons', 1);
-
-        color: color('default', 'buttons-text');
-
-        .icon {
-            color: color('default', 'buttons-text');
-        }
-
-        &.active {
-            box-shadow: inset 0px 0px 0px $box-shadow-size color('default', 'buttons');
-        }
-
-        &:hover, &.active {
-            box-shadow: inset 0px 0px 0px $box-shadow-size color('default', 'buttons', 1, -3);
-
-            color: color('default', 'buttons-text');
-        }
-    }
-
-    &--pill {
-        border-radius: 50%;
-    }
-
-    &--text,
-    &--text-inverted {
-        box-shadow: inset 0px 0px 0px 0px transparent;
-    }
-
-    &--text-inverted {
-        --color: color('text-inverted', 'general', 1, .65);
-
-        &.active, &:hover {
-            --color: color('text-inverted', 'general');
-        }
-    }
-
-    &--text {
-        --color: color('text', 'general');
-
-        &.active, &:hover {
-            --color: color('link', 'general');
-        }
-    }
-
-    /**
-    * Sizes
-    */
-    @each $key, $value in $button-sizes {
-        &--#{$key} {
-            font-size: map-get($font-sizes, $key);
-            line-height: $value;
-        }
-    }
-
-    /**
-    * Colors
-    */
-    @each $color, $hex in map-get($colors, 'buttons') {        
-        @if ($color != 'default') {
-            &--#{$color} {
-                &.button--flat {
-                    box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons');
-
-                    color: color($color, 'buttons-text');
-
-                    .icon {
-                        color: color($color, 'buttons-text');
-                    }
-
-                    &.active {
-                        box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons');
-                    }
-
-                    &:hover, &.active {
-                        box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons', 1, -3);
-
-                        color: color($color, 'buttons-text');
-                    }
-                }
-
-                &.button--outline {
-                    box-shadow: inset 0px 0px 0px $base-border-width color($color, 'buttons');
-
-                    color: color($color, 'buttons');
-
-                    .icon {
-                        color: color($color, 'buttons');
-                    }
-
-                    &.active {
-                        box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons');
-                    }
-
-                    &:hover, &.active {
-                        box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons', 1, -3);
-            
-                        color: color($color, 'buttons-text');
-
-                        .icon {
-                            color: color($color, 'buttons-text');
-                        }
-                    }
-                }
-            }
-        }
-
-        &--#{$color}--hover {
-            &:hover, &.active {
-                box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons');
-    
-                color: color($color, 'buttons-text');
-            }
-        }
-    }
-
-    /**
-    * Social
-    */
-    @each $color, $hex in map-get($colors, 'social') {
-        &--#{$color} {
-            &.button--flat {
-                box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'social');
-
-                color: color('text-inverted', 'general');
-
-                .icon {
-                    color: color('text-inverted', 'general');
-                }
-
-                &.active {
-                    box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'social', 1, -3);
-                }
-
-                &:hover, &.active {
-                    box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'social', 1, -3);
-                }
-            }
-
-            &.button--outline {
-                box-shadow: inset 0px 0px 0px $base-border-width color($color, 'social');
-                
-                color: color($color, 'social');
-
-                .icon {
-                    color: color($color, 'social');
-                }
-
-                &.active {
-                    box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'social');
-                }
-
-                &:hover, &.active {
-                    box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'social', 1, -3);
-        
-                    .icon {
-                        color: color('text-inverted', 'general');
-                    }
-                }
-            }
-        }
-    }
-}
-
-.group {
-    input {
-        &:focus ~ .button, & ~ .button:hover {
-            overflow: hidden;
-
-            box-shadow: inset 0 0 0 $box-shadow-size color('default', 'buttons');
-            
             color: color('default', 'buttons-text');
 
             .icon {
                 color: color('default', 'buttons-text');
             }
+
+            &.active {
+                box-shadow: inset 0px 0px 0px $box-shadow-size color('default', 'buttons');
+            }
+
+            &:hover, &.active {
+                box-shadow: inset 0px 0px 0px $box-shadow-size color('default', 'buttons', 1, -3);
+
+                color: color('default', 'buttons-text');
+            }
+        }
+
+        &--flat {
+            box-shadow: inset 0px 0px 0px $box-shadow-size color('default', 'buttons', 1);
+
+            color: color('default', 'buttons-text');
+
+            .icon {
+                color: color('default', 'buttons-text');
+            }
+
+            &.active {
+                box-shadow: inset 0px 0px 0px $box-shadow-size color('default', 'buttons');
+            }
+
+            &:hover, &.active {
+                box-shadow: inset 0px 0px 0px $box-shadow-size color('default', 'buttons', 1, -3);
+
+                color: color('default', 'buttons-text');
+            }
+        }
+
+        &--pill {
+            border-radius: 50%;
+        }
+
+        &--text,
+        &--text-inverted {
+            box-shadow: inset 0px 0px 0px 0px transparent;
+        }
+
+        &--text-inverted {
+            --color: color('text-inverted', 'general', 1, .65);
+
+            &.active, &:hover {
+                --color: color('text-inverted', 'general');
+            }
+        }
+
+        &--text {
+            --color: color('text', 'general');
+
+            &.active, &:hover {
+                --color: color('link', 'general');
+            }
+        }
+
+        /**
+        * Sizes
+        */
+        @each $key, $value in $button-sizes {
+            &--#{$key} {
+                font-size: map-get($font-sizes, $key);
+                line-height: $value;
+            }
+        }
+
+        /**
+        * Colors
+        */
+        @each $color, $hex in map-get($colors, 'buttons') {        
+            @if ($color != 'default') {
+                &--#{$color} {
+                    &.button--flat {
+                        box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons');
+
+                        color: color($color, 'buttons-text');
+
+                        .icon {
+                            color: color($color, 'buttons-text');
+                        }
+
+                        &.active {
+                            box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons');
+                        }
+
+                        &:hover, &.active {
+                            box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons', 1, -3);
+
+                            color: color($color, 'buttons-text');
+                        }
+                    }
+
+                    &.button--outline {
+                        box-shadow: inset 0px 0px 0px $base-border-width color($color, 'buttons');
+
+                        color: color($color, 'buttons');
+
+                        .icon {
+                            color: color($color, 'buttons');
+                        }
+
+                        &.active {
+                            box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons');
+                        }
+
+                        &:hover, &.active {
+                            box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons', 1, -3);
+                
+                            color: color($color, 'buttons-text');
+
+                            .icon {
+                                color: color($color, 'buttons-text');
+                            }
+                        }
+                    }
+                }
+            }
+
+            &--#{$color}--hover {
+                &:hover, &.active {
+                    box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons');
+        
+                    color: color($color, 'buttons-text');
+                }
+            }
+        }
+
+        /**
+        * Social
+        */
+        @each $color, $hex in map-get($colors, 'social') {
+            &--#{$color} {
+                &.button--flat {
+                    box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'social');
+
+                    color: color('text-inverted', 'general');
+
+                    .icon {
+                        color: color('text-inverted', 'general');
+                    }
+
+                    &.active {
+                        box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'social', 1, -3);
+                    }
+
+                    &:hover, &.active {
+                        box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'social', 1, -3);
+                    }
+                }
+
+                &.button--outline {
+                    box-shadow: inset 0px 0px 0px $base-border-width color($color, 'social');
+                    
+                    color: color($color, 'social');
+
+                    .icon {
+                        color: color($color, 'social');
+                    }
+
+                    &.active {
+                        box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'social');
+                    }
+
+                    &:hover, &.active {
+                        box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'social', 1, -3);
+            
+                        .icon {
+                            color: color('text-inverted', 'general');
+                        }
+                    }
+                }
+            }
         }
     }
-}
 
-.popover--share {
-    .popover__container {
-        .button {
-            &:not(:hover) {
-                box-shadow: none;
+    .group {
+        input {
+            &:focus ~ .button, & ~ .button:hover {
+                overflow: hidden;
+
+                box-shadow: inset 0 0 0 $box-shadow-size color('default', 'buttons');
+                
+                color: color('default', 'buttons-text');
+
+                .icon {
+                    color: color('default', 'buttons-text');
+                }
+            }
+        }
+    }
+
+    .popover--share {
+        .popover__container {
+            .button {
+                &:not(:hover) {
+                    box-shadow: none;
+                }
             }
         }
     }

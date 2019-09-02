@@ -1,0 +1,484 @@
+$defaultColors: (
+    blue: (
+        ignoreStyles: (),
+        default: (
+            background: color('5', 'blue'),
+            background-outline: transparent,
+            border-color: color('5', 'blue'),
+            border-color-outline: color('5', 'blue'),
+            color: $color-light
+        ),
+        hover: (
+            background: color('6', 'blue'),
+            background-outline: color('6', 'blue', .1),
+            border-color: color('6', 'blue'),
+            border-color-outline: color('6', 'blue'),
+            color: $color-light
+        ),
+        active: (
+            background: color('7', 'blue'),
+            background-outline: color('6', 'blue', .2),
+            border-color: color('7', 'blue'),
+            border-color-outline: color('7', 'blue'),
+            color: $color-light
+        )
+    ),
+    yellow: (
+        ignoreStyles: (),
+        default: (
+            background: color('5', 'yellow'),
+            background-outline: transparent,
+            border-color: color('5', 'yellow'),
+            border-color-outline: color('5', 'yellow'),
+            color: $color-light
+        ),
+        hover: (
+            background: color('6', 'yellow'),
+            background-outline: color('6', 'yellow', .1),
+            border-color: color('6', 'yellow'),
+            border-color-outline: color('6', 'yellow'),
+            color: $color-light
+        ),
+        active: (
+            background: color('7', 'yellow'),
+            background-outline: color('6', 'yellow', .2),
+            border-color: color('7', 'yellow'),
+            border-color-outline: color('7', 'yellow'),
+            color: $color-light
+        )
+    ),
+    red: (
+        ignoreStyles: (),
+        default: (
+            background: color('5', 'red'),
+            background-outline: transparent,
+            border-color: color('5', 'red'),
+            border-color-outline: color('5', 'red'),
+            color: $color-light
+        ),
+        hover: (
+            background: color('6', 'red'),
+            background-outline: color('6', 'red', .1),
+            border-color: color('6', 'red'),
+            border-color-outline: color('6', 'red'),
+            color: $color-light
+        ),
+        active: (
+            background: color('7', 'red'),
+            background-outline: color('6', 'red', .2),
+            border-color: color('7', 'red'),
+            border-color-outline: color('7', 'red'),
+            color: $color-light
+        )
+    ),
+    green: (
+        ignoreStyles: (),
+        default: (
+            background: color('5', 'green'),
+            background-outline: transparent,
+            border-color: color('5', 'green'),
+            border-color-outline: color('5', 'green'),
+            color: $color-light
+        ),
+        hover: (
+            background: color('6', 'green'),
+            background-outline: color('6', 'green', .1),
+            border-color: color('6', 'green'),
+            border-color-outline: color('6', 'green'),
+            color: $color-light
+        ),
+        active: (
+            background: color('7', 'green'),
+            background-outline: color('6', 'green', .2),
+            border-color: color('7', 'green'),
+            border-color-outline: color('7', 'green'),
+            color: $color-light
+        )
+    ),
+    purple: (
+        ignoreStyles: (),
+        default: (
+            background: color('5', 'purple'),
+            background-outline: transparent,
+            border-color: color('5', 'purple'),
+            border-color-outline: color('5', 'purple'),
+            color: $color-light
+        ),
+        hover: (
+            background: color('6', 'purple'),
+            background-outline: color('6', 'purple', .1),
+            border-color: color('6', 'purple'),
+            border-color-outline: color('6', 'purple'),
+            color: $color-light
+        ),
+        active: (
+            background: color('7', 'purple'),
+            background-outline: color('6', 'purple', .2),
+            border-color: color('7', 'purple'),
+            border-color-outline: color('7', 'purple'),
+            color: $color-light
+        )
+    ),
+    dark-blue: (
+        ignoreStyles: (),
+        default: (
+            background: color('4', 'dark-blue'),
+            background-outline: transparent,
+            border-color: color('4', 'dark-blue'),
+            border-color-outline: color('4', 'dark-blue'),
+            color: $color-light
+        ),
+        hover: (
+            background: color('5', 'dark-blue'),
+            background-outline: color('5', 'dark-blue', .1),
+            border-color: color('5', 'dark-blue'),
+            border-color-outline: color('5', 'dark-blue'),
+            color: $color-light
+        ),
+        active: (
+            background: color('5', 'dark-blue'),
+            background-outline: color('5', 'dark-blue', .2),
+            border-color: color('5', 'dark-blue'),
+            border-color-outline: color('5', 'dark-blue'),
+            color: $color-light
+        )
+    ),
+    white: (
+        ignoreStyles: (
+            'outline'
+        ),
+        default: (
+            background: $color-light,
+            border-color: color('4', 'gray'),
+            color: color('8', 'gray')
+        ),
+        hover: (
+            background: color('4', 'gray', .1),
+            border-color: color('4', 'gray'),
+            color: color('8', 'gray')
+        ),
+        active: (
+            background: color('4', 'gray', .2),
+            border-color: color('4', 'gray'),
+            color: color('8', 'gray')
+        )
+    ),
+    gray: (
+        ignoreStyles: (
+            'flat'
+        ),
+        default: (
+            background-outline: transparent,
+            border-color-outline: color('6', 'gray'),
+            color: color('8', 'gray')
+        ),
+        hover: (
+            background-outline: color('6', 'gray', .1),
+            border-color-outline: color('6', 'gray'),
+            color: color('8', 'gray')
+        ),
+        active: (
+            background-outline: color('6', 'gray', .2),
+            border-color-outline: color('6', 'gray'),
+            color: color('8', 'gray')
+        )
+    ),
+    inverted: (
+        ignoreStyles: (
+            'flat'
+        ),
+        default: (
+            background-outline: transparent,
+            border-color-outline: color('light', 'background'),
+            color: color('text-inverted', 'general')
+        ),
+        hover: (
+            background-outline: color('light', 'background', .1),
+            border-color-outline: color('light', 'background'),
+            color: color('text-inverted', 'general')
+        ),
+        active: (
+            background-outline: color('light', 'background', .2),
+            border-color-outline: color('light', 'background'),
+            color: color('text-inverted', 'general')
+        )
+    ),
+    facebook: (
+        ignoreStyles: (
+            'outline'
+        ),
+        default: (
+            background: color('facebook', 'social'),
+            border-width: 0px,
+            color: $color-light
+        ),
+        hover: (
+            background: color('facebook', 'social', 1, 1.5),
+            border-width: 0px,
+            color: $color-light
+        ),
+        active: (
+            background: color('facebook', 'social', 1, 3),
+            border-width: 0px,
+            color: $color-light
+        )
+    ),
+    twitter: (
+        ignoreStyles: (
+            'outline'
+        ),
+        default: (
+            background: color('twitter', 'social'),
+            border-width: 0px,
+            color: $color-light
+        ),
+        hover: (
+            background: color('twitter', 'social', 1, 1.5),
+            border-width: 0px,
+            color: $color-light
+        ),
+        active: (
+            background: color('twitter', 'social', 1, 3),
+            border-width: 0px,
+            color: $color-light
+        )
+    ),
+    instagram: (
+        ignoreStyles: (
+            'outline'
+        ),
+        default: (
+            background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
+            border-width: 0px,
+            color: $color-light
+        ),
+        hover: (
+            background: linear-gradient(29.61deg, darken(#f38334, 10%) 0%, darken(#da2e7d, 10%) 50.39%, darken(#6b54c6, 10%) 100%),
+            border-width: 0px,
+            color: $color-light
+        ),
+        active: (
+            background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
+            border-width: 0px,
+            color: $color-light
+        )
+    ),
+    behance: (
+        ignoreStyles: (
+            'outline'
+        ),
+        default: (
+            background: color('behance', 'social'),
+            border-width: 0px,
+            color: $color-light
+        ),
+        hover: (
+            background: color('behance', 'social', 1, 1.5),
+            border-width: 0px,
+            color: $color-light
+        ),
+        active: (
+            background: color('behance', 'social', 1, 3),
+            border-width: 0px,
+            color: $color-light
+        )
+    ),
+    dribbble: (
+        ignoreStyles: (
+            'outline'
+        ),
+        default: (
+            background: color('dribbble', 'social'),
+            border-width: 0px,
+            color: $color-light
+        ),
+        hover: (
+            background: color('dribbble', 'social', 1, 1.5),
+            border-width: 0px,
+            color: $color-light
+        ),
+        active: (
+            background: color('dribbble', 'social', 1, 3),
+            border-width: 0px,
+            color: $color-light
+        )
+    ),
+    google: (
+        ignoreStyles: (
+            'outline'
+        ),
+        default: (
+            background: color('google', 'social'),
+            border-width: 0px,
+            color: $color-light
+        ),
+        hover: (
+            background: color('google', 'social', 1, 1.5),
+            border-width: 0px,
+            color: $color-light
+        ),
+        active: (
+            background: color('google', 'social', 1, 3),
+            border-width: 0px,
+            color: $color-light
+        )
+    ),
+    pinterest: (
+        ignoreStyles: (
+            'outline'
+        ),
+        default: (
+            background: color('pinterest', 'social'),
+            border-width: 0px,
+            color: $color-light
+        ),
+        hover: (
+            background: color('pinterest', 'social', 1, 1.5),
+            border-width: 0px,
+            color: $color-light
+        ),
+        active: (
+            background: color('pinterest', 'social', 1, 3),
+            border-width: 0px,
+            color: $color-light
+        )
+    ),
+    youtube: (
+        ignoreStyles: (
+            'outline'
+        ),
+        default: (
+            background: color('youtube', 'social'),
+            border-width: 0px,
+            color: $color-light
+        ),
+        hover: (
+            background: color('youtube', 'social', 1, 1.5),
+            border-width: 0px,
+            color: $color-light
+        ),
+        active: (
+            background: color('youtube', 'social', 1, 3),
+            border-width: 0px,
+            color: $color-light
+        )
+    )
+);
+$defaultSizes: (
+    xs: (
+        propertiesButton: (
+            min-width: $extra-small-element-height,
+            height: $extra-small-element-height,
+            font-size: $extra-small-font-size,
+            line-height: (
+                $extra-small-element-height - 4
+            )
+        ),
+        propertiesIcon: (
+            font-size: $small-icon-width
+        )
+    ),
+    sm: (
+        propertiesButton: (
+            min-width: $small-element-height,
+            height: $small-element-height,
+            font-size: $small-font-size,
+            line-height: (
+                $small-element-height - 4
+            )
+        ),
+        propertiesIcon: (
+            font-size: $base-icon-width
+        )
+    ),
+    md: (
+        propertiesButton: (
+            min-width: $base-element-height,
+            height: $base-element-height,
+            font-size: $base-font-size,
+            line-height: (
+                $base-element-height - 4
+            )
+        ),
+        propertiesIcon: (
+            font-size: $base-icon-width
+        )
+    ),
+    lg: (
+        propertiesButton: (
+            min-width: $large-element-height,
+            height: $large-element-height,
+            font-size: $base-font-size,
+            line-height: (
+                $large-element-height - 4
+            )
+        ),
+        propertiesIcon: (
+            font-size: $base-icon-width
+        )
+    ),
+    xl: (
+        propertiesButton: (
+            min-width: $extra-large-element-height,
+            height: $extra-large-element-height,
+            font-size: $base-font-size,
+            line-height: (
+                $extra-large-element-height - 4
+            )
+        ),
+        propertiesIcon: (
+            font-size: $base-icon-width
+        )
+    )
+);
+$defaultStyles: (
+    flat: (
+        background: 'background',
+        border-color: 'border-color',
+        border-width: 'border-width',
+        color: 'color'
+    ),
+    outline: (
+        background: 'background-outline',
+        border-color: 'border-color-outline',
+        border-width: 'border-width',
+        color: 'border-color-outline'
+    )
+);
+$defaultSettings: (
+    borderRadius: $base-border-radius,
+    borderWidth: 2px,
+    borderStyle: solid,
+    padding: 0 $base-spacing,
+    color: $defaultColors,
+    defaultColor: blue,
+    defaultPrefix: 'button',
+    defaultSize: 'md',
+    defaultStyle: 'flat',
+    defaultFontWeight: 600,
+    defaultTiming: linear,
+    defaultDuration: 250ms,
+    size: $defaultSizes,
+    style: $defaultStyles
+);
+
+$buttonSettings: $defaultSettings !default;
+
+$buttonColors: map-get($buttonSettings, 'color');
+$buttonSizes: map-get($buttonSettings, 'size');
+$buttonStyles: map-get($buttonSettings, 'style');
+$buttonBorderRadius: map-get($buttonSettings, 'borderRadius');
+$buttonBorderWidth: map-get($buttonSettings, 'borderWidth');
+$buttonBorderStyle: map-get($buttonSettings, 'borderStyle');
+$buttonPadding: map-get($buttonSettings, 'padding');
+
+$defaultColorMap: map-get($buttonColors, map-get($buttonSettings, 'defaultColor'));
+$defaultColorDefaultMap: map-get($defaultColorMap, 'default');
+$defaultColorHoverMap: map-get($defaultColorMap, 'hover');
+$defaultColorActiveMap: map-get($defaultColorMap, 'active');
+$defaultFontWeight: map-get($buttonSettings, 'defaultFontWeight');
+$defaultDuration: map-get($buttonSettings, 'defaultDuration');
+$defaultPrefix: map-get($buttonSettings, 'defaultPrefix');
+$defaultSizeMap: map-get($buttonSizes, map-get($buttonSettings, 'defaultSize'));
+$defaultStyleMap: map-get($buttonStyles, map-get($buttonSettings, 'defaultStyle'));
+$defaultTiming: map-get($buttonSettings, 'defaultTiming');
