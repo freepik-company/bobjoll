@@ -3,22 +3,13 @@
 
 	@font-face {
 		font-family: $webfont;
-		src: url("~bobjoll/fonts/bobjoll.woff2?dd95b2da68a92ae3c76ac17c8925de9f") format("woff2"),
-url("~bobjoll/fonts/bobjoll.woff?dd95b2da68a92ae3c76ac17c8925de9f") format("woff");
+		src: url("~bobjoll/fonts/bobjoll.woff2?5498ec1af8ac5aa4f9313726e96f5679") format("woff2"),
+url("~bobjoll/fonts/bobjoll.woff?5498ec1af8ac5aa4f9313726e96f5679") format("woff");
 	}
 
-    .icon {
+    %icon {
 		display: block;
 
-        width: $base-icon-width;
-        height: $base-icon-height;
-
-        font-size: $base-icon-width;
-        line-height: $base-icon-height;
-
-        color: color('icon', 'general');
-        fill: color('icon', 'general');
-        
         text-transform: none;
 
         -webkit-font-smoothing: antialiased;
@@ -32,6 +23,19 @@ url("~bobjoll/fonts/bobjoll.woff?dd95b2da68a92ae3c76ac17c8925de9f") format("woff
 			font-weight: normal;
 			font-variant: normal;
 		}
+    }
+
+    .icon {
+        @extend %icon;
+
+        width: $base-icon-width;
+        height: $base-icon-height;
+
+        font-size: $base-icon-width;
+        line-height: $base-icon-height;
+
+        color: color('icon', 'general');
+        fill: color('icon', 'general');
     }
 
     .icon--inverted {

@@ -17,7 +17,8 @@ fontsGenerator({
     fontName: 'bobjoll',
     templateOptions: {
         classPrefix: '.icon--',
-        baseSelector: '.icon'
+        baseSelector: '.icon',
+        baseSelectorPlain: 'icon'
     },
     cssDest: './scss/partials/_icon-v2-0.scss',
     cssTemplate: './fonts/webfontsGenerator.templates.scss.hbs',
