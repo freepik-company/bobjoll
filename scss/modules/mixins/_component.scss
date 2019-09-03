@@ -2,8 +2,10 @@
   %#{$placeholder} {
     @content;
   }
+  @debug "setComponent: %#{$placeholder}";
 }
 
 @mixin getComponent($placeholder) {
   @extend %#{$placeholder};
+  @debug "getComponent: %#{$placeholder}";
 }
