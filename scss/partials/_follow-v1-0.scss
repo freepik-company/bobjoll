@@ -1,4 +1,10 @@
 @if (($button-v4-0 or $button-v3-0) and $follow-v1-0) {
+  $prefix: "";
+
+  @if ($button-v4-0) {
+    $prefix: "button--outline.";
+  }
+
   .follow {
     min-width: 130px;
 
@@ -17,19 +23,19 @@
           content: attr(data-active-hover);
         }
 
-        @include getComponent(button--red);
+        @include getComponent("#{$prefix}button--red");
 
         @if ($button-v3-0) {
-          @include getComponent(button--outline);
+          @include getComponent("button--outline");
         }
       }
 
       &:not(:hover):not(:focus) {
-        @include getComponent(button--gray);
+        @include getComponent("#{$prefix}button--gray");
       }
     }
 
-    @include getComponent(button);
-    @include getComponent(button--outline);
+    @include getComponent("button");
+    @include getComponent("button--outline");
   }
 }
