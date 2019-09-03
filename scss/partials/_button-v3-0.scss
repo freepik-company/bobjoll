@@ -238,7 +238,7 @@
     * Sizes
     */
     @each $key, $value in $button-sizes {
-      @include setComponent(button--#{$key}) {
+      @include setComponent("button--#{$key}") {
         font-size: map-get($font-sizes, $key);
 
         height: $value;
@@ -253,7 +253,7 @@
         }
       }
       &--#{$key} {
-        @include getComponent(button--#{$key});
+        @include getComponent("button--#{$key}");
       }
     }
 
@@ -261,9 +261,7 @@
     * Colors
     */
     @each $color, $hex in map-get($colors, "buttons") {
-      @include setComponent(button--#{$color}) {
-        --color: color($color, "buttons-text");
-
+      @include setComponent("button--#{$color}") {
         color: color($color, "buttons-text");
 
         .icon {
@@ -316,7 +314,7 @@
       }
 
       &--#{$color} {
-        @include getComponent(button--#{color});
+        @include getComponent("button--#{$color}");
       }
 
       @include setComponent(button--#{$color}--hover) {
