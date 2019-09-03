@@ -1,0 +1,37 @@
+$follow-v1-0: true;
+
+@if (($button-v4-0 or $button-v3-0) and $follow-v1-0) {
+  .follow {
+    min-width: 130px;
+
+    &::before {
+      content: attr(data-base);
+    }
+
+    &--active {
+      &::before {
+        content: attr(data-active);
+      }
+
+      &:hover,
+      &:focus {
+        &::before {
+          content: attr(data-active-hover);
+        }
+
+        @include getComponent(button--red);
+
+        @if ($button-v3-0) {
+          @include getComponent(button--outline);
+        }
+      }
+
+      &:not(:hover):not(:focus) {
+        @include getComponent(button--gray);
+      }
+    }
+
+    @include getComponent(button);
+    @include getComponent(button--outline);
+  }
+}
