@@ -60,14 +60,8 @@
     /**
     * Modifier
     */
-    &--outline {
-      --color: color("default-outline", "buttons-text");
-
-      box-shadow: inset
-        0px
-        0px
-        0px
-        $base-border-width
+    @include setComponent(button--outline) {
+      box-shadow: inset 0px 0px 0px $base-border-width
         color("default", "buttons");
 
       color: color("default-outline", "buttons-text");
@@ -78,10 +72,7 @@
 
       &.active,
       &:hover {
-        box-shadow: inset
-          0px
-          0px
-          0px
+        box-shadow: inset 0px 0px 0px
           (map-get($button-sizes, map-get-last($button-sizes)) / 2)
           color("default", "buttons");
 
@@ -93,7 +84,11 @@
       }
     }
 
-    &--flat {
+    &--outline {
+      @include getComponent(button--outline);
+    }
+
+    @include setComponent(button--flat) {
       box-shadow: inset 0px 0px 0px 100px color("default", "buttons");
 
       &.active,
@@ -111,6 +106,10 @@
       &:active {
         box-shadow: inset 0px 0px 0px 100px color("default", "buttons", 1, 12);
       }
+    }
+
+    &--flat {
+      @include getComponent(button--flat);
     }
 
     &--shadow {

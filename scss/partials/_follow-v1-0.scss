@@ -1,6 +1,5 @@
 @if (($button-v4-0 or $button-v3-0) and $follow-v1-0) {
   $prefix: "";
-
   @if ($button-v4-0) {
     $prefix: "button--outline.";
   }
