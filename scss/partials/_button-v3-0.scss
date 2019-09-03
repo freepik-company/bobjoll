@@ -56,356 +56,310 @@
 
   .button {
     @include getComponent(button);
+  }
 
-    /**
-    * Modifier
-    */
-    @include setComponent(button--outline) {
-      box-shadow: inset 0px 0px 0px $base-border-width
+  /**
+  * Modifier
+  */
+  @include setComponent(button--outline) {
+    box-shadow: inset 0px 0px 0px $base-border-width color("default", "buttons");
+
+    color: color("default-outline", "buttons-text");
+
+    .icon {
+      color: color("default-outline", "buttons-text");
+    }
+
+    &.active,
+    &:hover {
+      box-shadow: inset 0px 0px 0px
+        (map-get($button-sizes, map-get-last($button-sizes)) / 2)
         color("default", "buttons");
 
-      color: color("default-outline", "buttons-text");
+      color: color("default", "buttons-text");
 
       .icon {
-        color: color("default-outline", "buttons-text");
-      }
-
-      &.active,
-      &:hover {
-        box-shadow: inset 0px 0px 0px
-          (map-get($button-sizes, map-get-last($button-sizes)) / 2)
-          color("default", "buttons");
-
         color: color("default", "buttons-text");
-
-        .icon {
-          color: color("default", "buttons-text");
-        }
       }
     }
+  }
 
-    &--outline {
-      @include getComponent(button--outline);
-    }
+  .button--outline {
+    @include getComponent(button--outline);
+  }
 
-    @include setComponent(button--flat) {
-      box-shadow: inset 0px 0px 0px 100px color("default", "buttons");
+  @include setComponent(button--flat) {
+    box-shadow: inset 0px 0px 0px 100px color("default", "buttons");
 
-      &.active,
-      &:hover {
-        box-shadow: inset 0px 0px 0px 100px color("default", "buttons", 1, 5);
+    &.active,
+    &:hover {
+      box-shadow: inset 0px 0px 0px 100px color("default", "buttons", 1, 5);
 
+      color: color("default", "buttons-text");
+
+      .icon {
         color: color("default", "buttons-text");
+      }
+    }
+
+    &.active,
+    &:active {
+      box-shadow: inset 0px 0px 0px 100px color("default", "buttons", 1, 12);
+    }
+  }
+
+  .button--flat {
+    @include getComponent(button--flat);
+  }
+
+  .button--shadow {
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      border-radius: $base-border-radius;
+
+      box-shadow: $small-box-shadow;
+
+      content: "";
+    }
+  }
+
+  .button--state {
+    &.active:not(:disabled) {
+      .state--inactive {
+        display: none;
+      }
+
+      .state--active {
+        display: block;
+      }
+    }
+
+    &:not(.active) {
+      .state--inactive {
+        display: block;
+      }
+
+      .state--active {
+        display: none;
+      }
+    }
+  }
+
+  .button--pill {
+    border-radius: $base-element-height;
+  }
+
+  .button--icon {
+    @extend %row-flexbox;
+    @extend .row--vertical-center;
+
+    &:not(.button--icon--only) {
+      .icon {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    span,
+    i {
+      margin-left: auto;
+    }
+
+    span ~ i,
+    i ~ span {
+      margin-left: $extra-small-spacing !important;
+      margin-right: auto;
+    }
+
+    &--only {
+      width: $base-element-height;
+
+      padding: 0 !important;
+    }
+  }
+
+  .button--auto {
+    box-shadow: inset 0px 0px 0px 100px color("default", "buttons");
+
+    height: auto !important;
+
+    span {
+      line-height: $base-line-height;
+    }
+  }
+
+  .button--loading {
+    $size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
+
+    box-shadow: inset 0px 0px 0px ($size) color("gray", "buttons") !important;
+
+    pointer-events: none !important;
+
+    &::after {
+      animation: rotate 600ms linear infinite;
+
+      display: block !important;
+
+      overflow: hidden;
+
+      opacity: 1;
+
+      width: calc((#{$size}) * 0.75);
+      height: calc((#{$size}) * 0.75);
+
+      margin: calc(((#{$size}) * 0.25) / 2) auto;
+
+      border-radius: 50%;
+      border-width: 2px;
+      border-color: color("border-inverted", "general")
+        color("border-inverted", "general", 0.3)
+        color("border-inverted", "general", 0.3)
+        color("border-inverted", "general", 0.3);
+      border-style: solid;
+
+      box-sizing: border-box;
+
+      content: "";
+    }
+
+    & > * {
+      display: none !important;
+    }
+  }
+
+  /**
+  * Sizes
+  */
+  @each $key, $value in $button-sizes {
+    @include setComponent(button--#{$key}) {
+      font-size: map-get($font-sizes, $key);
+
+      height: $value;
+
+      line-height: $value;
+
+      &.button--icon {
+        &--only {
+          width: $value;
+          height: $value;
+        }
+      }
+    }
+
+    .button--#{$key} {
+      @include getComponent(button--#{$key});
+    }
+  }
+
+  /**
+  * Colors
+  */
+  @each $color, $hex in map-get($colors, "buttons") {
+    @include setComponent(button--#{$color}) {
+      color: color($color, "buttons-text");
+
+      .icon {
+        color: color($color, "buttons-text");
+      }
+
+      &.button--outline {
+        box-shadow: inset 0px 0px 0px $base-border-width $hex;
+
+        color: color(#{$color}-outline, "buttons-text");
 
         .icon {
-          color: color("default", "buttons-text");
-        }
-      }
-
-      &.active,
-      &:active {
-        box-shadow: inset 0px 0px 0px 100px color("default", "buttons", 1, 12);
-      }
-    }
-
-    &--flat {
-      @include getComponent(button--flat);
-    }
-
-    &--shadow {
-      &::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        width: 100%;
-        height: 100%;
-
-        border-radius: $base-border-radius;
-
-        box-shadow: $small-box-shadow;
-
-        content: "";
-      }
-    }
-
-    &--state {
-      &.active:not(:disabled) {
-        .state--inactive {
-          display: none;
+          color: color(#{$color}-outline, "buttons-text");
         }
 
-        .state--active {
-          display: block;
-        }
-      }
-
-      &:not(.active) {
-        .state--inactive {
-          display: block;
+        &:hover {
+          box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover");
         }
 
-        .state--active {
-          display: none;
-        }
-      }
-    }
+        &.active,
+        &:active {
+          color: color($color, "buttons-text");
 
-    &--pill {
-      border-radius: $base-element-height;
-    }
+          box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover");
 
-    &--icon {
-      @extend %row-flexbox;
-      @extend .row--vertical-center;
-
-      &:not(.button--icon--only) {
-        .icon {
-          padding-left: 0;
-          padding-right: 0;
-        }
-      }
-
-      span,
-      i {
-        margin-left: auto;
-      }
-
-      span ~ i,
-      i ~ span {
-        margin-left: $extra-small-spacing !important;
-        margin-right: auto;
-      }
-
-      &--only {
-        width: $base-element-height;
-
-        padding: 0 !important;
-      }
-    }
-
-    &--auto {
-      box-shadow: inset 0px 0px 0px 100px color("default", "buttons");
-
-      height: auto !important;
-
-      span {
-        line-height: $base-line-height;
-      }
-    }
-
-    &--loading {
-      $size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
-
-      box-shadow: inset 0px 0px 0px ($size) color("gray", "buttons") !important;
-
-      pointer-events: none !important;
-
-      &::after {
-        animation: rotate 600ms linear infinite;
-
-        display: block !important;
-
-        overflow: hidden;
-
-        opacity: 1;
-
-        width: calc((#{$size}) * 0.75);
-        height: calc((#{$size}) * 0.75);
-
-        margin: calc(((#{$size}) * 0.25) / 2) auto;
-
-        border-radius: 50%;
-        border-width: 2px;
-        border-color: color("border-inverted", "general")
-          color("border-inverted", "general", 0.3)
-          color("border-inverted", "general", 0.3)
-          color("border-inverted", "general", 0.3);
-        border-style: solid;
-
-        box-sizing: border-box;
-
-        content: "";
-      }
-
-      & > * {
-        display: none !important;
-      }
-    }
-
-    /**
-    * Sizes
-    */
-    @each $key, $value in $button-sizes {
-      @include setComponent(button--#{$key}) {
-        font-size: map-get($font-sizes, $key);
-
-        height: $value;
-
-        line-height: $value;
-
-        &.button--icon {
-          &--only {
-            width: $value;
-            height: $value;
+          .icon {
+            color: color($color, "buttons-text");
           }
         }
       }
-      &--#{$key} {
-        @include getComponent(button--#{$key});
-      }
-    }
 
-    /**
-    * Colors
-    */
-    @each $color, $hex in map-get($colors, "buttons") {
-      @include setComponent(button--#{$color}) {
+      &.button--flat {
+        box-shadow: inset 0px 0px 0px 100px $hex;
+      }
+
+      &:hover {
+        box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover");
+
         color: color($color, "buttons-text");
 
         .icon {
           color: color($color, "buttons-text");
         }
-
-        &.button--outline {
-          box-shadow: inset 0px 0px 0px $base-border-width $hex;
-
-          color: color(#{$color}-outline, "buttons-text");
-
-          .icon {
-            color: color(#{$color}-outline, "buttons-text");
-          }
-
-          &:hover {
-            box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover");
-          }
-
-          &.active,
-          &:active {
-            color: color($color, "buttons-text");
-
-            box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover");
-
-            .icon {
-              color: color($color, "buttons-text");
-            }
-          }
-        }
-
-        &.button--flat {
-          box-shadow: inset 0px 0px 0px 100px $hex;
-        }
-
-        &:hover {
-          box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover");
-
-          color: color($color, "buttons-text");
-
-          .icon {
-            color: color($color, "buttons-text");
-          }
-        }
-
-        &.active,
-        &:active {
-          box-shadow: inset 0px 0px 0px 100px color($color, "buttons-active");
-        }
       }
 
-      &--#{$color} {
-        @include getComponent(button--#{$color});
-      }
-
-      @include setComponent(button--#{$color}--hover) {
-        &.active,
-        &:hover {
-          box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover") !important;
-
-          color: color($color, "buttons-text") !important;
-
-          .icon {
-            color: color($color, "buttons-text") !important;
-          }
-        }
-
-        &.active,
-        &:active {
-          box-shadow: inset 0px 0px 0px 100px color($color, "buttons-active") !important;
-        }
-      }
-
-      &--#{$color}--hover {
-        @include getComponent(button--#{$color}--hover);
+      &.active,
+      &:active {
+        box-shadow: inset 0px 0px 0px 100px color($color, "buttons-active");
       }
     }
 
-    /**
-    * Social
-    */
-    @each $color, $hex in map-get($colors, "social") {
-      @include setComponent(button--#{$color}) {
-        box-shadow: inset 0px 0px 0px 0 $hex;
+    .button--#{$color} {
+      @include getComponent(button--#{$color});
+    }
 
-        color: color("inverted", "buttons");
+    @include setComponent(button--#{$color}--hover) {
+      &.active,
+      &:hover {
+        box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover") !important;
+
+        color: color($color, "buttons-text") !important;
 
         .icon {
-          color: color("inverted", "buttons");
+          color: color($color, "buttons-text") !important;
         }
+      }
 
-        &.button--flat.button--inverted {
-          box-shadow: inset 0px 0px 0px 100px color("inverted", "buttons");
+      &.active,
+      &:active {
+        box-shadow: inset 0px 0px 0px 100px color($color, "buttons-active") !important;
+      }
+    }
 
+    .button--#{$color}--hover {
+      @include getComponent(button--#{$color}--hover);
+    }
+  }
+
+  /**
+  * Social
+  */
+  @each $color, $hex in map-get($colors, "social") {
+    @include setComponent(button--#{$color}) {
+      box-shadow: inset 0px 0px 0px 0 $hex;
+
+      color: color("inverted", "buttons");
+
+      .icon {
+        color: color("inverted", "buttons");
+      }
+
+      &.button--flat.button--inverted {
+        box-shadow: inset 0px 0px 0px 100px color("inverted", "buttons");
+
+        color: color($color, "social");
+
+        .icon {
           color: color($color, "social");
-
-          .icon {
-            color: color($color, "social");
-          }
-
-          &.active,
-          &:hover {
-            box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 5);
-
-            color: color("inverted", "buttons");
-
-            .icon {
-              color: color("inverted", "buttons");
-            }
-          }
-
-          &.active,
-          &:active {
-            box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 7);
-          }
-        }
-
-        &.button--outline {
-          box-shadow: inset 0px 0px 0px $base-border-width $hex;
-
-          color: color($color, "social");
-
-          .icon {
-            color: color($color, "social");
-          }
-
-          &.active,
-          &:hover {
-            box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 5);
-
-            color: color("inverted", "buttons");
-
-            .icon {
-              color: color("inverted", "buttons");
-            }
-          }
-
-          &.active,
-          &:active {
-            box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 7);
-          }
-        }
-
-        &.button--flat {
-          box-shadow: inset 0px 0px 0px 100px $hex;
         }
 
         &.active,
@@ -425,9 +379,55 @@
         }
       }
 
-      &--#{$color} {
-        @include getComponent(button--#{$color});
+      &.button--outline {
+        box-shadow: inset 0px 0px 0px $base-border-width $hex;
+
+        color: color($color, "social");
+
+        .icon {
+          color: color($color, "social");
+        }
+
+        &.active,
+        &:hover {
+          box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 5);
+
+          color: color("inverted", "buttons");
+
+          .icon {
+            color: color("inverted", "buttons");
+          }
+        }
+
+        &.active,
+        &:active {
+          box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 7);
+        }
       }
+
+      &.button--flat {
+        box-shadow: inset 0px 0px 0px 100px $hex;
+      }
+
+      &.active,
+      &:hover {
+        box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 5);
+
+        color: color("inverted", "buttons");
+
+        .icon {
+          color: color("inverted", "buttons");
+        }
+      }
+
+      &.active,
+      &:active {
+        box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 7);
+      }
+    }
+
+    .button--#{$color} {
+      @include getComponent(button--#{$color});
     }
   }
 }
