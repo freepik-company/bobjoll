@@ -1,51 +1,52 @@
 // Enable Partials
-$autocomplete-v1-0:		false 		!default;
-$accordion-v1-0: 		false 		!default;
-$avatar-v1-0: 			false 		!default;
-$badge-v1-0: 			false 		!default;
-$breadcrumb-v1-0: 		false 		!default;
-$button-v1-0: 			false 		!default;
-$button-v2-0: 			false 		!default;
-$button-v3-0: 			false 		!default;
-$button-v4-0: 			false 		!default;
-$caption-v1-0: 			false 		!default;
-$comment-v1-0: 			false 		!default;
-$expandable-v1-0:		false 		!default;
-$feedback-v1-0:		    false 		!default;
-$general-v1-0: 			false 		!default;
+$accordion-v1-0: false !default;
+$autocomplete-v1-0: false !default;
+$avatar-v1-0: false !default;
+$badge-v1-0: false !default;
+$breadcrumb-v1-0: false !default;
+$button-v1-0: false !default;
+$button-v2-0: false !default;
+$button-v3-0: false !default;
+$button-v4-0: false !default;
+$caption-v1-0: false !default;
+$comment-v1-0: false !default;
+$expandable-v1-0: false !default;
+$feedback-v1-0: false !default;
+$follow-v1-0: false !default;
+$general-v1-0: false !default;
 
 // Form
-$fonts:      			true 		!default;
-$form-v1-0: 			false 		!default;
-$tag-field-v1-0:        false       !default;
-$datetimepicker-v1-0:   false       !default;
+$fonts: true !default;
+$form-v1-0: false !default;
+$tag-field-v1-0: false !default;
+$datetimepicker-v1-0: false !default;
 
 // Grid
-$grid-v1-0: 			false 		!default;
-$grid-mode: 			'flexbox' 	!default; // flexbox or float
-$grid--pull:			false 		!default;  
-$grid--push:			false 		!default;
-$grid--offset:			false 		!default;
+$grid-v1-0: false !default;
+$grid-mode: "flexbox" !default; // flexbox or float
+$grid--pull: false !default;
+$grid--push: false !default;
+$grid--offset: false !default;
 
-$helper-v1-0: 			false 		!default;
-$icon-v1-0: 			false 		!default;
-$icon-v2-0: 			false 		!default;
-$list-v1-0: 			false 		!default;
-$modal-v1-0: 			false 		!default;
-$nav-v1-0:	 			false 		!default;
-$notification-v1-0: 	false 		!default;
-$notification-v1-1:     false       !default;
-$pagination-v1-0: 		false 		!default;
-$popover-v1-0: 			false 		!default;
-$social-v1-0: 			false 		!default;
-$tab-v1-0: 				false 		!default;
-$tables-v1-0:			false 		!default;
-$tag-v1-0: 				false 		!default;
-$tooltip-v1-0: 			false 		!default;
-$typography-v1-0: 		false 		!default;
+$helper-v1-0: false !default;
+$icon-v1-0: false !default;
+$icon-v2-0: false !default;
+$list-v1-0: false !default;
+$modal-v1-0: false !default;
+$nav-v1-0: false !default;
+$notification-v1-0: false !default;
+$notification-v1-1: false !default;
+$pagination-v1-0: false !default;
+$popover-v1-0: false !default;
+$social-v1-0: false !default;
+$tab-v1-0: false !default;
+$tables-v1-0: false !default;
+$tag-v1-0: false !default;
+$tooltip-v1-0: false !default;
+$typography-v1-0: false !default;
 
 // GR Library
-$gr-auth-v1-0:     		false       !default;
+$gr-auth-v1-0: false !default;
 
 // Profile
-$profile-login-v1-0:	false 		!default;
+$profile-login-v1-0: false !default;

@@ -12,7 +12,7 @@
     cursor: pointer;
   }
 
-  .#{$defaultPrefix} {
+  @include setComponent(#{$defaultPrefix}) {
     overflow: hidden;
     position: relative;
     display: inline-block;
@@ -118,9 +118,13 @@
     }
   }
 
+  .#{$defaultPrefix} {
+    @include getComponent(#{$defaultPrefix});
+  }
+
   /**
-     * Sizes
-     */
+  * Sizes
+  */
 
   @each $size, $map in $buttonSizes {
     $count: 1;
@@ -130,7 +134,7 @@
     }
 
     @for $i from 1 through $count {
-      .#{$defaultPrefix}--#{$size} {
+      @include setComponent(#{$defaultPrefix}--#{$size}) {
         @each $name, $value in map-get($map, "propertiesButton") {
           #{$name}: #{$value};
         }
@@ -143,16 +147,20 @@
           }
         }
       }
+
+      .#{$defaultPrefix}--#{$size} {
+        @include getComponent(#{$defaultPrefix}--#{$size});
+      }
     }
   }
 
   /**
-     * Styles / Colors
-     */
+  * Styles / Colors
+  */
 
   @each $style, $map in $buttonStyles {
     @if ($style != map-get($buttonSettings, "defaultStyle")) {
-      .#{$defaultPrefix}--#{$style} {
+      @include setComponent(#{$defaultPrefix}--#{$style}) {
         @each $styleProperty, $propertyKey in $map {
           @each $name, $map in $defaultColorMap {
             @if ($name == "default") {
@@ -186,6 +194,10 @@
           }
         }
       }
+
+      .#{$defaultPrefix}--#{$style} {
+        @include getComponent(#{$defaultPrefix}--#{$style});
+      }
     }
 
     @each $styleProperty, $propertyKey in $map {
@@ -200,7 +212,7 @@
         $ignoreStyle: index($ignoreStyles, $style);
 
         @if (null == $ignoreStyle) {
-          .#{$prefix}--#{$colorName} {
+          @include setComponent(#{$prefix}--#{$colorName}) {
             @each $name, $map in $properties {
               @if ($name == "default") {
                 @each $name, $value in $map {
@@ -231,6 +243,10 @@
                 }
               }
             }
+          }
+
+          .#{$prefix}--#{$colorName} {
+            @include getComponent(#{$prefix}--#{$colorName});
           }
         }
       }
