@@ -61,15 +61,19 @@
       }
     }
 
-    &--fullwidth {
+    @include setComponent(button--fullwidth) {
       @include prefixer(display, flex, ms spec);
       @include prefixer(align-items, center, ms spec);
       @include prefixer(justify-content, center, ms spec);
       width: 100%;
     }
 
+    &--fullwidth {
+      @include getComponent(button--fullwidth);
+    }
+
     @if $icon-v2-0 {
-      &--icon {
+      @include setComponent(button--icon) {
         padding: 0 !important;
 
         i {
@@ -78,7 +82,11 @@
         }
       }
 
-      &--state {
+      &--icon {
+        @include setComponent(button--icon);
+      }
+
+      @include setComponent(button--state) {
         &:not(.active) .state--inactive,
         &.active .state--active {
           display: block;
@@ -88,6 +96,10 @@
         .state--inactive {
           display: none;
         }
+      }
+
+      &--state {
+        @include getComponent(button--state);
       }
 
       span ~ i,
