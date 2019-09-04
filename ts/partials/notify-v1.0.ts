@@ -171,13 +171,6 @@ export class Notify extends KEventTarget {
     }
 
     private static printMethodCustom(settings: DialogCustomSettings) {
-        const expires =
-            settings.schedule && settings.schedule.dateExpire
-                ? settings.schedule.dateExpire
-                : settings.expires
-                ? settings.expires(new Date())
-                : new Date(new Date().getTime() + 1 * 60 * 60 * 1000);
-
         settings.callback();
         settings.closeCallback(() => Notify.printMethodClose(settings));
     }
@@ -226,14 +219,14 @@ export class Notify extends KEventTarget {
                 const bannerClose = q('.notification__close', notifyElement);
 
                 if (bannerClose) {
-                    bannerClose.addEventListener('click', () => Notify.printMethodClose(settings, expires));
+                    bannerClose.addEventListener('click', () => Notify.printMethodClose(settings));
                 }
             }
 
             if (settings.type.match(/popup/)) {
                 notifyElement.classList.add(settings.class || '');
 
-                notifyElement.addEventListener('hide', () => Notify.printMethodClose(settings, expires));
+                notifyElement.addEventListener('hide', () => Notify.printMethodClose(settings));
             }
 
             if (settings.count) {
