@@ -1,0 +1,8 @@
+{
+    "plugins": [
+        "hbs"
+    ],
+    "rules": {
+        "hbs/check-hbs-template-literals": 2
+    }
+}

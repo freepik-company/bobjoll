@@ -1,0 +1,7 @@
+{
+    "extends": [
+        "tslint:latest",
+        "eslint-config-airbnb-base",
+        "tslint-config-prettier"
+    ]
+}

@@ -15,7 +15,7 @@ export class Notify extends KEventTarget {
             recurrent: true,
         }),
         popup: modal,
-    }
+    };
 
     private static User: NotifyUser;
     private static History: NotifyHistory;
@@ -43,14 +43,14 @@ export class Notify extends KEventTarget {
     }
 
     private static preload(settings: DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings) {
-        const images = [...(settings.preloadAdditional || [])];
+        const images = [...(settings.preloadAdditional || [])];
         const dom = document.createElement('div');
 
         dom.innerHTML = settings.html + settings.getPathValue('globalVariables.containerHtml');
 
         (qq('img', dom) as HTMLImageElement[]).forEach(img => images.push(img.src));
 
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
             let completeCounter = 0;
             let total = images.length;
 
@@ -71,8 +71,8 @@ export class Notify extends KEventTarget {
     private static preloadDependencies(dependencies: DependenciesObject[]) {
         return new Promise((resolve, reject) => {
             let completed = 0;
-            let dependencyIntervalCounter: { [id: string]: number; } = {};
-            let dependencyIntervals: { [id: string]: any; } = {};
+            let dependencyIntervalCounter: { [id: string]: number } = {};
+            let dependencyIntervals: { [id: string]: any } = {};
 
             function completeCallback() {
                 completed++;
@@ -82,13 +82,14 @@ export class Notify extends KEventTarget {
             dependencies.forEach(dependency => {
                 if (!document.getElementById(dependency.id)) {
                     (function(d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0];
+                        var js,
+                            fjs = d.getElementsByTagName(s)[0];
                         if (d.getElementById(id)) return;
-                        js = (d.createElement(s) as HTMLScriptElement); 
+                        js = d.createElement(s) as HTMLScriptElement;
                         js.id = id;
                         js.src = dependency.url;
                         if (fjs.parentNode) fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', dependency.id));
+                    })(document, 'script', dependency.id);
 
                     dependencyIntervalCounter[dependency.id] = 0;
                     dependencyIntervals[dependency.id] = setInterval(function() {
@@ -96,7 +97,8 @@ export class Notify extends KEventTarget {
                             completeCallback();
                         }
 
-                        if (ww[dependency.variable] || 100 <= dependencyIntervalCounter[dependency.id]) { // 10 seconds
+                        if (ww[dependency.variable] || 100 <= dependencyIntervalCounter[dependency.id]) {
+                            // 10 seconds
                             clearInterval(dependencyIntervals[dependency.id]);
                             delete dependencyIntervals[dependency.id];
                             delete dependencyIntervalCounter[dependency.id];
@@ -139,12 +141,13 @@ export class Notify extends KEventTarget {
 
         Notify.methods.banner.insert({
             id: settings.id,
-            class: `notify notify--banner notification--static notification--no-shadow notification--no-border notification--hide-disable mg-none-i ${settings.class || ''}`,
+            class: `notify notify--banner notification--static notification--no-shadow notification--no-border notification--hide-disable mg-none-i ${settings.class ||
+                ''}`,
             html: settings.html,
             insert: {
                 element: 'top' === settings.position ? Notify.containerTop : Notify.containerBottom,
-                position: 'beforeend'
-            }
+                position: 'beforeend',
+            },
         });
 
         Notify.printMethodDone(settings);
@@ -157,7 +160,7 @@ export class Notify extends KEventTarget {
         };
 
         if (settings.globalVariables) {
-            options = { ...options, ...settings.globalVariables }
+            options = { ...options, ...settings.globalVariables };
         }
 
         Notify.methods.popup.add(options);
@@ -168,15 +171,15 @@ export class Notify extends KEventTarget {
     }
 
     private static printMethodCustom(settings: DialogCustomSettings) {
-        const expires = settings.schedule && settings.schedule.dateExpire ? 
-            settings.schedule.dateExpire : (
-                settings.expires ? 
-                    settings.expires(new Date()) : 
-                    new Date(new Date().getTime() + (1 * 60 * 60 * 1000))
-            );
+        const expires =
+            settings.schedule && settings.schedule.dateExpire
+                ? settings.schedule.dateExpire
+                : settings.expires
+                ? settings.expires(new Date())
+                : new Date(new Date().getTime() + 1 * 60 * 60 * 1000);
 
         settings.callback();
-        settings.closeCallback(() => Notify.printMethodClose(settings, expires));
+        settings.closeCallback(() => Notify.printMethodClose(settings));
     }
 
     private static printMethodNotification(settings: DialogNotificationSettings) {
@@ -187,13 +190,13 @@ export class Notify extends KEventTarget {
             id: settings.id,
             class: `notify notify--banner notification--hide-disable ${settings.class || ''}`,
             html: settings.html,
-            position: settings.position
+            position: settings.position,
         });
 
         Notify.printMethodDone(settings);
     }
 
-    private static printMethodClose(settings: DialogBannerSettings | DialogPopupSettings | DialogCustomSettings | DialogNotificationSettings, expires: Date) {
+    private static printMethodClose(settings: DialogBannerSettings | DialogPopupSettings | DialogCustomSettings | DialogNotificationSettings) {
         Notify.active = null;
         Notify.instance.dispatchEvent(new KEventHide(settings));
 
@@ -208,12 +211,12 @@ export class Notify extends KEventTarget {
 
     private static printMethodDone(settings: DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings) {
         const notifyElement = document.getElementById(settings.id) || document.getElementById(`modal-${settings.id}`);
-        const expires = settings.schedule && settings.schedule.dateExpire ? 
-            settings.schedule.dateExpire : (
-                settings.expires ? 
-                    settings.expires(new Date()) : 
-                    new Date(new Date().getTime() + (1 * 60 * 60 * 1000))
-            );
+        const expires =
+            settings.schedule && settings.schedule.dateExpire
+                ? settings.schedule.dateExpire
+                : settings.expires
+                ? settings.expires(new Date())
+                : new Date(new Date().getTime() + 1 * 60 * 60 * 1000);
 
         Notify.active = settings.id;
         Notify.instance.dispatchEvent(new KEventShow(settings));
@@ -230,14 +233,14 @@ export class Notify extends KEventTarget {
             if (settings.type.match(/popup/)) {
                 notifyElement.classList.add(settings.class || '');
 
-                notifyElement.addEventListener('hide', () => Notify.printMethodClose(settings, expires))
+                notifyElement.addEventListener('hide', () => Notify.printMethodClose(settings, expires));
             }
 
             if (settings.count) {
                 const count = parseFloat(Cookie.getItem(`${Notify.cookieNamespace}--${settings.id}--count`) || '1');
 
                 Cookie.setItem(`${Notify.cookieNamespace}--${settings.id}--count`, (count + 1).toString(), {
-                    expires: expires
+                    expires: expires,
                 });
             }
         }
@@ -258,7 +261,7 @@ export class Notify extends KEventTarget {
     }
 
     public static checkDebugEnviroment() {
-        return 'debug' === (Cookie.getItem('notify') || '') ? true : false;
+        return 'debug' === (Cookie.getItem('notify') || '') ? true : false;
     }
 
     public addEventListener(t: 'show', listener: (ev: KEvent) => any, useCapture?: boolean): void;
@@ -297,14 +300,14 @@ export class Notify extends KEventTarget {
                         show: boolean;
                     }[] = [];
                     const debugIgnore = dialog.schedule ? (dialog.schedule.dateIgnoreOnDebug ? isDebugEnviroment : false) : false;
-    
+
                     if ('undefined' !== typeof dialog.showPremiumFlaticon) {
                         booleanArr.push({
                             name: 'dialog.showPremiumFlaticon',
                             show: Notify.User.isPremiumFlaticon() ? dialog.showPremiumFlaticon : !dialog.showPremiumFlaticon,
                         });
                     }
-                    
+
                     if ('undefined' !== typeof dialog.showPremiumFreepik) {
                         booleanArr.push({
                             name: 'dialog.showPremiumFreepik',
@@ -339,34 +342,33 @@ export class Notify extends KEventTarget {
                             show: Notify.User.isPremiumFlaticonMonthly() ? dialog.showPremiumFlaticonMonthly : !dialog.showPremiumFlaticonMonthly,
                         });
                     }
-                    
+
                     if ('undefined' !== typeof dialog.showFree) {
                         booleanArr.push({
                             name: 'dialog.showFree',
                             show: Notify.User.type().match(/free|guest/gi) ? !!dialog.showFree : true,
                         });
                     }
-    
-                        
+
                     if ('function' === typeof dialog.showCallback) {
                         booleanArr.push({
                             name: 'dialog.showCallback',
                             show: dialog.showCallback(),
                         });
                     }
-    
+
                     if ('undefined' !== typeof dialog.showGuestOnly) {
                         booleanArr.push({
                             name: 'dialog.showGuestOnly',
                             show: Notify.User.isLogged() ? !dialog.showGuestOnly : dialog.showGuestOnly,
                         });
                     }
-    
+
                     booleanArr.push({
                         name: 'dialog.schedule',
-                        show: dialog.schedule ? (date >= dialog.schedule.dateStart && date <= dialog.schedule.dateEnd) || (debugIgnore) : true,
+                        show: dialog.schedule ? (date >= dialog.schedule.dateStart && date <= dialog.schedule.dateEnd) || debugIgnore : true,
                     });
-    
+
                     if (dialog.count) {
                         const count = parseFloat(Cookie.getItem(`${Notify.cookieNamespace}--${dialog.id}--count`) || '1');
                         booleanArr.push({
@@ -374,7 +376,7 @@ export class Notify extends KEventTarget {
                             show: count <= dialog.count.max,
                         });
                     }
-    
+
                     if (dialog.hideOnNavigation && Notify.History.getHistoryLength() > 1) {
                         Notify.instance.hide(dialog.id);
                         booleanArr.push({
@@ -382,7 +384,7 @@ export class Notify extends KEventTarget {
                             show: false,
                         });
                     }
-    
+
                     if ('undefined' !== typeof dialog.showMobile && !dialog.showMobile) {
                         if (window.innerWidth <= parseFloat(Settings.breakpoints.sm)) {
                             booleanArr.push({
@@ -400,9 +402,9 @@ export class Notify extends KEventTarget {
                                         if (date >= dialog.schedule.dateStart && date <= dialog.schedule.dateEnd) {
                                             booleanArr.push({
                                                 name: 'dialog.disableOnScheduledPriorities && dialog.schedule',
-                                                show: false
-                                            });  
-                                        } 
+                                                show: false,
+                                            });
+                                        }
                                     } else {
                                         booleanArr.push({
                                             name: 'dialog.disableOnScheduledPriorities',
@@ -416,10 +418,10 @@ export class Notify extends KEventTarget {
 
                     if (isDebugEnviroment) {
                         qq('.debug').forEach(debugBarElement => debugBarElement.classList.add('hide'));
-                        console.log(`Show ${dialog.id}: ${0 === booleanArr.filter(argument => !(argument.show)).length ? true : false}`, booleanArr);
+                        console.log(`Show ${dialog.id}: ${0 === booleanArr.filter(argument => !argument.show).length ? true : false}`, booleanArr);
                     }
 
-                    return 0 === booleanArr.filter(argument => !(argument.show)).length;
+                    return 0 === booleanArr.filter(argument => !argument.show).length;
                 }
 
                 return false;
@@ -456,7 +458,7 @@ export class Notify extends KEventTarget {
             if ('popup' === settings.type) {
                 Notify.printMethodPopup(settings);
             }
-            
+
             if ('custom' === settings.type) {
                 Notify.printMethodCustom(settings);
             }
@@ -464,29 +466,25 @@ export class Notify extends KEventTarget {
     }
 
     public hide(id: string) {
-        const element = 
-            document.getElementById(`modal-${id}`) || 
-            document.getElementById(`notification-${id}`) || 
-            document.getElementById(id);
+        const element = document.getElementById(`modal-${id}`) || document.getElementById(`notification-${id}`) || document.getElementById(id);
         const settings = Notify.queue.filter(dialog => dialog.id === id).shift();
 
         if (settings) {
-            const expires = 
-                (settings.schedule && settings.schedule.dateExpire) ? 
-                    settings.schedule.dateExpire : 
-                    (settings.expires ? 
-                            settings.expires(new Date()) : 
-                            new Date(new Date().getTime() + (1 * 60 * 60 * 1000)) );
+            const expires =
+                settings.schedule && settings.schedule.dateExpire
+                    ? settings.schedule.dateExpire
+                    : settings.expires
+                    ? settings.expires(new Date())
+                    : new Date(new Date().getTime() + 1 * 60 * 60 * 1000);
 
             Cookie.setItem(`${Notify.cookieNamespace}--${settings.id}`, '0', {
-                expires: expires
+                expires: expires,
             });
-        }
-        else {
-            const expires = new Date(new Date().getTime() + (3 * 60 * 60 * 1000));
+        } else {
+            const expires = new Date(new Date().getTime() + 3 * 60 * 60 * 1000);
 
             Cookie.setItem(`${Notify.cookieNamespace}--${id}`, '0', {
-                expires: expires
+                expires: expires,
             });
         }
 
@@ -502,7 +500,7 @@ export type SettingsTypes = DialogBannerSettings | DialogPopupSettings | DialogN
 interface DialogSettings {
     id: string;
     class?: string;
-    extra?: { [name: string]: any },
+    extra?: { [name: string]: any };
     html: string;
     type?: DialogType;
     schedule?: {
@@ -510,7 +508,7 @@ interface DialogSettings {
         dateEnd: Date;
         dateExpire?: Date;
         dateIgnoreOnDebug?: boolean;
-    }
+    };
     showFree?: boolean;
     showGuestOnly?: boolean;
     showPremium?: boolean;
@@ -538,26 +536,26 @@ interface DialogSettings {
 export interface DialogBannerOptions extends DialogSettings {
     position: 'top' | 'bottom';
     template?: Function;
-};
+}
 export interface DialogBannerSettings extends DialogBannerOptions {
     type: 'banner';
-};
+}
 
 export interface DialogNotificationOptions extends DialogSettings {
     position: 'bottom-center' | 'bottom-left' | 'bottom-right' | 'center' | 'top-center' | 'top-left' | 'top-right';
     template?: Function;
-};
+}
 export interface DialogNotificationSettings extends DialogNotificationOptions {
     type: 'notification';
-};
+}
 
 export interface DialogPopupOptions extends DialogSettings {
-    globalVariables?: { [name: string]: any; }
-};
+    globalVariables?: { [name: string]: any };
+}
 export interface DialogPopupSettings extends DialogSettings {
     type: 'popup';
-    globalVariables?: { [name: string]: any; }
-};
+    globalVariables?: { [name: string]: any };
+}
 
 export interface DialogCustomOptions {
     id: string;
@@ -567,7 +565,7 @@ export interface DialogCustomOptions {
         dateEnd: Date;
         dateExpire?: Date;
         dateIgnoreOnDebug?: boolean;
-    }
+    };
     showFree?: boolean;
     showGuestOnly?: boolean;
     showPremium?: boolean;
@@ -587,7 +585,7 @@ export interface DialogCustomOptions {
     priority: number;
     disableOnScheduledPriorities?: number[];
     closeCallback: (closeCallback: Function) => void;
-};
+}
 export interface DialogCustomSettings {
     id: string;
     type: 'custom';
@@ -597,7 +595,7 @@ export interface DialogCustomSettings {
         dateEnd: Date;
         dateExpire?: Date;
         dateIgnoreOnDebug?: boolean;
-    }
+    };
     showFree?: boolean;
     showGuestOnly?: boolean;
     showPremium?: boolean;
@@ -617,7 +615,7 @@ export interface DialogCustomSettings {
     priority: number;
     disableOnScheduledPriorities?: number[];
     closeCallback: (closeCallback: Function) => void;
-};
+}
 
 export class KEventShow extends KEvent {
     constructor(public settings: DialogBannerSettings | DialogNotificationSettings | DialogPopupSettings) {
@@ -654,7 +652,7 @@ export interface NotifyUser {
     isPremiumFreepikMonthly(): boolean;
     isPremiumFlaticonAnnual(): boolean;
     isPremiumFlaticonMonthly(): boolean;
-    type(): "Premium" | "Free" | "Anonymous";
+    type(): 'Premium' | 'Free' | 'Anonymous';
 }
 
 export interface NotifyHistory {
