@@ -1,4 +1,4 @@
-import { q, qq, delegate } from 'bobjoll/ts/library/dom';
+import { qq, delegate } from 'bobjoll/ts/library/dom';
 import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
 
 interface TriggerActive {
@@ -6,8 +6,8 @@ interface TriggerActive {
         id: string;
         permanent: boolean;
         lockscroll: boolean;
-    }
-};
+    };
+}
 
 export class KEventShow extends KEvent {
     constructor(container: HTMLElement) {
@@ -37,16 +37,15 @@ class Trigger extends KEventTarget {
     }
 
     private static getActiveTrigger(permanent: boolean = false) {
-        return Object.keys(Trigger.active)
-            .reduce((acc: string[], key) => {
-                const settings = Trigger.active[key];
+        return Object.keys(Trigger.active).reduce((acc: string[], key) => {
+            const settings = Trigger.active[key];
 
-                if (settings && settings.permanent == permanent) {
-                    acc.push(settings.id);
-                }
+            if (settings && settings.permanent == permanent) {
+                acc.push(settings.id);
+            }
 
-                return acc;
-            }, []);
+            return acc;
+        }, []);
     }
 
     private static getContainer(id: string) {
@@ -58,7 +57,7 @@ class Trigger extends KEventTarget {
             id: container.id,
             permanent: container.dataset.permanent ? true : false,
             lockscroll: container.dataset.lockScroll ? true : false,
-        }
+        };
     }
 
     private static update(id?: string) {
@@ -77,8 +76,7 @@ class Trigger extends KEventTarget {
         if (container) {
             container.classList.add(Trigger.classActive);
 
-            qq(`.trigger__button[data-trigger="${id}"]`)
-                .forEach(trigger => trigger.classList.add(Trigger.classActive));
+            qq(`.trigger__button[data-trigger="${id}"]`).forEach(trigger => trigger.classList.add(Trigger.classActive));
 
             this.add(container);
 
@@ -92,8 +90,7 @@ class Trigger extends KEventTarget {
         if (container) {
             container.classList.remove(Trigger.classActive);
 
-            qq(`.trigger__button[data-trigger="${id}"]`)
-                .forEach(trigger => trigger.classList.remove(Trigger.classActive));
+            qq(`.trigger__button[data-trigger="${id}"]`).forEach(trigger => trigger.classList.remove(Trigger.classActive));
 
             this.remove(container);
 
@@ -108,8 +105,7 @@ class Trigger extends KEventTarget {
             Trigger.wrapper.classList.add('overflow-hidden');
         }
 
-        Trigger.getActiveTrigger()
-            .forEach(id => this.hide(id));
+        Trigger.getActiveTrigger().forEach(id => this.hide(id));
 
         Trigger.active[container.id] = settings;
 
@@ -133,7 +129,7 @@ class Trigger extends KEventTarget {
     private addEventListeners() {
         const self = this;
 
-        delegate('.trigger__button', 'click', function (this: HTMLButtonElement, e: MouseEvent) {
+        delegate('.trigger__button', 'click', function(this: HTMLButtonElement) {
             const id = this.dataset.trigger || '';
             const action = this.classList.contains('active') ? 'hide' : 'show';
 
@@ -142,11 +138,11 @@ class Trigger extends KEventTarget {
             this.dispatchEvent(new Event(`toggle`));
         });
 
-        delegate('.trigger__close', 'click', function (this: HTMLButtonElement, e: MouseEvent) {
+        delegate('.trigger__close', 'click', function(this: HTMLButtonElement) {
             const trigger = this.closest('.trigger');
 
             if (trigger) {
-                const id = trigger.id
+                const id = trigger.id;
 
                 self.hide(id);
             }

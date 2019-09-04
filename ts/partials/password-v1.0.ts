@@ -2,7 +2,7 @@ import { delegate } from 'bobjoll/ts/library/dom';
 import 'bobjoll/ts/library/common';
 
 (function() {
-    delegate('.password__toggle', 'click', function (this: HTMLElement, e: Event) {
+    delegate('.password__toggle', 'click', function(this: HTMLElement) {
         const parents = this.parents('.password');
 
         if (parents.length > 0) {

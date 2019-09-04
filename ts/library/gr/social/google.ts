@@ -1,7 +1,5 @@
 /// <reference types="gapi.auth2" />
 
-declare var GOOGLE_AUTH_TIMEOUT_MESSAGE: string;
-
 import Social from './index';
 
 export default class Google extends Social {
@@ -19,48 +17,55 @@ export default class Google extends Social {
             return;
         }
 
-        return gapi.auth2.getAuthInstance().signIn({
-            scope: 'email profile'
-        }).then((response: GoogleApiOAuth2TokenObject) => Google.status(response)); 
+        return gapi.auth2
+            .getAuthInstance()
+            .signIn({
+                scope: 'email profile',
+            })
+            .then((response: GoogleApiOAuth2TokenObject) => Google.status(response));
     }
 
     public static disconnect() {
         if (Google.gr && Google.gr.isLogged()) {
-            gapi.auth2.getAuthInstance().signOut().then((response: GoogleApiOAuth2TokenObject) => {
-                if (response && !response.error) {
-                    let data = new FormData();
+            gapi.auth2
+                .getAuthInstance()
+                .signOut()
+                .then((response: GoogleApiOAuth2TokenObject) => {
+                    if (response && !response.error) {
+                        let data = new FormData();
 
-                    try {
-                        var result = gapi.auth.getToken();
-                        var request = new XMLHttpRequest();
+                        try {
+                            var result = gapi.auth.getToken();
+                            var request = new XMLHttpRequest();
 
-                        request.open('GET', 'https://accounts.google.com/o/oauth2/revoke?token=' + result.access_token, false);
-                        request.send();
-                    } catch (e) { };
+                            request.open('GET', 'https://accounts.google.com/o/oauth2/revoke?token=' + result.access_token, false);
+                            request.send();
+                        } catch (e) {}
 
-                    data.append('social_network', 'google');
+                        data.append('social_network', 'google');
 
-                    Google.request('DELETE', 'profile/connect', data);
-                    Google.connected = false;
-                }
-            });
-		}
+                        Google.request('DELETE', 'profile/connect', data);
+                        Google.connected = false;
+                    }
+                });
+        }
     }
 
     private static sdk() {
         if (!document.getElementById('google-jssdk')) {
             (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
+                var js,
+                    fjs = d.getElementsByTagName(s)[0];
 
                 if (d.getElementById(id)) return;
 
-                js = (d.createElement(s) as HTMLScriptElement); 
-                
+                js = d.createElement(s) as HTMLScriptElement;
+
                 js.id = id;
                 js.src = 'https://apis.google.com/js/api:client.js?onload=google_init';
 
                 if (fjs.parentNode) fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'google-jssdk'));
+            })(document, 'script', 'google-jssdk');
         }
     }
 
@@ -71,12 +76,12 @@ export default class Google extends Social {
 
     private static setup() {
         (window as any).google_init = async function() {
-            await new Promise((resolve) => {
-                gapi.load('client:auth2', () => resolve());                
+            await new Promise(resolve => {
+                gapi.load('client:auth2', () => resolve());
             });
 
             Google.auth2 = gapi.auth2.init({
-                client_id: GOOGLE_CLIENT_ID
+                client_id: GOOGLE_CLIENT_ID,
             });
 
             Google.loaded = true;
@@ -85,18 +90,16 @@ export default class Google extends Social {
         };
     }
 
-    private static async status(response: GoogleApiOAuth2TokenObject)  {
+    private static async status() {
         let user: any;
 
         if (true == this.auth2.isSignedIn.get()) {
             user = Google.auth2.currentUser.get();
-        }
-        else {
+        } else {
             user = await new Promise(resolve => {
-                Google.auth2.signIn()
-                    .then(function() {
-                        resolve(Google.auth2.currentUser.get());
-                    });
+                Google.auth2.signIn().then(function() {
+                    resolve(Google.auth2.currentUser.get());
+                });
             });
         }
 
@@ -111,8 +114,7 @@ export default class Google extends Social {
 
                 form.append('google_id', user.getId());
                 form.append('social_network', 'google');
-            }
-            else {
+            } else {
                 const profile = user.getBasicProfile();
 
                 action = 'login';
@@ -124,7 +126,7 @@ export default class Google extends Social {
             }
 
             return Google.auth(action, form);
-        } catch(e) {
+        } catch (e) {
             throw Error(e);
         }
     }

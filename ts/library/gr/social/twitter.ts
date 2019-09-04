@@ -1,8 +1,9 @@
 import Social from './index';
-import { pu, do_pu, do_clicked_pu } from './dependency/twitter_pu.js';
+import { pu } from './dependency/twitter_pu.js';
+
+declare const gr: any;
 
 export default class Twitter extends Social {
-    private static loaded: boolean = false;
     public static register: Function;
 
     public static getInstance() {
@@ -44,9 +45,9 @@ export default class Twitter extends Social {
         pu('/profile/twitter/redirect_authorize_url');
 
         const response = await new Promise((resolve, reject) => {
-            (window as any).twitter_connection_status = function (response: any) {
+            (window as any).twitter_connection_status = function(response: any) {
                 resolve(response);
-            }
+            };
 
             setTimeout(reject, 5000);
         });
@@ -56,7 +57,7 @@ export default class Twitter extends Social {
 
     public static disconnect() {
         if (gr.auth.logged) {
-            var request = gr.request.delete('profile/connect', { social_network: 'twitter' });
+            gr.request.delete('profile/connect', { social_network: 'twitter' });
 
             Twitter.connected = false;
         }
