@@ -19,12 +19,12 @@ interface DefaultSettings {
         defaults: boolean;
         history: boolean;
         historyMax: number;
-    }
+    };
     templates: {
-        'fixed': Function;
-        'fixed_question': Function;
-        'message': Function;
-        'static': Function;
+        fixed: Function;
+        fixed_question: Function;
+        message: Function;
+        static: Function;
     };
 }
 
@@ -32,15 +32,15 @@ export interface UserSettings {
     action: string;
     method: 'POST' | 'GET';
     text: {
-        'close': string;
-        'submit': string;
-        'cancel': string;
-        'msg_error': string;
-        'email_info': string;
-        'email_error': string;
-        'email_label': string;
-        'email_placeholder': string;
-        'request_error': string;
+        close: string;
+        submit: string;
+        cancel: string;
+        msg_error: string;
+        email_info: string;
+        email_error: string;
+        email_label: string;
+        email_placeholder: string;
+        request_error: string;
     };
     default: {
         overlay?: boolean;
@@ -71,12 +71,12 @@ export interface UserSettings {
             '%': number;
             times?: number;
         }[];
-    }
+    };
     questions: {
         id?: string;
         class?: string;
-        views?: string[],
-        question: string,
+        views?: string[];
+        question: string;
         options?: {
             id?: string;
             icon?: string;
@@ -96,11 +96,11 @@ export interface UserSettings {
         }[];
     }[];
     templates?: {
-        'fixed': Function;
-        'fixed_question': Function;
-        'message': Function;
-        'static': Function;
-    },
+        fixed: Function;
+        fixed_question: Function;
+        message: Function;
+        static: Function;
+    };
     user?: () => {
         id: number;
         login: string;
@@ -111,7 +111,7 @@ export interface UserSettings {
         connected_google?: boolean;
         connected_facebook?: boolean;
         connected_twitter?: boolean;
-    } | null;
+    } | null;
 }
 
 export interface Settings extends UserSettings {
@@ -143,12 +143,12 @@ export interface Settings extends UserSettings {
             times?: number;
             '%': number;
         }[];
-    }
+    };
     templates: {
-        'fixed': Function;
-        'fixed_question': Function;
-        'message': Function;
-        'static': Function;
+        fixed: Function;
+        fixed_question: Function;
+        message: Function;
+        static: Function;
     };
 }
 
@@ -157,7 +157,7 @@ export interface History {
     url: string;
 }
 
-declare module "bobjoll/ts/library/storage" {
+declare module 'bobjoll/ts/library/storage' {
     interface ClientStorage {
         get(namespace: 'feedback-history', key: string): string[];
         set(namespace: 'feedback-history', key: string, value: string[]): void;
@@ -182,11 +182,11 @@ export default class Feedback extends KEventTarget {
             historyMax: 10,
         },
         templates: {
-            'fixed': require(`BobjollTemplate/feedback-v1.0/fixed.${EXT}`),
-            'fixed_question': require(`BobjollTemplate/feedback-v1.0/fixed-question.${EXT}`),
-            'message': require(`BobjollTemplate/feedback-v1.0/message.${EXT}`),
-            'static': require(`BobjollTemplate/feedback-v1.0/static.${EXT}`),
-        }
+            fixed: require(`BobjollTemplate/feedback-v1.0/fixed.${EXT}`),
+            fixed_question: require(`BobjollTemplate/feedback-v1.0/fixed-question.${EXT}`),
+            message: require(`BobjollTemplate/feedback-v1.0/message.${EXT}`),
+            static: require(`BobjollTemplate/feedback-v1.0/static.${EXT}`),
+        },
     };
 
     constructor(settings: UserSettings) {
@@ -214,7 +214,6 @@ export default class Feedback extends KEventTarget {
     }
 
     private browser() {
-        var N = navigator.appName;
         var UA = navigator.userAgent;
         var temp;
         var browserVersion = UA.match(/(opera|chrome|safari|firefox|msie|maxthon|lunascape)\/?\s*(\.?\d+(\.\d+)*)/i);
@@ -271,7 +270,7 @@ export default class Feedback extends KEventTarget {
 
                 if (form.checkValidity()) {
                     try {
-                        let request = await this.submit(form, id);
+                        await this.submit(form, id);
 
                         if (submit) {
                             form.classList.add('disabled');
@@ -294,7 +293,7 @@ export default class Feedback extends KEventTarget {
         }
 
         if (reset) {
-            reset.addEventListener('click', (e: Event) => this.hide());
+            reset.addEventListener('click', () => this.hide());
         }
     }
 
@@ -302,31 +301,31 @@ export default class Feedback extends KEventTarget {
         let questions = this.settings.questions;
 
         if (id) {
-            questions = questions.filter((question) => {
+            questions = questions.filter(question => {
                 return id === question.id;
             });
         }
 
         if (this.view) {
-            questions = questions.filter((question) => {
+            questions = questions.filter(question => {
                 return question.views && question.views.indexOf(this.view || '') >= 0;
             });
         } else {
-            questions = questions.filter((question) => {
+            questions = questions.filter(question => {
                 return !question.views;
             });
         }
 
-        let result = questions[Math.floor((Math.random() * questions.length))];
+        let result = questions[Math.floor(Math.random() * questions.length)];
 
         if (this.settings.default.defaults && !result) {
             let questions = this.settings.questions;
 
-            questions = questions.filter((question) => {
+            questions = questions.filter(question => {
                 return !question.views;
             });
 
-            result = questions[Math.floor((Math.random() * questions.length))];
+            result = questions[Math.floor(Math.random() * questions.length)];
         }
 
         if (result) {
@@ -353,7 +352,7 @@ export default class Feedback extends KEventTarget {
     private checkValidity(form: HTMLFormElement) {
         let fields: HTMLInputElement[] = Array.prototype.slice.call(form.querySelectorAll('input, textarea'));
 
-        fields.forEach((field) => {
+        fields.forEach(field => {
             if (field.required && !field.validity.valid) {
                 let errorField = form.querySelector(`.error.error-${field.name}`);
 
@@ -420,7 +419,7 @@ export default class Feedback extends KEventTarget {
                     try {
                         data.delete('email');
                         data.delete('message');
-                    } catch (err) { };
+                    } catch (err) {}
 
                     if (browser) {
                         data.append('browser_name', browser.name);
@@ -442,15 +441,13 @@ export default class Feedback extends KEventTarget {
                     }
 
                     if (this.settings.default.history) {
-                        data.append('history', JSON.stringify(
-                            sessionStorage.get(this.historyNS, this.historyKey))
-                        );
+                        data.append('history', JSON.stringify(sessionStorage.get(this.historyNS, this.historyKey)));
                     }
                 }
 
                 let request = await fetch(this.settings.action, {
                     body: data,
-                    method: this.settings.method
+                    method: this.settings.method,
                 });
                 let response = await request.json();
 
@@ -490,8 +487,8 @@ export default class Feedback extends KEventTarget {
                         text: UserSettings['text'];
                         userEmail?: string;
                     } = {
-                            text: this.settings.text
-                        }
+                        text: this.settings.text,
+                    };
 
                     if (this.settings.user) {
                         let user = this.settings.user();
@@ -516,7 +513,7 @@ export default class Feedback extends KEventTarget {
                     wrapper.innerHTML = View.render(this.settings.templates.fixed_question, extend(question, params));
 
                     Array.prototype.slice.call(this.fixed.getElementsByClassName('feedback__submit')).forEach((button: HTMLButtonElement) =>
-                        button.addEventListener('click', async (e: Event) => {
+                        button.addEventListener('click', async () => {
                             if (this.fixed) {
                                 let form = <HTMLFormElement>this.fixed.querySelector(`#form-${button.dataset.question}`);
 
@@ -537,7 +534,7 @@ export default class Feedback extends KEventTarget {
                                     }
                                 }
                             }
-                        })
+                        }),
                     );
                 }
 
@@ -554,7 +551,7 @@ export default class Feedback extends KEventTarget {
 
             setTimeout(() => {
                 wrapper.innerHTML = '';
-            }, parseFloat(Settings['feedback-duration']))
+            }, parseFloat(Settings['feedback-duration']));
         }
     }
 
@@ -566,20 +563,24 @@ export default class Feedback extends KEventTarget {
                 status: status,
                 icon: 'cross',
                 message: msg || this.settings.text.request_error,
-            }
+            };
         } else {
             settings = {
                 status: status,
                 icon: 'check',
                 message: msg || this.settings.default.success_msg,
-            }
+            };
         }
 
-        form.insertAdjacentHTML('afterend',
-            View.render(this.settings.templates.message, extend(settings, {
-                text: this.settings.text
-            })
-            ));
+        form.insertAdjacentHTML(
+            'afterend',
+            View.render(
+                this.settings.templates.message,
+                extend(settings, {
+                    text: this.settings.text,
+                }),
+            ),
+        );
 
         let buttonClose = form!.parentElement!.querySelector('.feedback__close');
 
@@ -590,21 +591,21 @@ export default class Feedback extends KEventTarget {
         form.parentElement!.removeChild(form);
     }
 
-    public insert(id: string) {
-
-    }
+    public insert() {}
 
     public updateView(view: string, url?: string) {
         this.view = view || undefined;
 
         if (this.settings.default.history && view) {
-            let history: string[] = this.history = sessionStorage.get(this.historyNS, this.historyKey) || [];
+            let history: string[] = (this.history = sessionStorage.get(this.historyNS, this.historyKey) || []);
 
             history.unshift(
-                btoa(JSON.stringify({
-                    view: view,
-                    url: url || window.location.href,
-                }))
+                btoa(
+                    JSON.stringify({
+                        view: view,
+                        url: url || window.location.href,
+                    }),
+                ),
             );
 
             if (history.length > this.settings.default.historyMax) {
@@ -614,17 +615,19 @@ export default class Feedback extends KEventTarget {
             sessionStorage.set(this.historyNS, this.historyKey, history);
 
             if (this.settings.default.viewCounter) {
-                let counterSettings = this.settings.default.viewCounter.filter((settings) => {
-                    return settings.view === view || !settings.view;
-                }).pop();
+                let counterSettings = this.settings.default.viewCounter
+                    .filter(settings => {
+                        return settings.view === view || !settings.view;
+                    })
+                    .pop();
 
                 if (counterSettings) {
-                    let counter = localStorage.get(this.counterNS, (counterSettings.view || 'all')) || 0;
+                    let counter = localStorage.get(this.counterNS, counterSettings.view || 'all') || 0;
 
-                    if ('undefined' !== typeof counter && (!counterSettings.times || counter < (counterSettings.times * this.settings.default.historyMax))) {
+                    if ('undefined' !== typeof counter && (!counterSettings.times || counter < counterSettings.times * this.settings.default.historyMax)) {
                         counter++;
 
-                        localStorage.set(this.counterNS, (counterSettings.view || 'all'), counter);
+                        localStorage.set(this.counterNS, counterSettings.view || 'all', counter);
 
                         if (0 === counter % counterSettings['%'] && this.fixed && !this.fixed.classList.contains('active')) {
                             this.show();
