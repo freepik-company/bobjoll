@@ -22,7 +22,7 @@ export default class Google extends Social {
             .signIn({
                 scope: 'email profile',
             })
-            .then((response: GoogleApiOAuth2TokenObject) => Google.status(response));
+            .then(() => Google.status());
     }
 
     public static disconnect() {
