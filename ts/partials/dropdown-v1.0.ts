@@ -118,6 +118,20 @@ export class Dropdown {
 		self.button.classList.remove('active');
 	}
 
+	private changeValue(newVal: string) {
+		let targetOption = this.options.filter(option => option.dataset.value == newVal)[0];
+		
+		this.button.innerText = targetOption.innerText;
+		
+		this.select.value = newVal;
+		this.select.dispatchEvent(new Event('change', {
+			bubbles: true,
+		}));
+		
+		this.button.classList.remove('active');
+		this.button.innerText = targetOption.innerText;
+	}
+
 	private eventHandlerInputKeyup(this: HTMLInputElement, self: Dropdown) {
 		const value = this.value.trim();
 		const keyword = new RegExp(value, 'gi');
