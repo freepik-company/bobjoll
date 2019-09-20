@@ -118,7 +118,7 @@ export class Dropdown {
 		self.button.classList.remove('active');
 	}
 
-	private changeValue(newVal: string) {
+	public changeValue(newVal: string) {
 		let targetOption = this.options.filter(option => option.dataset.value == newVal)[0];
 		
 		this.button.innerText = targetOption.innerText;
