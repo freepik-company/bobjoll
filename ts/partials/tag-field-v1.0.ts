@@ -60,7 +60,7 @@ export class TagsField extends KEventTarget {
         let valuesRemoved: string[] = [];
         let value: string | string[] = '';
         qq('.tag-field__item', this.settings.selector).forEach(item => {
-            if (arr.indexOf(item.innerText.trim()) >= 0 && item.parentElement) {
+            if (arr.indexOf(item.dataset.value.trim()) >= 0 && item.parentElement) {
                 const value = item.dataset.value;
                 item.parentElement.removeChild(item);
                 if (value) {
@@ -124,7 +124,7 @@ export class TagsField extends KEventTarget {
 
     private update() {
         const tags: string[] = qq('.tag-field__item', this.settings.selector).reduce((acc: string[], tag) => {
-            acc.push(tag.innerText.trim());
+            acc.push(tag.dataset.value.trim());
 
             return acc;
         }, []);
