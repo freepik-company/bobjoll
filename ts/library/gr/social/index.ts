@@ -2,7 +2,7 @@ declare var gr: any;
 
 export default class Social {
     public static connected: boolean = false;
-    public static gr = gr ||  undefined;
+    public static gr = 'undefined' === typeof gr ? undefined : gr;
 
     public static request(method: 'DELETE' | 'POST', url: string, data?: FormData) {
         return new Promise((resolve, reject) => {
