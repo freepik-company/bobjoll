@@ -1,170 +1,171 @@
 @if $accordion-v1-0 {
-	.accordion {
-		@include clearfix;
+    .accordion {
+        @include clearfix;
 
-		position: relative;
+        position: relative;
 
-		overflow: hidden;
+        overflow: hidden;
 
-		margin: 0 0 $base-spacing;
-		padding: 0;
+        margin: 0 0 $base-spacing;
+        padding: 0;
 
-		line-height: $base-line-height;
+        line-height: $base-line-height;
 
-		&:not(.accordion--ready) {
-			.accordion__mobile-nav {
-				position: absolute;
+        &:not(.accordion--ready) {
+            .accordion__mobile-nav {
+                position: absolute;
 
-				visibility: hidden;
+                visibility: hidden;
 
-				border-bottom: $base-border;
-			}
+                border-bottom: $base-border;
+            }
 
-			.accordion__container > a,
-			.accordion__container > button {
-				visibility: hidden;
-			}
-		}
+            .accordion__container > a,
+            .accordion__container > button {
+                visibility: hidden;
+            }
+        }
 
-		&--tabs {
-			@include breakpoint('xs', 'min') {
-				.accordion__container {
-					display: inline;
+        &--tabs:not(data-disable-mobile-select) {
+            @include breakpoint('xs', 'min') {
+                .accordion__container {
+                    display: inline;
 
-					border: none;
-				}
+                    border: none;
+                }
 
-				.accordion__content {
-					float: left;
+                .accordion__content {
+                    float: left;
 
-					border-top: $base-border;
-				}
+                    border-top: $base-border;
+                }
 
-				.accordion__link {
-					&:not(.nostyle) {
-						display: inline-block;
+                .accordion__link {
+                    &:not(.nostyle) {
+                        display: inline-block;
 
-						&.active {
-							border-bottom: 1px solid color('text', 'general');
-						}						
-					}
-				}
-			}		
-		}
+                        &.active {
+                            border-bottom: 1px solid color('text', 'general');
+                        }
+                    }
+                }
+            }
+        }
 
-		&__container {
-			margin: 0 0 $small-spacing;
+        &__container {
+            margin: 0 0 $small-spacing;
 
-			list-style: none;
-			
-			&:last-child {
-				margin-bottom: 0;
-			}
+            list-style: none;
 
-			@include breakpoint('md') {
-				
-			}
-		}
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
 
-		&__content {
-			@include position(absolute, 100% null null 0);
+        &__content {
+            @include position(absolute, 100% null null 0);
 
-			width: 100%;
+            width: 100%;
 
-			padding: $small-spacing $base-spacing;
+            padding: $small-spacing $base-spacing;
+            padding-top: 0;
 
-			p:last-child {
-				margin: 0;
-			}
-		}
+            p:last-child {
+                margin: 0;
+            }
+        }
 
-		&__mobile-nav {
-			padding: 0 $base-spacing;
-		}
+        &__mobile-nav {
+            padding: 0 $base-spacing;
+        }
 
-		&__select {
-			@include appearance(none);
+        &__select {
+            @include appearance(none);
 
-			height: $base-element-height;
+            height: $base-element-height;
 
-			border: none;
+            border: none;
 
-			background: transparent;
+            background: transparent;
 
-			text-align: center;
+            text-align: center;
 
-			&__wrapper {
-				position: relative;
-				
-				display: inline-block;
+            &__wrapper {
+                position: relative;
 
-				padding: 0 ($base-triangle-size + $extra-small-spacing) 0 0;
+                display: inline-block;
 
-				&::after {
-					@include triangle($base-triangle-size, color('text', 'general'), down);
+                padding: 0 ($base-triangle-size + $extra-small-spacing) 0 0;
 
-					position: absolute;
-					top: 50%;
-					right: 0;					
+                &::after {
+                    @include triangle($base-triangle-size, color('text', 'general'), down);
 
-					transform: translateY(-50%);
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
 
-					content: '';
-				}
-			}
-		}
+                    transform: translateY(-50%);
 
-		&__link {
-			&:not(.nostyle) {
-				display: block;
+                    content: '';
+                }
+            }
+        }
 
-				padding: $small-spacing $small-spacing $small-spacing $base-spacing;
+        &__link {
+            &:not(.nostyle) {
+                position: relative;
+                width: 100%;
+                padding: $small-spacing $small-spacing $small-spacing $base-spacing;
+                text-decoration: none;
+                color: color('accordion', 'general');
+                text-align: left;
 
-				text-decoration: none;
+                .icon {
+                    position: absolute;
+                    top: 50%;
+                    right: $extra-small-spacing;
+                    transform: translateY(-50%);
+                    color: color('accordion', 'general');
+                }
 
-				color: color('accordion', 'general');
+                .state--active {
+                    display: none;
+                }
 
-				.icon {
-					color: color('accordion', 'general');
-				}
+                &.active {
+                    color: color('link', 'general');
 
-				.state--active {
-					display: none;
-				}
+                    .icon {
+                        color: color('link', 'general');
+                    }
 
-				&.active {
-					color: color('link', 'general');
+                    .state--active {
+                        display: block;
+                    }
+                    .state--inactive {
+                        display: none;
+                    }
+                }
+            }
 
-					.icon {
-						color: color('link', 'general');
-					}
+            &.active + .accordion__content {
+                position: relative;
 
-					.state--active {
-						display: block;
-					}
-					.state--inactive {
-						display: none;
-					}
-				}
-			}			
+                display: block;
+            }
+        }
 
-			&.active + .accordion__content {
-				position: relative;
+        &--inverted {
+            color: color('text-inverted', 'general');
 
-				display: block;
-			}
-		}
+            a:not(.button) {
+                color: color('link-inverted', 'general', 0.75);
 
-		&--inverted {
-			color: color('text-inverted', 'general');
-
-			a:not(.button) {
-				color: color('link-inverted', 'general', .75);
-
-				&:hover, &.active {
-					color: color('link-inverted', 'general');					
-				}				
-			}
-		}
-	}
+                &:hover,
+                &.active {
+                    color: color('link-inverted', 'general');
+                }
+            }
+        }
+    }
 } // End if
