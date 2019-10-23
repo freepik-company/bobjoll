@@ -336,6 +336,20 @@ export class Notify extends KEventTarget {
                         });
                     }
 
+                    if ('undefined' !== typeof dialog.showCanceledFlaticon) {
+                        booleanArr.push({
+                            name: 'dialog.showCanceledFlaticon',
+                            show: Notify.User.isCanceledFlaticon() ? dialog.showCanceledFlaticon : !dialog.showCanceledFlaticon,
+                        });
+                    }
+
+                    if ('undefined' !== typeof dialog.showCanceledFreepik) {
+                        booleanArr.push({
+                            name: 'dialog.showCanceledFreepik',
+                            show: Notify.User.isCanceledFreepik() ? dialog.showCanceledFreepik : !dialog.showCanceledFreepik,
+                        });
+                    }
+
                     if ('undefined' !== typeof dialog.showFree) {
                         booleanArr.push({
                             name: 'dialog.showFree',
@@ -511,6 +525,8 @@ interface DialogSettings {
     showPremiumFreepikMonthly?: boolean;
     showPremiumFlaticonAnnual?: boolean;
     showPremiumFlaticonMonthly?: boolean;
+    showCanceledFlaticon?: boolean;
+    showCanceledFreepik?: boolean;
     showMobile?: boolean;
     showCallback?: () => boolean;
     expires?: (date: Date) => Date;
@@ -568,6 +584,8 @@ export interface DialogCustomOptions {
     showPremiumFreepikMonthly?: boolean;
     showPremiumFlaticonAnnual?: boolean;
     showPremiumFlaticonMonthly?: boolean;
+    showCanceledFlaticon?: boolean;
+    showCanceledFreepik?: boolean;
     showMobile?: boolean;
     showCallback?: () => boolean;
     expires?: (date: Date) => Date;
@@ -598,6 +616,8 @@ export interface DialogCustomSettings {
     showPremiumFreepikMonthly?: boolean;
     showPremiumFlaticonAnnual?: boolean;
     showPremiumFlaticonMonthly?: boolean;
+    showCanceledFlaticon?: boolean;
+    showCanceledFreepik?: boolean;
     showMobile?: boolean;
     showCallback?: () => boolean;
     expires?: (date: Date) => Date;
