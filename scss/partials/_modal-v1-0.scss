@@ -9,6 +9,10 @@
 
 		opacity: 0;
 
+		& iframe,object {
+            display: none;
+        }
+
 		width: 100vw;
 		height: 0vh;
 
@@ -38,6 +42,10 @@
 				@include transition($base-duration $base-duration $base-timing);
 
 				opacity: 1;				
+			}
+
+			& iframe,object {
+				display: block;
 			}
 		}
 
