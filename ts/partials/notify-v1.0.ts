@@ -645,6 +645,8 @@ export interface NotifyUser {
     isPremiumFreepikMonthly(): boolean;
     isPremiumFlaticonAnnual(): boolean;
     isPremiumFlaticonMonthly(): boolean;
+    isCanceledFlaticon(): boolean;
+    isCanceledFreepik(): boolean;
     type(): 'Premium' | 'Free' | 'Anonymous';
 }
 
