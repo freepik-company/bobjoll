@@ -336,17 +336,24 @@ export class Notify extends KEventTarget {
                         });
                     }
 
-                    if ('undefined' !== typeof dialog.showCanceledFlaticon) {
+                    if ('undefined' !== typeof dialog.showRenewalCanceledFlaticon) {
                         booleanArr.push({
-                            name: 'dialog.showCanceledFlaticon',
-                            show: Notify.User.isCanceledFlaticon() ? dialog.showCanceledFlaticon : !dialog.showCanceledFlaticon,
+                            name: 'dialog.showRenewalCanceledFlaticon',
+                            show: Notify.User.isRenewalCanceledFlaticon() ? dialog.showRenewalCanceledFlaticon : !dialog.showRenewalCanceledFlaticon,
                         });
                     }
 
-                    if ('undefined' !== typeof dialog.showCanceledFreepik) {
+                    if ('undefined' !== typeof dialog.showRenewalCanceledFreepik) {
                         booleanArr.push({
-                            name: 'dialog.showCanceledFreepik',
-                            show: Notify.User.isCanceledFreepik() ? dialog.showCanceledFreepik : !dialog.showCanceledFreepik,
+                            name: 'dialog.showRenewalCanceledFreepik',
+                            show: Notify.User.isRenewalCanceledFreepik() ? dialog.showRenewalCanceledFreepik : !dialog.showRenewalCanceledFreepik,
+                        });
+                    }
+
+                    if ('undefined' !== typeof dialog.showRenewalCanceledPlus) {
+                        booleanArr.push({
+                            name: 'dialog.showCanceledk',
+                            show: Notify.User.isRenewalCanceledPlus() ? dialog.showRenewalCanceledPlus : !dialog.showRenewalCanceledPlus,
                         });
                     }
 
@@ -525,8 +532,9 @@ interface DialogSettings {
     showPremiumFreepikMonthly?: boolean;
     showPremiumFlaticonAnnual?: boolean;
     showPremiumFlaticonMonthly?: boolean;
-    showCanceledFlaticon?: boolean;
-    showCanceledFreepik?: boolean;
+    showRenewalCanceledFlaticon?: boolean;
+    showRenewalCanceledFreepik?: boolean;
+    showRenewalCanceledPlus?: boolean;
     showMobile?: boolean;
     showCallback?: () => boolean;
     expires?: (date: Date) => Date;
@@ -584,8 +592,9 @@ export interface DialogCustomOptions {
     showPremiumFreepikMonthly?: boolean;
     showPremiumFlaticonAnnual?: boolean;
     showPremiumFlaticonMonthly?: boolean;
-    showCanceledFlaticon?: boolean;
-    showCanceledFreepik?: boolean;
+    showRenewalCanceledFlaticon?: boolean;
+    showRenewalCanceledFreepik?: boolean;
+    showRenewalCanceledPlus?: boolean;
     showMobile?: boolean;
     showCallback?: () => boolean;
     expires?: (date: Date) => Date;
@@ -616,8 +625,9 @@ export interface DialogCustomSettings {
     showPremiumFreepikMonthly?: boolean;
     showPremiumFlaticonAnnual?: boolean;
     showPremiumFlaticonMonthly?: boolean;
-    showCanceledFlaticon?: boolean;
-    showCanceledFreepik?: boolean;
+    showRenewalCanceledFlaticon?: boolean;
+    showRenewalCanceledFreepik?: boolean;
+    showRenewalCanceledPlus?: boolean;
     showMobile?: boolean;
     showCallback?: () => boolean;
     expires?: (date: Date) => Date;
@@ -665,8 +675,9 @@ export interface NotifyUser {
     isPremiumFreepikMonthly(): boolean;
     isPremiumFlaticonAnnual(): boolean;
     isPremiumFlaticonMonthly(): boolean;
-    isCanceledFlaticon(): boolean;
-    isCanceledFreepik(): boolean;
+    isRenewalCanceledFlaticon(): boolean;
+    isRenewalCanceledFreepik(): boolean;
+    isRenewalCanceledPlus(): boolean;
     type(): 'Premium' | 'Free' | 'Anonymous';
 }
 
