@@ -257,6 +257,10 @@ export class Notify extends KEventTarget {
         return 'debug' === (Cookie.getItem('notify') || '') ? true : false;
     }
 
+    public static checkDisabledEnviroment() {
+        return 'disabled' === (Cookie.getItem('notify') || '') ? true : false;
+    }
+
     public addEventListener(t: 'show', listener: (ev: KEvent) => any, useCapture?: boolean): void;
     public addEventListener(t: 'hide', listener: (ev: KEvent) => any, useCapture?: boolean): void;
     public addEventListener(t: string, listener: (ev: KEvent) => any, useCapture: boolean = true): void {
@@ -280,7 +284,7 @@ export class Notify extends KEventTarget {
     }
 
     public async printQueue() {
-        if (Notify.active) return;
+        if (Notify.active || Notify.checkDisabledEnviroment()) return;
 
         const date = new Date();
         const isDebugEnviroment = Notify.checkDebugEnviroment();
