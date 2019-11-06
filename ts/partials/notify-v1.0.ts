@@ -79,6 +79,12 @@ export class Notify extends KEventTarget {
                 if (completed === dependencies.length) resolve();
             }
 
+            function cleanupCallback(id: string) {
+                clearInterval(dependencyIntervals[id]);
+                delete dependencyIntervals[id];
+                delete dependencyIntervalCounter[id];
+            }
+
             dependencies.forEach(dependency => {
                 if (!document.getElementById(dependency.id)) {
                     (function(d, s, id) {
@@ -95,18 +101,12 @@ export class Notify extends KEventTarget {
                     dependencyIntervals[dependency.id] = setInterval(function() {
                         if (ww[dependency.variable]) {
                             completeCallback();
+                            cleanupCallback(dependency.id);
                         }
-
-                        if (ww[dependency.variable] || 100 <= dependencyIntervalCounter[dependency.id]) {
-                            // 10 seconds
-                            clearInterval(dependencyIntervals[dependency.id]);
-                            delete dependencyIntervals[dependency.id];
-                            delete dependencyIntervalCounter[dependency.id];
-                            reject(`Error: Could't load ${dependency.variable}.`);
-                        }
-
                         dependencyIntervalCounter[dependency.id]++;
                     }, 100);
+
+                    setTimeout(() => cleanupCallback(dependency.id), 10000);
                 }
             });
         });
