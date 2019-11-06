@@ -69,7 +69,7 @@ export class Notify extends KEventTarget {
     }
 
     private static preloadDependencies(dependencies: DependenciesObject[]) {
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
             let completed = 0;
             let dependencyIntervalCounter: { [id: string]: number } = {};
             let dependencyIntervals: { [id: string]: any } = {};
