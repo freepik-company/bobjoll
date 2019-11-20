@@ -464,21 +464,21 @@ $defaultSettings: (
 
 $buttonSettings: $defaultSettings !default;
 
-$buttonColors: map-get($buttonSettings, 'color');
-$buttonSizes: map-get($buttonSettings, 'size');
-$buttonStyles: map-get($buttonSettings, 'style');
-$buttonBorderRadius: map-get($buttonSettings, 'borderRadius');
-$buttonBorderWidth: map-get($buttonSettings, 'borderWidth');
-$buttonBorderStyle: map-get($buttonSettings, 'borderStyle');
-$buttonPadding: map-get($buttonSettings, 'padding');
+$buttonColors: map-get($buttonSettings, 'color') !default;
+$buttonSizes: map-get($buttonSettings, 'size') !default;
+$buttonStyles: map-get($buttonSettings, 'style') !default;
+$buttonBorderRadius: map-get($buttonSettings, 'borderRadius') !default;
+$buttonBorderWidth: map-get($buttonSettings, 'borderWidth') !default;
+$buttonBorderStyle: map-get($buttonSettings, 'borderStyle') !default;
+$buttonPadding: map-get($buttonSettings, 'padding') !default;
 
-$defaultColorMap: map-get($buttonColors, map-get($buttonSettings, 'defaultColor'));
-$defaultColorDefaultMap: map-get($defaultColorMap, 'default');
-$defaultColorHoverMap: map-get($defaultColorMap, 'hover');
-$defaultColorActiveMap: map-get($defaultColorMap, 'active');
-$defaultFontWeight: map-get($buttonSettings, 'defaultFontWeight');
-$defaultDuration: map-get($buttonSettings, 'defaultDuration');
-$defaultPrefix: map-get($buttonSettings, 'defaultPrefix');
-$defaultSizeMap: map-get($buttonSizes, map-get($buttonSettings, 'defaultSize'));
-$defaultStyleMap: map-get($buttonStyles, map-get($buttonSettings, 'defaultStyle'));
-$defaultTiming: map-get($buttonSettings, 'defaultTiming');
+$defaultColorMap: map-get($buttonColors, map-get($buttonSettings, 'defaultColor')) !default;
+$defaultColorDefaultMap: map-get($defaultColorMap, 'default') !default;
+$defaultColorHoverMap: map-get($defaultColorMap, 'hover') !default;
+$defaultColorActiveMap: map-get($defaultColorMap, 'active') !default;
+$defaultFontWeight: map-get($buttonSettings, 'defaultFontWeight') !default;
+$defaultDuration: map-get($buttonSettings, 'defaultDuration') !default;
+$defaultPrefix: map-get($buttonSettings, 'defaultPrefix') !default;
+$defaultSizeMap: map-get($buttonSizes, map-get($buttonSettings, 'defaultSize')) !default;
+$defaultStyleMap: map-get($buttonStyles, map-get($buttonSettings, 'defaultStyle')) !default;
+$defaultTiming: map-get($buttonSettings, 'defaultTiming') !default;
