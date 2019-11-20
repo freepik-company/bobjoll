@@ -113,18 +113,12 @@
 
         &__link {
             &:not(.nostyle) {
-                position: relative;
-                width: 100%;
+                display: block;
                 padding: $small-spacing $small-spacing $small-spacing $base-spacing;
                 text-decoration: none;
                 color: color('accordion', 'general');
-                text-align: left;
 
                 .icon {
-                    position: absolute;
-                    top: 50%;
-                    right: $extra-small-spacing;
-                    transform: translateY(-50%);
                     color: color('accordion', 'general');
                 }
 
