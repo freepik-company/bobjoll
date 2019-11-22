@@ -1,0 +1,14 @@
+<div class="feedback-content content">
+    <h6 class="feedback__title first font-md">{{question}}</h6>
+
+    <div class="row row--horizontal-center mg-none">
+        <a
+        href="{{link.href}}"
+        {{#if link.target}} target="{{link.target}}"{{/if}}
+        data-track-arguments="event, banner, {{link.value}}"
+        for="banner-button-{{link.value}}" 
+        class="track {{#if link.icon}} button--icon{{#if link.text}}{{else}} button--icon--only button--xl{{/if}}{{/if}}{{#if link.class}} {{link.class}}{{/if}}">
+        {{link.text}}
+        </a>
+    </div>
+</div>
