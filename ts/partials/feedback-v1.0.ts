@@ -419,9 +419,9 @@ export default class Feedback extends KEventTarget {
 
         if (data && 'number' === typeof questionID && 'number' === typeof optionID) {
             let question = this.settings.questions[questionID];
-            let option = question.options ? question.options[optionID] : this.settings.default.options ? this.settings.default.options[optionID] : '';
+            let option = question.options ? question.options[optionID] : this.settings.default.options ? this.settings.default.options[optionID] : null;
 
-            if (option) {
+            if (this.settings.action && option) {
                 try {
                     if (id) {
                         data.append('id', id);
