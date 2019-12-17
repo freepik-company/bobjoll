@@ -47,10 +47,36 @@ export abstract class NotifyMethod extends KEventTarget {
         }
         return true;
     }
-    private isShowTrue(): boolean {
+    private isSheduledPriorityDisabledTrue(queue: NotifyMethod[]): boolean {
+        if (this.settings.disableOnScheduledPriorities) {
+            const date = new Date();
+            return (
+                this.settings.disableOnScheduledPriorities
+                    .reduce((acc: boolean[], priority) => {
+                        queue.forEach(notifyMethod => {
+                            const notifyMethodSettings = notifyMethod.getSettings();
+                            if (notifyMethodSettings.priority == priority) {
+                                if (notifyMethodSettings.schedule) {
+                                    if (date >= notifyMethodSettings.schedule.dateStart && date <= notifyMethodSettings.schedule.dateEnd) {
+                                        acc.push(false);
+                                    }
+                                } else {
+                                    acc.push(false);
+                                }
+                            }
+                        });
+                        return acc;
+                    }, [])
+                    .indexOf(false) === -1
+            );
+        }
+        return true;
+    }
+    private isShowTrue(queue: NotifyMethod[]): boolean {
         const isDebug = isDebugTrue();
         return (
             (isDebug ? isDebugTypeTrue(this.settings.id) : this.isScheduleTrue()) &&
+            this.isSheduledPriorityDisabledTrue(queue) &&
             this.isValidationTrue() &&
             this.show() &&
             !Cookie.getItem(`notify--${this.settings.id}`)
@@ -67,17 +93,15 @@ export abstract class NotifyMethod extends KEventTarget {
         if (this.settings.preload) {
             this.preload.destroy();
         }
-        Cookie.setItem(`${NotifyMethod.ns}--${this.settings.id}`, '1', {
-            expires: this.settings.cookieExpire(),
-        });
+        Cookie.setItem(`${NotifyMethod.ns}--${this.settings.id}`, '1');
     }
     public getSettings() {
         return this.settings;
     }
-    public publish(): Promise<boolean> {
+    public publish(queue: NotifyMethod[]): Promise<boolean> {
         return new Promise(async resolve => {
             let preloaded = true;
-            if (this.isShowTrue()) {
+            if (this.isShowTrue(queue)) {
                 if (this.settings.preload) {
                     this.preload = new Preload(this.settings.preload);
                     await this.preload.await().catch(() => (preloaded = false));
@@ -115,17 +139,17 @@ export class NotifyMethodHide extends KEvent {
 
 export interface NotifyMethodBaseOptions {
     cookieExpire: () => Date;
+    disableOnScheduledPriorities?: number[];
     id: string;
     preload?: string[];
     priority: number;
-    disableOnScheduledPriorities?: number[];
+    schedule?: NotifyMethodSchedule;
 }
 
 export interface NotifyMethodOptions extends NotifyMethodBaseOptions {
     awaitQuechua?: boolean;
     conditions?: NotifyMethodValidationCondition;
     priority: number;
-    schedule?: NotifyMethodSchedule;
 }
 
 export interface NotifyMethodSettings extends NotifyMethodBaseOptions {
