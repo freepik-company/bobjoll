@@ -21,7 +21,6 @@ export abstract class NotifyMethod extends KEventTarget {
 
     protected abstract insert(): Promise<void>;
     protected abstract remove(): void;
-    protected abstract show(): boolean;
 
     protected dispatchEventShow(id: string) {
         this.dispatchEvent(new NotifyMethodShow(id));
@@ -82,6 +81,9 @@ export abstract class NotifyMethod extends KEventTarget {
             !Cookie.getItem(`notify--${this.settings.id}`)
         );
     }
+    protected show(): boolean {
+        return true;
+    };
 
     public addEventListener(t: 'show', listener: (ev: NotifyMethodShow) => void, useCapture?: boolean): void;
     public addEventListener(t: 'hide', listener: (ev: NotifyMethodHide) => void, useCapture?: boolean): void;
