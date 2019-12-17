@@ -25,12 +25,13 @@ interface DefaultSettings {
         fixed_question: Function;
         message: Function;
         static: Function;
+        linkto: Function;
     };
 }
 
 export interface UserSettings {
-    action: string;
-    method: 'POST' | 'GET';
+    action?: string;
+    method?: 'POST' | 'GET';
     text: {
         close: string;
         submit: string;
@@ -45,7 +46,7 @@ export interface UserSettings {
     default: {
         overlay?: boolean;
         defaults?: boolean;
-        options: {
+        options?: {
             id?: string;
             icon?: string;
             order?: number;
@@ -65,6 +66,7 @@ export interface UserSettings {
         success_msg?: string;
         history?: boolean;
         historyMax?: number;
+        linkto?: boolean;
         view?: string;
         viewCounter?: {
             view?: string;
@@ -94,12 +96,21 @@ export interface UserSettings {
             text?: string;
             value: string;
         }[];
+        link?: {
+            class?: string;
+            icon?: string;
+            href: string;
+            target?: string;
+            text: string;
+            value: string;
+        }
     }[];
     templates?: {
         fixed: Function;
         fixed_question: Function;
         message: Function;
         static: Function;
+        linkto: Function;
     };
     user?: () => {
         id: number;
@@ -118,7 +129,7 @@ export interface Settings extends UserSettings {
     default: {
         overlay?: boolean;
         defaults: boolean;
-        options: {
+        options?: {
             id?: string;
             icon?: string;
             order?: number;
@@ -137,6 +148,7 @@ export interface Settings extends UserSettings {
         success_msg?: string;
         history: boolean;
         historyMax: number;
+        linkto?: boolean;
         view?: string;
         viewCounter?: {
             view?: string;
@@ -149,6 +161,7 @@ export interface Settings extends UserSettings {
         fixed_question: Function;
         message: Function;
         static: Function;
+        linkto: Function;
     };
 }
 
@@ -186,6 +199,7 @@ export default class Feedback extends KEventTarget {
             fixed_question: require(`BobjollTemplate/feedback-v1.0/fixed-question.${EXT}`),
             message: require(`BobjollTemplate/feedback-v1.0/message.${EXT}`),
             static: require(`BobjollTemplate/feedback-v1.0/static.${EXT}`),
+            linkto: require(`BobjollTemplate/feedback-v1.0/linkto.${EXT}`),
         },
     };
 
@@ -405,73 +419,76 @@ export default class Feedback extends KEventTarget {
 
         if (data && 'number' === typeof questionID && 'number' === typeof optionID) {
             let question = this.settings.questions[questionID];
-            let option = question.options ? question.options[optionID] : this.settings.default.options[optionID];
+            let option = question.options ? question.options[optionID] : this.settings.default.options ? this.settings.default.options[optionID] : null;
 
-            try {
-                if (id) {
-                    data.append('id', id);
-                } else {
-                    let browser = this.browser();
+            if (this.settings.action && option) {
+                try {
+                    if (id) {
+                        data.append('id', id);
+                    } else {
+                        let browser = this.browser();
 
-                    data.append('question', question!.question);
-                    data.append('option', option!.value);
+                        data.append('question', question!.question);
+                        data.append('option', option!.value);
 
-                    try {
-                        data.delete('email');
-                        data.delete('message');
-                    } catch (err) {}
+                        try {
+                            data.delete('email');
+                            data.delete('message');
+                        } catch (err) {}
 
-                    if (browser) {
-                        data.append('browser_name', browser.name);
-                        data.append('browser_version', browser.version);
+                        if (browser) {
+                            data.append('browser_name', browser.name);
+                            data.append('browser_version', browser.version);
+                        }
+
+                        if (this.settings.user) {
+                            let user = this.settings.user();
+
+                            if (user) {
+                                if (user.id) {
+                                    data.append('user_id', user.id.toString());
+                                }
+
+                                if (user.premium) {
+                                    data.append('user_premium', user.premium.toString());
+                                }
+                            }
+                        }
+
+                        if (this.settings.default.history) {
+                            data.append('history', JSON.stringify(sessionStorage.get(this.historyNS, this.historyKey)));
+                        }
                     }
 
-                    if (this.settings.user) {
-                        let user = this.settings.user();
+                    let request = await fetch(this.settings.action, {
+                        body: data,
+                        method: this.settings.method,
+                    });
+                    let response = await request.json();
 
-                        if (user) {
-                            if (user.id) {
-                                data.append('user_id', user.id.toString());
-                            }
+                    if (id) {
+                        let msg = option.success_msg || this.settings.default.success_msg;
 
-                            if (user.premium) {
-                                data.append('user_premium', user.premium.toString());
+                        if (response.success) {
+                            if (msg) {
+                                form.classList.add('hide');
+
+                                this.message(form, 'success', msg);
+                            } else {
+                                this.hide();
                             }
                         }
                     }
 
-                    if (this.settings.default.history) {
-                        data.append('history', JSON.stringify(sessionStorage.get(this.historyNS, this.historyKey)));
+                    if (!response.success) {
+                        throw Error(response.message);
                     }
+
+                    return response;
+
+                } catch (err) {
+                    throw err;
                 }
-
-                let request = await fetch(this.settings.action, {
-                    body: data,
-                    method: this.settings.method,
-                });
-                let response = await request.json();
-
-                if (id) {
-                    let msg = option.success_msg || this.settings.default.success_msg;
-
-                    if (response.success) {
-                        if (msg) {
-                            form.classList.add('hide');
-
-                            this.message(form, 'success', msg);
-                        } else {
-                            this.hide();
-                        }
-                    }
-                }
-
-                if (!response.success) {
-                    throw Error(response.message);
-                }
-
-                return response;
-            } catch (err) {
-                throw err;
             }
         }
     }
@@ -509,33 +526,34 @@ export default class Feedback extends KEventTarget {
                     if (question.class) {
                         wrapper.classList.add(question.class);
                     }
+                    wrapper.innerHTML = View.render(this.settings.default.linkto ? this.settings.templates.linkto : this.settings.templates.fixed_question, extend(question, params));
+                    
+                    if (this.settings.action) {
+                        Array.prototype.slice.call(this.fixed.getElementsByClassName('feedback__submit')).forEach((button: HTMLButtonElement) =>
+                            button.addEventListener('click', async () => {
+                                if (this.fixed) {
+                                    let form = <HTMLFormElement>this.fixed.querySelector(`#form-${button.dataset.question}`);
 
-                    wrapper.innerHTML = View.render(this.settings.templates.fixed_question, extend(question, params));
+                                    if (form) {
+                                        if (button.classList.contains('feedback__submit--staged')) {
+                                            try {
+                                                let response = await this.submit(form);
+                                                let id = response && response.data && response.data.id ? response.data.id : null;
 
-                    Array.prototype.slice.call(this.fixed.getElementsByClassName('feedback__submit')).forEach((button: HTMLButtonElement) =>
-                        button.addEventListener('click', async () => {
-                            if (this.fixed) {
-                                let form = <HTMLFormElement>this.fixed.querySelector(`#form-${button.dataset.question}`);
+                                                this.form(form, id);
+                                            } catch (err) {
+                                                this.message(form, 'error');
 
-                                if (form) {
-                                    if (button.classList.contains('feedback__submit--staged')) {
-                                        try {
-                                            let response = await this.submit(form);
-                                            let id = response && response.data && response.data.id ? response.data.id : null;
-
-                                            this.form(form, id);
-                                        } catch (err) {
-                                            this.message(form, 'error');
-
-                                            console.error(err);
+                                                console.error(err);
+                                            }
+                                        } else {
+                                            this.form(form);
                                         }
-                                    } else {
-                                        this.form(form);
                                     }
                                 }
-                            }
-                        }),
-                    );
+                            }),
+                        );
+                    }
                 }
 
                 this.fixed.classList.toggle('active');
