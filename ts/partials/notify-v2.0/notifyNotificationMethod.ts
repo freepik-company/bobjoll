@@ -36,9 +36,6 @@ export class NotifyNotificationMethod extends NotifyMethod {
             NotifyNotificationMethod.notification.hide(this.id);
         }
     }
-    protected show() {
-        return true;
-    }
 }
 
 export interface NotifyNotificationMethodOptions extends NotifyMethodOptions {
