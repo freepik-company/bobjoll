@@ -34,9 +34,6 @@ export class NotifyModalMethod extends NotifyMethod {
     protected remove() {
         this.modalElement = null;
     }
-    protected show() {
-        return true;
-    }
 }
 
 export interface NotifyModalMethodOptions extends NotifyMethodOptions {

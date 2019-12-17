@@ -51,9 +51,6 @@ export class NotifyBannerMethod extends NotifyMethod {
             NotifyBannerMethod.notification.hide(this.id);
         }
     }
-    protected show() {
-        return true;
-    }
 }
 
 export interface NotifyBannerMethodOptions extends NotifyMethodOptions {
