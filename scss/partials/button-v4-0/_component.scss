@@ -3,7 +3,6 @@
 @if $button-v4-0 {
   #{$all-buttons} {
     @include prefixer(appearance, none, webkit moz ms);
-
     margin: 0;
     padding: 0;
     border: none;
@@ -32,7 +31,6 @@
 
     @each $name, $map in $defaultColorMap {
       // Style
-
       @if ($name == "default") {
         @each $name, $value in $map {
           #{$name}: #{$value};
@@ -40,8 +38,7 @@
       }
 
       @if ($name == "hover") {
-        &:hover,
-        &:focus {
+        &:hover {
           transition: $defaultDuration $defaultTiming;
 
           @each $name, $value in $map {
@@ -60,72 +57,60 @@
         }
       }
     }
+  }
 
-    @include setComponent(button--fullwidth) {
-      @include prefixer(display, flex, ms spec);
-      @include prefixer(align-items, center, ms spec);
-      @include prefixer(justify-content, center, ms spec);
-      width: 100%;
-    }
+  @include setComponent(button--fullwidth) {
+    @include prefixer(display, flex, ms spec);
+    @include prefixer(align-items, center, ms spec);
+    @include prefixer(justify-content, center, ms spec);
+    width: 100%;
+  }
 
-    &--fullwidth {
-      @include getComponent(button--fullwidth);
-    }
-
-    @if $icon-v2-0 {
-      @include setComponent(button--icon) {
-        padding: 0 !important;
-
-        i {
-          float: inherit;
-          margin: 0 auto;
-        }
-      }
-
-      &--icon {
-        @include setComponent(button--icon);
-      }
-
-      @include setComponent(button--state) {
-        &:not(.active) .state--inactive,
-        &.active .state--active {
-          display: block;
-        }
-
-        .state--active,
-        .state--inactive {
-          display: none;
-        }
-      }
-
-      &--state {
-        @include getComponent(button--state);
-      }
-
-      span ~ i,
-      i ~ span {
-        margin-left: $extra-small-spacing;
-      }
-
-      span {
-        float: left;
-      }
+  @if $icon-v2-0 {
+    @include setComponent(button--icon) {
+      padding: 0 !important;
 
       i {
-        float: left;
-        color: inherit !important;
-        fill: inherit !important;
+        float: inherit;
+        margin: 0 auto;
+      }
+    }
 
-        @extend %icon;
+    @include setComponent(button--state) {
+      &:not(.active) .state--inactive,
+      &.active .state--active {
+        display: block;
+      }
 
-        @each $name, $value in map-get($defaultSizeMap, "propertiesIcon") {
-          // Size
-          #{$name}: #{$value};
-        }
+      .state--active,
+      .state--inactive {
+        display: none;
+      }
+    }
 
-        &::before {
-          display: block;
-        }
+    span ~ i,
+    i ~ span {
+      margin-left: $extra-small-spacing;
+    }
+
+    span {
+      float: left;
+    }
+
+    i {
+      float: left;
+      color: inherit !important;
+      fill: inherit !important;
+
+      @extend %icon;
+
+      @each $name, $value in map-get($defaultSizeMap, "propertiesIcon") {
+        // Size
+        #{$name}: #{$value};
+      }
+
+      &::before {
+        display: block;
       }
     }
   }
@@ -134,10 +119,23 @@
     @include getComponent(#{$defaultPrefix});
   }
 
+  .#{$defaultPrefix}--fullwidth {
+    @include getComponent(button--fullwidth);
+  }
+
+  @if $icon-v2-0 {
+    .#{$defaultPrefix}--state {
+      @include getComponent(button--state);
+    }
+  
+    .#{$defaultPrefix}--icon {
+      @include getComponent(button--icon);
+    }
+  }
+
   /**
   * Sizes
   */
-
   @each $size, $map in $buttonSizes {
     $count: 1;
 
@@ -169,7 +167,6 @@
   /**
   * Styles / Colors
   */
-
   @each $style, $map in $buttonStyles {
     @if ($style != map-get($buttonSettings, "defaultStyle")) {
       @include setComponent(#{$defaultPrefix}--#{$style}) {
