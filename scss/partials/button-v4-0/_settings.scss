@@ -209,17 +209,14 @@ $defaultColors: (
         ),
         default: (
             background: color('facebook', 'social'),
-            border-width: 0px,
             color: $color-light
         ),
         hover: (
             background: color('facebook', 'social', 1, 1.5),
-            border-width: 0px,
             color: $color-light
         ),
         active: (
             background: color('facebook', 'social', 1, 3),
-            border-width: 0px,
             color: $color-light
         )
     ),
@@ -229,17 +226,14 @@ $defaultColors: (
         ),
         default: (
             background: color('twitter', 'social'),
-            border-width: 0px,
             color: $color-light
         ),
         hover: (
             background: color('twitter', 'social', 1, 1.5),
-            border-width: 0px,
             color: $color-light
         ),
         active: (
             background: color('twitter', 'social', 1, 3),
-            border-width: 0px,
             color: $color-light
         )
     ),
@@ -249,17 +243,14 @@ $defaultColors: (
         ),
         default: (
             background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
-            border-width: 0px,
             color: $color-light
         ),
         hover: (
             background: linear-gradient(29.61deg, darken(#f38334, 10%) 0%, darken(#da2e7d, 10%) 50.39%, darken(#6b54c6, 10%) 100%),
-            border-width: 0px,
             color: $color-light
         ),
         active: (
             background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
-            border-width: 0px,
             color: $color-light
         )
     ),
@@ -269,17 +260,14 @@ $defaultColors: (
         ),
         default: (
             background: color('behance', 'social'),
-            border-width: 0px,
             color: $color-light
         ),
         hover: (
             background: color('behance', 'social', 1, 1.5),
-            border-width: 0px,
             color: $color-light
         ),
         active: (
             background: color('behance', 'social', 1, 3),
-            border-width: 0px,
             color: $color-light
         )
     ),
@@ -289,17 +277,14 @@ $defaultColors: (
         ),
         default: (
             background: color('dribbble', 'social'),
-            border-width: 0px,
             color: $color-light
         ),
         hover: (
             background: color('dribbble', 'social', 1, 1.5),
-            border-width: 0px,
             color: $color-light
         ),
         active: (
             background: color('dribbble', 'social', 1, 3),
-            border-width: 0px,
             color: $color-light
         )
     ),
@@ -309,17 +294,14 @@ $defaultColors: (
         ),
         default: (
             background: color('google', 'social'),
-            border-width: 0px,
             color: $color-light
         ),
         hover: (
             background: color('google', 'social', 1, 1.5),
-            border-width: 0px,
             color: $color-light
         ),
         active: (
             background: color('google', 'social', 1, 3),
-            border-width: 0px,
             color: $color-light
         )
     ),
@@ -329,17 +311,14 @@ $defaultColors: (
         ),
         default: (
             background: color('pinterest', 'social'),
-            border-width: 0px,
             color: $color-light
         ),
         hover: (
             background: color('pinterest', 'social', 1, 1.5),
-            border-width: 0px,
             color: $color-light
         ),
         active: (
             background: color('pinterest', 'social', 1, 3),
-            border-width: 0px,
             color: $color-light
         )
     ),
@@ -349,17 +328,14 @@ $defaultColors: (
         ),
         default: (
             background: color('youtube', 'social'),
-            border-width: 0px,
             color: $color-light
         ),
         hover: (
             background: color('youtube', 'social', 1, 1.5),
-            border-width: 0px,
             color: $color-light
         ),
         active: (
             background: color('youtube', 'social', 1, 3),
-            border-width: 0px,
             color: $color-light
         )
     )
