@@ -12,7 +12,6 @@
   }
 
   @include setComponent(#{$defaultPrefix}) {
-    overflow: hidden;
     position: relative;
     display: inline-block;
     border: none;
@@ -23,6 +22,12 @@
     text-align: center;
     font-weight: $defaultFontWeight;
     cursor: pointer;
+
+    &::after {
+      display: table;
+      clear: both;
+      content: '';
+    }
 
     @each $name, $value in map-get($defaultSizeMap, "propertiesButton") {
       // Size
