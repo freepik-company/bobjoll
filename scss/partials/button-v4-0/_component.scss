@@ -76,7 +76,7 @@
       padding: 0 !important;
 
       i {
-        float: inherit;
+        float: inherit !important;
         margin: 0 auto;
       }
     }
@@ -115,7 +115,6 @@
         @extend %icon;
   
         @each $name, $value in map-get($defaultSizeMap, "propertiesIcon") {
-          // Size
           #{$name}: #{$value};
         }
   
