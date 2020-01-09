@@ -92,36 +92,38 @@
         display: none;
       }
     }
-
-    span ~ i,
-    i ~ span {
-      margin-left: $extra-small-spacing;
-    }
-
-    span {
-      float: left;
-    }
-
-    i {
-      float: left;
-      color: inherit !important;
-      fill: inherit !important;
-
-      @extend %icon;
-
-      @each $name, $value in map-get($defaultSizeMap, "propertiesIcon") {
-        // Size
-        #{$name}: #{$value};
-      }
-
-      &::before {
-        display: block;
-      }
-    }
   }
 
   .#{$defaultPrefix} {
     @include getComponent(#{$defaultPrefix});
+
+    @if $icon-v2-0 {
+      span ~ i,
+      i ~ span {
+        margin-left: $extra-small-spacing;
+      }
+  
+      span {
+        float: left;
+      }
+  
+      i {
+        float: left;
+        color: inherit !important;
+        fill: inherit !important;
+  
+        @extend %icon;
+  
+        @each $name, $value in map-get($defaultSizeMap, "propertiesIcon") {
+          // Size
+          #{$name}: #{$value};
+        }
+  
+        &::before {
+          display: block;
+        }
+      }
+    }
   }
 
   .#{$defaultPrefix}--fullwidth {
