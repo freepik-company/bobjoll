@@ -130,7 +130,13 @@
 
   .#{$defaultPrefix}--auto {
     height: auto !important;
+    padding-top: $small-spacing;
+    padding-bottom: $small-spacing;
     line-height: 1 !important;
+
+    span {
+      float: none !important;
+    }
   }
 
   @if $icon-v2-0 {
