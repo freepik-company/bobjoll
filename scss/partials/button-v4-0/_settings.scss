@@ -364,6 +364,8 @@ $defaultColors: (
         )
     )
 );
+$buttonGlobalColors: () !default;
+$buttonDefaultColors: map-extend($defaultColors, $buttonGlobalColors);
 $defaultSizes: (
     xs: (
         propertiesButton: (
@@ -431,6 +433,8 @@ $defaultSizes: (
         )
     )
 );
+$buttonGlobalSizes: () !default;
+$buttonDefaultSizes: map-extend($defaultSizes, $buttonGlobalSizes);
 $defaultStyles: (
     flat: (
         background: 'background',
@@ -445,12 +449,14 @@ $defaultStyles: (
         color: 'border-color-outline'
     )
 );
+$buttonGlobalStyles: () !default;
+$buttonDefaultStyles: map-extend($defaultStyles, $buttonGlobalStyles);
 $defaultSettings: (
     borderRadius: $base-border-radius,
     borderWidth: 2px,
     borderStyle: solid,
     padding: 0 $base-spacing,
-    color: $defaultColors,
+    color: $buttonDefaultColors,
     defaultColor: blue,
     defaultPrefix: 'button',
     defaultSize: 'md',
@@ -458,8 +464,8 @@ $defaultSettings: (
     defaultFontWeight: 600,
     defaultTiming: linear,
     defaultDuration: 250ms,
-    size: $defaultSizes,
-    style: $defaultStyles
+    size: $buttonDefaultSizes,
+    style: $buttonDefaultStyles
 );
 
 $buttonSettings: $defaultSettings !default;
