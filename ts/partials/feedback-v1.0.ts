@@ -461,13 +461,13 @@ export default class Feedback extends KEventTarget {
                         }
                     }
 
-                    const requestOptions: AxiosRequestConfig = { 
-                        body: data,
+                    const requestOptions: AxiosRequestConfig = {
+                        data: data,
                         method: this.settings.method,
                         withCredentials: true 
                     };
-                    let request = await axios(this.settings.action, requestOptions);
-                    let response: AxiosResponse = await request.data;
+                    let request: AxiosResponse = await axios(this.settings.action, requestOptions);
+                    let response = request.data;
 
                     if (id) {
                         let msg = option.success_msg || this.settings.default.success_msg;
