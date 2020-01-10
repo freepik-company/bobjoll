@@ -377,7 +377,7 @@ $defaultSizes: (
             )
         ),
         propertiesIcon: (
-            font-size: $small-icon-width
+            font-size: $extra-small-icon-width
         )
     ),
     sm: (
@@ -390,7 +390,7 @@ $defaultSizes: (
             )
         ),
         propertiesIcon: (
-            font-size: $base-icon-width
+            font-size: $small-icon-width
         )
     ),
     md: (
@@ -416,7 +416,7 @@ $defaultSizes: (
             )
         ),
         propertiesIcon: (
-            font-size: $base-icon-width
+            font-size: $large-icon-width
         )
     ),
     xl: (
@@ -429,7 +429,7 @@ $defaultSizes: (
             )
         ),
         propertiesIcon: (
-            font-size: $base-icon-width
+            font-size: $extra-large-icon-width
         )
     )
 );
