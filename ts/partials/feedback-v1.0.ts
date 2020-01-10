@@ -2,6 +2,7 @@ import View from 'BobjollView';
 import { KEvent, KEventTarget } from 'bobjoll/ts/library/event';
 import { localStorage, sessionStorage } from 'bobjoll/ts/library/storage';
 import { Settings } from 'Settings';
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 const EXT = View.ext;
 const extend = require('bobjoll/ts/library/extend');
@@ -460,11 +461,13 @@ export default class Feedback extends KEventTarget {
                         }
                     }
 
-                    let request = await fetch(this.settings.action, {
+                    const requestOptions: AxiosRequestConfig = { 
                         body: data,
                         method: this.settings.method,
-                    });
-                    let response = await request.json();
+                        withCredentials: true 
+                    };
+                    let request = await axios(this.settings.action, requestOptions);
+                    let response: AxiosResponse = await request.data;
 
                     if (id) {
                         let msg = option.success_msg || this.settings.default.success_msg;
