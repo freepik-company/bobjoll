@@ -218,16 +218,6 @@
                 }
               }
             }
-
-            @if ($name == "propertiesIcon") {
-              i {
-                @each $name, $value in $map {
-                  @if ($propertyKey == $name) {
-                    #{$styleProperty}: #{$value};
-                  }
-                }
-              }
-            }
           }
         }
       }
@@ -276,6 +266,14 @@
                     @if ($propertyKey == $name) {
                       #{$styleProperty}: #{$value};
                     }
+                  }
+                }
+              }
+
+              @if ($name == "propertiesIcon") {
+                i {
+                  @each $name, $value in $map {
+                    #{$name}: #{$value};
                   }
                 }
               }
