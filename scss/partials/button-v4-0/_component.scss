@@ -218,6 +218,14 @@
                 }
               }
             }
+
+            @if ($name == "propertiesIcon") {
+              @each $name, $value in $map {
+                @if ($propertyKey == $name) {
+                  #{$styleProperty}: #{$value};
+                }
+              }
+            }
           }
         }
       }
