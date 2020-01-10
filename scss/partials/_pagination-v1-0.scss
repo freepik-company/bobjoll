@@ -57,7 +57,7 @@
 		}
 
 		@include element('button') {
-			@include prefixer(display, flex, ms spec);
+			@include prefixer(display, flex !important, ms spec);
 		}
 
 		@include element('menu') {
