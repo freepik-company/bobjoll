@@ -248,18 +248,21 @@ $defaultColors: (
             'outline'
         ),
         default: (
+            border-width: none,
+            padding-top: 2px,
             background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
-            border-color: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
             color: $color-light
         ),
         hover: (
+            border-width: none,
+            padding-top: 2px,
             background: linear-gradient(29.61deg, darken(#f38334, 10%) 0%, darken(#da2e7d, 10%) 50.39%, darken(#6b54c6, 10%) 100%),
-            border-color: linear-gradient(29.61deg, darken(#f38334, 10%) 0%, darken(#da2e7d, 10%) 50.39%, darken(#6b54c6, 10%) 100%),
             color: $color-light
         ),
         active: (
+            border-width: none,
+            padding-top: 2px,
             background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
-            border-color: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
             color: $color-light
         )
     ),
@@ -373,7 +376,7 @@ $defaultSizes: (
             height: $extra-small-element-height,
             font-size: $extra-small-font-size,
             line-height: (
-                $extra-small-element-height - 4
+                $extra-small-element-height
             )
         ),
         propertiesIcon: (
@@ -386,7 +389,7 @@ $defaultSizes: (
             height: $small-element-height,
             font-size: $small-font-size,
             line-height: (
-                $small-element-height - 4
+                $small-element-height
             )
         ),
         propertiesIcon: (
@@ -399,7 +402,7 @@ $defaultSizes: (
             height: $base-element-height,
             font-size: $base-font-size,
             line-height: (
-                $base-element-height - 4
+                $base-element-height
             )
         ),
         propertiesIcon: (
@@ -412,7 +415,7 @@ $defaultSizes: (
             height: $large-element-height,
             font-size: $base-font-size,
             line-height: (
-                $large-element-height - 4
+                $large-element-height
             )
         ),
         propertiesIcon: (
@@ -425,7 +428,7 @@ $defaultSizes: (
             height: $extra-large-element-height,
             font-size: $base-font-size,
             line-height: (
-                $extra-large-element-height - 4
+                $extra-large-element-height
             )
         ),
         propertiesIcon: (
