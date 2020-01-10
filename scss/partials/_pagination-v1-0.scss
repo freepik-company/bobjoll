@@ -119,7 +119,6 @@
 				}
 
 				.pagination__context span,
-				.pagination__button button,
 				.pagination__input input {
 					display: inline-block;
 
@@ -136,7 +135,6 @@
 				.pagination__input input {
 					padding: 0 $extra-small-spacing;
 				}
-
 
 				#{$all-text-inputs} {
 					max-width: $small-element-height + $extra-small-spacing;
