@@ -88,12 +88,12 @@
 				@include position(absolute, 0 0 null null);
 				@include backface-visibility(hidden);
 
-				margin: $small-spacing;
 				padding: 0;
 
 				color: color('text-inverted', 'general');
 				font-size: $large-font-size * 2;
-				line-height: 1;				
+				line-height: 1;
+				z-index: 10;		
 			}
 		}
 
