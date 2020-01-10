@@ -248,19 +248,19 @@ $defaultColors: (
             'outline'
         ),
         default: (
-            border-width: none,
+            border-width: 0px,
             padding-top: 2px,
             background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
             color: $color-light
         ),
         hover: (
-            border-width: none,
+            border-width: 0px,
             padding-top: 2px,
             background: linear-gradient(29.61deg, darken(#f38334, 10%) 0%, darken(#da2e7d, 10%) 50.39%, darken(#6b54c6, 10%) 100%),
             color: $color-light
         ),
         active: (
-            border-width: none,
+            border-width: 0px,
             padding-top: 2px,
             background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
             color: $color-light
