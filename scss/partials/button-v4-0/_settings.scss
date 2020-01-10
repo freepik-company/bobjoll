@@ -251,7 +251,7 @@ $defaultColors: (
             border-width: 0px,
             padding-top: 2px,
             background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
-            color: $color-light
+            color: $color-light,
         ),
         hover: (
             border-width: 0px,
@@ -265,6 +265,9 @@ $defaultColors: (
             background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
             color: $color-light
         )
+        propertiesIcon: (
+            margin: 0px,
+        ),
     ),
     behance: (
         ignoreStyles: (
