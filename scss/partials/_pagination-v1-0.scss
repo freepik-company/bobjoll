@@ -57,11 +57,7 @@
 		}
 
 		@include element('button') {
-			@include clearfix;
-
-			button {
-				float: left;
-			}
+			@include prefixer(display, flex, ms spec);
 		}
 
 		@include element('menu') {
@@ -69,11 +65,8 @@
 
 			& > * {
 				display: table-cell;
-
 				margin: 0;
 				padding: 0;
-
-				vertical-align: top;
 			}
 
 			#{$all-text-inputs} {
@@ -121,11 +114,8 @@
 				.pagination__context span,
 				.pagination__input input {
 					display: inline-block;
-
 					height: $extra-small-element-height;				
-
 					margin: (($base-element-height - $extra-small-element-height) / 2) 0;					
-
 					font-size: $extra-small-font-size;
 					line-height: $extra-small-element-height;
 				}
