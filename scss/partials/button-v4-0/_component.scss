@@ -220,9 +220,11 @@
             }
 
             @if ($name == "propertiesIcon") {
-              @each $name, $value in $map {
-                @if ($propertyKey == $name) {
-                  #{$styleProperty}: #{$value};
+              i {
+                @each $name, $value in $map {
+                  @if ($propertyKey == $name) {
+                    #{$styleProperty}: #{$value};
+                  }
                 }
               }
             }
