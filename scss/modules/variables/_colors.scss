@@ -34,7 +34,7 @@ $dark-blue-shade-1: #194C80 !default;
 // Dark blue named
 $dark-blue-blackale:	#08192B !default;
 $dark-blue-zodiac:		#0B2239 !default;
-$dark-blue-elephant: 	#0E2A47 !default;
+$dark-blue-fc: 	 		#0E2A47 !default;
 $dark-blue-biscay: 		#113255 !default;
 $dark-blue-chathams: 	#143B63 !default;
 $dark-blue-bay: 		#164372 !default;
@@ -54,7 +54,7 @@ $purple-shade-1: #D7D7FF !default;
 $purple-jacksons: 		#202095 !default;
 $purple-governor: 		#2D2DB0 !default;
 $purple-spiritual: 		#3636CC !default;
-$purple-royal: 			#4949E7 !default;
+$purple-piktab:			#4949E7 !default;
 $purple-sara: 			#5F5FF6 !default;
 $purple-portage: 		#8080F1 !default;
 $purple-melrose: 		#B3B3FC !default;
@@ -74,7 +74,7 @@ $blue-shade-1: #C7EBFF !default;
 $blue-congress: 		#04458F !default;
 $blue-endeavour: 		#0353A7 !default;
 $blue-science: 			#0161CD !default;
-$blue-azure: 			#1273EB !default;
+$blue-freepik: 			#1273EB !default;
 $blue-campu: 			#2C8CF4 !default;
 $blue-malibu: 			#5EB2FC !default;
 $blue-picton: 			#92CDFA !default;
@@ -94,8 +94,8 @@ $green-shade-1: #E2FFE2 !default;
 $green-jade: 			#00AF80 !default;
 $green-shamrock: 		#2BC48A !default;
 $green-jungle: 			#4AD295 !default;
-$green-pepinen:			#69E781 !default;
-$green-mint: 			#8DF690 !default;
+$green-flaticon:		#69E781 !default;
+$green-pepinen: 		#8DF690 !default;
 $green-snowy: 			#ABFFAD !default;
 $green-hint: 			#C7FFC7 !default;
 $green-sugar: 			#E2FFE2 !default;
@@ -347,7 +347,7 @@ $global-colors: (
 		'1': $dark-blue-shade-1,
 		'blackale', $dark-blue-blackale,
 		'zodiac', $dark-blue-zodiac,
-		'elephant', $dark-blue-elephant,
+		'fc', $dark-blue-fc,
 		'biscay', $dark-blue-biscay,
 		'chathams', $dark-blue-chathams,
 		'bay', $dark-blue-bay,
@@ -365,8 +365,7 @@ $global-colors: (
 		'jacksons': $purple-jacksons,
 		'governor': $purple-governor,
 		'spiritual': $purple-spiritual,
-		'royal': $purple-royal,
-		'sara': $purple-sara,
+		'piktab' $purple-piktab,		'sara': $purple-sara,
 		'portage': $purple-portage,
 		'melrose': $purple-melrose,
 		'fog': $purple-fog,
@@ -383,7 +382,7 @@ $global-colors: (
 		'congress': $blue-congress,
 		'endeavour': $blue-endeavour,
 		'science': $blue-science,
-		'azure': $blue-azure,
+		'freepik': $blue-freepik,
 		'campu': $blue-campu,
 		'malibu': $blue-malibu,
 		'picton': $blue-picton,
@@ -401,8 +400,8 @@ $global-colors: (
 		'jade', $green-jade,
 		'shamrock', $green-shamrock,
 		'jungle', $green-jungle,
+		'flaticon', $green-flaticon,
 		'pepinen', $green-pepinen,
-		'mint', $green-mint,
 		'snowy', $green-snowy,
 		'hint', $green-hint,
 		'sugar', $green-sugar,
