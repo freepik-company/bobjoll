@@ -9,6 +9,19 @@ $gray-shade-3: #CFD9E0 !default;
 $gray-shade-2: #E3E9ED !default;
 $gray-shade-1: #F8FAFB !default;
 
+// Gray named
+$gray-ebony: 			#1D262D !default;
+$gray-oxford: 			#374957 !default;
+$gray-bayoux: 			#4A6375 !default;
+$gray-hoki: 			#5F7D95 !default;
+$gray-bali: 			#869FB2 !default;
+$gray-cadet:			#A5B7C6 !default;
+$gray-heather: 			#BAC8D3 !default;
+$gray-gaysir: 			#CFD9E0 !default;
+$gray-mystic: 			#E3E9ED !default;
+$gray-hades: 			#EFF3F6 !default;
+$gray-aqua: 			#F8FAFB !default;
+
 // Dark blue
 $dark-blue-shade-7: #08192B !default;
 $dark-blue-shade-6: #0B2239 !default;
@@ -17,6 +30,15 @@ $dark-blue-shade-4: #113255 !default;
 $dark-blue-shade-3: #143B63 !default;
 $dark-blue-shade-2: #164372 !default;
 $dark-blue-shade-1: #194C80 !default;
+
+// Dark blue named
+$dark-blue-blackale:	#08192B !default;
+$dark-blue-zodiac:		#0B2239 !default;
+$dark-blue-elephant: 	#0E2A47 !default;
+$dark-blue-biscay: 		#113255 !default;
+$dark-blue-chathams: 	#143B63 !default;
+$dark-blue-bay: 		#164372 !default;
+$dark-blue-blumine: 	#194C80 !default;
 
 // Purple
 $purple-shade-8: #202095 !default;
@@ -28,6 +50,16 @@ $purple-shade-3: #8080F1 !default;
 $purple-shade-2: #B3B3FC !default;
 $purple-shade-1: #D7D7FF !default;
 
+// Purple named
+$purple-jacksons: 		#202095 !default;
+$purple-governor: 		#2D2DB0 !default;
+$purple-spiritual: 		#3636CC !default;
+$purple-royal: 			#4949E7 !default;
+$purple-sara: 			#5F5FF6 !default;
+$purple-portage: 		#8080F1 !default;
+$purple-melrose: 		#B3B3FC !default;
+$purple-fog: 			#D7D7FF !default;
+
 // Blue
 $blue-shade-8: #04458F !default;
 $blue-shade-7: #0353A7 !default;
@@ -37,6 +69,16 @@ $blue-shade-4: #2C8CF4 !default;
 $blue-shade-3: #5EB2FC !default;
 $blue-shade-2: #92CDFA !default;
 $blue-shade-1: #C7EBFF !default;
+
+// Blue named
+$blue-congress: 		#04458F !default;
+$blue-endeavour: 		#0353A7 !default;
+$blue-science: 			#0161CD !default;
+$blue-azure: 			#1273EB !default;
+$blue-campu: 			#2C8CF4 !default;
+$blue-malibu: 			#5EB2FC !default;
+$blue-picton: 			#92CDFA !default;
+$blue-onahau: 			#C7EBFF !default;
 
 // Green
 $green-shade-8: #00AF80 !default;
@@ -48,6 +90,16 @@ $green-shade-3: #ABFFAD !default;
 $green-shade-2: #C7FFC7 !default;
 $green-shade-1: #E2FFE2 !default;
 
+// Green named
+$green-jade: 			#00AF80 !default;
+$green-shamrock: 		#2BC48A !default;
+$green-jungle: 			#4AD295 !default;
+$green-pepinen:			#69E781 !default;
+$green-mint: 			#8DF690 !default;
+$green-snowy: 			#ABFFAD !default;
+$green-hint: 			#C7FFC7 !default;
+$green-sugar: 			#E2FFE2 !default;
+
 // Yellow
 $yellow-shade-8: #EB7D16 !default;
 $yellow-shade-7: #F69110 !default;
@@ -58,6 +110,16 @@ $yellow-shade-3: #FCD250 !default;
 $yellow-shade-2: #FCDB7E !default;
 $yellow-shade-1: #FFEEB6 !default;
 
+// Yellow named
+$yellow-tango: 			#EB7D16 !default;
+$yellow-poppy: 			#F69110 !default;
+$yellow-tree: 			#FCA120 !default;
+$yellow-sin: 			#FFB229 !default;
+$yellow-bea:	 		#FCBD24 !default;
+$yellow-dandelion: 		#FCD250 !default;
+$yellow-paco:	 		#FCDB7E !default;
+$yellow-buttermilk: 	#FFEEB6 !default;
+
 // Red
 $red-shade-8: #C12020 !default;
 $red-shade-7: #D53232 !default;
@@ -67,6 +129,16 @@ $red-shade-4: #FF8578 !default;
 $red-shade-3: #FFA68F !default;
 $red-shade-2: #FFC8AF !default;
 $red-shade-1: #FFDECC !default;
+
+// Red named
+$red-thunderbird: 		#C12020 !default;
+$red-valencia:	 		#D53232 !default;
+$red-bloody: 			#EC3A3B !default;
+$red-muri:				#FB5252 !default;
+$red-salmon: 			#FF8578 !default;
+$red-lisa: 				#FFA68F !default;
+$red-wax: 				#FFC8AF !default;
+$red-bush: 				#FFDECC !default;
 
 $color-main: #1273eb !default;
 $color-dark: #0E2A47 !default;
@@ -91,9 +163,14 @@ $social-whatsapp: #25d366 !default;
 $social-telegram: #0088cc !default;
 
 $state-green: #69E781 !default;
-$state-blue: #1273EB !default;
-$state-gray: #869FB2 !default;
-$state-red: #FB5252 !default;
+$state-blue: #1273EB !defa$red-thunderbird: #C12020 !default;
+$red-valencia: #D53232 !default;
+$red-cinnabar: #EC3A3B !default;
+$red-carnation: #FB5252 !default;
+$red-salmon: #FF8578 !default;
+$red-lisa: #FFA68F !default;
+$red-wax: #FFC8AF !default;
+$red-bush: #FFDECC !default;lt;
 $state-yellow: #FFB229 !default;
 $state-purple: #4949E7 !default;
 

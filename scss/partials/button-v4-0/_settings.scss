@@ -6,26 +6,26 @@ $defaultColors: (
 			ignoreStyles: (),
 			default:
 				(
-					background: color('5', 'blue'),
+					background: color('azure', 'blue'),
 					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('5', 'blue'),
-					color-outline: color('5', 'blue'),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('azure', 'blue'),
+					color-outline: color('azure', 'blue'),
 					color: $color-light
 				),
 			hover:
 				(
-					background: color('6', 'blue'),
-					background-outline: color('6', 'blue', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('6', 'blue'),
-					color-outline: color('6', 'blue'),
+					background: color('science', 'blue'),
+					background-outline: color('science', 'blue', .1),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('science', 'blue'),
+					color-outline: color('science', 'blue'),
 					color: $color-light
 				),
 			active:
 				(
-					background: color('7', 'blue'),
-					background-outline: color('6', 'blue', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('7', 'blue'),
-					color-outline: color('7', 'blue'),
+					background: color('endeavour', 'blue'),
+					background-outline: color('science', 'blue', .2),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('endeavour', 'blue'),
+					color-outline: color('endeavour', 'blue'),
 					color: $color-light
 				)
 		),
@@ -34,26 +34,26 @@ $defaultColors: (
 			ignoreStyles: (),
 			default:
 				(
-					background: color('5', 'yellow'),
+					background: color('sin', 'yellow'),
 					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('5', 'yellow'),
-					color-outline: color('5', 'yellow'),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('sin', 'yellow'),
+					color-outline: color('sin', 'yellow'),
 					color: $color-light
 				),
 			hover:
 				(
-					background: color('6', 'yellow'),
-					background-outline: color('6', 'yellow', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('6', 'yellow'),
-					color-outline: color('6', 'yellow'),
+					background: color('tree', 'yellow'),
+					background-outline: color('tree', 'yellow', .1),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('tree', 'yellow'),
+					color-outline: color('tree', 'yellow'),
 					color: $color-light
 				),
 			active:
 				(
-					background: color('7', 'yellow'),
-					background-outline: color('6', 'yellow', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('7', 'yellow'),
-					color-outline: color('7', 'yellow'),
+					background: color('poppy', 'yellow'),
+					background-outline: color('tree', 'yellow', .2),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('poppy', 'yellow'),
+					color-outline: color('poppy', 'yellow'),
 					color: $color-light
 				)
 		),
@@ -62,26 +62,26 @@ $defaultColors: (
 			ignoreStyles: (),
 			default:
 				(
-					background: color('5', 'red'),
+					background: color('muri', 'red'),
 					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('5', 'red'),
-					color-outline: color('5', 'red'),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('muri', 'red'),
+					color-outline: color('muri', 'red'),
 					color: $color-light
 				),
 			hover:
 				(
-					background: color('6', 'red'),
-					background-outline: color('6', 'red', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('6', 'red'),
-					color-outline: color('6', 'red'),
+					background: color('bloody', 'red'),
+					background-outline: color('bloody', 'red', .1),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bloody', 'red'),
+					color-outline: color('bloody', 'red'),
 					color: $color-light
 				),
 			active:
 				(
-					background: color('7', 'red'),
-					background-outline: color('6', 'red', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('7', 'red'),
-					color-outline: color('7', 'red'),
+					background: color('valencia', 'red'),
+					background-outline: color('bloody', 'red', .2),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('valencia', 'red'),
+					color-outline: color('valencia', 'red'),
 					color: $color-light
 				)
 		),
@@ -90,26 +90,26 @@ $defaultColors: (
 			ignoreStyles: (),
 			default:
 				(
-					background: color('5', 'green'),
+					background: color('pepinen', 'green'),
 					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('5', 'green'),
-					color-outline: color('5', 'green'),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('pepinen', 'green'),
+					color-outline: color('pepinen', 'green'),
 					color: $color-light
 				),
 			hover:
 				(
-					background: color('6', 'green'),
-					background-outline: color('6', 'green', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('6', 'green'),
-					color-outline: color('6', 'green'),
+					background: color('jungle', 'green'),
+					background-outline: color('jungle', 'green', .1),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('jungle', 'green'),
+					color-outline: color('jungle', 'green'),
 					color: $color-light
 				),
 			active:
 				(
-					background: color('7', 'green'),
-					background-outline: color('6', 'green', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('7', 'green'),
-					color-outline: color('7', 'green'),
+					background: color('shamrock', 'green'),
+					background-outline: color('jungle', 'green', .2),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('shamrock', 'green'),
+					color-outline: color('shamrock', 'green'),
 					color: $color-light
 				)
 		),
@@ -118,26 +118,26 @@ $defaultColors: (
 			ignoreStyles: (),
 			default:
 				(
-					background: color('5', 'purple'),
+					background: color('royal', 'purple'),
 					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('5', 'purple'),
-					color-outline: color('5', 'purple'),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('royal', 'purple'),
+					color-outline: color('royal', 'purple'),
 					color: $color-light
 				),
 			hover:
 				(
-					background: color('6', 'purple'),
-					background-outline: color('6', 'purple', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('6', 'purple'),
-					color-outline: color('6', 'purple'),
+					background: color('spiritual', 'pruple'),
+					background-outline: color('spiritual', 'pruple', .1),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('spiritual', 'pruple'),
+					color-outline: color('spiritual', 'pruple'),
 					color: $color-light
 				),
 			active:
 				(
-					background: color('7', 'purple'),
-					background-outline: color('6', 'purple', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('7', 'purple'),
-					color-outline: color('7', 'purple'),
+					background: color('governor', 'purple'),
+					background-outline: color('spiritual', 'pruple', .2),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('governor', 'purple'),
+					color-outline: color('governor', 'purple'),
 					color: $color-light
 				)
 		),
@@ -146,26 +146,26 @@ $defaultColors: (
 			ignoreStyles: (),
 			default:
 				(
-					background: color('4', 'dark-blue'),
+					background: color('biscay', 'dark-blue'),
 					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('4', 'dark-blue'),
-					color-outline: color('4', 'dark-blue'),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('biscay', 'dark-blue'),
+					color-outline: color('biscay', 'dark-blue'),
 					color: $color-light
 				),
 			hover:
 				(
-					background: color('5', 'dark-blue'),
-					background-outline: color('5', 'dark-blue', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('5', 'dark-blue'),
-					color-outline: color('5', 'dark-blue'),
+					background: color('elephant', 'dark-blue'),
+					background-outline: color('elephant', 'dark-blue', .1),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('elephant', 'dark-blue'),
+					color-outline: color('elephant', 'dark-blue'),
 					color: $color-light
 				),
 			active:
 				(
-					background: color('5', 'dark-blue'),
-					background-outline: color('5', 'dark-blue', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('5', 'dark-blue'),
-					color-outline: color('5', 'dark-blue'),
+					background: color('elephant', 'dark-blue'),
+					background-outline: color('elephant', 'dark-blue', .2),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('elephant', 'dark-blue'),
+					color-outline: color('elephant', 'dark-blue'),
 					color: $color-light
 				)
 		),
@@ -174,18 +174,18 @@ $defaultColors: (
 			ignoreStyles: ('outline'),
 			default: (
 				background: $color-light, 
-				box-shadow: inset 0 0 0 $defaultBorderWidth color('3', 'gray'),
-				color: color('8', 'gray')
+				box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
+				color: color('oxford', 'gray')
 			),
 			hover: (
-				background: color('4', 'gray', .1),
-				box-shadow: inset 0 0 0 $defaultBorderWidth color('3', 'gray'),
-				color: color('8', 'gray')
+				background: color('heather', 'gray', .1),
+				box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
+				color: color('oxford', 'gray')
 			),
 			active: (
-				background: color('4', 'gray', .2),
-				box-shadow: inset 0 0 0 $defaultBorderWidth color('3', 'gray'),
-				color: color('8', 'gray')
+				background: color('heather', 'gray', .2),
+				box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
+				color: color('oxford', 'gray')
 			)
 		),
 	gray:
@@ -194,23 +194,23 @@ $defaultColors: (
 			default:
 				(
 					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('6', 'gray'),
-					color-outline: color('6', 'gray'),
-					color: color('8', 'gray')
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+					color-outline: color('bali', 'gray'),
+					color: color('oxford', 'gray')
 				),
 			hover:
 				(
-					background-outline: color('6', 'gray', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('6', 'gray'),
-					color-outline: color('6', 'gray'),
-					color: color('8', 'gray')
+					background-outline: color('bali', 'gray', .1),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+					color-outline: color('bali', 'gray'),
+					color: color('oxford', 'gray')
 				),
 			active:
 				(
-					background-outline: color('6', 'gray', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('6', 'gray'),
-					color-outline: color('6', 'gray'),
-					color: color('8', 'gray')
+					background-outline: color('bali', 'gray', .2),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+					color-outline: color('bali', 'gray'),
+					color: color('oxford', 'gray')
 				)
 		),
 	inverted:
@@ -312,45 +312,45 @@ $defaultColors: (
 		ignoreStyles: ('outline'),
 		default: (
 			background: transparent,
-			color: color('5', 'blue'),
+			color: color('azure', 'blue'),
 		),
 		hover: (
-			background: color('7', 'dark-blue', .1),
-			color: color('5', 'blue'),
+			background: color('pearl', 'dark-blue', .1),
+			color: color('azure', 'blue'),
 		),
 		active: (
-			background: color('7', 'dark-blue', .1),
-			color: color('5', 'blue'),
+			background: color('pearl', 'dark-blue', .1),
+			color: color('azure', 'blue'),
 		)
 	),
 	link-color: (
 		ignoreStyles: ('outline'),
 		default: (
 			background: transparent,
-			color: color('8', 'gray'),
+			color: color('oxford', 'gray'),
 		),
 		hover: (
-			background: color('7', 'dark-blue', .1),
-			color: color('5', 'blue'),
+			background: color('pearl', 'dark-blue', .1),
+			color: color('azure', 'blue'),
 		),
 		active: (
-			background: color('7', 'dark-blue', .1),
-			color: color('5', 'blue'),
+			background: color('pearl', 'dark-blue', .1),
+			color: color('azure', 'blue'),
 		)
 	),
 	link-dark: (
 		ignoreStyles: ('outline'),
 		default: (
 			background: transparent,
-			color: color('8', 'gray'),
+			color: color('oxford', 'gray'),
 		),
 		hover: (
-			background: color('7', 'dark-blue', .1),
-			color: color('8', 'gray'),
+			background: color('pearl', 'dark-blue', .1),
+			color: color('oxford', 'gray'),
 		),
 		active: (
-			background: color('7', 'dark-blue', .1),
-			color: color('8', 'gray'),
+			background: color('pearl', 'dark-blue', .1),
+			color: color('oxford', 'gray'),
 		)
 	),
 	link-inverted: (
