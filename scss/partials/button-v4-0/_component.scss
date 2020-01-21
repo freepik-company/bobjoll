@@ -64,6 +64,10 @@
 			display: table;
 			clear: both;
 			content: '';
+    }
+
+		&--auto {
+			@include getComponent(#{$defaultPrefix}--auto);
 		}
 
 		&--state {
@@ -121,7 +125,18 @@
 				display: block;
 			}
 		}
-	}
+  }
+  
+  @include setComponent(#{$defaultPrefix}--auto) {
+    height: auto !important;
+    padding-top: $small-spacing;
+    padding-bottom: $small-spacing;
+    line-height: 1 !important;
+
+    span {
+      float: none !important;
+    }
+  }
 
 	@include setComponent(#{$defaultPrefix}--state) {
 		&:not(.active) .state--inactive,
@@ -149,7 +164,7 @@
 		@include prefixer(align-items, center, ms spec);
 		@include prefixer(justify-content, center, ms spec);
 		width: 100%;
-	}
+  }  
 
 	@each $size, $map in $buttonSizes {
 		@include setComponent(#{$defaultPrefix}--#{$size}) {
