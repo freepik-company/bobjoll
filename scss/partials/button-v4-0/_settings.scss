@@ -126,16 +126,16 @@ $defaultColors: (
 				),
 			hover:
 				(
-					background: color('spiritual', 'pruple'),
-					background-outline: color('spiritual', 'pruple', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('spiritual', 'pruple'),
-					color-outline: color('spiritual', 'pruple'),
+					background: color('spiritual', 'purple'),
+					background-outline: color('spiritual', 'purple', .1),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('spiritual', 'purple'),
+					color-outline: color('spiritual', 'purple'),
 					color: $color-light
 				),
 			active:
 				(
 					background: color('governor', 'purple'),
-					background-outline: color('spiritual', 'pruple', .2),
+					background-outline: color('spiritual', 'purple', .2),
 					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('governor', 'purple'),
 					color-outline: color('governor', 'purple'),
 					color: $color-light
@@ -154,18 +154,18 @@ $defaultColors: (
 				),
 			hover:
 				(
-					background: color('elephant', 'dark-blue'),
-					background-outline: color('elephant', 'dark-blue', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('elephant', 'dark-blue'),
-					color-outline: color('elephant', 'dark-blue'),
+					background: color('fc', 'dark-blue'),
+					background-outline: color('fc', 'dark-blue', .1),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('fc', 'dark-blue'),
+					color-outline: color('fc', 'dark-blue'),
 					color: $color-light
 				),
 			active:
 				(
-					background: color('elephant', 'dark-blue'),
-					background-outline: color('elephant', 'dark-blue', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('elephant', 'dark-blue'),
-					color-outline: color('elephant', 'dark-blue'),
+					background: color('fc', 'dark-blue'),
+					background-outline: color('fc', 'dark-blue', .2),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('fc', 'dark-blue'),
+					color-outline: color('fc', 'dark-blue'),
 					color: $color-light
 				)
 		),
@@ -315,11 +315,11 @@ $defaultColors: (
 			color: color('freepik', 'blue'),
 		),
 		hover: (
-			background: color('pearl', 'dark-blue', .1),
+			background: color('blackale', 'dark-blue', .1),
 			color: color('freepik', 'blue'),
 		),
 		active: (
-			background: color('pearl', 'dark-blue', .1),
+			background: color('blackale', 'dark-blue', .1),
 			color: color('freepik', 'blue'),
 		)
 	),
@@ -330,11 +330,11 @@ $defaultColors: (
 			color: color('oxford', 'gray'),
 		),
 		hover: (
-			background: color('pearl', 'dark-blue', .1),
+			background: color('blackale', 'dark-blue', .1),
 			color: color('freepik', 'blue'),
 		),
 		active: (
-			background: color('pearl', 'dark-blue', .1),
+			background: color('blackale', 'dark-blue', .1),
 			color: color('freepik', 'blue'),
 		)
 	),
@@ -345,11 +345,11 @@ $defaultColors: (
 			color: color('oxford', 'gray'),
 		),
 		hover: (
-			background: color('pearl', 'dark-blue', .1),
+			background: color('blackale', 'dark-blue', .1),
 			color: color('oxford', 'gray'),
 		),
 		active: (
-			background: color('pearl', 'dark-blue', .1),
+			background: color('blackale', 'dark-blue', .1),
 			color: color('oxford', 'gray'),
 		)
 	),

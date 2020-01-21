@@ -113,8 +113,8 @@ $yellow-shade-1: #FFEEB6 !default;
 // Yellow named
 $yellow-tango: 			#EB7D16 !default;
 $yellow-poppy: 			#F69110 !default;
-$yellow-tree: 			#FCA120 !default;
-$yellow-sin: 			#FFB229 !default;
+$yellow-sin: 			#FCA120 !default;
+$yellow-premium:		#FFB229 !default;
 $yellow-bea:	 		#FCBD24 !default;
 $yellow-dandelion: 		#FCD250 !default;
 $yellow-paco:	 		#FCDB7E !default;
@@ -163,14 +163,9 @@ $social-whatsapp: #25d366 !default;
 $social-telegram: #0088cc !default;
 
 $state-green: #69E781 !default;
-$state-blue: #1273EB !defa$red-thunderbird: #C12020 !default;
-$red-valencia: #D53232 !default;
-$red-cinnabar: #EC3A3B !default;
-$red-carnation: #FB5252 !default;
-$red-salmon: #FF8578 !default;
-$red-lisa: #FFA68F !default;
-$red-wax: #FFC8AF !default;
-$red-bush: #FFDECC !default;lt;
+$state-blue: #1273EB !default;
+$state-gray: #869FB2 !default;
+$state-red: #FB5252 !default;
 $state-yellow: #FFB229 !default;
 $state-purple: #4949E7 !default;
 
@@ -345,13 +340,13 @@ $global-colors: (
 		'3': $dark-blue-shade-3,
 		'2': $dark-blue-shade-2,
 		'1': $dark-blue-shade-1,
-		'blackale', $dark-blue-blackale,
-		'zodiac', $dark-blue-zodiac,
-		'fc', $dark-blue-fc,
-		'biscay', $dark-blue-biscay,
-		'chathams', $dark-blue-chathams,
-		'bay', $dark-blue-bay,
-		'blumine', $dark-blue-blumine,
+		'blackale':$dark-blue-blackale,
+		'zodiac': $dark-blue-zodiac,
+		'fc': $dark-blue-fc,
+		'biscay': $dark-blue-biscay,
+		'chathams': $dark-blue-chathams,
+		'bay': $dark-blue-bay,
+		'blumine': $dark-blue-blumine,
 	),
 	'purple': (
 		'8': $purple-shade-8,
@@ -365,7 +360,8 @@ $global-colors: (
 		'jacksons': $purple-jacksons,
 		'governor': $purple-governor,
 		'spiritual': $purple-spiritual,
-		'piktab' $purple-piktab,		'sara': $purple-sara,
+		'piktab': $purple-piktab,		
+		'sara': $purple-sara,
 		'portage': $purple-portage,
 		'melrose': $purple-melrose,
 		'fog': $purple-fog,
@@ -397,14 +393,14 @@ $global-colors: (
 		'3': $green-shade-3,
 		'2': $green-shade-2,
 		'1': $green-shade-1,
-		'jade', $green-jade,
-		'shamrock', $green-shamrock,
-		'jungle', $green-jungle,
-		'flaticon', $green-flaticon,
-		'pepinen', $green-pepinen,
-		'snowy', $green-snowy,
-		'hint', $green-hint,
-		'sugar', $green-sugar,
+		'jade': $green-jade,
+		'shamrock': $green-shamrock,
+		'jungle': $green-jungle,
+		'flaticon': $green-flaticon,
+		'pepinen': $green-pepinen,
+		'snowy': $green-snowy,
+		'hint': $green-hint,
+		'sugar': $green-sugar,
 	),
 	'yellow': (
 		'8': $yellow-shade-8,
@@ -415,14 +411,14 @@ $global-colors: (
 		'3': $yellow-shade-3,
 		'2': $yellow-shade-2,
 		'1': $yellow-shade-1,
-		'tango', $yellow-tango,
-		'poppy', $yellow-poppy,
-		'tree', $yellow-tree,
-		'sin', $yellow-sin,
-		'bea', $yellow-bea,
-		'dandelion', $yellow-dandelion,
-		'paco', $yellow-paco,
-		'buttermilk', $yellow-buttermilk,
+		'tango': $yellow-tango,
+		'poppy': $yellow-poppy,
+		'sin': $yellow-sin,
+		'premium': $yellow-premium,
+		'bea': $yellow-bea,
+		'dandelion': $yellow-dandelion,
+		'paco': $yellow-paco,
+		'buttermilk': $yellow-buttermilk,
 	),
 	'red': (
 		'8': $red-shade-8,
@@ -433,14 +429,14 @@ $global-colors: (
 		'3': $red-shade-3,
 		'2': $red-shade-2,
 		'1': $red-shade-1,
-		'thunderbird', $red-thunderbird,
-		'valencia', $red-valencia,
-		'bloody', $red-bloody,
-		'muri', $red-muri,
-		'salmon', $red-salmon,
-		'lisa', $red-lisa,
-		'wax', $red-wax,
-		'bush', $red-bush,
+		'thunderbird': $red-thunderbird,
+		'valencia': $red-valencia,
+		'bloody': $red-bloody,
+		'muri': $red-muri,
+		'salmon': $red-salmon,
+		'lisa': $red-lisa,
+		'wax': $red-wax,
+		'bush': $red-bush,
 	),
 );
 
