@@ -6,10 +6,10 @@ $defaultColors: (
 			ignoreStyles: (),
 			default:
 				(
-					background: color('azure', 'blue'),
+					background: color('freepik', 'blue'),
 					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('azure', 'blue'),
-					color-outline: color('azure', 'blue'),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('freepik', 'blue'),
+					color-outline: color('freepik', 'blue'),
 					color: $color-light
 				),
 			hover:
@@ -34,24 +34,24 @@ $defaultColors: (
 			ignoreStyles: (),
 			default:
 				(
-					background: color('sin', 'yellow'),
+					background: color('premium', 'yellow'),
 					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('sin', 'yellow'),
-					color-outline: color('sin', 'yellow'),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('premium', 'yellow'),
+					color-outline: color('premium', 'yellow'),
 					color: $color-light
 				),
 			hover:
 				(
-					background: color('tree', 'yellow'),
-					background-outline: color('tree', 'yellow', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('tree', 'yellow'),
-					color-outline: color('tree', 'yellow'),
+					background: color('sin', 'yellow'),
+					background-outline: color('sin', 'yellow', .1),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('sin', 'yellow'),
+					color-outline: color('sin', 'yellow'),
 					color: $color-light
 				),
 			active:
 				(
 					background: color('poppy', 'yellow'),
-					background-outline: color('tree', 'yellow', .2),
+					background-outline: color('sin', 'yellow', .2),
 					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('poppy', 'yellow'),
 					color-outline: color('poppy', 'yellow'),
 					color: $color-light
@@ -90,10 +90,10 @@ $defaultColors: (
 			ignoreStyles: (),
 			default:
 				(
-					background: color('pepinen', 'green'),
+					background: color('flaticon', 'green'),
 					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('pepinen', 'green'),
-					color-outline: color('pepinen', 'green'),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('flaticon', 'green'),
+					color-outline: color('flaticon', 'green'),
 					color: $color-light
 				),
 			hover:
@@ -118,10 +118,10 @@ $defaultColors: (
 			ignoreStyles: (),
 			default:
 				(
-					background: color('royal', 'purple'),
+					background: color('piktab', 'purple'),
 					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('royal', 'purple'),
-					color-outline: color('royal', 'purple'),
+					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('piktab', 'purple'),
+					color-outline: color('piktab', 'purple'),
 					color: $color-light
 				),
 			hover:
@@ -312,15 +312,15 @@ $defaultColors: (
 		ignoreStyles: ('outline'),
 		default: (
 			background: transparent,
-			color: color('azure', 'blue'),
+			color: color('freepik', 'blue'),
 		),
 		hover: (
 			background: color('pearl', 'dark-blue', .1),
-			color: color('azure', 'blue'),
+			color: color('freepik', 'blue'),
 		),
 		active: (
 			background: color('pearl', 'dark-blue', .1),
-			color: color('azure', 'blue'),
+			color: color('freepik', 'blue'),
 		)
 	),
 	link-color: (
@@ -331,11 +331,11 @@ $defaultColors: (
 		),
 		hover: (
 			background: color('pearl', 'dark-blue', .1),
-			color: color('azure', 'blue'),
+			color: color('freepik', 'blue'),
 		),
 		active: (
 			background: color('pearl', 'dark-blue', .1),
-			color: color('azure', 'blue'),
+			color: color('freepik', 'blue'),
 		)
 	),
 	link-dark: (
