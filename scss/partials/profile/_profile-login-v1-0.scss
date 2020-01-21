@@ -58,13 +58,13 @@
                             color: color('text-inverted', 'general');
             
                             &.font-xs {
-                                color: color('5', 'gray');
+                                color: color('cadet', 'gray');
             
                                 a {
-                                    color: color('5', 'gray');
+                                    color: color('cadet', 'gray');
             
                                     &:hover {
-                                        color: color('5', 'gray');
+                                        color: color('cadet', 'gray');
                                         text-decoration: underline;
                                     }
                                 }
@@ -87,11 +87,11 @@
                     text-align: center;
             
                     #{$all-headings} {
-                        color: color('5', 'blue');
+                        color: color('azure', 'blue');
                     }
             
                     p {
-                        color: color('7', 'gray');
+                        color: color('hoki', 'gray');
                     }
                 }
             }
@@ -124,14 +124,14 @@
                     
                     background-color: color('1' , 'gray', .50);
         
-                    color: color('7', 'gray');
+                    color: color('hoki', 'gray');
                     font-size: $extra-large-font-size;
                     font-weight: 500;
                     text-align: center;
                     line-height: $extra-large-element-height;
         
                     &.active {
-                        color: color('8', 'gray');
+                        color: color('oxford', 'gray');
                         box-shadow: none;
                         background-color: color('light', 'background');
                     }
@@ -198,7 +198,7 @@
         }
 
         &__intro {
-            color: color('5', 'gray');
+            color: color('cadet', 'gray');
             text-align: center;
 
             img {
@@ -207,10 +207,10 @@
             }
 
             a {
-                color: color('5', 'gray');
+                color: color('cadet', 'gray');
 
                 &:hover {
-                    color: color('5', 'gray');
+                    color: color('cadet', 'gray');
                     text-decoration: underline;
                 }
             }
@@ -232,7 +232,7 @@
                 width: 80%;
                 height: $base-border-width;
                 
-                background-color: color('1', 'gray', .80);
+                background-color: color('aqua', 'gray', .80);
     
                 transform: translate(-50%, -50%);
     
