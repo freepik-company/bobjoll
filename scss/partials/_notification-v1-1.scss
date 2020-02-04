@@ -129,6 +129,7 @@
         @include element('close') {
             &:not(.nostyle) {
                 @include position(absolute, 0 0 null null);
+                margin: $extra-small-spacing;
                 // @include transform(translate(50%, -50%));
             }
         }
