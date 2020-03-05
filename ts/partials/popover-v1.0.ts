@@ -38,7 +38,7 @@ import { delegate } from 'bobjoll/ts/library/dom';
 
 	window.addEventListener('resize', () => {
 		if (active && active.length > 0) {
-			if(window.innerWidth <= Settings.breakpoints.md) {
+			if(window.innerWidth <= Settings.breakpoints.sm) {
 				if (timeout) clearTimeout(timeout);
 
 				timeout = setTimeout(() => {
@@ -48,7 +48,7 @@ import { delegate } from 'bobjoll/ts/library/dom';
 						if (container) {
 							container.removeAttribute('style');
 
-							if(window.innerWidth > Settings.breakpoints.md) container.classList.remove('notransition');
+							if(window.innerWidth > Settings.breakpoints.sm) container.classList.remove('notransition');
 						}
 
 						mobile(element);
@@ -71,7 +71,7 @@ import { delegate } from 'bobjoll/ts/library/dom';
 	});
 
 	function mobile(popover: Element) {
-		if (popover && window.innerWidth <= Settings.breakpoints.md) {
+		if (popover && window.innerWidth <= Settings.breakpoints.sm) {
 			let container: HTMLElement | null = (<HTMLElement>popover.querySelector('.popover__container'));
 
 			if (container) {
