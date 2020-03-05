@@ -394,7 +394,7 @@ $defaultSizes: (
 					font-size: $small-font-size,
 					line-height: $small-element-height
 				),
-			propertiesIcon: (font-size: $small-icon-width)
+			propertiesIcon: (font-size: $base-icon-width)
 		),
 	md:
 		(
@@ -406,7 +406,7 @@ $defaultSizes: (
 					font-size: $base-font-size,
 					line-height: $base-element-height
 				),
-			propertiesIcon: (font-size: $base-icon-width)
+			propertiesIcon: (font-size: $base-large-icon-width)
 		),
 	lg:
 		(
@@ -415,7 +415,7 @@ $defaultSizes: (
 					padding: 0 $large-spacing,
 					min-width: $large-element-height,
 					height: $large-element-height,
-					font-size: $base-font-size,
+					font-size: $large-font-size,
 					line-height: $large-element-height
 				),
 			propertiesIcon: (font-size: $large-icon-width)
@@ -427,7 +427,7 @@ $defaultSizes: (
 					padding: 0 $large-spacing,
 					min-width: $extra-large-element-height,
 					height: $extra-large-element-height,
-					font-size: $base-font-size,
+					font-size: $large-font-size,
 					line-height: $extra-large-element-height
 				),
 			propertiesIcon: (font-size: $extra-large-icon-width)
