@@ -91,8 +91,7 @@ export default class Google extends Social {
     }
 
     private static async status() {
-        let user: any;
-
+        let user: gapi.auth2.GoogleUser;
         if (true == this.auth2.isSignedIn.get()) {
             user = Google.auth2.currentUser.get();
         } else {
@@ -102,24 +101,19 @@ export default class Google extends Social {
                 });
             });
         }
-
         try {
+            const token = user.getAuthResponse().id_token;
             let action: 'login' | 'connect' = 'connect';
             let form: FormData = new FormData();
-
             if (Google.gr && Google.gr.isLogged()) {
                 action = 'connect';
-
                 Google.connected = true;
-
-                form.append('google_id', user.getId());
+                form.append('token', token);
                 form.append('social_network', 'google');
             } else {
                 const profile = user.getBasicProfile();
-
                 action = 'login';
-
-                form.append('google_id', user.getId());
+                form.append('token', token);
                 form.append('email', profile.getEmail());
                 form.append('name', profile.getGivenName());
                 form.append('avatar', profile.getImageUrl());
