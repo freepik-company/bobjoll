@@ -368,6 +368,13 @@ export class Notify extends KEventTarget {
                         });
                     }
 
+                    if ('undefined' !== typeof dialog.showInterestedInSponsor) {
+                        booleanArr.push({
+                            name: 'dialog.showInterestedInSponsor',
+                            show: Notify.User.isInterestedInSponsor() ? dialog.showInterestedInSponsor : !dialog.showInterestedInSponsor,
+                        });
+                    }
+
                     if ('function' === typeof dialog.showCallback) {
                         booleanArr.push({
                             name: 'dialog.showCallback',
@@ -529,6 +536,7 @@ interface DialogSettings {
     };
     showFree?: boolean;
     showGuestOnly?: boolean;
+    showInterestedInSponsor?: boolean;
     showPremium?: boolean;
     showPremiumFreepik?: boolean;
     showPremiumFlaticon?: boolean;
@@ -589,6 +597,7 @@ export interface DialogCustomOptions {
     };
     showFree?: boolean;
     showGuestOnly?: boolean;
+    showInterestedInSponsor?: boolean;
     showPremium?: boolean;
     showPremiumFreepik?: boolean;
     showPremiumFlaticon?: boolean;
@@ -622,6 +631,7 @@ export interface DialogCustomSettings {
     };
     showFree?: boolean;
     showGuestOnly?: boolean;
+    showInterestedInSponsor?: boolean;
     showPremium?: boolean;
     showPremiumFreepik?: boolean;
     showPremiumFlaticon?: boolean;
@@ -672,6 +682,7 @@ export interface NotifyMethods {
 }
 
 export interface NotifyUser {
+    isInterestedInSponsor(): boolean;
     isLogged(): boolean;
     isPremiumFreepik(): boolean;
     isPremiumFlaticon(): boolean;
