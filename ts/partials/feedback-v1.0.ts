@@ -183,14 +183,13 @@ declare module 'bobjoll/ts/library/storage' {
 }
 
 export default class Feedback extends KEventTarget {
-    public id: string | undefined;
+    public settings: Settings;
     private view: string | undefined;
     private fixed: HTMLElement | undefined;
     private history: History[];
     private historyNS: string = 'feedback-history';
     private historyKey: string = 'history';
     private counterNS: string = 'feedback-counter';
-    private settings: Settings;
     private defaultSettings: DefaultSettings = {
         default: {
             defaults: true,
