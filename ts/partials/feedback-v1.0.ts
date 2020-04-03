@@ -614,7 +614,7 @@ export default class Feedback extends KEventTarget {
 
     public insert() {}
 
-    public updateView(view: string, url?: string) {
+    public updateView(view: string, url?: string | undefined, forceShow?: boolean) {
         this.view = view || undefined;
 
         if (this.settings.default.history && view) {
@@ -645,12 +645,12 @@ export default class Feedback extends KEventTarget {
                 if (counterSettings) {
                     let counter = localStorage.get(this.counterNS, counterSettings.view || 'all') || 0;
 
-                    if ('undefined' !== typeof counter && (!counterSettings.times || counter < counterSettings.times * this.settings.default.historyMax)) {
+                    if (('undefined' !== typeof counter && (!counterSettings.times || counter < counterSettings.times * this.settings.default.historyMax)) || forceShow) {
                         counter++;
 
                         localStorage.set(this.counterNS, counterSettings.view || 'all', counter);
 
-                        if (0 === counter % counterSettings['%'] && this.fixed && !this.fixed.classList.contains('active')) {
+                        if ((0 === counter % counterSettings['%'] && this.fixed && !this.fixed.classList.contains('active')) || forceShow && this.fixed && !this.fixed.classList.contains('active')) {
                             this.show();
                         }
                     }
