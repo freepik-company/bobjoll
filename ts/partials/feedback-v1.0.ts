@@ -31,6 +31,7 @@ interface DefaultSettings {
 }
 
 export interface UserSettings {
+    id?: string;
     action?: string;
     method?: 'POST' | 'GET';
     text: {
@@ -182,6 +183,7 @@ declare module 'bobjoll/ts/library/storage' {
 }
 
 export default class Feedback extends KEventTarget {
+    public id: string | undefined;
     private view: string | undefined;
     private fixed: HTMLElement | undefined;
     private history: History[];
