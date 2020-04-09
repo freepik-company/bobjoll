@@ -32,6 +32,7 @@ export class NotifyModalMethod extends NotifyMethod {
         }
     }
     protected remove() {
+        this.modalElement?.parentElement?.removeChild(this.modalElement);
         this.modalElement = null;
     }
 }
