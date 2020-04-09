@@ -4,21 +4,28 @@
   "description": "Freepik Company / Web framework",
   "main": "generate.js",
   "scripts": {
-    "webfont": "node generate.js"
+    "webfont": "node generate.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/gapi": "^0.0.39",
+    "@types/jest": "^25.2.1",
     "@types/twig": "^1.10.1",
-    "axios": "^0.19.0",
+    "axios": "^0.19.2",
     "cookie-storage": "^3.1.0",
+    "date-fns": "^2.11.1",
+    "jest": "^25.3.0",
     "locutus": "^2.0.11",
-    "twig": "^1.11.0",
-    "twig-loader": "^0.3.1",
+    "ts-jest": "^25.3.1",
+    "tslib": "^1.11.1",
+    "twig": "^1.15.0",
+    "twig-loader": "^0.5.1",
+    "typescript": "^3.8.3",
     "webfonts-generator": "^0.4.0"
   },
-  "dependencies": {
-    "@types/gapi": "^0.0.36",
-    "date-fns": "^1.30.1"
+  "_moduleAliases": {
+    "bobjoll": "."
   }
 }

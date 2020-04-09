@@ -27,11 +27,17 @@ export const isDebugTrue = (): boolean => {
         ? true
         : false;
 };
-export const isDebugTypeTrue = (id: string): boolean => isDebugSingle(id) || isDebugContains(id) || isDebugById(id);
+export const isDebugTypeTrue = (id: string): boolean => isDebugById(id) || isDebugSingle(id) || isDebugContains(id);
 
 const isDebugById = (id: string): boolean => (Cookie.getItem('notify-debug-ids') || '').split(',').indexOf(id) >= 0;
 const isDebugSingle = (id: string): boolean => id === Cookie.getItem('notify-debug-single');
-const isDebugContains = (id: string): boolean => id.indexOf(Cookie.getItem('notify-debug-contains') || '') >= 0;
+const isDebugContains = (id: string): boolean => {
+    const cookie = Cookie.getItem('notify-debug-contains');
+    if (cookie) {
+        return id.indexOf(cookie) >= 0
+    }
+    return false;
+};
 
 export interface UserValidationMethods extends NotifyMethodValidation {
     showFree: NotifyMethodValidationMethod;
