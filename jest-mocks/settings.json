@@ -1,0 +1,29 @@
+{
+	"base-duration": "1ms",
+	"base-timing": "cubic-bezier(1.000, 0.000, 0.000, 1.000)",
+	"ui-duration": "0ms",
+	"ui-timing": "cubic-bezier(1.000, 0.000, 0.000, 1.000)",
+	"feedback-duration": "150ms",
+	"feedback-timing": "cubic-bezier(1.000, 0.000, 0.000, 1.000)",
+	"breakpoints": {
+		"xs": "480px",
+		"sm": "640px",
+		"md": "768px",
+		"lg": "1096px",
+		"xl": "1400px"
+	},
+	"grid-columns-spacing": "5px",
+	"base-spacing": "20px",
+	"small-spacing": "10px",
+	"extra-small-spacing": "5px",
+	"test-names": [
+		"detail-sponsor",
+		"detail-related",
+		"detail-width",
+		"shutterstock",
+		"shutter-popup"
+	],
+	"test-variation": [
+		"b"
+	]
+}

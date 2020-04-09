@@ -1,6 +1,6 @@
 import { NotifyMethod, NotifyMethodOptions } from './notifyMethod';
 import { qq } from 'bobjoll/ts/library/dom';
-import Notifications from 'bobjoll/ts/partials/notification-v2.0';
+import Notifications from 'BobjollNotifications';
 
 export class NotifyBannerMethod extends NotifyMethod {
     private static readonly notificationBaseClass =

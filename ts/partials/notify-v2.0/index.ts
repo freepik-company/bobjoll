@@ -35,11 +35,11 @@ export class Notify {
         let notification: NotifyMethod | null = null;
         let queue = this.queue.sort((a, b) => a.getSettings().priority - b.getSettings().priority);
         let queueIndex = 0;
-        if (this.quechuaPromiseArr) {
+        if (this.quechuaPromiseArr && queue.length) {
             queue = queue.filter(notification => notification.getSettings().awaitQuechua === awaitQuechua);
         }
-        while (!isShowTrue && queue.length && queueIndex < queue.length) {
-            isShowTrue = await queue[queueIndex].publish();
+        while (queue && !isShowTrue && queue.length && queueIndex < queue.length) {
+            isShowTrue = await queue[queueIndex].publish(queue);
             if (isShowTrue) notification = queue[queueIndex];
             queueIndex++;
         }

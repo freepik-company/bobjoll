@@ -1,0 +1,271 @@
+{
+  "banners": [
+    {
+      "id": "banner-birthdaypiki10-2",
+      "dateStart": "03/24/2020 00:00:00",
+      "dateEnd": "03/31/2020 23:59:59",
+      "timeExpire": 3600000,
+      "showFree": true,
+      "showPremium": false,
+      "showPremiumFreepik": false,
+      "events": {
+        "onload": {
+          "category": "campaign",
+          "action": "onload",
+          "label": "banner-design"
+        },
+        "close": {
+          "category": "campaign",
+          "action": "click",
+          "label": "banner-design-close"
+        },
+        "open": {
+          "category": "campaign",
+          "action": "click",
+          "label": "banner-design-gopremium"
+        }
+      },
+      "template": "https://static.freepikcompany.com/freepik/birthdaypiki2/html/banner-free.hbs",
+      "langs": {
+        "en": {
+          "title": "Design away with Premium for",
+          "month_price_1": "$4.15",
+          "month_price_2": "3,75€",
+          "by": "/month",
+          "go_premium": "Go Premium",
+          "valid": "Offer valid until 31st of March"
+        },
+        "es": {
+          "title": "Diseña sin límites con Premium por",
+          "month_price_1": "$4.15",
+          "month_price_2": "3,75€",
+          "by": "/mes",
+          "go_premium": "Hazte Premium",
+          "valid": "Oferta válida hasta el 31 de marzo"
+        },
+        "fr": {
+          "title": "Créez des designs avec Premium pour",
+          "month_price_1": "$4.15",
+          "month_price_2": "3,75€",
+          "by": "/mois",
+          "go_premium": "Aller à Premium",
+          "valid": "Offre valable jusqu'au 31 mars"
+        },
+        "nl": {
+          "title": "Ontwerp erop los met Premium voor",
+          "month_price_1": "$4.15",
+          "month_price_2": "3,75€",
+          "by": "/maand",
+          "go_premium": "Kies voor Premium",
+          "valid": "Aanbod geldig tot en met 31 maart"
+        },
+        "de": {
+          "title": "Beginne zu designen mit Premium zum",
+          "month_price_1": "$4.15",
+          "month_price_2": "3,75€",
+          "by": "/Monat",
+          "go_premium": "Hol dir Premium",
+          "valid": "Angebot gültig bis 31. März"
+        },
+        "jp": {
+          "title": "プレミアムプランでデザインしようにとって",
+          "month_price_1": "$4.15",
+          "month_price_2": "3,75€",
+          "by": "/月",
+          "go_premium": "プレミアムになる",
+          "valid": "このオファーは３月31日まで有効"
+        },
+        "pt": {
+          "title": "Crie à vontade com o Premium para",
+          "month_price_1": "$4.15",
+          "month_price_2": "3,75€",
+          "by": "/mês",
+          "go_premium": "Seja Premium",
+          "valid": "Oferta válida até 31 de março"
+        },
+        "it": {
+          "title": "Design ininterrotto con Premium per",
+          "month_price_1": "$4.15",
+          "month_price_2": "3,75€",
+          "by": "/mese",
+          "go_premium": "Diventa Premium",
+          "valid": "Offerta valida fino al 31 marzo"
+        },
+        "ru": {
+          "title": "Погрузитесь в мир дизайна с Премиум  за",
+          "month_price_1": "$4.15",
+          "month_price_2": "3,75€",
+          "by": "/месяц",
+          "go_premium": "Переходи на Премиум",
+          "valid": "Предложение действует до 31 марта"
+        },
+        "pl": {
+          "title": "Projektuj z Premium dla",
+          "month_price_1": "$4.15",
+          "month_price_2": "3,75€",
+          "by": "/miesiąc",
+          "go_premium": "Przejdź na Premium",
+          "valid": "Oferta ważna do 31 marca"
+        }
+      }
+    }
+  ],
+  "popups": [
+    {
+      "id": "popup-birthdaypiki10-2",
+      "dateStart": "03/24/2020 00:00:00",
+      "dateEnd": "03/31/2020 23:59:59",
+      "timeExpire": 43200000,
+      "showFree": true,
+      "showPremium": false,
+      "showPremiumFreepik": false,
+      "preload": true,
+      "preloadAdditional": [
+        "https://static.freepikcompany.com/freepik/birthdaypiki2/img/popup/10.svg",
+        "https://static.freepikcompany.com/freepik/birthdaypiki2/img/popup/bg-desktop.svg",
+        "https://static.freepikcompany.com/freepik/birthdaypiki2/img/popup/bg-mobile.svg",
+        "https://static.freepikcompany.com/freepik/birthdaypiki2/img/popup/piki.svg"
+      ],
+      "template": "https://static.freepikcompany.com/freepik/birthdaypiki2/html/popup.hbs",
+      "events": {
+        "onload": {
+          "category": "campaign",
+          "action": "onload",
+          "label": "popup-design"
+        },
+        "close": {
+          "category": "campaign",
+          "action": "click",
+          "label": "popup-design-close"
+        },
+        "open": {
+          "category": "campaign",
+          "action": "click",
+          "label": "popup-design-gopremium"
+        }
+      },
+      "langs": {
+        "en": {
+          "title": "years",
+          "subtitle": "of designing with quality",
+          "annual_text": "<strong>Freepik Annual</strong> Premium Plan",
+          "for": "for",
+          "annual_old_price_1": "$99.00",
+          "annual_old_price_2": "89,99€",
+          "annual_new_price_1": "$49.50",
+          "annual_new_price_2": "44,99€",
+          "go_premium": "Go Premium",
+          "valid": "Offer valid until 31st of March"
+        },
+        "es": {
+          "title": "años",
+          "subtitle": "ofreciendo calidad",
+          "annual_text": "Plan Premium <strong>Freepik anual</strong>",
+          "for": "por",
+          "annual_old_price_1": "$99.00",
+          "annual_old_price_2": "89,99€",
+          "annual_new_price_1": "$49.50",
+          "annual_new_price_2": "44,99€",
+          "go_premium": "Hazte Premium",
+          "valid": "Oferta válida hasta el 31 de marzo"
+        },
+        "fr": {
+          "title": "années",
+          "subtitle": "de designs de qualité",
+          "annual_text": "<strong>Annuel Freepik</strong> Premium",
+          "for": "pour",
+          "annual_old_price_1": "$99.00",
+          "annual_old_price_2": "89,99€",
+          "annual_new_price_1": "$49.50",
+          "annual_new_price_2": "44,99€",
+          "go_premium": "Aller à Premium",
+          "valid": "Offre valable jusqu'au 31 mars"
+        },
+        "nl": {
+          "title": "jaar",
+          "subtitle": "ontwerpen met kwaliteit",
+          "annual_text": "<strong>Jaarlijks Freepik </strong> Premium-abonnement",
+          "for": "voor",
+          "annual_old_price_1": "$99.00",
+          "annual_old_price_2": "89,99€",
+          "annual_new_price_1": "$49.50",
+          "annual_new_price_2": "44,99€",
+          "go_premium": "Kies voor Premium",
+          "valid": "Aanbod geldig tot en met 31 maart"
+        },
+        "de": {
+          "title": "Jahren",
+          "subtitle": "Designen mit Qualität",
+          "annual_text": "<strong>Freepik-Premium</strong> Jahresplan",
+          "for": "für",
+          "annual_old_price_1": "$99.00",
+          "annual_old_price_2": "89,99€",
+          "annual_new_price_1": "$49.50",
+          "annual_new_price_2": "44,99€",
+          "go_premium": "Hol dir Premium",
+          "valid": "Angebot gültig bis 31. März"
+        },
+        "jp": {
+          "title": "年",
+          "subtitle": "品質のための設計",
+          "annual_text": "<strong>フリーピック年間プレミアムプラン /strong>",
+          "for": "にとって",
+          "annual_old_price_1": "$99.00",
+          "annual_old_price_2": "89,99€",
+          "annual_new_price_1": "$49.50",
+          "annual_new_price_2": "44,99€",
+          "go_premium": "プレミアムになる",
+          "valid": "このオファーは３月31日まで有効"
+        },
+        "pt": {
+          "title": "anos",
+          "subtitle": "designs de alta qualidade",
+          "annual_text": "<strong> Plano Premium Anual </strong> do Freepik",
+          "for": "por",
+          "annual_old_price_1": "$99.00",
+          "annual_old_price_2": "89,99€",
+          "annual_new_price_1": "$49.50",
+          "annual_new_price_2": "44,99€",
+          "go_premium": "Seja Premium",
+          "valid": "Oferta válida até 31 de março"
+        },
+        "it": {
+          "title": "anni",
+          "subtitle": "di design di qualità",
+          "annual_text": "<strong>Piano Annuale Premium </strong> di Freepik",
+          "for": "a",
+          "annual_old_price_1": "$99.00",
+          "annual_old_price_2": "89,99€",
+          "annual_new_price_1": "$49.50",
+          "annual_new_price_2": "44,99€",
+          "go_premium": "Diventa Premium",
+          "valid": "Offerta valida fino al 31 marzo"
+        },
+        "ru": {
+          "title": "лет",
+          "subtitle": "качественного проектирования",
+          "annual_text": "Ежегодный тарифный план Премиум <strong>от Freepik</strong>",
+          "for": "за",
+          "annual_old_price_1": "$99.00",
+          "annual_old_price_2": "89,99€",
+          "annual_new_price_1": "$49.50",
+          "annual_new_price_2": "44,99€",
+          "go_premium": "Переходи на Премиум",
+          "valid": "Предложение действует до 31 марта"
+        },
+        "pl": {
+          "title": "lat",
+          "subtitle": "wysokiej jakości projektowania",
+          "annual_text": "<strong> Roczny plan </strong> Freepik Premium",
+          "for": "za",
+          "annual_old_price_1": "$99.00",
+          "annual_old_price_2": "89,99€",
+          "annual_new_price_1": "$49.50",
+          "annual_new_price_2": "44,99€",
+          "go_premium": "Przejdź na Premium",
+          "valid": "Oferta ważna do 31 marca"
+        }
+      }
+    }
+  ]
+}
