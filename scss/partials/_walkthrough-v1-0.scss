@@ -72,6 +72,10 @@
                 .icon {
                     color: color('icon-inverted', 'general');
                 }
+
+                &:hover {
+                    background: color('5', 'blue');
+                }
             }
 
             .link:last-child,
