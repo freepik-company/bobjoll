@@ -15,6 +15,7 @@
                 height: $base-element-height;
                 padding: 0 $large-spacing;
                 cursor: pointer;
+                color: color('hoki', 'gray');
                 font-weight: 500;
                 line-height: $base-element-height;
                 &.active {
