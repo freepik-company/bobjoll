@@ -9,7 +9,6 @@ const getActiveIndex = (parent: HTMLElement): number => {
 
 const showActiveTab = (parent: HTMLElement) => {
     const index = getActiveIndex(parent);
-    console.log(index);
     qq('.content', parent).forEach((element, i) => 
         element.classList[i === index ? 'add' : 'remove']('show')
     );
