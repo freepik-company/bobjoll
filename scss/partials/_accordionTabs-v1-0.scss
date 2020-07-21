@@ -1,0 +1,35 @@
+@if $accordionTabs-v1-0 {
+    .accordion-tabs {
+        header {
+            border-bottom: $base-border;
+            overflow: auto;
+            display: grid;
+            ul {
+                display: flex;
+                flex-wrap: nowrap;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            li {
+                flex: 1 0 auto;
+                height: $base-element-height;
+                padding: 0 $large-spacing;
+                cursor: pointer;
+                font-weight: 500;
+                line-height: $base-element-height;
+                &.active {
+                    color: color('oxford', 'gray');
+                    border-bottom: $base-border;
+                    border-color: color('oxford', 'gray');
+                }
+            }
+        }
+        .content {
+            display: none;
+            padding: $base-spacing 0;
+            &.show {
+                display: block;
+            }
+        }
+    }
+}
