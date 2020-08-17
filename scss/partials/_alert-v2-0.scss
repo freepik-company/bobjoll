@@ -1,0 +1,111 @@
+@if $alert-v2-0 {
+    .notification.notification--alert {
+        background: #fff;
+        max-width: 300px;
+        margin: $small-spacing;
+        position: relative;
+        right: $base-spacing * (-1);
+
+        .notification__state {
+            width: 24px;
+            height: 24px;
+            border-radius: 100%;
+            top: $small-spacing;
+            left: $small-spacing + $extra-small-spacing;
+        }
+
+        .notification__close i {
+            font-size: $large-font-size;
+            color: $gray-oxford !important;
+            border-radius: $base-border-radius;
+
+            &:hover {
+                background-color: rgba($gray-oxford, .1);
+            }
+        }
+
+        .notification__message {
+            padding: $small-spacing $extra-small-spacing $small-spacing ($base-spacing + $small-spacing);
+
+            p {
+                margin: $extra-small-spacing 0 0;
+                font-weight: normal;
+            }
+
+            a {
+                display: inline-flex;
+                align-items: center;
+                color: $gray-oxford;
+                border-radius: $base-border-radius;
+                padding: 0 $small-spacing;
+                margin-top: $small-spacing;
+                font-weight: 700;
+                position: relative;
+                left: $small-spacing * (-1);
+
+                &.link-blue {
+                    color: $blue-freepik;
+                    padding: $extra-small-spacing $small-spacing;
+                }
+
+                i {
+                    color: $gray-oxford;
+                }
+
+                &:hover {
+                    background-color: rgba($gray-oxford, .1);
+                }
+            }
+        }
+
+        @include modifier('error') {
+            .notification__state {
+                background-color: $red-muri;
+
+                @if $icon-v2-0 {
+                    .icon:not(.nostyle) {
+                        @extend .icon--exclamation;
+                    }
+                }
+
+                .icon {
+                    color: color('red', 'state-text');
+                }
+            }
+        }
+
+        @include modifier('warning') {
+            .notification__state {
+                background-color: $yellow-sin;
+
+                @if $icon-v2-0 {
+                    .icon:not(.nostyle) {
+                        @extend .icon--exclamation;
+                    }
+                }
+
+                .icon {
+                    color: color('yellow', 'state-text');
+                }
+            }
+        }
+
+        @include modifier('info') {
+            .notification__state {
+                background-color: $green-jungle;
+
+                @if $icon-v2-0 {
+                    .icon:not(.nostyle) {
+                        @extend .icon--info;
+                    }
+                }
+
+                .icon {
+                    color: color('green', 'state-text');
+                }
+            }
+        }
+    }
+}
+
+// End if
