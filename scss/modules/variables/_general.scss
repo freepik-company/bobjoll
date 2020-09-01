@@ -67,7 +67,7 @@ $base-border-style: solid !default;
 $base-border: $base-border-width $base-border-style color('border', 'general') !default;
 
 // Typography
-$base-font-family: 'Proxima Nova' !default;
+$base-font-family: 'Proxima Nova', 'Verdana', 'Avenir Next' !default;
 $title-font-family: $base-font-family !default;
 
 // Typography Sizes
