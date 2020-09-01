@@ -9,9 +9,10 @@ const getActiveIndex = (parent: HTMLElement): number => {
 
 const showActiveTab = (parent: HTMLElement) => {
     const index = getActiveIndex(parent);
-    qq('.content', parent).forEach((element, i) => 
+    qq('header ~ .content', parent).forEach((element, i) => 
         element.classList[i === index ? 'add' : 'remove']('show')
     );
+    window.dispatchEvent(new Event('resize'));
 }
 
 const handlerHeaderLink = function(this: HTMLElement) {

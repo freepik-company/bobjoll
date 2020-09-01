@@ -327,10 +327,20 @@ export interface Settings {
     cookieExpiry?: Date;
 }
 
+export interface Link {
+    arrow?: boolean;
+    clickAndClose?: boolean;
+    customClass?: string;
+    extraAttr?: string;
+    target: string;
+    text: string;
+    url: string;
+}
+
 export interface InsertSettings extends Settings {
     id?: string;
     class?: string;
-    html: string;
+    html?: string;
     target?: string | Element;
     insert?: {
         element: Element;
@@ -338,4 +348,8 @@ export interface InsertSettings extends Settings {
     }
     position?: keyof Position;
     cookieExpiry?: Date;
+    type?: string;
+    title?: string;
+    content?: string;
+    link?: Link;
 }

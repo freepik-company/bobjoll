@@ -1,0 +1,50 @@
+<div id="{{id}}"
+	class="notification notification--alert{{#if class}} {{class}}{{/if}}"
+	{{#if recurrent}}
+	data-recurrent="true"
+	{{/if}}>
+
+	{{#if fixed}}
+	<button class="notification__close button button--sm button--icon button--link-inverted">
+		<i class="icon--cross"></i>
+	</button>
+	{{/if}}
+
+	<div class="notification__content">
+		<div class="notification__state">
+			<i class="icon icon--sm"></i>
+		</div>
+
+		<div class="notification__message">
+			<b>{{{title}}}</b>
+			<p>{{{content}}}</p>
+
+			{{#if link}}
+			<a href="{{link.url}}"
+				target="{{link.target}}"
+				class="
+					{{#if link.button}}
+					link-blue
+					{{/if}}
+
+					{{#if link.customClass}}
+					{{link.customClass}}
+					{{/if}}
+				"
+				{{#if link.clickAndClose}}
+				onclick="this.parentNode.parentNode.parentNode.querySelector('.notification__close').click();"
+				{{/if}}
+				{{#if link.extraAttr}}
+				{{link.extraAttr}}
+				{{/if}}>
+
+				<span>{{{link.text}}}</span>
+
+				{{#if link.arrow}}
+				<i class="icon icon--lg icon--mg-sm icon--right-small"></i>
+				{{/if}}
+			</a>
+			{{/if}}
+		</div>
+	</div>
+</div>
