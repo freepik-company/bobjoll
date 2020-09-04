@@ -244,13 +244,19 @@ export class Notify extends KEventTarget {
     }
 
     private static resize() {
+        const currentPaddingTop = parseFloat(Notify.bodyPaddingBottom || '0');
         const height = qq('.notify', Notify.containerBottom).reduce((acc: number, element) => {
             acc += element.clientHeight;
-
             return acc;
-        }, 0);
+        }, currentPaddingTop);
 
-        document.body.style.paddingBottom = `${parseFloat(Notify.bodyPaddingBottom || '0') + (height || 0)}px`;
+        if (height) {
+            document.body.style.paddingBottom = `${height || 0}px`;
+        }
+
+        if (!height && currentPaddingTop > 0) {
+            document.body.style.paddingBottom = '0px';
+        }
     }
 
     public static checkDebugEnviroment() {
