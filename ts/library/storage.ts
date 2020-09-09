@@ -107,6 +107,24 @@ export class ClientStorage
     keys(namespace: string) {
         return this.getAllKeys(namespace);
     }
+
+    expired(namespace: string, key: string, expire?: Date) {
+        const item = this.getItem(namespace, key);
+        const now = new Date();
+
+        if (!item || now.getTime() > parseInt(item)) {
+            if (!expire) {
+                expire = new Date();
+                expire.setDate(expire.getDate() + 1);
+                expire.setHours(0,0,0,0);
+            }
+
+            this.setItem(namespace, key, JSON.stringify(expire.getTime()));
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 export let localStorage = new ClientStorage('local');
