@@ -9,6 +9,11 @@ type AlertType = 'info' | 'warning' | 'error';
 
 export interface InsertSettings {
     content?: string;
+    events?: {
+        onload?: Function;
+        click?: Function;
+        close?: Function;
+    };
     fixed?: boolean;
     link?: Link;
     title: string;
@@ -34,7 +39,7 @@ export default class AlertV2 extends Notification {
     constructor(settings?: Settings) {
         const defaultSettings = {
             recurrent: false,
-            fixed: false,
+            fixed: true,
             timeout: 5000,
             template: require(`BobjollTemplate/alert-v2.0/element.${EXT}`),
             position: 'top-right'

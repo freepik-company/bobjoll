@@ -182,6 +182,10 @@ export default class Notifications {
 
             this.show(options.id);
 
+            if (options.events && options.events.onload) {
+                options.events.onload();
+            }
+
             if (!options.fixed) {
                 this.active[options.id] = {};
                 this.active[options.id].timeout = setTimeout(() => this.hide(options.id), options.timeout);
@@ -189,10 +193,22 @@ export default class Notifications {
                 const notification = document.getElementById(options.id);
 
                 if (notification) {
+                    const buttonLink = notification.querySelector('a.link-action');
                     const close = notification.querySelector('.notification__close');
 
+                    if (buttonLink && options.events && options.events.click) {
+                        buttonLink.addEventListener('click', () => {
+                            options.events.click();
+                        });
+                    }
+
                     if (close) {
-                        close.addEventListener('click', () => this.hide(options.id));
+                        close.addEventListener('click', () => {
+                            if (options.events && options.events.close) {
+                                options.events.close();
+                            }
+                            this.hide(options.id);
+                        });                 
                     }
                 }
             }
@@ -345,11 +361,16 @@ export interface InsertSettings extends Settings {
     insert?: {
         element: Element;
         position: 'beforeend' | 'beforebegin' | 'afterend' | 'afterbegin';
-    }
+    };
     position?: keyof Position;
     cookieExpiry?: Date;
     type?: string;
     title?: string;
     content?: string;
     link?: Link;
+    events?: {
+        onload?: Function;
+        click?: Function;
+        close?: Function;
+    };
 }
