@@ -23,7 +23,7 @@ export class Notify extends KEventTarget {
     private static instance: Notify;
     private static containerBottom: HTMLElement;
     private static containerTop: HTMLElement;
-    private static queue: (DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings | DialogCustomSettings)[] = [];
+    private static queue: (DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings | DialogCustomSettings | DialogQuechuaSettings)[] = [];
 
     constructor(options: NotifyOptions) {
         if (!Notify.instance) {
@@ -42,7 +42,7 @@ export class Notify extends KEventTarget {
         Notify.addEventListeners();
     }
 
-    private static preload(settings: DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings) {
+    private static preload(settings: DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings | DialogQuechuaSettings) {
         const images = [...(settings.preloadAdditional || [])];
         const dom = document.createElement('div');
 
@@ -131,7 +131,7 @@ export class Notify extends KEventTarget {
         window.addEventListener('resize', () => Notify.resize());
     }
 
-    private static pushQueue(settings: DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings | DialogCustomSettings) {
+    private static pushQueue(settings: DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings | DialogCustomSettings | DialogQuechuaSettings) {
         Notify.queue.push(settings);
     }
 
@@ -170,6 +170,24 @@ export class Notify extends KEventTarget {
         Notify.printMethodDone(settings);
     }
 
+    private static printMethodQuechua(settings: DialogQuechuaSettings) {
+        Notify.containerTop.innerHTML = '';
+        Notify.containerBottom.innerHTML = '';
+
+        Notify.methods.banner.insert({
+            id: settings.id,
+            class: `notify notify--banner notification--static notification--no-shadow notification--no-border notification--hide-disable mg-none-i ${settings.class ||
+                ''}`,
+            html: settings.html,
+            insert: {
+                element: settings.container,
+                position: 'beforeend',
+            },
+        });
+
+        Notify.printMethodDone(settings);
+    }
+
     private static printMethodCustom(settings: DialogCustomSettings) {
         settings.callback();
         settings.closeCallback(() => Notify.printMethodClose(settings));
@@ -189,7 +207,7 @@ export class Notify extends KEventTarget {
         Notify.printMethodDone(settings);
     }
 
-    private static printMethodClose(settings: DialogBannerSettings | DialogPopupSettings | DialogCustomSettings | DialogNotificationSettings) {
+    private static printMethodClose(settings: DialogBannerSettings | DialogPopupSettings | DialogCustomSettings | DialogNotificationSettings | DialogQuechuaSettings) {
         Notify.active = null;
         Notify.instance.dispatchEvent(new KEventHide(settings));
 
@@ -202,7 +220,7 @@ export class Notify extends KEventTarget {
         setTimeout(Notify.resize, 50);
     }
 
-    private static printMethodDone(settings: DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings) {
+    private static printMethodDone(settings: DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings | DialogQuechuaSettings) {
         const notifyElement = document.getElementById(settings.id) || document.getElementById(`modal-${settings.id}`);
         const expires =
             settings.schedule && settings.schedule.dateExpire
@@ -287,6 +305,10 @@ export class Notify extends KEventTarget {
 
     public addCustom(settings: DialogCustomOptions) {
         Notify.pushQueue({ showMobile: true, ...settings, type: 'custom' });
+    }
+
+    public addQuechua(settings: DialogQuechuaOptions) {
+        Notify.pushQueue({ showMobile: true, ...settings, type: 'quechua' });
     }
 
     public async printQueue() {
@@ -493,6 +515,10 @@ export class Notify extends KEventTarget {
             if ('custom' === settings.type) {
                 Notify.printMethodCustom(settings);
             }
+
+            if ('quechua' == settings.type) {
+                Notify.printMethodQuechua(settings);
+            }
         }
     }
 
@@ -525,8 +551,8 @@ export class Notify extends KEventTarget {
     }
 }
 
-type DialogType = 'popup' | 'banner' | 'notification' | 'custom';
-export type SettingsTypes = DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings;
+type DialogType = 'popup' | 'banner' | 'notification' | 'custom' | 'quechua';
+export type SettingsTypes = DialogBannerSettings | DialogPopupSettings | DialogNotificationSettings | DialogQuechuaSettings;
 
 interface DialogSettings {
     id: string;
@@ -574,6 +600,14 @@ export interface DialogBannerOptions extends DialogSettings {
 }
 export interface DialogBannerSettings extends DialogBannerOptions {
     type: 'banner';
+}
+
+export interface DialogQuechuaOptions extends DialogSettings {
+    template?: Function;
+    container: HTMLElement;
+}
+export interface DialogQuechuaSettings extends DialogQuechuaOptions {
+    type: 'quechua';
 }
 
 export interface DialogNotificationOptions extends DialogSettings {
@@ -661,7 +695,7 @@ export interface DialogCustomSettings {
 }
 
 export class KEventShow extends KEvent {
-    constructor(public settings: DialogBannerSettings | DialogNotificationSettings | DialogPopupSettings) {
+    constructor(public settings: DialogBannerSettings | DialogNotificationSettings | DialogPopupSettings | DialogQuechuaSettings) {
         super();
         this.type = `show`;
         this.extra = settings;
@@ -669,7 +703,7 @@ export class KEventShow extends KEvent {
 }
 
 export class KEventHide extends KEvent {
-    constructor(public settings: DialogBannerSettings | DialogCustomSettings | DialogNotificationSettings | DialogPopupSettings) {
+    constructor(public settings: DialogBannerSettings | DialogCustomSettings | DialogNotificationSettings | DialogPopupSettings | DialogQuechuaSettings) {
         super();
         this.type = `hide`;
         this.extra = settings;
