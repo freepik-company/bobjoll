@@ -233,7 +233,7 @@ export class Notify extends KEventTarget {
         Notify.instance.dispatchEvent(new KEventShow(settings));
 
         if (notifyElement) {
-            if (settings.type.match(/notification|banner/)) {
+            if (settings.type.match(/notification|banner|quechua/)) {
                 const bannerClose = q('.notification__close', notifyElement);
 
                 if (bannerClose) {
