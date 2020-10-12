@@ -39,6 +39,7 @@ $dark-blue-biscay: 		#113255 !default;
 $dark-blue-chathams: 	#143B63 !default;
 $dark-blue-bay: 		#164372 !default;
 $dark-blue-blumine: 	#194C80 !default;
+$dark-blue-sea: 		#1F5A97 !default;
 
 // Purple
 $purple-shade-8: #202095 !default;
@@ -81,40 +82,40 @@ $blue-picton: 			#92CDFA !default;
 $blue-onahau: 			#C7EBFF !default;
 
 // Green
-$green-shade-8: #00AF80 !default;
-$green-shade-7: #2BC48A !default;
-$green-shade-6: #4AD295 !default;
-$green-shade-5: #69E781 !default;
-$green-shade-4: #8DF690 !default;
-$green-shade-3: #ABFFAD !default;
-$green-shade-2: #C7FFC7 !default;
-$green-shade-1: #E2FFE2 !default;
+$green-shade-8: #009D73 !default;
+$green-shade-7: #00AF80 !default;
+$green-shade-6: #2BC48A !default;
+$green-shade-5: #4AD395 !default;
+$green-shade-4: #69E781 !default;
+$green-shade-3: #8DF690 !default;
+$green-shade-2: #ABFFAD !default;
+$green-shade-1: #C7FFC7 !default;
 
 // Green named
-$green-jade: 			#00AF80 !default;
-$green-shamrock: 		#2BC48A !default;
-$green-jungle: 			#4AD295 !default;
-$green-flaticon:		#69E781 !default;
-$green-pepinen: 		#8DF690 !default;
-$green-snowy: 			#ABFFAD !default;
-$green-hint: 			#C7FFC7 !default;
-$green-sugar: 			#E2FFE2 !default;
+$green-jade: 			#009D73 !default;
+$green-shamrock: 		#00AF80 !default;
+$green-jungle: 			#2BC48A !default;
+$green-flaticon:		#4AD395 !default;
+$green-pepinen: 		#69E781 !default;
+$green-snowy: 			#8DF690 !default;
+$green-hint: 			#ABFFAD !default;
+$green-sugar: 			#C7FFC7 !default;
 
 // Yellow
-$yellow-shade-8: #EB7D16 !default;
-$yellow-shade-7: #F69110 !default;
-$yellow-shade-6: #FCA120 !default;
-$yellow-shade-5: #FFB229 !default;
+$yellow-shade-8: #DD6D10 !default;
+$yellow-shade-7: #EB7D16 !default;
+$yellow-shade-6: #F69110 !default;
+$yellow-shade-5: #FCA120 !default;
 $yellow-shade-4: #FCBD24 !default;
 $yellow-shade-3: #FCD250 !default;
 $yellow-shade-2: #FCDB7E !default;
 $yellow-shade-1: #FFEEB6 !default;
 
 // Yellow named
-$yellow-tango: 			#EB7D16 !default;
-$yellow-poppy: 			#F69110 !default;
-$yellow-sin: 			#FCA120 !default;
-$yellow-premium:		#FFB229 !default;
+$yellow-tango: 			#DD6D10 !default;
+$yellow-poppy: 			#EB7D16 !default;
+$yellow-sin: 			#F69110 !default;
+$yellow-premium:		#FCA120 !default;
 $yellow-bea:	 		#FCBD24 !default;
 $yellow-dandelion: 		#FCD250 !default;
 $yellow-paco:	 		#FCDB7E !default;
@@ -147,7 +148,7 @@ $color-secondary: $gray-shade-1 !default;
 $color-light: #fff !default;
 $color-heading: $gray-shade-8 !default;
 $color-text: $gray-shade-7 !default;
-$color-premium: #FFB229 !default;
+$color-premium: #FCA120 !default;
 
 $social-behance: #1769ff !default;
 $social-dribbble: #ea4c89 !default;
@@ -162,12 +163,21 @@ $social-youtube: #bb0000 !default;
 $social-whatsapp: #25d366 !default;
 $social-telegram: #0088cc !default;
 
+<<<<<<< Updated upstream
 $state-green: $green-jungle !default;
 $state-blue: $blue-freepik !default;
 $state-gray: $gray-bali !default;
 $state-red: $red-muri !default;
 $state-yellow: $yellow-premium !default;
 $state-purple: $purple-piktab !default;
+=======
+$state-green: #69E781 !default;
+$state-blue: #1273EB !default;
+$state-gray: #869FB2 !default;
+$state-red: #FB5252 !default;
+$state-yellow: #FCA120 !default;
+$state-purple: #4949E7 !default;
+>>>>>>> Stashed changes
 
 $global-colors: ( 
 	background:(
