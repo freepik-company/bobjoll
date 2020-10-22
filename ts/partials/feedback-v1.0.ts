@@ -34,6 +34,7 @@ export interface UserSettings {
     id?: string;
     action?: string;
     method?: 'POST' | 'GET';
+    headers?: any;
     text: {
         close: string;
         submit: string;
@@ -465,6 +466,7 @@ export default class Feedback extends KEventTarget {
                     const requestOptions: AxiosRequestConfig = {
                         data: data,
                         method: this.settings.method,
+                        headers: this.settings.headers,
                         withCredentials: true 
                     };
                     let request: AxiosResponse = await axios(this.settings.action, requestOptions);
