@@ -126,6 +126,7 @@ export interface UserSettings {
         connected_facebook?: boolean;
         connected_twitter?: boolean;
     } | null;
+    callbackCSRF?: Function;
 }
 
 export interface Settings extends UserSettings {
@@ -468,11 +469,17 @@ export default class Feedback extends KEventTarget {
                         method: this.settings.method,
                         withCredentials: true 
                     };
+
                     if (this.settings.headers) { 
                         requestOptions['headers'] = this.settings.headers;
                     }
+                    
                     let request: AxiosResponse = await axios(this.settings.action, requestOptions);
                     let response = request.data;
+
+                    if (this.settings.callbackCSRF && response.csrfToken) {
+                        this.settings.callbackCSRF(response.csrfToken);
+                    }
 
                     if (id) {
                         let msg = option.success_msg || this.settings.default.success_msg;
