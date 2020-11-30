@@ -101,6 +101,7 @@ export interface UserSettings {
         }[];
         link?: {
             class?: string;
+            extraAttr?: string;
             icon?: string;
             href: string;
             target?: string;
