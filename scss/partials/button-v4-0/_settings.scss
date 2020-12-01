@@ -90,7 +90,7 @@ $defaultColors: (
 			ignoreStyles: (),
 			default:
 				(
-					background: color('jungle', 'green'),
+					background: color('flaticon', 'green'),
 					background-outline: transparent,
 					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('jungle', 'green'),
 					color-outline: color('jungle', 'green'),
@@ -98,7 +98,7 @@ $defaultColors: (
 				),
 			hover:
 				(
-					background: color('shamrock', 'green'),
+					background: color('jungle', 'green'),
 					background-outline: color('shamrock', 'green', .1),
 					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('shamrock', 'green'),
 					color-outline: color('shamrock', 'green'),
@@ -106,7 +106,7 @@ $defaultColors: (
 				),
 			active:
 				(
-					background: color('jade', 'green'),
+					background: color('shamrock', 'green'),
 					background-outline: color('shamrock', 'green', .2),
 					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('jade', 'green'),
 					color-outline: color('jade', 'green'),
