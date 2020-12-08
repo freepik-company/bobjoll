@@ -1,471 +1,521 @@
 $defaultBorderWidth: 2px;
 
 $defaultColors: (
-	blue:
-		(
-			ignoreStyles: (),
-			default:
-				(
-					background: color('freepik', 'blue'),
-					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('freepik', 'blue'),
-					color-outline: color('freepik', 'blue'),
-					color: $color-light
-				),
-			hover:
-				(
-					background: color('science', 'blue'),
-					background-outline: color('science', 'blue', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('science', 'blue'),
-					color-outline: color('science', 'blue'),
-					color: $color-light
-				),
-			active:
-				(
-					background: color('endeavour', 'blue'),
-					background-outline: color('science', 'blue', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('endeavour', 'blue'),
-					color-outline: color('endeavour', 'blue'),
-					color: $color-light
-				)
-		),
-	yellow:
-		(
-			ignoreStyles: (),
-			default:
-				(
-					background: color('premium', 'yellow'),
-					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('premium', 'yellow'),
-					color-outline: color('premium', 'yellow'),
-					color: $color-light
-				),
-			hover:
-				(
-					background: color('sin', 'yellow'),
-					background-outline: color('sin', 'yellow', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('sin', 'yellow'),
-					color-outline: color('sin', 'yellow'),
-					color: $color-light
-				),
-			active:
-				(
-					background: color('poppy', 'yellow'),
-					background-outline: color('sin', 'yellow', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('poppy', 'yellow'),
-					color-outline: color('poppy', 'yellow'),
-					color: $color-light
-				)
-		),
-	red:
-		(
-			ignoreStyles: (),
-			default:
-				(
-					background: color('muri', 'red'),
-					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('muri', 'red'),
-					color-outline: color('muri', 'red'),
-					color: $color-light
-				),
-			hover:
-				(
-					background: color('bloody', 'red'),
-					background-outline: color('bloody', 'red', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bloody', 'red'),
-					color-outline: color('bloody', 'red'),
-					color: $color-light
-				),
-			active:
-				(
-					background: color('valencia', 'red'),
-					background-outline: color('bloody', 'red', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('valencia', 'red'),
-					color-outline: color('valencia', 'red'),
-					color: $color-light
-				)
-		),
-	green:
-		(
-			ignoreStyles: (),
-			default:
-				(
-					background: color('flaticon', 'green'),
-					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('jungle', 'green'),
-					color-outline: color('jungle', 'green'),
-					color: $color-light
-				),
-			hover:
-				(
-					background: color('jungle', 'green'),
-					background-outline: color('shamrock', 'green', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('shamrock', 'green'),
-					color-outline: color('shamrock', 'green'),
-					color: $color-light
-				),
-			active:
-				(
-					background: color('shamrock', 'green'),
-					background-outline: color('shamrock', 'green', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('jade', 'green'),
-					color-outline: color('jade', 'green'),
-					color: $color-light
-				)
-		),
-	purple:
-		(
-			ignoreStyles: (),
-			default:
-				(
-					background: color('piktab', 'purple'),
-					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('piktab', 'purple'),
-					color-outline: color('piktab', 'purple'),
-					color: $color-light
-				),
-			hover:
-				(
-					background: color('spiritual', 'purple'),
-					background-outline: color('spiritual', 'purple', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('spiritual', 'purple'),
-					color-outline: color('spiritual', 'purple'),
-					color: $color-light
-				),
-			active:
-				(
-					background: color('governor', 'purple'),
-					background-outline: color('spiritual', 'purple', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('governor', 'purple'),
-					color-outline: color('governor', 'purple'),
-					color: $color-light
-				)
-		),
-	dark-blue:
-		(
-			ignoreStyles: (),
-			default:
-				(
-					background: color('biscay', 'dark-blue'),
-					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('biscay', 'dark-blue'),
-					color-outline: color('biscay', 'dark-blue'),
-					color: $color-light
-				),
-			hover:
-				(
-					background: color('fc', 'dark-blue'),
-					background-outline: color('fc', 'dark-blue', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('fc', 'dark-blue'),
-					color-outline: color('fc', 'dark-blue'),
-					color: $color-light
-				),
-			active:
-				(
-					background: color('fc', 'dark-blue'),
-					background-outline: color('fc', 'dark-blue', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('fc', 'dark-blue'),
-					color-outline: color('fc', 'dark-blue'),
-					color: $color-light
-				)
-		),
-	white:
-		(
-			ignoreStyles: ('outline'),
-			default: (
-				background: $color-light, 
-				box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
-				color: color('oxford', 'gray')
-			),
-			hover: (
-				background: color('heather', 'gray', .1),
-				box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
-				color: color('oxford', 'gray')
-			),
-			active: (
-				background: color('heather', 'gray', .2),
-				box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
-				color: color('oxford', 'gray')
-			)
-		),
-	gray:
-		(
-			ignoreStyles: ('flat'),
-			default:
-				(
-					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
-					color-outline: color('bali', 'gray'),
-					color: color('oxford', 'gray')
-				),
-			hover:
-				(
-					background-outline: color('bali', 'gray', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
-					color-outline: color('bali', 'gray'),
-					color: color('oxford', 'gray')
-				),
-			active:
-				(
-					background-outline: color('bali', 'gray', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
-					color-outline: color('bali', 'gray'),
-					color: color('oxford', 'gray')
-				)
-		),
-	inverted:
-		(
-			ignoreStyles: ('flat'),
-			default:
-				(
-					background-outline: transparent,
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('light', 'background'),
-					color-outline: color('light', 'background'),
-					color: color('text-inverted', 'general')
-				),
-			hover:
-				(
-					background-outline: color('light', 'background', .1),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('light', 'background'),
-					color-outline: color('light', 'background'),
-					color: color('text-inverted', 'general')
-				),
-			active:
-				(
-					background-outline: color('light', 'background', .2),
-					box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('light', 'background'),
-					color-outline: color('light', 'background'),
-					color: color('text-inverted', 'general')
-				)
-		),
-	facebook:
-		(
-			ignoreStyles: ('outline'),
-			default: (background: color('facebook', 'social'), color: $color-light),
-			hover: (background: color('facebook', 'social', 1, 1.5), color: $color-light),
-			active: (background: color('facebook', 'social', 1, 3), color: $color-light)
-		),
-	twitter:
-		(
-			ignoreStyles: ('outline'),
-			default: (background: color('twitter', 'social'), color: $color-light),
-			hover: (background: color('twitter', 'social', 1, 1.5), color: $color-light),
-			active: (background: color('twitter', 'social', 1, 3), color: $color-light)
-		),
-	instagram:
-		(
-			ignoreStyles: ('outline'),
-			default:
-				(
-					background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
-					color: $color-light
-				),
-			hover:
-				(
-					background: linear-gradient(29.61deg, darken(#f38334, 10%) 0%, darken(#da2e7d, 10%) 50.39%, darken(#6b54c6, 10%)
-								100%),
-					color: $color-light
-				),
-			active:
-				(
-					background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
-					color: $color-light
-				),
-			propertiesIcon: (margin: 0px)
-		),
-	behance:
-		(
-			ignoreStyles: ('outline'),
-			default: (background: color('behance', 'social'), color: $color-light),
-			hover: (background: color('behance', 'social', 1, 1.5), color: $color-light),
-			active: (background: color('behance', 'social', 1, 3), color: $color-light)
-		),
-	dribbble:
-		(
-			ignoreStyles: ('outline'),
-			default: (background: color('dribbble', 'social'), color: $color-light),
-			hover: (background: color('dribbble', 'social', 1, 1.5), color: $color-light),
-			active: (background: color('dribbble', 'social', 1, 3), color: $color-light)
-		),
-	google:
-		(
-			ignoreStyles: ('outline'),
-			default: (background: color('google', 'social'), color: $color-light),
-			hover: (background: color('google', 'social', 1, 1.5), color: $color-light),
-			active: (background: color('google', 'social', 1, 3), color: $color-light)
-		),
-	pinterest:
-		(
-			ignoreStyles: ('outline'),
-			default: (background: color('pinterest', 'social'), color: $color-light),
-			hover: (background: color('pinterest', 'social', 1, 1.5), color: $color-light),
-			active: (background: color('pinterest', 'social', 1, 3), color: $color-light)
-		),
-	youtube:
-		(
-			ignoreStyles: ('outline'),
-			default: (background: color('youtube', 'social'), color: $color-light),
-			hover: (background: color('youtube', 'social', 1, 1.5), color: $color-light),
-			active: (background: color('youtube', 'social', 1, 3), color: $color-light)
-		),
-	link: (
-		ignoreStyles: ('outline'),
-		default: (
-			background: transparent,
-			color: color('freepik', 'blue'),
-		),
-		hover: (
-			background: color('blackale', 'dark-blue', .1),
-			color: color('freepik', 'blue'),
-		),
-		active: (
-			background: color('blackale', 'dark-blue', .1),
-			color: color('freepik', 'blue'),
-		)
-	),
-	link-color: (
-		ignoreStyles: ('outline'),
-		default: (
-			background: transparent,
-			color: color('oxford', 'gray'),
-		),
-		hover: (
-			background: color('blackale', 'dark-blue', .1),
-			color: color('freepik', 'blue'),
-		),
-		active: (
-			background: color('blackale', 'dark-blue', .1),
-			color: color('freepik', 'blue'),
-		)
-	),
-	link-dark: (
-		ignoreStyles: ('outline'),
-		default: (
-			background: transparent,
-			color: color('oxford', 'gray'),
-		),
-		hover: (
-			background: color('blackale', 'dark-blue', .1),
-			color: color('oxford', 'gray'),
-		),
-		active: (
-			background: color('blackale', 'dark-blue', .1),
-			color: color('oxford', 'gray'),
-		)
-	),
-	link-inverted: (
-		ignoreStyles: ('outline'),
-		default: (
-			background: transparent,
-			color: color('text-inverted', 'general'),
-		),
-		hover: (
-			background: color('light', 'background', .2),
-			color: color('text-inverted', 'general'),
-		),
-		active: (
-			background: color('light', 'background', .2),
-			color: color('text-inverted', 'general'),
-		)
-	),
+    blue: (
+        ignoreStyles: (),
+        default: (
+            background: color('freepik', 'blue'),
+            background-outline: transparent,
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('freepik', 'blue'),
+            color-outline: color('freepik', 'blue'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('science', 'blue'),
+            background-outline: color('science', 'blue', 0.1),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('science', 'blue'),
+            color-outline: color('science', 'blue'),
+            color: $color-light,
+        ),
+        active: (
+            background: color('endeavour', 'blue'),
+            background-outline: color('science', 'blue', 0.2),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('endeavour', 'blue'),
+            color-outline: color('endeavour', 'blue'),
+            color: $color-light,
+        ),
+    ),
+    yellow: (
+        ignoreStyles: (),
+        default: (
+            background: color('premium', 'yellow'),
+            background-outline: transparent,
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('premium', 'yellow'),
+            color-outline: color('premium', 'yellow'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('sin', 'yellow'),
+            background-outline: color('sin', 'yellow', 0.1),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('sin', 'yellow'),
+            color-outline: color('sin', 'yellow'),
+            color: $color-light,
+        ),
+        active: (
+            background: color('poppy', 'yellow'),
+            background-outline: color('sin', 'yellow', 0.2),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('poppy', 'yellow'),
+            color-outline: color('poppy', 'yellow'),
+            color: $color-light,
+        ),
+    ),
+    red: (
+        ignoreStyles: (),
+        default: (
+            background: color('muri', 'red'),
+            background-outline: transparent,
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('muri', 'red'),
+            color-outline: color('muri', 'red'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('bloody', 'red'),
+            background-outline: color('bloody', 'red', 0.1),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bloody', 'red'),
+            color-outline: color('bloody', 'red'),
+            color: $color-light,
+        ),
+        active: (
+            background: color('valencia', 'red'),
+            background-outline: color('bloody', 'red', 0.2),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('valencia', 'red'),
+            color-outline: color('valencia', 'red'),
+            color: $color-light,
+        ),
+    ),
+    green: (
+        ignoreStyles: (),
+        default: (
+            background: color('flaticon', 'green'),
+            background-outline: transparent,
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('jungle', 'green'),
+            color-outline: color('jungle', 'green'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('jungle', 'green'),
+            background-outline: color('shamrock', 'green', 0.1),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('shamrock', 'green'),
+            color-outline: color('shamrock', 'green'),
+            color: $color-light,
+        ),
+        active: (
+            background: color('shamrock', 'green'),
+            background-outline: color('shamrock', 'green', 0.2),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('jade', 'green'),
+            color-outline: color('jade', 'green'),
+            color: $color-light,
+        ),
+    ),
+    purple: (
+        ignoreStyles: (),
+        default: (
+            background: color('piktab', 'purple'),
+            background-outline: transparent,
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('piktab', 'purple'),
+            color-outline: color('piktab', 'purple'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('spiritual', 'purple'),
+            background-outline: color('spiritual', 'purple', 0.1),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('spiritual', 'purple'),
+            color-outline: color('spiritual', 'purple'),
+            color: $color-light,
+        ),
+        active: (
+            background: color('governor', 'purple'),
+            background-outline: color('spiritual', 'purple', 0.2),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('governor', 'purple'),
+            color-outline: color('governor', 'purple'),
+            color: $color-light,
+        ),
+    ),
+    dark-blue: (
+        ignoreStyles: (),
+        default: (
+            background: color('biscay', 'dark-blue'),
+            background-outline: transparent,
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('biscay', 'dark-blue'),
+            color-outline: color('biscay', 'dark-blue'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('fc', 'dark-blue'),
+            background-outline: color('fc', 'dark-blue', 0.1),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('fc', 'dark-blue'),
+            color-outline: color('fc', 'dark-blue'),
+            color: $color-light,
+        ),
+        active: (
+            background: color('fc', 'dark-blue'),
+            background-outline: color('fc', 'dark-blue', 0.2),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('fc', 'dark-blue'),
+            color-outline: color('fc', 'dark-blue'),
+            color: $color-light,
+        ),
+    ),
+    white: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: $color-light,
+            box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+        hover: (
+            background: color('heather', 'gray', 0.1),
+            box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+        active: (
+            background: color('heather', 'gray', 0.2),
+            box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+    ),
+    gray: (
+        default: (
+            background: color('mystic', 'gray'),
+            background-outline: transparent,
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+            color-outline: color('bali', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+        hover: (
+            background: color('gaysir', 'gray'),
+            background-outline: color('bali', 'gray', 0.1),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+            color-outline: color('bali', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+        active: (
+            background: color('heather', 'gray'),
+            background-outline: color('bali', 'gray', 0.2),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+            color-outline: color('bali', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+    ),
+    inverted: (
+        ignoreStyles: (
+            'flat',
+        ),
+        default: (
+            background-outline: transparent,
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('light', 'background'),
+            color-outline: color('light', 'background'),
+            color: color('text-inverted', 'general'),
+        ),
+        hover: (
+            background-outline: color('light', 'background', 0.1),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('light', 'background'),
+            color-outline: color('light', 'background'),
+            color: color('text-inverted', 'general'),
+        ),
+        active: (
+            background-outline: color('light', 'background', 0.2),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('light', 'background'),
+            color-outline: color('light', 'background'),
+            color: color('text-inverted', 'general'),
+        ),
+    ),
+    facebook: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: color('facebook', 'social'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('facebook', 'social', 1, 1.5),
+            color: $color-light,
+        ),
+        active: (
+            background: color('facebook', 'social', 1, 3),
+            color: $color-light,
+        ),
+    ),
+    twitter: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: color('twitter', 'social'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('twitter', 'social', 1, 1.5),
+            color: $color-light,
+        ),
+        active: (
+            background: color('twitter', 'social', 1, 3),
+            color: $color-light,
+        ),
+    ),
+    instagram: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
+            color: $color-light,
+        ),
+        hover: (
+            background: linear-gradient(29.61deg, darken(#f38334, 10%) 0%, darken(#da2e7d, 10%) 50.39%, darken(#6b54c6, 10%) 100%),
+            color: $color-light,
+        ),
+        active: (
+            background: linear-gradient(29.61deg, #f38334 0%, #da2e7d 50.39%, #6b54c6 100%),
+            color: $color-light,
+        ),
+        propertiesIcon: (
+            margin: 0px,
+        ),
+    ),
+    behance: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: color('behance', 'social'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('behance', 'social', 1, 1.5),
+            color: $color-light,
+        ),
+        active: (
+            background: color('behance', 'social', 1, 3),
+            color: $color-light,
+        ),
+    ),
+    dribbble: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: color('dribbble', 'social'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('dribbble', 'social', 1, 1.5),
+            color: $color-light,
+        ),
+        active: (
+            background: color('dribbble', 'social', 1, 3),
+            color: $color-light,
+        ),
+    ),
+    google: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: color('google', 'social'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('google', 'social', 1, 1.5),
+            color: $color-light,
+        ),
+        active: (
+            background: color('google', 'social', 1, 3),
+            color: $color-light,
+        ),
+    ),
+    pinterest: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: color('pinterest', 'social'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('pinterest', 'social', 1, 1.5),
+            color: $color-light,
+        ),
+        active: (
+            background: color('pinterest', 'social', 1, 3),
+            color: $color-light,
+        ),
+    ),
+    youtube: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: color('youtube', 'social'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('youtube', 'social', 1, 1.5),
+            color: $color-light,
+        ),
+        active: (
+            background: color('youtube', 'social', 1, 3),
+            color: $color-light,
+        ),
+    ),
+    link: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: transparent,
+            color: color('freepik', 'blue'),
+        ),
+        hover: (
+            background: color('blackale', 'dark-blue', 0.1),
+            color: color('freepik', 'blue'),
+        ),
+        active: (
+            background: color('blackale', 'dark-blue', 0.1),
+            color: color('freepik', 'blue'),
+        ),
+    ),
+    link-color: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: transparent,
+            color: color('oxford', 'gray'),
+        ),
+        hover: (
+            background: color('blackale', 'dark-blue', 0.1),
+            color: color('freepik', 'blue'),
+        ),
+        active: (
+            background: color('blackale', 'dark-blue', 0.1),
+            color: color('freepik', 'blue'),
+        ),
+    ),
+    link-dark: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: transparent,
+            color: color('oxford', 'gray'),
+        ),
+        hover: (
+            background: color('blackale', 'dark-blue', 0.1),
+            color: color('oxford', 'gray'),
+        ),
+        active: (
+            background: color('blackale', 'dark-blue', 0.1),
+            color: color('oxford', 'gray'),
+        ),
+    ),
+    link-inverted: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: transparent,
+            color: color('text-inverted', 'general'),
+        ),
+        hover: (
+            background: color('light', 'background', 0.2),
+            color: color('text-inverted', 'general'),
+        ),
+        active: (
+            background: color('light', 'background', 0.2),
+            color: color('text-inverted', 'general'),
+        ),
+    ),
 );
 $buttonGlobalColors: () !default;
 $buttonDefaultColors: map-extend($defaultColors, $buttonGlobalColors);
 $defaultSizes: (
-	xs:
-		(
-			propertiesButton:
-				(
-					padding: 0 $base-spacing,
-					min-width: $extra-small-element-height,
-					height: $extra-small-element-height,
-					font-size: $extra-small-font-size,
-					line-height: $extra-small-element-height
-				),
-			propertiesIcon: (font-size: $extra-small-icon-width)
-		),
-	sm:
-		(
-			propertiesButton:
-				(
-					padding: 0 $base-spacing,
-					min-width: $small-element-height,
-					height: $small-element-height,
-					font-size: $small-font-size,
-					line-height: $small-element-height
-				),
-			propertiesIcon: (font-size: $base-icon-width)
-		),
-	md:
-		(
-			propertiesButton:
-				(
-					padding: 0 $large-spacing,
-					min-width: $base-element-height,
-					height: $base-element-height,
-					font-size: $base-font-size,
-					line-height: $base-element-height
-				),
-			propertiesIcon: (font-size: $base-large-icon-width)
-		),
-	lg:
-		(
-			propertiesButton:
-				(
-					padding: 0 $large-spacing,
-					min-width: $large-element-height,
-					height: $large-element-height,
-					font-size: $large-font-size,
-					line-height: $large-element-height
-				),
-			propertiesIcon: (font-size: $large-icon-width)
-		),
-	xl:
-		(
-			propertiesButton:
-				(
-					padding: 0 $large-spacing,
-					min-width: $extra-large-element-height,
-					height: $extra-large-element-height,
-					font-size: $large-font-size,
-					line-height: $extra-large-element-height
-				),
-			propertiesIcon: (font-size: $extra-large-icon-width)
-		)
+    xs: (
+        propertiesButton: (
+            padding: 0 $base-spacing,
+            min-width: $extra-small-element-height,
+            height: $extra-small-element-height,
+            font-size: $extra-small-font-size,
+            line-height: $extra-small-element-height,
+        ),
+        propertiesIcon: (
+            font-size: $extra-small-icon-width,
+        ),
+    ),
+    sm: (
+        propertiesButton: (
+            padding: 0 $base-spacing,
+            min-width: $small-element-height,
+            height: $small-element-height,
+            font-size: $small-font-size,
+            line-height: $small-element-height,
+        ),
+        propertiesIcon: (
+            font-size: $base-icon-width,
+        ),
+    ),
+    md: (
+        propertiesButton: (
+            padding: 0 $large-spacing,
+            min-width: $base-element-height,
+            height: $base-element-height,
+            font-size: $base-font-size,
+            line-height: $base-element-height,
+        ),
+        propertiesIcon: (
+            font-size: $base-large-icon-width,
+        ),
+    ),
+    lg: (
+        propertiesButton: (
+            padding: 0 $large-spacing,
+            min-width: $large-element-height,
+            height: $large-element-height,
+            font-size: $large-font-size,
+            line-height: $large-element-height,
+        ),
+        propertiesIcon: (
+            font-size: $large-icon-width,
+        ),
+    ),
+    xl: (
+        propertiesButton: (
+            padding: 0 $large-spacing,
+            min-width: $extra-large-element-height,
+            height: $extra-large-element-height,
+            font-size: $large-font-size,
+            line-height: $extra-large-element-height,
+        ),
+        propertiesIcon: (
+            font-size: $extra-large-icon-width,
+        ),
+    ),
 );
 $buttonGlobalSizes: () !default;
 $buttonDefaultSizes: map-extend($defaultSizes, $buttonGlobalSizes);
 $defaultStyles: (
-	flat: (
-		background: 'background', 
-		box-shadow: 'box-shadow', 
-		color: 'color', 
-		line-height: 'line-height'
-	),
-	outline:(
-		background: 'background-outline',
-		box-shadow: 'box-shadow-outline',
-		color: 'color-outline',
-		line-height: 'line-height-outline'
-	)
+    flat: (
+        background: 'background',
+        box-shadow: 'box-shadow',
+        color: 'color',
+        line-height: 'line-height',
+    ),
+    outline: (
+        background: 'background-outline',
+        box-shadow: 'box-shadow-outline',
+        color: 'color-outline',
+        line-height: 'line-height-outline',
+    ),
 );
 $buttonGlobalStyles: () !default;
 $buttonDefaultStyles: map-extend($defaultStyles, $buttonGlobalStyles);
 $defaultSettings: (
-	borderRadius: $base-border-radius,
-	borderWidth: 2px,
-	borderStyle: solid,
-	padding: 0 $base-spacing,
-	color: $buttonDefaultColors,
-	defaultColor: blue,
-	defaultPrefix: 'button',
-	defaultSize: 'md',
-	defaultStyle: 'flat',
-	defaultFontWeight: 600,
-	defaultTiming: linear,
-	defaultDuration: 250ms,
-	size: $buttonDefaultSizes,
-	style: $buttonDefaultStyles
+    borderRadius: $base-border-radius,
+    borderWidth: 2px,
+    borderStyle: solid,
+    padding: 0 $base-spacing,
+    color: $buttonDefaultColors,
+    defaultColor: blue,
+    defaultPrefix: 'button',
+    defaultSize: 'md',
+    defaultStyle: 'flat',
+    defaultFontWeight: 600,
+    defaultTiming: linear,
+    defaultDuration: 250ms,
+    size: $buttonDefaultSizes,
+    style: $buttonDefaultStyles,
 );
 
 $buttonSettings: $defaultSettings !default;
