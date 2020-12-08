@@ -150,7 +150,7 @@ $defaultColors: (
             'outline',
         ),
         default: (
-            background: $color-light,
+            background: transparent,
             box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
             color: color('oxford', 'gray'),
         ),
@@ -225,6 +225,40 @@ $defaultColors: (
         ),
         active: (
             background: color('facebook', 'social', 1, 3),
+            color: $color-light,
+        ),
+    ),
+    whatsapp: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: color('whatsapp', 'social'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('whatsapp', 'social', 1, 1.5),
+            color: $color-light,
+        ),
+        active: (
+            background: color('whatsapp', 'social', 1, 3),
+            color: $color-light,
+        ),
+    ),
+    telegram: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: color('telegram', 'social'),
+            color: $color-light,
+        ),
+        hover: (
+            background: color('telegram', 'social', 1, 1.5),
+            color: $color-light,
+        ),
+        active: (
+            background: color('telegram', 'social', 1, 3),
             color: $color-light,
         ),
     ),
@@ -304,16 +338,19 @@ $defaultColors: (
             'outline',
         ),
         default: (
-            background: color('google', 'social'),
-            color: $color-light,
+            background: transparent,
+            box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
+            color: color('oxford', 'gray'),
         ),
         hover: (
-            background: color('google', 'social', 1, 1.5),
-            color: $color-light,
+            background: color('heather', 'gray', 0.1),
+            box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
+            color: color('oxford', 'gray'),
         ),
         active: (
-            background: color('google', 'social', 1, 3),
-            color: $color-light,
+            background: color('heather', 'gray', 0.2),
+            box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
+            color: color('oxford', 'gray'),
         ),
     ),
     pinterest: (
