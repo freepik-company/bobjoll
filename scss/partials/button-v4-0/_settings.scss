@@ -155,12 +155,12 @@ $defaultColors: (
             color: color('oxford', 'gray'),
         ),
         hover: (
-            background: color('heather', 'gray', 0.1),
+            background: color('aqua', 'gray', 0.1),
             box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
             color: color('oxford', 'gray'),
         ),
         active: (
-            background: color('heather', 'gray', 0.2),
+            background: color('hades', 'gray', 0.2),
             box-shadow: inset 0 0 0 $defaultBorderWidth color('gaysir', 'gray'),
             color: color('oxford', 'gray'),
         ),
