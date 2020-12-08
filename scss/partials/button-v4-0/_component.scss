@@ -1,275 +1,304 @@
-@import "settings";
+@import 'settings';
 
 @if $button-v4-0 {
-	$defaultSize: map-get($defaultSettings, 'defaultSize');
-	$defaultStyle: map-get($defaultSettings, 'defaultStyle');
-	$defaultColor: map-get($defaultSettings, 'defaultColor');
-	$defaultStyles: map-get($buttonStyles, $defaultStyle);
+    $defaultSize: map-get($defaultSettings, 'defaultSize');
+    $defaultStyle: map-get($defaultSettings, 'defaultStyle');
+    $defaultColor: map-get($defaultSettings, 'defaultColor');
+    $defaultStyles: map-get($buttonStyles, $defaultStyle);
 
-	#{$all-buttons} {
-		@include prefixer(appearance, none, webkit moz ms);
-		margin: 0;
-		padding: 0;
-		border: none;
-		background: none;
-		user-select: none;
-		cursor: pointer;
-	}
-
-	.#{$defaultPrefix} {
-		position: relative;
-		display: inline-block;
-		border: none;
-		border-radius: $buttonBorderRadius;
-		padding: $buttonPadding;
-		text-align: center;
-		font-weight: $defaultFontWeight;
-		text-decoration: none;
-		cursor: pointer;
-
-		@each $name, $value in map-get($defaultSizeMap, "propertiesButton") {
-			#{$name}: #{$value};
-		}
-
-		@each $name, $map in $defaultColorMap {
-			@if ($name == "default") {
-				transition: $defaultDuration $defaultTiming;
-				@each $propertyRealName, $propertyKey in $defaultStyles {
-					@each $name, $value in $map {
-						@if ($name == $propertyRealName) {
-							#{$name}: #{$value};
-						}
-					}
-				}
-			}
-
-			@if ($name == "hover") {
-				&:hover {
-					@each $name, $value in $map {
-						#{$name}: #{$value};
-					}
-				}
-			}
-
-			@if ($name == "active") {
-				&.active {
-					@each $name, $value in $map {
-						#{$name}: #{$value};
-					}
-				}
-			}
-		}
-
-		&::after {
-			display: table;
-			clear: both;
-			content: '';
+    #{$all-buttons} {
+        @include prefixer(appearance, none, webkit moz ms);
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: none;
+        user-select: none;
+        cursor: pointer;
     }
 
-		&--auto {
-			@include getComponent(#{$defaultPrefix}--auto);
-		}
+    .#{$defaultPrefix} {
+        position: relative;
+        display: inline-block;
+        border: none;
+        border-radius: $buttonBorderRadius;
+        padding: $buttonPadding;
+        text-align: center;
+        font-weight: $defaultFontWeight;
+        text-decoration: none;
+        cursor: pointer;
 
-		&--state {
-			@include getComponent(#{$defaultPrefix}--state);
-		}
+        @each $name, $value in map-get($defaultSizeMap, 'propertiesButton') {
+            #{$name}: #{$value};
+        }
 
-		&--icon {
-			@include getComponent(#{$defaultPrefix}--icon);
-		}
+        @each $name, $map in $defaultColorMap {
+            @if ($name == 'default') {
+                transition: $defaultDuration $defaultTiming;
+                @each $propertyRealName, $propertyKey in $defaultStyles {
+                    @each $name, $value in $map {
+                        @if ($name == $propertyRealName) {
+                            #{$name}: #{$value};
+                        }
+                    }
+                }
+            }
 
-		&--fullwidth {
-			@include getComponent(#{$defaultPrefix}--fullwidth);
-		}
+            @if ($name == 'hover') {
+                &:hover {
+                    @each $name, $value in $map {
+                        #{$name}: #{$value};
+                    }
+                }
+            }
 
-		&.disabled {
-			opacity: .4;
-			pointer-events: none;
-		}
+            @if ($name == 'active') {
+                &.active {
+                    @each $name, $value in $map {
+                        #{$name}: #{$value};
+                    }
+                }
+            }
+        }
 
-		@each $size, $map in $buttonSizes {
-			&--#{$size} {
-				@include getComponent(#{$defaultPrefix}--#{$size});
-			}
-		}
+        &::after {
+            display: table;
+            clear: both;
+            content: '';
+        }
 
-		@each $style, $map in $buttonStyles {
-			&--#{$style} {
-				@include getComponent(#{$defaultPrefix}--#{$style});
-			}
-		}
+        &--auto {
+            @include getComponent(#{$defaultPrefix}--auto);
+        }
 
-		span ~ i,
-		i ~ span {
-			margin-left: $small-spacing;
-		}
+        &--state {
+            @include getComponent(#{$defaultPrefix}--state);
+        }
 
-		span {
-			float: left;
-		}
+        &--icon {
+            @include getComponent(#{$defaultPrefix}--icon);
+        }
 
-		i {
-			float: left;
-			color: inherit !important;
-			fill: inherit !important;
+        &--fullwidth {
+            @include getComponent(#{$defaultPrefix}--fullwidth);
+        }
 
-			@if $icon-v2-0 {
-				@extend %icon;
-			}
+        &.disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
 
-			@each $name, $value in map-get($defaultSizeMap, "propertiesIcon") {
-				#{$name}: #{$value};
-			}
+        @each $size, $map in $buttonSizes {
+            &--#{$size} {
+                @include getComponent(#{$defaultPrefix}--#{$size});
+            }
+        }
 
-			&::before {
-				display: block;
-			}
-		}
-  }
-  
-  @include setComponent(#{$defaultPrefix}--auto) {
-    height: auto !important;
-    padding-top: $small-spacing;
-    padding-bottom: $small-spacing;
-    line-height: 1 !important;
+        @each $style, $map in $buttonStyles {
+            &--#{$style} {
+                @include getComponent(#{$defaultPrefix}--#{$style});
+            }
+        }
 
-    span {
-      float: none !important;
+        span ~ i,
+        i ~ span {
+            margin-left: $small-spacing;
+        }
+
+        span {
+            float: left;
+        }
+
+        i {
+            float: left;
+            color: inherit !important;
+            fill: inherit !important;
+
+            @if $icon-v2-0 {
+                @extend %icon;
+            }
+
+            @each $name, $value in map-get($defaultSizeMap, 'propertiesIcon') {
+                #{$name}: #{$value};
+            }
+
+            &::before {
+                display: block;
+            }
+        }
     }
-  }
 
-	@include setComponent(#{$defaultPrefix}--state) {
-		&:not(.active) .state--inactive,
-		&.active .state--active {
-			display: block;
-		}
+    @include setComponent(#{$defaultPrefix}--auto) {
+        height: auto !important;
+        padding-top: $small-spacing;
+        padding-bottom: $small-spacing;
+        line-height: 1 !important;
 
-		.state--active,
-		.state--inactive {
-			display: none;
-		}
-	}
+        span {
+            float: none !important;
+        }
+    }
 
-	@include setComponent(#{$defaultPrefix}--icon) {
-		padding: 0 !important;
+    @include setComponent(#{$defaultPrefix}--state) {
+        &:not(.active) .state--inactive,
+        &.active .state--active {
+            display: block;
+        }
 
-		i {
-			float: inherit !important;
-			margin: 0 auto;
-		}
-	}
+        .state--active,
+        .state--inactive {
+            display: none;
+        }
+    }
 
-	@include setComponent(#{$defaultPrefix}--fullwidth) {
-		@include prefixer(display, flex, ms spec);
-		@include prefixer(align-items, center, ms spec);
-		@include prefixer(justify-content, center, ms spec);
-		width: 100%;
-  }  
+    @include setComponent(#{$defaultPrefix}--icon) {
+        padding: 0 !important;
 
-	@each $size, $map in $buttonSizes {
-		@include setComponent(#{$defaultPrefix}--#{$size}) {
-			@each $propertyName, $propertyValue in map-get($map, "propertiesButton") {
-				#{$propertyName}: #{$propertyValue};
-			}
+        i {
+            float: inherit !important;
+            margin: 0 auto;
+        }
+    }
 
-			i {
-				@each $propertyName, $propertyValue in map-get($map, "propertiesIcon") {
-					#{$propertyName}: #{$propertyValue};
-				}
-			}
-		}
-	}
+    @include setComponent(#{$defaultPrefix}--fullwidth) {
+        @include prefixer(display, flex, ms spec);
+        @include prefixer(align-items, center, ms spec);
+        @include prefixer(justify-content, center, ms spec);
+        width: 100%;
+    }
 
-	@each $buttonStyle, $buttonProperties in $buttonStyles {
-		@include setComponent(#{$defaultPrefix}--#{$buttonStyle}) {
-			@each $propertyRealName, $propertyKey in $buttonProperties {
-				// default styles
-				@each $colorName, $colorMap in $defaultColorMap {
-					@if ("default" == $colorName) {
-						@each $propertyName, $propertyValue in $colorMap {
-							@if ($propertyKey==$propertyName) {
-								#{$propertyRealName}: #{$propertyValue};
-							}
-						}
-					}
-					@if ("hover" == $colorName) {
-						&:hover,
-						&:focus {
-							@each $propertyName, $propertyValue in $colorMap {
-								@if ($propertyKey==$propertyName) {
-									#{$propertyRealName}: #{$propertyValue};
-								}
-							}
-						}
-					}
-					@if ("active" == $colorName) {
-						&.active {
-							@each $propertyName, $propertyValue in $colorMap {
-								@if ($propertyKey==$propertyName) {
-									#{$propertyRealName}: #{$propertyValue};
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+    @include setComponent(#{$defaultPrefix}--google) {
+        $defaultButtonSize: map-get($buttonSizes, 'md');
+        $defaultIconProperties: map-get($defaultButtonSize, 'propertiesIcon');
+        $defaultFontSize: map-get($defaultIconProperties, 'font-size');
 
-	@each $buttonStyle, $buttonProperties in $buttonStyles {
-		$prefix: #{$defaultPrefix};
-		@if ($buttonStyle != map-get($buttonSettings, "defaultStyle")) {
-			$prefix: "#{$defaultPrefix}--#{$buttonStyle}.#{$defaultPrefix}";
-		}
-		@each $colorName, $colorProperties in $buttonColors {
-			$ignoreStyles: map-get($colorProperties, "ignoreStyles");
-			$ignoreStyle: index($ignoreStyles, $buttonStyle);
-			@if (null == $ignoreStyle) {
-				@include setComponent(#{$prefix}--#{$colorName}) {
-					@each $propertyRealName, $propertyKey in $buttonProperties {
-						@each $colorState, $colorStateMap in $colorProperties {
-							@if ($colorState == "default") {
-								@each $propertyName, $propertyValue in $colorStateMap {
-									@if ($propertyKey == $propertyName) {
-										#{$propertyRealName}: #{$propertyValue};
-									}
-								}
-							}
-							@if ($colorState == "hover") {
-								&:hover,
-								&:focus {
-									@each $propertyName, $propertyValue in $colorStateMap {
-										@if ($propertyKey == $propertyName) {
-											#{$propertyRealName}: #{$propertyValue};
-										}
-									}
-								}
-							}
+        i {
+            display: inline-block;
+            width: $defaultFontSize;
+            height: 100%;
+            background: url('~bobjoll/images/icons/google.svg') no-repeat center center;
+            background-size: contain;
 
-							@if ($colorState == "active") {
-								&.active {
-									@each $propertyName, $propertyValue in $colorStateMap {
-										@if ($propertyKey == $propertyName) {
-											#{$propertyRealName}: #{$propertyValue};
-										}
-									}
-								}
-							}
+            &::before {
+                display: none;
+            }
+        }
 
-							@if ($colorState == "propertiesIcon") {
-								i {
-									@each $propertyName, $propertyValue in $colorStateMap {
-										#{$propertyName}: #{$propertyValue};
-									}
-								}
-							}
-						}
-					}
-				}
-				.#{$prefix}--#{$colorName} {
-					@include getComponent(#{$prefix}--#{$colorName});
-				}
-			}
-		}
-	}
+        @each $size, $map in $buttonSizes {
+            &.#{defaultPrefix}--#{$size} {
+                $properties: map-get($map, 'propertiesIcon');
+                $font-size: map-get($properties, 'font-size');
+
+                i {
+                    width: $font-size;
+                }
+            }
+        }
+    }
+
+    @each $size, $map in $buttonSizes {
+        @include setComponent(#{$defaultPrefix}--#{$size}) {
+            @each $propertyName, $propertyValue in map-get($map, 'propertiesButton') {
+                #{$propertyName}: #{$propertyValue};
+            }
+
+            i {
+                @each $propertyName, $propertyValue in map-get($map, 'propertiesIcon') {
+                    #{$propertyName}: #{$propertyValue};
+                }
+            }
+        }
+    }
+
+    @each $buttonStyle, $buttonProperties in $buttonStyles {
+        @include setComponent(#{$defaultPrefix}--#{$buttonStyle}) {
+            @each $propertyRealName, $propertyKey in $buttonProperties {
+                // default styles
+                @each $colorName, $colorMap in $defaultColorMap {
+                    @if ('default' == $colorName) {
+                        @each $propertyName, $propertyValue in $colorMap {
+                            @if ($propertyKey==$propertyName) {
+                                #{$propertyRealName}: #{$propertyValue};
+                            }
+                        }
+                    }
+                    @if ('hover' == $colorName) {
+                        &:hover,
+                        &:focus {
+                            @each $propertyName, $propertyValue in $colorMap {
+                                @if ($propertyKey==$propertyName) {
+                                    #{$propertyRealName}: #{$propertyValue};
+                                }
+                            }
+                        }
+                    }
+                    @if ('active' == $colorName) {
+                        &.active {
+                            @each $propertyName, $propertyValue in $colorMap {
+                                @if ($propertyKey==$propertyName) {
+                                    #{$propertyRealName}: #{$propertyValue};
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @each $buttonStyle, $buttonProperties in $buttonStyles {
+        $prefix: #{$defaultPrefix};
+        @if ($buttonStyle != map-get($buttonSettings, 'defaultStyle')) {
+            $prefix: '#{$defaultPrefix}--#{$buttonStyle}.#{$defaultPrefix}';
+        }
+        @each $colorName, $colorProperties in $buttonColors {
+            $ignoreStyles: map-get($colorProperties, 'ignoreStyles');
+            $ignoreStyle: index($ignoreStyles, $buttonStyle);
+            @if (null == $ignoreStyle) {
+                @include setComponent(#{$prefix}--#{$colorName}) {
+                    @each $propertyRealName, $propertyKey in $buttonProperties {
+                        @each $colorState, $colorStateMap in $colorProperties {
+                            @if ($colorState == 'default') {
+                                @each $propertyName, $propertyValue in $colorStateMap {
+                                    @if ($propertyKey == $propertyName) {
+                                        #{$propertyRealName}: #{$propertyValue};
+                                    }
+                                }
+                            }
+                            @if ($colorState == 'hover') {
+                                &:hover,
+                                &:focus {
+                                    @each $propertyName, $propertyValue in $colorStateMap {
+                                        @if ($propertyKey == $propertyName) {
+                                            #{$propertyRealName}: #{$propertyValue};
+                                        }
+                                    }
+                                }
+                            }
+
+                            @if ($colorState == 'active') {
+                                &.active {
+                                    @each $propertyName, $propertyValue in $colorStateMap {
+                                        @if ($propertyKey == $propertyName) {
+                                            #{$propertyRealName}: #{$propertyValue};
+                                        }
+                                    }
+                                }
+                            }
+
+                            @if ($colorState == 'propertiesIcon') {
+                                i {
+                                    @each $propertyName, $propertyValue in $colorStateMap {
+                                        #{$propertyName}: #{$propertyValue};
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .#{$prefix}--#{$colorName} {
+                    @include getComponent(#{$prefix}--#{$colorName});
+                }
+            }
+        }
+    }
 }
