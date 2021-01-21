@@ -6,6 +6,12 @@
             }
         }
 
+        @include modifier('essential') {
+            .gr-auth__essential {
+                display: inherit;
+            }
+        }
+
         @include modifier('logged') {
             .gr-auth__disconnected {
                 display: none !important;
@@ -28,7 +34,12 @@
             display: none;
         }
 
-        button, a {
+        @include element('essential') {
+            display: none;
+        }
+
+        button,
+        a {
             font-weight: 400;
         }
     }
