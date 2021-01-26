@@ -454,6 +454,23 @@ $defaultColors: (
             background: color('light', 'background', 0.2),
             color: color('text-inverted', 'general'),
         ),
+	),
+	link-gray: (
+        ignoreStyles: (
+            'outline',
+        ),
+        default: (
+            background: transparent,
+            color: color('cadet', 'gray'),
+        ),
+        hover: (
+            background: color('blackale', 'dark-blue', 0.1),
+            color: color('cadet', 'gray'),
+        ),
+        active: (
+            background: color('blackale', 'dark-blue', 0.1),
+            color: color('cadet', 'gray'),
+        ),
     ),
 );
 $buttonGlobalColors: () !default;
