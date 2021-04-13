@@ -20,6 +20,7 @@
         background: color('freepik', 'blue');
         border-radius: 3px;
         height: 5px;
+        width: 0;
     }
 
     &[data-complete='true'] {
