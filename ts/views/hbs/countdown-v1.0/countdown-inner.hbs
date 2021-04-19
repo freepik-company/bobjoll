@@ -1,0 +1,12 @@
+<ul>
+    {{#if date}}
+        {{#each date}}
+        <li class="countdown__{{@key}}">
+            <span class="countdown__value">{{ this }}</span>
+            <span class="countdown__description">{{ language @key }}</span>
+        </li>
+        {{/each}}
+    {{else}}
+        <li class="uppercase">00:00:00</li>
+    {{/if}}
+</ul>
