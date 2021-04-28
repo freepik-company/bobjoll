@@ -1,326 +1,315 @@
 @if $form-v1-0 {
-	.dropdown {
-		position: relative;
-
-		display: block;
-
-		select {
-			display: none;
-		}
-
-		* {
-			@include user-select(none);
-		}
-
-		@include element('container') {
-			position: relative;
-		}
-
-		@include element('select') {
-			@include position(absolute, null null null null);
-
-			display: none;
-
-			width: 100%;
-			min-width: 200px;
-
-			margin: $small-spacing ($base-border-width * -1);
-
-			border-radius: $base-border-radius;
-
-			background-color: color('dropdown', 'background');
-
-			box-shadow: $base-box-shadow;
-
-			z-index: 20;
-
-			&::after {							
-				@include position(absolute, null null null null);
-
-				display: block; 
-
-				z-index: 2;
-
-				content: '';
-			}
-
-			.scrollable {
-				overflow-x: hidden;
-				overflow-y: auto;
-
-				max-height: $base-input-height * 5;
-			}
-
-			.group {
-				&:before {
-					border-radius: 0;
-
-					box-shadow: none;
-				}
-				& > div > * {
-					border: 0 !important;
-				}
-			}
-
-			li {
-				height: $base-input-height;
-				margin: 0;
-				padding: 0 $small-spacing;
-				cursor: pointer;
-				background-color: color('bg', 'dropdown');
-				color: color('text', 'dropdown');
-				line-height: $base-input-height;
-
-				&:hover {
-					cursor: pointer;
-					background-color: color('bg-hover', 'dropdown');
-					color: color('text-hover', 'dropdown');
-				}
-
-				&:last-child {
-					border: none;
-				}
-			}
-		}
-
-		@include element('search') {
-			input {
-				max-width: calc(100% - #{$base-element-height});
-
-				border-radius: 0 !important;
-				border-top-left-radius: $base-border-radius !important;
-			}
-
-			.icon {
-				background: color('light', 'background');
-			}
-		}
-
-		@include element('button') {
-			@include transition($base-duration $base-timing);
-
-			height: $base-input-height;
-			position: relative;
-
-			margin: 0;
-			padding: 0 (($base-spacing + $small-spacing) + $base-triangle-size) 0 $base-spacing;
-
-			border: $base-border;
-			border-color: color('border', 'general', 1, 10);
-			border-radius: $base-border-radius;
-
-			background-color: color('input', 'background');
-
-			line-height: $base-input-height - ($base-border-width * 2);
-
-			&::after {
-				$triangle-color: pick-visible-color(
-					color('button-inverted', 'general'),
-					color('text', 'general'),
-					color('text-inverted', 'general')
-				);
-
-				@include position(absolute, 50% $base-spacing null null);
-				@include transform(translateY(-50%));
-				@include triangle($base-triangle-size, $triangle-color, down);
-
-				content: '';
-			}
-
-			&:hover {
-				background-color: color('secondary', 'background');
-
-				color: pick-visible-color(
-					color('button-inverted', 'general', 1, 10),
-					color('text', 'general'),
-					color('text-inverted', 'general')
-				);
-
-				cursor: pointer;
-			}
-
-			&.active ~ .dropdown__select {
-				display: block;
-			}
-		}
-
-		@include modifier('inverted') {
-			.dropdown__button {
-				border-color: color('button-inverted', 'general');
-
-				background-color: transparent;
-
-				color: color('text-inverted', 'general');
-
-				&::after {
-					border-top-color: color('text-inverted', 'general');
-				}
-
-				&:hover {
-					background-color:  color('inverted', 'buttons');
-
-					color: color('text', 'general');
-
-					&::after {
-						border-top-color: color('text', 'general');
-					}
-				}
-			}
-		}
-
-		@include modifier('top') {
-			@extend %dropdown-bottom;
-
-			.dropdown__select {
-				@include transform(translateX(-50%));
-
-				left: 50%;				
-			}
-		}
-
-		@include modifier('top-left') {
-			@extend %dropdown-top;
-
-			.dropdown__select {
-				left: 0;
-
-				&::after {
-					@include transform(none);
-
-					left: $base-spacing;
-					right: auto;
-				}
-			}			
-		}
-
-		@include modifier('top-right') {
-			@extend %dropdown-top;
-
-			.dropdown__select {
-				right: 0;
-
-				&::after {
-					@include transform(none);
-
-					left: auto;
-					right: $base-spacing;
-				}
-			}			
-		}
-
-		@include modifier('left') {
-			@extend %dropdown-left;
-		}
-
-		@include modifier('right') {
-			@extend %dropdown-right;
-		}
-
-		@include modifier('bottom') {
-			@extend %dropdown-bottom;
-
-			.dropdown__select {
-				@include transform(translateX(-50%));
-
-				left: 50%;
-			}
-		}
-
-		@include modifier('bottom-left') {
-			@extend %dropdown-bottom;
-
-			.dropdown__select {
-				left: 0;
-			}			
-		}
-
-		@include modifier('bottom-right') {
-			@extend %dropdown-bottom;
-
-			.dropdown__select {
-				right: 0;
-			}			
-		}
-
-		// Sizes
-		@each $size in $sizes {
-			@include modifier($size) {		
-				.dropdown__button, .dropdown__select li {
-					height: map-get($button-sizes, $size);
-
-					line-height: map-get($button-sizes, $size);
-
-					font-size: map-get($font-sizes, $size);
-				}
-
-				.dropdown__search {
-					input {
-						max-width: calc(100% - #{map-get($input-sizes, $size)});
-					}
-				}
-
-				.dropdown__button {
-					padding: 0 ((map-get($spacing-sizes, $size) * 2) + $base-triangle-size) 0 map-get($spacing-sizes, $size);
-					
-					&::after {
-						right: map-get($spacing-sizes, $size);
-					}
-				}	
-			}
-		}
-	}
-
-	%dropdown-top {
-		&.active {			
-			.dropdown__select {
-				margin: 0 0 $small-spacing;
-			}			
-		}
-
-		.dropdown__select {
-			bottom: 100%;			
-		}
-	}
-
-	%dropdown-right {
-		&.active {			
-			.dropdown__select {
-				margin: 0 $small-spacing 0 0;
-			}			
-		}
-
-		.dropdown__select {
-			@include transform(translateY(-50%));
-
-			top: 50%;
-			left: 100%;
-		}
-	}
-
-	%dropdown-left {
-		&.active {			
-			.dropdown__select {
-				margin: 0 $small-spacing 0 0;
-			}			
-		}
-
-		.dropdown__select {
-			@include transform(translateY(-50%));
-
-			top: 50%;
-			right: 100%;			
-		}
-	}
-
-	%dropdown-bottom {
-		&.active {			
-			.dropdown__select {
-				margin: $small-spacing 0 0;
-			}			
-		}
-
-		.dropdown__select {
-			top: 100%;
-		}
-	}
-} // End if
+    .dropdown {
+        position: relative;
+        display: block;
+
+        select {
+            display: none;
+        }
+
+        * {
+            @include user-select(none);
+        }
+
+        @include element('container') {
+            position: relative;
+        }
+
+        @include element('select') {
+            @include position(absolute, null null null null);
+            display: none;
+            width: 100%;
+            min-width: 200px;
+            margin: $small-spacing ($base-border-width * -1);
+            border-radius: $base-border-radius;
+            background-color: color('dropdown', 'background');
+            box-shadow: $base-box-shadow;
+            z-index: 20;
+
+            &::after {
+                @include position(absolute, null null null null);
+                display: block;
+                z-index: 2;
+                content: '';
+            }
+
+            .scrollable {
+                overflow-x: hidden;
+                overflow-y: auto;
+                max-height: $base-input-height * 5;
+            }
+
+            .group {
+                &:before {
+                    border-radius: 0;
+                    box-shadow: none;
+                }
+
+                &>div>* {
+                    border: 0 !important;
+                }
+            }
+
+            li {
+                height: $base-input-height;
+                margin: 0;
+                padding: 0 $small-spacing;
+                cursor: pointer;
+                background-color: color('bg', 'dropdown');
+                color: color('text', 'dropdown');
+                line-height: $base-input-height;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: color('bg-hover', 'dropdown');
+                    color: color('text-hover', 'dropdown');
+
+                    i {
+                        color: color('text-hover', 'dropdown');
+                    }
+                }
+
+                &:last-child {
+                    border: none;
+                }
+            }
+        }
+
+        @include element('check') {
+            li {
+                position: relative;
+                padding: 0 $small-spacing 0 35px;
+
+                i {
+                    position: absolute;
+                    left: $small-spacing;
+                    top: $small-spacing;
+                    color: $gray-oxford;
+                }
+
+                &:hover i {
+                    color: color('text-hover', 'dropdown');
+                }
+            }
+        }
+
+        @include element('search') {
+            input {
+                max-width: calc(100% - #{$base-element-height});
+                border-radius: 0 !important;
+                border-top-left-radius: $base-border-radius !important;
+            }
+
+            .icon {
+                background: color('light', 'background');
+            }
+        }
+
+        @include element('button') {
+            @include transition($base-duration $base-timing);
+            height: $base-input-height;
+            position: relative;
+            margin: 0;
+            padding: 0 (($base-spacing + $small-spacing) + $base-triangle-size) 0 $base-spacing;
+            border: $base-border;
+            border-color: color('border', 'general', 1, 10);
+            border-radius: $base-border-radius;
+            background-color: color('input', 'background');
+            line-height: $base-input-height - ($base-border-width * 2);
+
+            &::after {
+                $triangle-color: pick-visible-color(color('button-inverted', 'general'),
+                        color('text', 'general'),
+                        color('text-inverted', 'general'));
+                @include position(absolute, 50% $base-spacing null null);
+                @include transform(translateY(-50%));
+                @include triangle($base-triangle-size, $triangle-color, down);
+                content: '';
+            }
+
+            &:hover {
+                background-color: color('secondary', 'background');
+                color: pick-visible-color(color('button-inverted', 'general', 1, 10),
+                        color('text', 'general'),
+                        color('text-inverted', 'general'));
+                cursor: pointer;
+            }
+
+            &.active~.dropdown__select {
+                display: block;
+            }
+        }
+
+        @include modifier('inverted') {
+            .dropdown__button {
+                border-color: color('button-inverted', 'general');
+                background-color: transparent;
+                color: color('text-inverted', 'general');
+
+                &::after {
+                    border-top-color: color('text-inverted', 'general');
+                }
+
+                &:hover {
+                    background-color: color('inverted', 'buttons');
+                    color: color('text', 'general');
+
+                    &::after {
+                        border-top-color: color('text', 'general');
+                    }
+                }
+            }
+        }
+
+        @include modifier('top') {
+            @extend %dropdown-bottom;
+
+            .dropdown__select {
+                @include transform(translateX(-50%));
+                left: 50%;
+            }
+        }
+
+        @include modifier('top-left') {
+            @extend %dropdown-top;
+
+            .dropdown__select {
+                left: 0;
+
+                &::after {
+                    @include transform(none);
+                    left: $base-spacing;
+                    right: auto;
+                }
+            }
+        }
+
+        @include modifier('top-right') {
+            @extend %dropdown-top;
+
+            .dropdown__select {
+                right: 0;
+
+                &::after {
+                    @include transform(none);
+                    left: auto;
+                    right: $base-spacing;
+                }
+            }
+        }
+
+        @include modifier('left') {
+            @extend %dropdown-left;
+        }
+
+        @include modifier('right') {
+            @extend %dropdown-right;
+        }
+
+        @include modifier('bottom') {
+            @extend %dropdown-bottom;
+
+            .dropdown__select {
+                @include transform(translateX(-50%));
+                left: 50%;
+            }
+        }
+
+        @include modifier('bottom-left') {
+            @extend %dropdown-bottom;
+
+            .dropdown__select {
+                left: 0;
+            }
+        }
+
+        @include modifier('bottom-right') {
+            @extend %dropdown-bottom;
+
+            .dropdown__select {
+                right: 0;
+            }
+        }
+
+        // Sizes
+        @each $size in $sizes {
+            @include modifier($size) {
+
+                .dropdown__button,
+                .dropdown__select li {
+                    height: map-get($button-sizes, $size);
+                    line-height: map-get($button-sizes, $size);
+                    font-size: map-get($font-sizes, $size);
+                }
+
+                .dropdown__search {
+                    input {
+                        max-width: calc(100% - #{map-get($input-sizes, $size)});
+                    }
+                }
+
+                .dropdown__button {
+                    padding: 0 ((map-get($spacing-sizes, $size) * 2) + $base-triangle-size) 0 map-get($spacing-sizes, $size);
+
+                    &::after {
+                        right: map-get($spacing-sizes, $size);
+                    }
+                }
+            }
+        }
+    }
+
+    %dropdown-top {
+        &.active {
+            .dropdown__select {
+                margin: 0 0 $small-spacing;
+            }
+        }
+
+        .dropdown__select {
+            bottom: 100%;
+        }
+    }
+
+    %dropdown-right {
+        &.active {
+            .dropdown__select {
+                margin: 0 $small-spacing 0 0;
+            }
+        }
+
+        .dropdown__select {
+            @include transform(translateY(-50%));
+            top: 50%;
+            left: 100%;
+        }
+    }
+
+    %dropdown-left {
+        &.active {
+            .dropdown__select {
+                margin: 0 $small-spacing 0 0;
+            }
+        }
+
+        .dropdown__select {
+            @include transform(translateY(-50%));
+            top: 50%;
+            right: 100%;
+        }
+    }
+
+    %dropdown-bottom {
+        &.active {
+            .dropdown__select {
+                margin: $small-spacing 0 0;
+            }
+        }
+
+        .dropdown__select {
+            top: 100%;
+        }
+    }
+}
+
+// End if

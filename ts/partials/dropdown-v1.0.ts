@@ -25,7 +25,7 @@ export class Dropdown {
 			...options,
 		};
 
-		if(options.instance) {
+		if (options.instance) {
 			this.instance = options.instance;
 		}
 
@@ -96,38 +96,48 @@ export class Dropdown {
 
 	private eventHandlerItemClick(this: HTMLUListElement, self: Dropdown) {
 		const options = qq('option', self.select) as HTMLInputElement[];
-		const others = options.filter(option => option.dataset.other);
+        const others = options.filter(option => option.dataset.other);
+        const valueSelected = this.dataset?.value;
 
 		if (others.length) {
 			others.forEach(other => {
 				const fieldElement = q(`input[name="${other.dataset.other || ''}"]`) as HTMLInputElement | undefined;
 
 				if (fieldElement) {
-					fieldElement.classList[(this.dataset.value || '') === other.value ? 'remove' : 'add']('hide');
+					fieldElement.classList[(valueSelected || '') === other.value ? 'remove' : 'add']('hide');
 				}
 			});
-		}
+        }
 
-		if (this.dataset.value) {
-			self.select.value = this.dataset.value;
+		if (valueSelected) {
+            Dropdown.changeCheckList(self, valueSelected);
+			self.select.value = valueSelected;
 			self.select.dispatchEvent(new Event('change', {
 				bubbles: true,
 			}));
 		}
-		
+
 		self.button.classList.remove('active');
-	}
+    }
+
+    public static changeCheckList(dropdown: Dropdown, valueSelected: string) {
+        if (!dropdown.select.dataset.checkList) return;
+
+        dropdown.options.forEach(option =>
+            q('i', option)?.classList[option.dataset.value === valueSelected ? 'remove' : 'add']('invisible')
+		);
+    }
 
 	public changeValue(newVal: string) {
 		let targetOption = this.options.filter(option => option.dataset.value == newVal)[0];
-		
+
 		this.button.innerText = targetOption.innerText;
-		
+
 		this.select.value = newVal;
 		this.select.dispatchEvent(new Event('change', {
 			bubbles: true,
 		}));
-		
+
 		this.button.classList.remove('active');
 		this.button.innerText = targetOption.innerText;
 	}
@@ -161,13 +171,14 @@ export class Dropdown {
 		if ('true' == this.select.dataset.search || this.settings.search) {
 			this.settings.search = true;
 			this.select.dataset.search = 'true';
-		}
+        }
 
 		if (!this.instance) {
 			this.select.insertAdjacentHTML('afterend',
 				View.render(Dropdown.template, {
-					options: [].slice.call(this.select.options),
+                    checkList: this.select.dataset.checkList,
 					dataset: this.select.dataset,
+					options: [].slice.call(this.select.options),
 					selectedIndex: this.select.options.selectedIndex
 				})
 			);
@@ -189,9 +200,10 @@ export class Dropdown {
 			if (search) {
 				this.search = search;
 			}
-		}
-	}
+        }
 
+        this.settings.dropdown.classList.add('loaded');
+	}
 
 	public destroy() {
 		const container = q('.dropdown__container', this.settings.dropdown);
@@ -202,26 +214,33 @@ export class Dropdown {
 	}
 }
 
-qq('.dropdown').forEach(dropdown => new Dropdown({ dropdown: dropdown }));
+export const initializeDropdown = (loadDynamic = false) =>
+    qq(`.dropdown${loadDynamic ? '.dropdown--load-dynamic:not(.loaded)' : ''}`).forEach(dropdown =>
+       new Dropdown({ dropdown: dropdown, loadDynamic })
+    );
+
+initializeDropdown();
 
 export interface DropdownDefaults {
 	search: boolean;
 }
 
 export interface DropdownOptions {
-	search?: boolean;
 	dropdown: HTMLElement;
-	instance?: boolean;
+    instance?: boolean;
+    loadDynamic?: boolean;
+	search?: boolean;
 }
 
 export interface DropdownSettings {
-	search: boolean;
 	dropdown: HTMLElement;
-	instance?: boolean;
+    instance?: boolean;
+    loadDynamic?: boolean;
+	search: boolean;
 }
 
 export interface DropdownEventHanlder {
 	element: Element;
-	eventType: string;
 	eventHandler: EventListenerOrEventListenerObject;
+	eventType: string;
 }
