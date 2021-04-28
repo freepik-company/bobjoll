@@ -80,15 +80,15 @@
                 position: relative;
                 padding: 0 $small-spacing 0 35px;
 
+                &:hover i {
+                    color: color('text-hover', 'dropdown');
+                }
+
                 i {
                     position: absolute;
                     left: $small-spacing;
                     top: $small-spacing;
                     color: $gray-oxford;
-                }
-
-                &:hover i {
-                    color: color('text-hover', 'dropdown');
                 }
             }
         }
