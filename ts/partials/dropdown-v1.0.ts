@@ -97,14 +97,14 @@ export class Dropdown {
 	private eventHandlerItemClick(this: HTMLUListElement, self: Dropdown) {
 		const options = qq('option', self.select) as HTMLInputElement[];
         const others = options.filter(option => option.dataset.other);
-        const valueSelected = this.dataset?.value;
+        const valueSelected = this.dataset ? this.dataset.value : '';
 
 		if (others.length) {
 			others.forEach(other => {
 				const fieldElement = q(`input[name="${other.dataset.other || ''}"]`) as HTMLInputElement | undefined;
 
 				if (fieldElement) {
-					fieldElement.classList[(valueSelected || '') === other.value ? 'remove' : 'add']('hide');
+					fieldElement.classList[(valueSelected) === other.value ? 'remove' : 'add']('hide');
 				}
 			});
         }
@@ -123,9 +123,10 @@ export class Dropdown {
     public static changeCheckList(dropdown: Dropdown, valueSelected: string) {
         if (!dropdown.select.dataset.checkList) return;
 
-        dropdown.options.forEach(option =>
-            q('i', option)?.classList[option.dataset.value === valueSelected ? 'remove' : 'add']('invisible')
-		);
+        dropdown.options.forEach(option => {
+			const icon = q('i', option);
+			icon && icon.classList[option.dataset.value === valueSelected ? 'remove' : 'add']('invisible')
+		});
     }
 
 	public changeValue(newVal: string) {
