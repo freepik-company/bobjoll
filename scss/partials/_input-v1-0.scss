@@ -1,15 +1,17 @@
 @if $input-v1-0 {
-    .input {
-        /**
-        * Sizes
-        */
-        @each $key, $value in $input-sizes {
-            &--#{$key} {
-                font-size: map-get($font-sizes, $key);
+    #{$all-text-inputs} {
+        &.input {
+            /**
+            * Sizes
+            */
+            @each $key, $value in $input-sizes {
+                &--#{$key} {
+                    font-size: map-get($font-sizes, $key);
 
-                height: $value;
+                    height: $value;
 
-                line-height: $value;
+                    line-height: $value;
+                }
             }
         }
     }
