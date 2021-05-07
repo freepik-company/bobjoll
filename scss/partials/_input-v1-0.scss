@@ -1,0 +1,16 @@
+@if $input-v1-0 {
+    .input {
+        /**
+        * Sizes
+        */
+        @each $key, $value in $input-sizes {
+            &--#{$key} {
+                font-size: map-get($font-sizes, $key);
+
+                height: $value;
+
+                line-height: $value;
+            }
+        }
+    }
+}
