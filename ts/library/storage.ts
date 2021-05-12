@@ -74,12 +74,12 @@ export class ClientStorage
     }
 
     getItem(namespace: string, key: string): string | null {
-        const k = namespace + '/' + key;
+        const k = namespace !== '' ? `${namespace}/${key}` : key;
         return this.backend ? this.backend.getItem(k) : this.dummy[k];
     }
 
     setItem(namespace: string, key: string, value: string) {
-        const k = namespace + '/' + key;
+        const k = namespace !== '' ? `${namespace}/${key}` : key;
         if (this.backend) {
             this.backend.setItem(k, value);
         }
