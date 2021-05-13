@@ -28,7 +28,7 @@ export class ClientStorage
     }
 
     removeItem(namespace: string, key: string) {
-        const k = namespace + '/' + key;
+        const k = namespace !== '' ? `${namespace}/${key}` : key;
         if (this.backend) {
             this.backend.removeItem(k);
         }
