@@ -188,6 +188,52 @@ $defaultColors: (
             color: color('oxford', 'gray'),
         ),
     ),
+    light-gray: (
+        default: (
+            background: color('hades', 'gray'),
+            background-outline: transparent,
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+            color-outline: color('bali', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+        hover: (
+            background: color('mystic', 'gray'),
+            background-outline: color('bali', 'gray', 0.1),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+            color-outline: color('bali', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+        active: (
+            background: color('heather', 'gray'),
+            background-outline: color('bali', 'gray', 0.2),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+            color-outline: color('bali', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+    ),
+    dark-gray: (
+        default: (
+            background: color('oxford', 'gray'),
+            background-outline: transparent,
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+            color-outline: color('bali', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+        hover: (
+            background: color('ebony', 'gray'),
+            background-outline: color('bali', 'gray', 0.1),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+            color-outline: color('bali', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+        active: (
+            background: color('heather', 'gray'),
+            background-outline: color('bali', 'gray', 0.2),
+            box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('bali', 'gray'),
+            color-outline: color('bali', 'gray'),
+            color: color('oxford', 'gray'),
+        ),
+    ),
     inverted: (
         ignoreStyles: (
             'flat',
