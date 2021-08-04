@@ -1,7 +1,6 @@
 @font-face {
 	font-family: "bobjoll";
-	src: url("bobjoll.woff2?294d0aa9c6580ef6913537c4532fb659") format("woff2"),
-url("bobjoll.woff?294d0aa9c6580ef6913537c4532fb659") format("woff");
+	src: url("bobjoll.woff2?294d0aa9c6580ef6913537c4532fb659") format("woff2");
 }
 
 .icon {
