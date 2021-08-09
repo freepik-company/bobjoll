@@ -1,26 +1,42 @@
 @if $tooltipFixed-v1-0 {
-    .tooltipFixed__active{
-        display: block;
-        .notification__close {
-            box-shadow: none !important;
-            color: $gray-oxford;
-            background: $gray-aqua;
-            .icon {
-                color: color('icon-inverted', 'general');
-            }
 
-            &:hover {
-                background: $gray-aqua;
-                
-            }
-
-        }
+    .tooltipFixed__active {
+        display: none;
     }
+    
+    @include breakpoint('sm', 'min') {
 
-    @include breakpoint('sm', 'max') {
-
-        .tooltipFixed__active{
-                display: none;
+        .tooltipFixed__active {
+            display: block;
+            opacity: 0;
+            animation: tooltipFixed__active 250ms 1100ms cubic-bezier(.25, .1, .25, 1) forwards;
+            
+            .notification__close {
+                box-shadow: none !important;
+                color: $gray-oxford;
+                background: $gray-aqua;
+    
+                .icon {
+                    color: color('icon-inverted', 'general');
+                }
+    
+                &:hover {
+                    background: $gray-aqua;
+                    
+                }
+    
+            }
+        }
+    
+        @keyframes tooltipFixed__active {
+    
+            from {
+                opacity: 0;
+            }
+    
+            to {
+                opacity: 1;
+            }
         }
     }
 }

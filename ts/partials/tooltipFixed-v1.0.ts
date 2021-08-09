@@ -1,12 +1,13 @@
-import { q, qq } from 'bobjoll/ts/library/dom';
 import { Cookie as cookie } from 'bobjoll/ts/library/cookie';
+import { q, qq } from 'bobjoll/ts/library/dom';
 
 export class TooltipFixed {
     private static readonly templateContent = require('BobjollTemplate/tooltipFixed-v1.0/tooltipFixed-notification.hbs');
     private static wrapperElement: HTMLElement | null;
     private static sheet: HTMLStyleElement;
+
     public static add(settings: TooltipFixedSettings) {
-        TooltipFixed.wrapperElement = q(settings.elementToWalk);
+        TooltipFixed.wrapperElement = q(settings.element);
 
         if (!cookie.getItem(`tooltipFixed-${settings.id}`)) {
             if (TooltipFixed.wrapperElement) {
@@ -22,8 +23,6 @@ export class TooltipFixed {
                         cookie.setItem(`tooltipFixed-${settings.id}`, '1');
                         if (settings.tooltip) TooltipFixed.wrapperElement!.innerHTML = settings.tooltip;
                         TooltipFixed.wrapperElement!.classList.remove('tooltipFixed__active');
-
-                        document.body.style.overflow = '';
                     }),
                 );
             }
@@ -49,7 +48,7 @@ export class TooltipFixed {
 }
 
 export interface TooltipFixedSettings {
-    elementToWalk: string;
+    element: string;
     html: string;
     id: string;
     setStyle?: { [name: string]: any };
