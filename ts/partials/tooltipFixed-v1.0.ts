@@ -12,10 +12,11 @@ export class TooltipFixed {
             if (TooltipFixed.wrapperElement) {
                 if (!settings.tooltip) {
                     settings.tooltip = TooltipFixed.wrapperElement.innerHTML;
-                    TooltipFixed.wrapperElement.innerHTML = this.templateContent({ html: settings.html });
-                    TooltipFixed.wrapperElement.classList.add('tooltipFixed__active');
                 }
                 if (settings.setStyle) TooltipFixed.setStyle(settings);
+                TooltipFixed.wrapperElement.innerHTML = this.templateContent({ html: settings.html });
+                TooltipFixed.wrapperElement.classList.add('tooltipFixed__active');
+
                 qq('.notification__close', TooltipFixed.wrapperElement).forEach((buttonElement) =>
                     buttonElement.addEventListener('click', () => {
                         cookie.setItem(`tooltipFixed-${settings.id}`, '1');
