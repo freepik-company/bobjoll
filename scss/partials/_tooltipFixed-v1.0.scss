@@ -1,0 +1,27 @@
+@if $tooltipFixed-v1-0 {
+    .tooltipFixed__active{
+        display: block;
+        .notification__close {
+            box-shadow: none !important;
+            color: $gray-oxford;
+            background: $gray-aqua;
+            .icon {
+                color: color('icon-inverted', 'general');
+            }
+
+            &:hover {
+                background: $gray-aqua;
+                
+            }
+
+        }
+    }
+
+    @include breakpoint('sm', 'max') {
+
+        .tooltipFixed__active{
+                display: none;
+        }
+    }
+}
+   
