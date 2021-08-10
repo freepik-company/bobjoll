@@ -14,7 +14,7 @@ export class TooltipFixed {
                 if (!settings.tooltip) {
                     settings.tooltip = TooltipFixed.wrapperElement.innerHTML;
                 }
-                if (settings.setStyle) TooltipFixed.setStyle(settings);
+                settings.setStyle && TooltipFixed.setStyle(settings);
                 TooltipFixed.wrapperElement.innerHTML = this.templateContent({ html: settings.html });
                 TooltipFixed.wrapperElement.classList.add('tooltipFixed__active');
 
@@ -31,7 +31,7 @@ export class TooltipFixed {
 
     private static setStyle(settings: TooltipFixedSettings) {
         TooltipFixed.sheet = document.createElement('style');
-        if (settings.setStyle) TooltipFixed.setStyleNotification(settings);
+        settings.setStyle && TooltipFixed.setStyleNotification(settings);
         document.body.appendChild(TooltipFixed.sheet);
     }
 

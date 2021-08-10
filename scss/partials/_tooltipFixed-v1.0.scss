@@ -22,14 +22,11 @@
     
                 &:hover {
                     background: $gray-aqua;
-                    
                 }
-    
             }
         }
     
         @keyframes tooltipFixed__active {
-    
             from {
                 opacity: 0;
             }
