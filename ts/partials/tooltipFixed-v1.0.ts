@@ -22,7 +22,7 @@ export class TooltipFixed {
                     buttonElement.addEventListener('click', () => {
                         cookie.setItem(`tooltipFixed-${settings.id}`, '1');
                         if (settings.tooltip) TooltipFixed.wrapperElement!.innerHTML = settings.tooltip;
-                        TooltipFixed.wrapperElement!.classList.remove('tooltipFixed__active');
+                        TooltipFixed.wrapperElement?.classList.remove('tooltipFixed__active');
                     }),
                 );
             }
