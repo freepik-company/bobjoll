@@ -1,6 +1,6 @@
 import { q, qq } from '../library/delegate';
 
-export default class Range {
+export default class InputRange {
     private range: HTMLInputElement;
     private rangeValue: number;
 
