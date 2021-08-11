@@ -1,20 +1,19 @@
-import { q, qq } from '../library/delegate';
+import { q, qq } from '../library/dom';
 
 export default class Range {
+    private rangeWrapper: HTMLDivElement;
     private range: HTMLInputElement;
     private rangeValue: number;
 
-    constructor(selector: string, marks?: RangeMark[]) {
+    constructor(selector: string, options?: RangeOptions) {
+        this.rangeWrapper = q(selector) as HTMLDivElement;
+        this.range = q('.range', this.rangeWrapper) as HTMLInputElement;
 
-        this.range = q(selector) as HTMLInputElement;
-
-        marks && marks.length > 0 && this.createRangeMarks(marks);
-
+        options && this.initializeDynamicRange(options);
         this.updateRange();
-
         this.range.addEventListener('input', () => {
             this.updateRange();
-        })
+        });
     }
 
     private updateRange = () => {
@@ -23,15 +22,33 @@ export default class Range {
         this.updateRangeMarks();
     }
 
-    private createRangeMarks = (marks?: RangeMark[]) => {
-        const rangeWrapper = this.range.parent('.range--wrapper');
-        const marksElements = marks?.map(this.getMarkElement);
+    private createRangeMarks = (marks: RangeMark[]) => {
+        const marksElements = marks.map(this.getMarkElement);        
 
         const ulMarkList = document.createElement('ul');
         ulMarkList.classList.add('range--marks');
         marksElements && ulMarkList.append(...marksElements);
 
-        rangeWrapper?.appendChild(ulMarkList);
+        this.rangeWrapper.appendChild(ulMarkList);
+    }
+
+    private initializeDynamicRange = (options: RangeOptions) => {
+        const { marks, withSteps } = options;
+
+        const marksValues = marks.map(mark => mark.value);
+
+        const minValue = Math.min(...marksValues);
+        const maxValue = Math.max(...marksValues);
+
+        this.range.min = minValue.toString();
+        this.range.max = maxValue.toString();
+
+        if (withSteps) {
+            const step = maxValue / marks.length;
+            this.range.step = step.toString();
+        }
+
+        marks && marks.length > 0 && this.createRangeMarks(marks);
     }
 
     private getMarkElement = (mark: RangeMark) => {
@@ -51,15 +68,20 @@ export default class Range {
     }
 
     private updateRangeMarks = () => {
-        qq('.range--marks .mark').forEach(mark => {
+        qq('.range--marks .mark', this.rangeWrapper).forEach(mark => {
             const markValue = mark.dataset.value || 0;
             if (+markValue === this.rangeValue) {
-                (q('.range--title') as HTMLParagraphElement).textContent = mark.dataset.text || '';
+                (q('.range--title', this.rangeWrapper) as HTMLParagraphElement).textContent = mark.dataset.text || '';
             }
 
             mark.classList[markValue <= this.rangeValue ? 'add' : 'remove']('active');
         });
     }
+}
+
+export interface RangeOptions {
+    marks: RangeMark[];
+    withSteps: boolean;
 }
 
 export interface RangeMark {
