@@ -11,6 +11,12 @@
             opacity: 0;
             animation: tooltipFixed__active 250ms 1100ms cubic-bezier(.25, .1, .25, 1) forwards;
             
+            &:not(.tooltip--permanent).tooltip__container:hover {	
+                display: block !important;
+                opacity: 1;
+                visibility: initial;
+            }
+            
             .notification__close {
                 box-shadow: none !important;
                 color: $gray-oxford;
@@ -22,14 +28,11 @@
     
                 &:hover {
                     background: $gray-aqua;
-                    
                 }
-    
             }
         }
     
         @keyframes tooltipFixed__active {
-    
             from {
                 opacity: 0;
             }
