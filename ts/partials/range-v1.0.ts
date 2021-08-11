@@ -1,6 +1,6 @@
 import { q, qq } from '../library/delegate';
 
-export default class InputRange {
+export default class Range {
     private range: HTMLInputElement;
     private rangeValue: number;
 
@@ -10,26 +10,38 @@ export default class InputRange {
 
         marks && marks.length > 0 && this.createRangeMarks(marks);
 
+        this.updateRange();
+
         this.range.addEventListener('input', () => {
-            this.rangeValue = this.range.valueAsNumber;
-            this.fillRangeColor();
-            this.updateRangeMarks();
+            this.updateRange();
         })
+    }
+
+    private updateRange = () => {
+        this.rangeValue = this.range.valueAsNumber;
+        this.fillRangeColor();
+        this.updateRangeMarks();
     }
 
     private createRangeMarks = (marks?: RangeMark[]) => {
         const rangeWrapper = this.range.parent('.range--wrapper');
-        const ulMarkList = document.createElement('ul');
-        marks?.forEach(mark => {
-            const { value, text } = mark;
-            const liElement = document.createElement('li');
-            liElement.dataset.value = value.toString();
-            liElement.dataset.text = text;
+        const marksElements = marks?.map(this.getMarkElement);
 
-            ulMarkList?.appendChild(liElement);
-        });
+        const ulMarkList = document.createElement('ul');
+        ulMarkList.classList.add('range--marks');
+        marksElements && ulMarkList.append(...marksElements);
 
         rangeWrapper?.appendChild(ulMarkList);
+    }
+
+    private getMarkElement = (mark: RangeMark) => {
+        const { value, text } = mark;
+        const liElement = document.createElement('li');
+        liElement.dataset.value = value.toString();
+        liElement.dataset.text = text;
+        liElement.classList.add('mark');
+
+        return liElement;
     }
 
     private fillRangeColor = () => {
@@ -44,7 +56,7 @@ export default class InputRange {
             if (+markValue === this.rangeValue) {
                 (q('.range--title') as HTMLParagraphElement).textContent = mark.dataset.text || '';
             }
-    
+
             mark.classList[markValue <= this.rangeValue ? 'add' : 'remove']('active');
         });
     }
