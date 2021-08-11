@@ -5,11 +5,12 @@ export default class Range {
     private range: HTMLInputElement;
     private rangeValue: number;
 
-    constructor(selector: string, options?: RangeOptions) {
+    constructor(options: RangeOptions) {
+        const { selector, marks } = options
         this.rangeWrapper = q(selector) as HTMLDivElement;
         this.range = q('.range', this.rangeWrapper) as HTMLInputElement;
 
-        options && this.initializeDynamicRange(options);
+        marks && marks.length > 0 && this.initializeDynamicRange(options);
         this.updateRange();
         this.range.addEventListener('input', () => {
             this.updateRange();
@@ -80,8 +81,9 @@ export default class Range {
 }
 
 export interface RangeOptions {
-    marks: RangeMark[];
-    withSteps: boolean;
+    selector: string;
+    marks?: RangeMark[];
+    withSteps?: boolean;
 }
 
 export interface RangeMark {
