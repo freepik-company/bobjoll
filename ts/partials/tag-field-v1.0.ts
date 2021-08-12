@@ -60,7 +60,7 @@ export class TagsField extends KEventTarget {
         let valuesRemoved: string[] = [];
         let value: string | string[] = '';
         qq('.tag-field__item', this.settings.selector).forEach(item => {
-            if (arr.indexOf(item.dataset.value.trim()) >= 0 && item.parentElement) {
+            if (arr.indexOf(item.dataset.value?.trim() || '') >= 0 && item.parentElement) {
                 const value = item.dataset.value;
                 item.parentElement.removeChild(item);
                 if (value) {
@@ -72,7 +72,7 @@ export class TagsField extends KEventTarget {
             value = valuesRemoved.pop() || '';
         }
         this.update();
-        this.dispatchEvent(new KEventChange(value, this.settings.input.value.split(',').filter(value => '' !== value), 'remove' ) );
+        this.dispatchEvent(new KEventChange(value, this.settings.input.value.split(',').filter(value => '' !== value), 'remove'));
     }
 
     public getItems(lowercase: boolean = false): string[] {
@@ -124,7 +124,7 @@ export class TagsField extends KEventTarget {
 
     private update() {
         const tags: string[] = qq('.tag-field__item', this.settings.selector).reduce((acc: string[], tag) => {
-            acc.push(tag.dataset.value.trim());
+            acc.push(tag.dataset.value?.trim() || '');
 
             return acc;
         }, []);
@@ -143,7 +143,7 @@ export class TagsField extends KEventTarget {
     }
 
     private render() {
-        const tags = this.settings.input.value.split(',').reduce((acc: {value: string; }[], value: string) => {
+        const tags = this.settings.input.value.split(',').reduce((acc: { value: string; }[], value: string) => {
             value = value.trim();
 
             if ('' !== value) {
@@ -154,7 +154,7 @@ export class TagsField extends KEventTarget {
 
             return acc;
         }, []);
-        const options: { tags?: {value: string}[] } = {};
+        const options: { tags?: { value: string }[] } = {};
 
         if (0 < tags.length) {
             options.tags = tags;
@@ -210,7 +210,7 @@ export class TagsField extends KEventTarget {
             }
         });
 
-        const removeHandler = function(this: HTMLElement) {
+        const removeHandler = function (this: HTMLElement) {
             const item = <HTMLElement | undefined>this.parent('.tag-field__item');
             if (item) {
                 self.removeItems([item.dataset.value || '']);
@@ -251,8 +251,8 @@ export class TagsField extends KEventTarget {
     private async eventHandlerInputKeyUp(event: KeyboardEvent) {
         const key = window.event ? event.keyCode : event.which;
         if (13 === key || 9 === key || 188 === key) { //enter or comma
-            if(188 === key) { //remove comma
-                this.input.value = this.input.value.substr(0, this.input.value.length -1);
+            if (188 === key) { //remove comma
+                this.input.value = this.input.value.substr(0, this.input.value.length - 1);
             }
             await new Promise((resolve) => setTimeout(resolve, 100));
 
