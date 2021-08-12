@@ -3,7 +3,8 @@
 
 	@font-face {
 		font-family: $webfont;
-		src: url("~bobjoll/fonts/bobjoll.woff2?c8819c51ac894743dd4226c9be6c07d1") format("woff2");
+		src: url("~bobjoll/fonts/bobjoll.woff2?9fe5428c8a023e17454dc30fdde54002") format("woff2"),
+url("~bobjoll/fonts/bobjoll.woff?9fe5428c8a023e17454dc30fdde54002") format("woff");
 	}
 
     %icon {
