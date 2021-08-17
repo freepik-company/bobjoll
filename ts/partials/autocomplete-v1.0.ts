@@ -15,7 +15,7 @@ interface AutocompleteInputElement extends HTMLInputElement {
     focusHandler: EventListener;
     blurHandler: EventListener;
     container: HTMLElement;
-    results: HTMLElement[];
+    results?: HTMLElement[];
 }
 
 interface AutocompleteOptions {
@@ -129,10 +129,10 @@ export default class Autocomplete extends KEventTarget {
              * Keydown handler
              */
             // tslint:disable-next-line:no-function-expression
-            field.keydownHandler = (function(e: KeyboardEvent) {
+            field.keydownHandler = (function (e: KeyboardEvent) {
                 const key = window.event ? e.keyCode : e.which;
 
-                if ((38 === key || 40 === key) && self.index < field.results.length) {
+                if (typeof field.results !== 'undefined' && (38 === key || 40 === key) && self.index < field.results.length) {
                     e.preventDefault();
 
                     if (field.results[self.index]) {
@@ -168,7 +168,7 @@ export default class Autocomplete extends KEventTarget {
 
                 if (13 === key || 9 === key) { //enter
                     e.preventDefault();
-                    
+
                     setTimeout(() => {
                         const selected = field.results ? (field.results[self.index] || undefined) : undefined;
 
@@ -193,7 +193,7 @@ export default class Autocomplete extends KEventTarget {
             /**
              * Keyup handler
              */
-            field.keyupHandler = (function(this: AutocompleteInputElement, e: KeyboardEvent) {
+            field.keyupHandler = (function (this: AutocompleteInputElement, e: KeyboardEvent) {
                 if (this.value !== self.value) {
                     self.cancelled = false;
 
@@ -270,7 +270,7 @@ export default class Autocomplete extends KEventTarget {
 
         if (!this.cancelled) {
             if (!cache) {
-                this.cache.unshift({query: query, value: source});
+                this.cache.unshift({ query: query, value: source });
             }
 
             if (10 < this.cache.length) {
