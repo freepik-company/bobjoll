@@ -36,20 +36,22 @@ export default class Range {
     private initializeDynamicRange = (options: RangeOptions) => {
         const { marks, withSteps } = options;
 
-        const marksValues = marks.map(mark => mark.value);
+        if (marks) {
+            const marksValues = marks.map(mark => mark.value);
 
-        const minValue = Math.min(...marksValues);
-        const maxValue = Math.max(...marksValues);
-
-        this.range.min = minValue.toString();
-        this.range.max = maxValue.toString();
-
-        if (withSteps) {
-            const step = maxValue / marks.length;
-            this.range.step = step.toString();
-        }
-
-        marks && marks.length > 0 && this.createRangeMarks(marks);
+            const minValue = Math.min(...marksValues);
+            const maxValue = Math.max(...marksValues);
+    
+            this.range.min = minValue.toString();
+            this.range.max = maxValue.toString();
+    
+            if (withSteps) {
+                const step = maxValue / marks.length;
+                this.range.step = step.toString();
+            }
+    
+            marks.length > 0 && this.createRangeMarks(marks);
+        }        
     }
 
     private getMarkElement = (mark: RangeMark) => {
