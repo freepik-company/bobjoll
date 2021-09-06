@@ -63,6 +63,10 @@
 		}
 	}
 
+	#{$big-headings} {		
+		line-height: $extra-small-line-height;
+	}
+
 	#{$all-headings} {
 		&.category {
 			padding-bottom: $extra-small-spacing;
