@@ -6,7 +6,7 @@ export default class Range {
     private rangeValue: number;
 
     constructor(options: RangeOptions) {
-        const { selector, marks } = options
+        const { selector, marks, callback } = options
         this.rangeWrapper = q(selector) as HTMLDivElement;
         this.range = q('.range', this.rangeWrapper) as HTMLInputElement;
 
@@ -15,6 +15,11 @@ export default class Range {
         this.range.addEventListener('input', () => {
             this.updateRange();
         });
+        if (callback) {
+            this.range.addEventListener('change', () => {
+                callback(this.range.valueAsNumber);
+            });
+        }
     }
 
     private updateRange = () => {
@@ -24,7 +29,7 @@ export default class Range {
     }
 
     private createRangeMarks = (marks: RangeMark[]) => {
-        const marksElements = marks.map(this.getMarkElement);        
+        const marksElements = marks.map(this.getMarkElement);
 
         const ulMarkList = document.createElement('ul');
         ulMarkList.classList.add('range--marks');
@@ -83,6 +88,7 @@ export default class Range {
 }
 
 export interface RangeOptions {
+    callback?: Function;
     selector: string;
     marks?: RangeMark[];
     withSteps?: boolean;
