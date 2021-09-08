@@ -49,6 +49,7 @@
     &--title {
         font-size: $small-font-size;
         line-height: 21px;
+        min-height: 21px;
         color: color('bayoux', 'gray');
         text-align: center;
         margin: 0;
