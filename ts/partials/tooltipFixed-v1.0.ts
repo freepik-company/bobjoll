@@ -30,9 +30,7 @@ export class TooltipFixed {
             ? q('.tooltip__container', TooltipFixed.wrapperElement)
             : TooltipFixed.wrapperElement;
 
-        if (!settings.insertContainer) {
-            TooltipFixed.wrapperElement.classList.add('tooltipFixed__active');
-        }
+        !settings.insertContainer && TooltipFixed.wrapperElement.classList.add('tooltipFixed__active');
 
         TooltipFixed.closeEvent(settings);
     }
