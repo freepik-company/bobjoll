@@ -1,46 +1,104 @@
+@mixin triangle-tooltip($position) {
+    .tooltip__content::before {
+        @include triangle($base-spacing, color('campu', 'blue'), $position);
+    }
+}
+
 @if $tooltipFixed-v1-0 {
 
     .tooltipFixed__active {
         display: none;
     }
-    
+
     @include breakpoint('sm', 'min') {
 
         .tooltipFixed__active {
             display: block;
             opacity: 0;
             animation: tooltipFixed__active 250ms 1100ms cubic-bezier(.25, .1, .25, 1) forwards;
-            
-            &:not(.tooltip--permanent).tooltip__container:hover {	
+
+            &:not(.tooltip--permanent).tooltip__container:hover {
                 display: block !important;
                 opacity: 1;
                 visibility: initial;
             }
-            
+
             .notification__close {
                 box-shadow: none !important;
                 color: $gray-oxford;
                 background: $gray-aqua;
-    
+
                 .icon {
                     color: color('icon-inverted', 'general');
                 }
-    
+
                 &:hover {
                     background: $gray-aqua;
                 }
             }
+
+            .button--tooltip {
+                background-color: #ffffff;
+
+                &:hover {
+                    color: color('oxford', 'gray');
+                }
+            }
+
+            &.tooltip__container--blue {
+                &.tooltip__container--right {
+                    @include triangle-tooltip(left);
+                }
+
+                &.tooltip__container--left {
+                    @include triangle-tooltip(right);
+                }
+
+                &.tooltip__container--top {
+                    @include triangle-tooltip(down);
+                }
+
+                &.tooltip__container--bottom {
+                    @include triangle-tooltip(up);
+                }
+
+                .tooltip__content {
+                    max-width: 300px;
+                    padding: $large-spacing $large-spacing $base-spacing;
+                    border-radius: $base-border-radius;
+                    font-size: $small-font-size;
+                    text-align: left;
+                    background-color: color('campu', 'blue');
+                    color: color('text-inverted', 'general');
+
+                    .notification__close {
+                        color: #ffffff;
+                        background: color('campu', 'blue');
+
+                        &:hover {
+                            background: color('freepik', 'blue');
+                        }
+                    }
+
+                    .button--link {
+                        color: #ffffff;
+
+                        &:hover {
+                            background: rgba(255, 255, 255, 0.2);
+                        }
+                    }
+                }
+            }
         }
-    
+
         @keyframes tooltipFixed__active {
             from {
                 opacity: 0;
             }
-    
+
             to {
                 opacity: 1;
             }
         }
     }
 }
-   

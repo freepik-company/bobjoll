@@ -1,0 +1,14 @@
+{{#isTrue insertContainer}}
+<div class="tooltip__container tooltip__container--{{appearance}} tooltip__container--{{position}} tooltip__pre alignc tooltipFixed__active">
+{{/isTrue}}
+
+    <div class="tooltip__content font-sm">
+        <button class="notification__close button button--sm button--icon">
+            <i class="icon icon--lg icon--mg-sm icon--cross"></i>
+        </button>
+        {{{html}}}
+    </div>
+
+{{#isTrue insertContainer}}
+</div>
+{{/isTrue}}
