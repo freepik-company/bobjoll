@@ -22,8 +22,11 @@ export default class Range {
         }
     }
 
-    private updateRange = () => {
-        this.rangeValue = this.range.valueAsNumber;
+    public updateRange = (updateValue?: number) => {
+        if (updateValue !== undefined && updateValue !== this.range.valueAsNumber) {
+            this.range.value = `${updateValue}`;
+        }
+        this.rangeValue = updateValue !== undefined ? updateValue : this.range.valueAsNumber;
         this.fillRangeColor();
         this.updateRangeMarks();
     }
@@ -46,17 +49,17 @@ export default class Range {
 
             const minValue = Math.min(...marksValues);
             const maxValue = Math.max(...marksValues);
-    
+
             this.range.min = minValue.toString();
             this.range.max = maxValue.toString();
-    
+
             if (withSteps) {
                 const step = maxValue / marks.length;
                 this.range.step = step.toString();
             }
-    
+
             marks.length > 0 && this.createRangeMarks(marks);
-        }        
+        }
     }
 
     private getMarkElement = (mark: RangeMark) => {
