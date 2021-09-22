@@ -23,11 +23,10 @@ export default class Range {
     }
 
     public updateRange = (updateValue?: number) => {
-        const setValue = updateValue !== undefined;
-        if (setValue && updateValue !== this.range.valueAsNumber) {
+        if (updateValue !== undefined && updateValue !== this.range.valueAsNumber) {
             this.range.value = `${updateValue}`;
         }
-        this.rangeValue = setValue ? updateValue : this.range.valueAsNumber;
+        this.rangeValue = updateValue !== undefined ? updateValue : this.range.valueAsNumber;
         this.fillRangeColor();
         this.updateRangeMarks();
     }
