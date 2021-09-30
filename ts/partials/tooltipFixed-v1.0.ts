@@ -15,9 +15,11 @@ export class TooltipFixed {
 
         const cookieValue = cookie.getItem(TooltipFixed.cookieName);
 
-        if ((cookieValue && cookieValue === '1') || !TooltipFixed.wrapperElement) return false;
-
-        if (cookieValue && !this.showReappearedTooltip(cookieValue)) return false;
+        if (!TooltipFixed.wrapperElement
+            || (cookieValue &&
+                (cookieValue === '1' || !this.showReappearedTooltip(cookieValue))
+            )
+        ) return false;
 
         if (!settings.tooltip) {
             settings.tooltip = TooltipFixed.wrapperElement.innerHTML;
