@@ -98,12 +98,14 @@ $minmax: 'min', 'max';
 }
 
 @if $tooltipFixed-v1-0 {
+    .tooltipFixed > .tooltip__container:not(.tooltipFixed__active) {
+        display: none;
+    }
+
     .tooltipFixed__active {
         @include style-tooltip;
 
         &.tooltipFixed__breakpoint {
-            display: none;
-
             @each $media in $sizes {
                 &-#{$media} {
                     @each $from in $minmax {
@@ -118,8 +120,6 @@ $minmax: 'min', 'max';
         }
 
         &:not(.tooltipFixed__breakpoint) {
-            display: none;
-
             @include breakpoint('sm', 'min') {
                 @include show-tooltip;
             }
