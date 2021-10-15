@@ -1,6 +1,7 @@
+@use "sass:math";
 @if $form-v1-0 and $tag-field-v1-0 {
-    .tag-field {        
-        $tags-spacing: (($base-element-height - $small-button-height) / 2) - $base-border-width;
+    .tag-field {
+        $tags-spacing: math.div(($base-element-height - $small-button-height), 2) - $base-border-width;
 
         @extend input;
 
@@ -15,10 +16,9 @@
             left: 0;
             z-index: 1;
             width: calc(100% + #{($small-spacing - $tags-spacing + ($base-border-width)) * 2});
-            margin: 
-                ($small-spacing + ($base-border-width * 2))
-                (($small-spacing - $tags-spacing + ($base-border-width)) * -1) 
-                0 
+            margin: ($small-spacing + ($base-border-width * 2))
+                (($small-spacing - $tags-spacing + ($base-border-width)) * -1)
+                0
                 (($small-spacing - $tags-spacing + ($base-border-width)) * -1);
         }
 
@@ -55,7 +55,7 @@
             margin: 0 $tags-spacing $tags-spacing $tags-spacing;
             padding-right: 0 !important;
         }
-        
+
         input {
             width: 10px;
             height: $small-button-height;

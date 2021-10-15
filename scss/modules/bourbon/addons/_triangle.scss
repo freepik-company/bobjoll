@@ -1,3 +1,4 @@
+@use "sass:math";
 @mixin triangle($size, $color, $direction) {
   $width: nth($size, 1);
   $height: nth($size, length($size));
@@ -7,7 +8,7 @@
   width: 0;
 
   @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
-    $width: $width / 2;
+    $width: math.div($width, 2);
     $height: if(length($size) > 1, $height, $height/2);
 
     @if $direction == up {
@@ -31,7 +32,7 @@
     border-top: $height solid $foreground-color;
 
     @if $direction == up-right {
-      border-left:  $width solid $background-color;
+      border-left: $width solid $background-color;
     } @else if $direction == up-left {
       border-right: $width solid $background-color;
     }
@@ -39,7 +40,7 @@
     border-bottom: $height solid $foreground-color;
 
     @if $direction == down-right {
-      border-left:  $width solid $background-color;
+      border-left: $width solid $background-color;
     } @else if $direction == down-left {
       border-right: $width solid $background-color;
     }

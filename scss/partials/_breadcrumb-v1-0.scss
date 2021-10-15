@@ -1,3 +1,4 @@
+@use "sass:math";
 @if $breadcrumb-v1-0 {
 	.breadcrumbs {
 		@include clearfix;
@@ -8,14 +9,14 @@
 
 		margin: 0 0 $base-spacing;
 
-		@include element('link') {
+		@include element("link") {
 			position: relative;
 
 			display: block;
 
 			float: left;
 
-			padding: ($small-spacing / 2) $base-spacing;
+			padding: math.div($small-spacing, 2) $base-spacing;
 
 			font-size: $small-font-size;
 			text-decoration: none;
@@ -25,33 +26,32 @@
 			}
 
 			a {
-				color: color('text', 'general', .6);
+				color: color("text", "general", 0.6);
 			}
 
-			@include breakpoint('sm') {
-				padding: ($small-spacing / 4) $small-spacing;
+			@include breakpoint("sm") {
+				padding: math.div($small-spacing, 4) $small-spacing;
 
 				font-size: $extra-small-font-size;
-			} 
+			}
 
 			&::after {
-				content: '/';
+				content: "/";
 
-				color: color('text', 'general', .4);
+				color: color("text", "general", 0.4);
 
 				position: absolute;
 				right: 0;
 			}
 
 			&:last-child {
-
 				a {
-					color: color('text', 'general');
+					color: color("text", "general");
 					font-weight: semibold;
 				}
 
 				&::after {
-					content: '';
+					content: "";
 				}
 			}
 		}

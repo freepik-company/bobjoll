@@ -1,5 +1,8 @@
-@if $list-v1-0 { 
-	ul, ol, dl {
+@use "sass:math";
+@if $list-v1-0 {
+	ul,
+	ol,
+	dl {
 		margin: 0;
 		padding: 0;
 	}
@@ -8,13 +11,13 @@
 		list-style: none;
 	}
 
-	.list { 
+	.list {
 		margin: 0 0 $base-spacing;
-		
+
 		li {
 			position: relative;
 
-			margin: 0 0 ($extra-small-spacing / 2);
+			margin: 0 0 math.div($extra-small-spacing, 2);
 			padding: 0 0 0 $small-spacing;
 
 			list-style: none;
@@ -22,7 +25,7 @@
 			&::before {
 				$bullet-width: 6px;
 				$bullet-height: $bullet-width;
-				$bullet-spacing: floor(floor($base-line-height * $base-font-size) - $bullet-height) / 2;
+				$bullet-spacing: math.div(floor(floor($base-line-height * $base-font-size) - $bullet-height), 2);
 
 				display: inline-block;
 
@@ -33,40 +36,45 @@
 
 				border-radius: 50%;
 
-				background-color: color('text', 'general');
+				background-color: color("text", "general");
 
 				vertical-align: middle;
 
-				content: '';
-			}			
+				content: "";
+			}
 		}
 
 		@each $size in $sizes {
 			@include modifier($size) {
 				li {
 					font-size: map-get($font-sizes, $size);
-					line-height: map-get($line-height-sizes, $size);					
+					line-height: map-get($line-height-sizes, $size);
 
 					&::before {
 						$bullet-width: 6px;
 						$bullet-height: $bullet-width;
-						$bullet-spacing: floor(floor(map-get($line-height-sizes, $size) * map-get($font-sizes, $size)) - $bullet-height) / 2;
+						$bullet-spacing: math.div(
+							floor(
+								floor(map-get($line-height-sizes, $size) * map-get($font-sizes, $size)) - $bullet-height
+							),
+							2
+						);
 
 						margin: $bullet-spacing $extra-small-spacing 0 0;
 					}
-				}		
+				}
 			}
 		} // End sizes
 
-		@include modifier('horizontal') {
-			@include clearfix; 
+		@include modifier("horizontal") {
+			@include clearfix;
 
 			display: block;
 
 			li {
 				float: left;
 
-				margin: 0 $small-spacing 0 0; 
+				margin: 0 $small-spacing 0 0;
 
 				&:last-child {
 					margin: 0;
@@ -74,22 +82,22 @@
 			}
 		}
 
-		@include modifier('comma-separated') {
+		@include modifier("comma-separated") {
 			li {
 				margin: 0;
 				padding: 0;
 			}
 
 			li:not(:last-child)::after {
-				content: ',\00a0'
+				content: ",\00a0";
 			}
 
 			li:last-child::after {
-				content: '.'
+				content: ".";
 			}
 		}
 
-		@include modifier('nospacing') {
+		@include modifier("nospacing") {
 			margin: 0;
 
 			li {

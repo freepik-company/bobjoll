@@ -1,9 +1,10 @@
+@use "sass:math";
 @if $button-v1-0 {
 	#{$all-buttons} {
 		@include appearance(none);
 		@include user-select(none);
 
-		margin:  0; 
+		margin: 0;
 		padding: 0;
 
 		border: none;
@@ -11,34 +12,34 @@
 		background: none;
 
 		cursor: pointer;
-	} 
+	}
 
 	.button {
-		@include transition($base-duration $base-timing);		
+		@include transition($base-duration $base-timing);
 
-		position: relative;		
+		position: relative;
 
 		display: inline-block;
- 
+
 		height: $base-button-height;
 
-		padding: 0 $small-spacing;	
+		padding: 0 $small-spacing;
 
 		border-radius: $base-border-radius;
 
 		background-color: transparent;
-		
-		color: color('text', 'general');
+
+		color: color("text", "general");
 		text-decoration: none;
 		line-height: $base-button-height;
 
-		cursor: pointer;		
+		cursor: pointer;
 
 		&:disabled {
-			opacity: .65;
+			opacity: 0.65;
 		}
 
-		@include modifier('loading') {
+		@include modifier("loading") {
 			@extend .button--flat;
 			@extend .button--gray;
 			@extend .disabled;
@@ -47,15 +48,18 @@
 				&.button--#{$size}::before {
 					$icon-size: map-get($icon-sizes, $size);
 
-					width: map-get($icon-size, 'width');
-					height: map-get($icon-size, 'height');
+					width: map-get($icon-size, "width");
+					height: map-get($icon-size, "height");
 
-					margin: ((map-get($icon-size, 'height') / 2) * -1) 0 0 ((map-get($icon-size, 'width') / 2) * -1);
+					margin: ((math.div(map-get($icon-size, "height"), 2)) * -1)
+						0
+						0
+						(math.div(map-get($icon-size, "width"), 2) * -1);
 				}
 			}
 
 			&::before {
-				@include animation(rotate (600ms) linear infinite);
+				@include animation(rotate(600ms) linear infinite);
 				@include position(absolute, 50% null null 50%);
 
 				overflow: hidden;
@@ -64,12 +68,13 @@
 
 				border-radius: 50%;
 				border-width: 2px;
-				border-color: color('border-inverted', 'general') color('border-inverted', 'general', 0.3) color('border-inverted', 'general', 0.3) color('border-inverted', 'general', 0.3);
+				border-color: color("border-inverted", "general") color("border-inverted", "general", 0.3)
+					color("border-inverted", "general", 0.3) color("border-inverted", "general", 0.3);
 				border-style: solid;
 
 				box-sizing: border-box;
 
-				content: '';
+				content: "";
 			}
 
 			& > * {
@@ -78,15 +83,15 @@
 		}
 
 		// Flat
-		@include modifier('flat') {	
+		@include modifier("flat") {
 			position: relative;
 
-			background-color: color('button', 'general');
+			background-color: color("button", "general");
 
 			color: pick-visible-color(
-				color('button', 'general'),
-				color('text', 'general'),
-				color('text-inverted', 'general')
+				color("button", "general"),
+				color("text", "general"),
+				color("text-inverted", "general")
 			);
 
 			&::after {
@@ -94,25 +99,26 @@
 				@include transition($base-duration $base-timing);
 
 				opacity: 0;
- 
+
 				width: 100%;
 				height: 100%;
 
-				box-shadow: inset 0 (($base-border-width * 2) * -1) 0 color('shadow', 'general', .25);
+				box-shadow: inset 0 (($base-border-width * 2) * -1) 0 color("shadow", "general", 0.25);
 
-				content: '';
+				content: "";
 			}
 
 			&:hover {
-				background-color: color('button', 'general', 1, -7);
+				background-color: color("button", "general", 1, -7);
 
-				box-shadow: inset 0 0 0 $base-border-width color('button', 'general', 1, -7);
+				box-shadow: inset 0 0 0 $base-border-width color("button", "general", 1, -7);
 
-				color: color('text-inverted', 'general');
+				color: color("text-inverted", "general");
 
-				[class^='icon'], [class*='icon'] {
-					color: color('text-inverted', 'general');					
-					fill: color('text-inverted', 'general');					
+				[class^="icon"],
+				[class*="icon"] {
+					color: color("text-inverted", "general");
+					fill: color("text-inverted", "general");
 				}
 			}
 
@@ -120,349 +126,365 @@
 				opacity: 1;
 			}
 
-			[class^='icon'], [class*='icon'] {
+			[class^="icon"],
+			[class*="icon"] {
 				color: pick-visible-color(
-					color('button', 'general'),
-					color('text', 'general'),
-					color('text-inverted', 'general')
+					color("button", "general"),
+					color("text", "general"),
+					color("text-inverted", "general")
 				);
 				fill: pick-visible-color(
-					color('button', 'general'),
-					color('text', 'general'),
-					color('text-inverted', 'general')
+					color("button", "general"),
+					color("text", "general"),
+					color("text-inverted", "general")
 				);
 			}
 		}
 
 		// Inverted
-		@include modifier('inverted') {
-			box-shadow: inset 0 0 0 $base-border-width color('border-inverted', 'general');
+		@include modifier("inverted") {
+			box-shadow: inset 0 0 0 $base-border-width color("border-inverted", "general");
 
-			color: color('text-inverted', 'general');			
+			color: color("text-inverted", "general");
 
 			&:hover:not(:disabled),
 			&.active:not(:disabled) {
-				background-color: color('button-inverted', 'general');
+				background-color: color("button-inverted", "general");
 
-				color: color('text-secondary', 'general');
+				color: color("text-secondary", "general");
 
-				[class^='icon'], [class*='icon'] {
-					color: color('text-secondary', 'general');
-					fill: color('text-secondary', 'general');
+				[class^="icon"],
+				[class*="icon"] {
+					color: color("text-secondary", "general");
+					fill: color("text-secondary", "general");
 				}
 			}
 
-			[class^='icon'], [class*='icon'] {
-				color: color('text-inverted', 'general');
-				fill: color('text-inverted', 'general');
+			[class^="icon"],
+			[class*="icon"] {
+				color: color("text-inverted", "general");
+				fill: color("text-inverted", "general");
 			}
 		}
 
 		// Outline
-		@include modifier('outline') {
-			background-color: color('button-inverted', 'general');
+		@include modifier("outline") {
+			background-color: color("button-inverted", "general");
 
-			box-shadow: inset 0 0 0 $base-border-width color('border', 'general');
+			box-shadow: inset 0 0 0 $base-border-width color("border", "general");
 
-			color: color('text-secondary', 'general');
+			color: color("text-secondary", "general");
 
-			[class^='icon'], [class*='icon'] {
-				color: color('text-secondary', 'general');
-				fill: color('text-secondary', 'general');
+			[class^="icon"],
+			[class*="icon"] {
+				color: color("text-secondary", "general");
+				fill: color("text-secondary", "general");
 			}
 		}
 
 		// Ghost
-		@include modifier('ghost') {
-			box-shadow: inset 0 0 0 $base-border-width color('border', 'general');
+		@include modifier("ghost") {
+			box-shadow: inset 0 0 0 $base-border-width color("border", "general");
 
-			color: color('text-secondary', 'general');
+			color: color("text-secondary", "general");
 
-			[class^='icon'], [class*='icon'] {
-				color: color('text-secondary', 'general');
-				fill: color('text-secondary', 'general');
+			[class^="icon"],
+			[class*="icon"] {
+				color: color("text-secondary", "general");
+				fill: color("text-secondary", "general");
 			}
 		}
 
-		@include modifier('main') {
-			box-shadow: inset 0 0 0 $base-border-width color('button', 'general');
+		@include modifier("main") {
+			box-shadow: inset 0 0 0 $base-border-width color("button", "general");
 
-			&.button--flat  {
-				background-color: color('button', 'general');				
+			&.button--flat   {
+				background-color: color("button", "general");
 
 				color: pick-visible-color(
-					color('button', 'general'),
-					color('text', 'general'),
-					color('text-inverted', 'general')
+					color("button", "general"),
+					color("text", "general"),
+					color("text-inverted", "general")
 				);
 
-				[class^='icon'], [class*='icon'] {
+				[class^="icon"],
+				[class*="icon"] {
 					color: pick-visible-color(
-						color('button', 'general'),
-						color('text', 'general'),
-						color('text-inverted', 'general')
+						color("button", "general"),
+						color("text", "general"),
+						color("text-inverted", "general")
 					);
 					fill: pick-visible-color(
-						color('button', 'general'),
-						color('text', 'general'),
-						color('text-inverted', 'general')
+						color("button", "general"),
+						color("text", "general"),
+						color("text-inverted", "general")
 					);
-				}			
+				}
 			}
 
 			&.button--outline {
-				color: color('button', 'general');
+				color: color("button", "general");
 
-				[class^='icon'], [class*='icon'] {
-					color: color('button', 'general');
-					fill: color('button', 'general');
-				}	
+				[class^="icon"],
+				[class*="icon"] {
+					color: color("button", "general");
+					fill: color("button", "general");
+				}
 			}
-		}		
+		}
 
 		// Color
-		@each $state, $hex in map-get($colors, 'state') {
+		@each $state, $hex in map-get($colors, "state") {
 			@include modifier(#{$state}) {
-				box-shadow: inset 0 0 0 $base-border-width color($state, 'state');
-				
-				&.button--flat {
-					background-color: color($state, 'state');
-					
-					color: color($state, 'state-text');
+				box-shadow: inset 0 0 0 $base-border-width color($state, "state");
 
-					[class^='icon'], [class*='icon'] {
-						color: color($state, 'state-text');
-						fill: color($state, 'state-text');
+				&.button--flat {
+					background-color: color($state, "state");
+
+					color: color($state, "state-text");
+
+					[class^="icon"],
+					[class*="icon"] {
+						color: color($state, "state-text");
+						fill: color($state, "state-text");
 					}
 				}
 
 				&.button--outline {
-					color: color($state, 'state');
+					color: color($state, "state");
 
-					[class^='icon'], [class*='icon'] {
-						color: color($state, 'state');
-						fill: color($state, 'state');
+					[class^="icon"],
+					[class*="icon"] {
+						color: color($state, "state");
+						fill: color($state, "state");
 					}
 				}
 
 				&.button--flat:hover:not(.disabled),
 				&.button--outline:hover:not(.disabled) {
-					background-color: color($state, 'state', 1, -7);
+					background-color: color($state, "state", 1, -7);
 
-					box-shadow: inset 0 0 0 $base-border-width color($state, 'state', 1, -7);
+					box-shadow: inset 0 0 0 $base-border-width color($state, "state", 1, -7);
 
-					color: color($state, 'state-text');
+					color: color($state, "state-text");
 
-					[class^='icon'], [class*='icon'] {
-						color: color($state, 'state-text');
-						fill: color($state, 'state-text');
+					[class^="icon"],
+					[class*="icon"] {
+						color: color($state, "state-text");
+						fill: color($state, "state-text");
 					}
 				}
 			}
 		}
 
 		// Hover
-		@include modifier('main--hover') {
+		@include modifier("main--hover") {
 			&:hover:not(:disabled) {
-				background-color: color('button', 'general', 1, -7);
+				background-color: color("button", "general", 1, -7);
 
-				box-shadow: inset 0 0 0 $base-border-width color('button', 'general', 1, -7);
+				box-shadow: inset 0 0 0 $base-border-width color("button", "general", 1, -7);
 
-				color: color('text-inverted', 'general');
+				color: color("text-inverted", "general");
 
-				[class^='icon'], [class*='icon'] {
-					color: color('text-inverted', 'general');					
-					fill: color('text-inverted', 'general');					
+				[class^="icon"],
+				[class*="icon"] {
+					color: color("text-inverted", "general");
+					fill: color("text-inverted", "general");
 				}
 			}
 
 			&.active:not(:disabled) {
-				background-color: color('button', 'general');
+				background-color: color("button", "general");
 
-				box-shadow: inset 0 0 0 $base-border-width color('button', 'general');
+				box-shadow: inset 0 0 0 $base-border-width color("button", "general");
 
-				color: color('text-inverted', 'general');
+				color: color("text-inverted", "general");
 
-				[class^='icon'], [class*='icon'] {
-					color: color('text-inverted', 'general');					
-					fill: color('text-inverted', 'general');					
+				[class^="icon"],
+				[class*="icon"] {
+					color: color("text-inverted", "general");
+					fill: color("text-inverted", "general");
 				}
 			}
 		}
 
-		@each $state, $hex in map-get($colors, 'state') {
+		@each $state, $hex in map-get($colors, "state") {
 			@include modifier(#{$state}--hover) {
 				&:hover:not(:disabled) {
-					background-color: color($state, 'state', 1, -7);
+					background-color: color($state, "state", 1, -7);
 
-					box-shadow: inset 0 0 0 $base-border-width color($state, 'state', 1, -7);
+					box-shadow: inset 0 0 0 $base-border-width color($state, "state", 1, -7);
 
-					color: color($state, 'state-text');
+					color: color($state, "state-text");
 
-					[class^='icon'], [class*='icon'] {
-						color: color($state, 'state-text');
-						fill: color($state, 'state-text');			
+					[class^="icon"],
+					[class*="icon"] {
+						color: color($state, "state-text");
+						fill: color($state, "state-text");
 					}
 				}
 
 				&.active:not(:disabled) {
-					background-color: color($state, 'state');
+					background-color: color($state, "state");
 
-					box-shadow: inset 0 0 0 $base-border-width color($state, 'state');
+					box-shadow: inset 0 0 0 $base-border-width color($state, "state");
 
-					color: color($state, 'state-text');
+					color: color($state, "state-text");
 
-					[class^='icon'], [class*='icon'] {
-						color: color($state, 'state-text');		
-						fill: color($state, 'state-text');					
-					}	
+					[class^="icon"],
+					[class*="icon"] {
+						color: color($state, "state-text");
+						fill: color($state, "state-text");
+					}
 				}
 			}
 		}
 
 		// Icon
 		@if ($grid-v1-0) {
-			@include modifier('icon') {
+			@include modifier("icon") {
 				@include clearfix;
-	
+
 				position: relative;
-	
+
 				display: block;
-	
+
 				&:not(.button--icon--only):not(.button--icon--left):not(.button--icon--right) {
 					@extend %row-flexbox;
 					@extend .row--vertical-center;
 					@extend .row--horizontal-center;
-	
+
 					.icon {
 						padding-left: 0;
 						padding-right: 0;
 					}
-	
-					span ~ i, i ~ span {
+
+					span ~ i,
+					i ~ span {
 						margin-left: $extra-small-spacing !important;
 					}
 				}
-	
-				@include modifier('only') {
+
+				@include modifier("only") {
 					padding: 0 !important;
 				}
-	
-				@include modifier('left') {
+
+				@include modifier("left") {
 					.icon:first-of-type {
 						@include position(absolute, 0 null null 0);
-	
+
 						border-top-left-radius: $base-border-radius;
 						border-bottom-left-radius: $base-border-radius;
 					}
 				}
-	
-				@include modifier('right') {
+
+				@include modifier("right") {
 					.icon:first-of-type {
 						@include position(absolute, 0 0 null null);
-	
+
 						border-top-right-radius: $base-border-radius;
 						border-bottom-right-radius: $base-border-radius;
 					}
-				}			
-			}			
+				}
+			}
 		}
 
 		// Social
-		@each $social, $hex in map-get($colors, 'social') {
+		@each $social, $hex in map-get($colors, "social") {
 			@include modifier($social) {
 				&.button--flat {
-					background: color($social, 'social');
+					background: color($social, "social");
 
-					box-shadow: inset 0 0 0 $base-border-width color($social, 'social');
+					box-shadow: inset 0 0 0 $base-border-width color($social, "social");
 
 					color: pick-visible-color(
-						color($social, 'social'),
-						color('text', 'general'),
-						color('text-inverted', 'general')
+						color($social, "social"),
+						color("text", "general"),
+						color("text-inverted", "general")
 					);
 
 					.icon {
 						color: pick-visible-color(
-							color($social, 'social'),
-							color('text', 'general'),
-							color('text-inverted', 'general')
+							color($social, "social"),
+							color("text", "general"),
+							color("text-inverted", "general")
 						);
 						fill: pick-visible-color(
-							color($social, 'social'),
-							color('text', 'general'),
-							color('text-inverted', 'general')
+							color($social, "social"),
+							color("text", "general"),
+							color("text-inverted", "general")
 						);
 					}
 
 					&.button--icon--left,
 					&.button--icon--right {
-						background: color($social, 'social', 1, -2.5);
+						background: color($social, "social", 1, -2.5);
 
 						span {
 							overflow: hidden;
 
 							display: block;
-							
+
 							text-overflow: ellipsis;
 							white-space: nowrap;
 						}
 
 						.icon:first-of-type {
-							background: color($social, 'social');
+							background: color($social, "social");
 						}
 					}
 
 					&:hover {
-						background: color($social, 'social', 1, -7);
+						background: color($social, "social", 1, -7);
 
-						box-shadow: inset 0 0 0 $base-border-width color($social, 'social', 1, -7);
+						box-shadow: inset 0 0 0 $base-border-width color($social, "social", 1, -7);
 
 						color: pick-visible-color(
-							color($social, 'social', 1, -7),
-							color('text', 'general'),
-							color('text-inverted', 'general')
+							color($social, "social", 1, -7),
+							color("text", "general"),
+							color("text-inverted", "general")
 						);
 					}
 				}
 
 				&.button--outline {
-					color: color($social, 'social');
+					color: color($social, "social");
 
 					.icon {
-						color: color($social, 'social');
-						fill: color($social, 'social');
+						color: color($social, "social");
+						fill: color($social, "social");
 					}
 
 					&:hover:not(:disabled),
 					&.active:not(:disabled) {
-						background: color($social, 'social');
+						background: color($social, "social");
 
 						color: pick-visible-color(
-							color($social, 'social'),
-							color('text', 'general'),
-							color('text-inverted', 'general')
+							color($social, "social"),
+							color("text", "general"),
+							color("text-inverted", "general")
 						);
 
-						[class^='icon'], [class*='icon'] {
+						[class^="icon"],
+						[class*="icon"] {
 							color: pick-visible-color(
-								color($social, 'social'),
-								color('text', 'general'),
-								color('text-inverted', 'general')
-							);	
+								color($social, "social"),
+								color("text", "general"),
+								color("text-inverted", "general")
+							);
 							fill: pick-visible-color(
-								color($social, 'social'),
-								color('text', 'general'),
-								color('text-inverted', 'general')
-							);							
-						}				
+								color($social, "social"),
+								color("text", "general"),
+								color("text-inverted", "general")
+							);
+						}
 					}
 				}
 			}
 		}
 
 		// State
-		@include modifier('state') {
+		@include modifier("state") {
 			&.active:not(:disabled) {
 				.state--inactive {
 					display: none;
@@ -485,7 +507,7 @@
 		}
 
 		// Pill
-		@include modifier('pill') {
+		@include modifier("pill") {
 			border-radius: $base-button-height;
 
 			&.button--flat {
@@ -495,8 +517,8 @@
 			}
 		}
 
-		// Auto 
-		@include modifier('auto') {
+		// Auto
+		@include modifier("auto") {
 			height: auto !important;
 
 			padding: $small-spacing !important;
@@ -506,17 +528,17 @@
 
 		// Sizes
 		@each $size in $sizes {
-			@include modifier($size) {				
+			@include modifier($size) {
 				height: map-get($button-sizes, $size);
 
-				margin: (($base-element-height - map-get($button-sizes, $size)) / 2) 0 0 0;
+				margin: math.div(($base-element-height - map-get($button-sizes, $size)), 2) 0 0 0;
 				padding: 0 map-get($spacing-sizes, $size);
 
 				font-size: map-get($font-sizes, $size);
 				line-height: map-get($button-sizes, $size);
 
 				&.button--pill {
-					border-radius: map-get($button-sizes, $size);					
+					border-radius: map-get($button-sizes, $size);
 				}
 
 				&.button--icon--left {
@@ -531,57 +553,58 @@
 
 		// Group
 		@if ($form-v1-0) {
-			@include element('group') {
+			@include element("group") {
 				@extend %row-flexbox;
-	
+
 				overflow: hidden;
-	
+
 				display: inline-block;
-	
+
 				border-radius: $base-border-radius;
-	
-				box-shadow: 0 0 0 1px color('border', 'general');
-	
+
+				box-shadow: 0 0 0 1px color("border", "general");
+
 				.button {
 					width: 100%;
-	
+
 					border-radius: 0 !important;
-	
+
 					box-shadow: none !important;
-	
+
 					text-align: center;
 				}
-	
+
 				label {
 					input[type="checkbox"]:checked.hide ~ .button,
 					input[type="radio"]:checked.hide ~ .button {
 						@extend .button--main--hover.active;
 					}
 				}
-	
+
 				li {
 					@include flex(1);
-	
-					box-shadow: 1px 0px 0px 0px color('border', 'general');
-	
+
+					box-shadow: 1px 0px 0px 0px color("border", "general");
+
 					&:first-child {
 						border-top-left-radius: $base-border-radius;
 						border-bottom-left-radius: $base-border-radius;
 					}
-	
+
 					&:last-child {
 						border-top-right-radius: $base-border-radius;
 						border-bottom-right-radius: $base-border-radius;
 					}
 				}
-			}			
+			}
 		}
-	} 
+	}
 
 	@include keyframes(rotate) {
 		0% {
 			@include transform(rotate(0deg));
-		} 100% {
+		}
+		100% {
 			@include transform(rotate(360deg));
 		}
 	}

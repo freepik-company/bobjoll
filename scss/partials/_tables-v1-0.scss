@@ -1,3 +1,4 @@
+@use "sass:math";
 @if $tables-v1-0 {
 	.table {
 		margin: 0 0 $base-spacing;
@@ -18,32 +19,33 @@
 				@include position(absolute, 50% $extra-small-spacing null null);
 				@include transform(translateY(-50%));
 
-				content: '';
+				content: "";
 			}
 
 			&::before {
-				@include triangle($base-triangle-size, color('text', 'general', .50), up);
+				@include triangle($base-triangle-size, color("text", "general", 0.5), up);
 
-				margin-top: (($base-triangle-size / 2) * -1);
+				margin-top: (math.div($base-triangle-size, 2) * -1);
 			}
 
 			&::after {
-				@include triangle($base-triangle-size, color('text', 'general', .50), down);
+				@include triangle($base-triangle-size, color("text", "general", 0.5), down);
 
-				margin-top: ($base-triangle-size / 2);
+				margin-top: math.div($base-triangle-size, 2);
 			}
 
-			@include modifier('icon') {
+			@include modifier("icon") {
 				padding-right: $small-spacing;
 
 				@each $size in $sizes {
-					&-#{$size} {				
+					&-#{$size} {
 						&::before,
 						&::after {
 							@include position(absolute, 50% auto auto 50%);
 							@include transform(translate(-50%, -50%));
 
-							margin-left: map-get(map-get($icon-sizes, $size), 'width') + ($extra-small-spacing / 2);
+							margin-left: map-get(map-get($icon-sizes, $size), "width") +
+								math.div($extra-small-spacing, 2);
 						}
 					}
 				}
@@ -53,37 +55,38 @@
 		table {
 			width: 100%;
 
-			background-color: color('table', 'background');
+			background-color: color("table", "background");
 
-			td, th {
+			td,
+			th {
 				padding: $extra-small-spacing $small-spacing;
 			}
 
 			tr {
 				&:nth-child(odd) {
-					background-color: color('table-odd', 'background');
+					background-color: color("table-odd", "background");
 				}
 			}
 
-			th {				
+			th {
 				border-bottom: $base-border;
 
-				background-color: color('table-head', 'background');
+				background-color: color("table-head", "background");
 
 				color: pick-visible-color(
-					color('table-head', 'background'),
-					color('text', 'general'),
-					color('text-inverted', 'general')
+					color("table-head", "background"),
+					color("text", "general"),
+					color("text-inverted", "general")
 				);
 			}
 
 			td {
-				border-bottom: $base-border;				
+				border-bottom: $base-border;
 
 				color: pick-visible-color(
-					color('table-head', 'background'),
-					color('text', 'general'),
-					color('text-inverted', 'general')
+					color("table-head", "background"),
+					color("text", "general"),
+					color("text-inverted", "general")
 				);
 
 				&:last-child {
@@ -91,5 +94,5 @@
 				}
 			}
 		}
-	}	
+	}
 }

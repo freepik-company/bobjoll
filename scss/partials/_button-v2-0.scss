@@ -1,24 +1,24 @@
+@use "sass:math";
 @if $button-v2-0 {
     #{$all-buttons} {
         @include prefixer(appearance, none, webkit moz ms);
 
-		margin:  0; 
-		padding: 0;
+        margin: 0;
+        padding: 0;
 
-		border: none;
+        border: none;
 
-
-		background: none;
+        background: none;
 
         user-select: none;
-		cursor: pointer;
+        cursor: pointer;
     }
-    
-    .button { 
-        --bg: color('default', 'buttons');
+
+    .button {
+        --bg: color("default", "buttons");
         --size: 0;
         --font: $base-font-size;
-        --color: color('default', 'buttons-text');
+        --color: color("default", "buttons-text");
         --height: $base-element-height;
 
         display: inline-block;
@@ -26,7 +26,7 @@
         position: relative;
 
         height: var(--height);
-        
+
         padding: 0 1.4em;
 
         border-radius: $base-border-radius;
@@ -40,38 +40,39 @@
 
         cursor: pointer;
 
-        &.active, &:hover {
-            --bg: color('default', 'buttons', 1, -3);
+        &.active,
+        &:hover {
+            --bg: color("default", "buttons", 1, -3);
 
             color: var(--color);
             box-shadow: inset 0px 0px 0px var(--size) var(--bg);
 
             .icon {
-                color: color('default', 'buttons-text');   
+                color: color("default", "buttons-text");
                 color: var(--color);
             }
         }
 
         &.active {
-            --bg: color('default', 'buttons');
-        }       
+            --bg: color("default", "buttons");
+        }
 
         .icon {
-            color: color('default', 'buttons');
-            color: var(--color);   
-        }        
+            color: color("default", "buttons");
+            color: var(--color);
+        }
 
         /**
         * Modifier
         */
-        &--outline, 
+        &--outline,
         &--flat {
-            --bg: color('default', 'buttons');
+            --bg: color("default", "buttons");
         }
 
         &--outline {
             --size: $base-border-width;
-            --color: color('default-outline', 'buttons-text');
+            --color: color("default-outline", "buttons-text");
 
             color: var(--color);
 
@@ -79,9 +80,10 @@
                 color: var(--color);
             }
 
-            &.active, &:hover {
-                --size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
-                --color: color('default', 'buttons-text');
+            &.active,
+            &:hover {
+                --size: math.div(map-get($button-sizes, map-get-last($button-sizes)), 2);
+                --color: color("default", "buttons-text");
             }
         }
 
@@ -98,31 +100,31 @@
 
                 box-shadow: $small-box-shadow;
 
-                content: '';
+                content: "";
             }
         }
 
         &--state {
             &.active:not(:disabled) {
-				.state--inactive {
-					display: none;
-				}
+                .state--inactive {
+                    display: none;
+                }
 
-				.state--active {
-					display: block;
-				}
-			}
+                .state--active {
+                    display: block;
+                }
+            }
 
-			&:not(.active) {
-				.state--inactive {
-					display: block;
-				}
+            &:not(.active) {
+                .state--inactive {
+                    display: block;
+                }
 
-				.state--active {
-					display: none;
-				}
-			}
-        }        
+                .state--active {
+                    display: none;
+                }
+            }
+        }
 
         &--text,
         &--text-inverted {
@@ -130,23 +132,25 @@
         }
 
         &--text-inverted {
-            --color: color('text-inverted', 'general', 1, .65);
+            --color: color("text-inverted", "general", 1, 0.65);
 
-            &.active, &:hover {
-                --color: color('text-inverted', 'general');
+            &.active,
+            &:hover {
+                --color: color("text-inverted", "general");
             }
         }
 
         &--text {
-            --color: color('text', 'general');
+            --color: color("text", "general");
 
-            &.active, &:hover {
-                --color: color('link', 'general');
+            &.active,
+            &:hover {
+                --color: color("link", "general");
             }
         }
 
         &--flat {
-            --size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
+            --size: math.div(map-get($button-sizes, map-get-last($button-sizes)), 2);
         }
 
         &--pill {
@@ -164,107 +168,114 @@
                 }
             }
 
-            span, i {
+            span,
+            i {
                 margin-left: auto;
             }
 
-            span ~ i, i ~ span {
+            span ~ i,
+            i ~ span {
                 margin-left: $extra-small-spacing !important;
                 margin-right: auto;
             }
 
             &--only {
                 width: var(--height);
-                
+
                 padding: 0 !important;
-            }        
+            }
         }
 
         &--auto {
             --size: 100px;
 
             height: auto !important;
-            
+
             span {
                 line-height: $base-line-height;
             }
         }
 
         &--loading {
-            --bg: color('gray', 'buttons') !important;
-            --size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
+            --bg: color("gray", "buttons") !important;
+            --size: math.div(map-get($button-sizes, map-get-last($button-sizes)), 2);
 
             pointer-events: none !important;
 
-			&::after {
+            &::after {
                 animation: rotate 600ms linear infinite;
 
                 display: block !important;
 
-				overflow: hidden;
+                overflow: hidden;
 
                 opacity: 1;
-                
-                width: calc(var(--size) * .75);
-                height: calc(var(--size) * .75);
 
-                margin: calc((var(--size) * .25) / 2);
+                width: calc(var(--size) * 0.75);
+                height: calc(var(--size) * 0.75);
 
-				border-radius: 50%;
-				border-width: 2px;
-				border-color: color('border-inverted', 'general') color('border-inverted', 'general', 0.3) color('border-inverted', 'general', 0.3) color('border-inverted', 'general', 0.3);
-				border-style: solid;
+                margin: calc(math.div((var(--size) * 0.25), 2));
 
-				box-sizing: border-box;
+                border-radius: 50%;
+                border-width: 2px;
+                border-color: color("border-inverted", "general")
+                    color("border-inverted", "general", 0.3)
+                    color("border-inverted", "general", 0.3)
+                    color("border-inverted", "general", 0.3);
+                border-style: solid;
 
-				content: '';
-			}
+                box-sizing: border-box;
 
-			& > * {
+                content: "";
+            }
+
+            & > * {
                 display: none !important;
-			}
-		}
+            }
+        }
 
         /**
         * Sizes
         */
         @each $key, $value in $button-sizes {
-			&--#{$key} {
+            &--#{$key} {
                 --font: map-get($font-sizes, $key);
                 --height: $value;
-			}
+            }
         }
-        
+
         /**
         * Colors
         */
-        @each $color, $hex in map-get($colors, 'buttons') {
+        @each $color, $hex in map-get($colors, "buttons") {
             &--#{$color} {
                 --bg: $hex;
-                --color: color($color, 'buttons-text');
+                --color: color($color, "buttons-text");
 
                 &.button--outline {
-                    --color: color(#{$color}-outline, 'buttons-text');
+                    --color: color(#{$color}-outline, "buttons-text");
                 }
-                
-                &.active, &:hover {
-                    --bg: color($color, 'buttons', 1, -3);
-                    --color: color($color, 'buttons-text');
+
+                &.active,
+                &:hover {
+                    --bg: color($color, "buttons", 1, -3);
+                    --color: color($color, "buttons-text");
                 }
 
                 &.active {
-                    --bg: color($color, 'buttons', 1);
+                    --bg: color($color, "buttons", 1);
                 }
             }
 
             &--#{$color}--hover {
-                &.active, &:hover {
-                    --color: color($color, 'buttons-text') !important;
-                    --bg: color($color, 'buttons', 1, -3) !important;
+                &.active,
+                &:hover {
+                    --color: color($color, "buttons-text") !important;
+                    --bg: color($color, "buttons", 1, -3) !important;
                 }
-                
+
                 &.active {
-                    --bg: color($color, 'buttons') !important;
+                    --bg: color($color, "buttons") !important;
                 }
             }
         }
@@ -272,22 +283,23 @@
         /**
         * Social
         */
-        @each $color, $hex in map-get($colors, 'social') {
+        @each $color, $hex in map-get($colors, "social") {
             &--#{$color} {
                 --bg: $hex;
-                --color: color('inverted', 'buttons');
-                
+                --color: color("inverted", "buttons");
+
                 &.button--outline {
-                    --color: color($color, 'social');
+                    --color: color($color, "social");
                 }
 
-                &.active, &:hover {
-                    --bg: color($color, 'social', 1, -3);
-                    --color: color('inverted', 'buttons');
+                &.active,
+                &:hover {
+                    --bg: color($color, "social", 1, -3);
+                    --color: color("inverted", "buttons");
                 }
 
                 &.active {
-                    --bg: color($color, 'social', 1);
+                    --bg: color($color, "social", 1);
                 }
             }
         }

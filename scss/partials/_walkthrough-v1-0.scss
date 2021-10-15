@@ -1,5 +1,5 @@
+@use "sass:math";
 @if $walkthrough-v1-0 {
-
     .walkthrough__notification {
         display: none;
         position: fixed;
@@ -22,21 +22,21 @@
             }
 
             .notification {
-                animation: walkthrough-notification 250ms 1100ms cubic-bezier(.25, .1, .25, 1) forwards;
+                animation: walkthrough-notification 250ms 1100ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
             }
 
             .notification .notification__content {
-                animation: walkthrough-notification-content 250ms 1200ms cubic-bezier(.25, .1, .25, 1) forwards;
+                animation: walkthrough-notification-content 250ms 1200ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
                 opacity: 0;
             }
 
             &::before {
-                animation: walkthrough-overlay 600ms 500ms cubic-bezier(.25, .1, .25, 1) forwards;
+                animation: walkthrough-overlay 600ms 500ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
                 position: absolute;
                 width: 500vw;
                 height: 500vw;
                 border-radius: 500vw;
-                content: '';
+                content: "";
             }
         }
 
@@ -47,19 +47,19 @@
             max-width: 280px;
             padding: $large-spacing;
             border-radius: $base-border-radius;
-            background-color: color('4', 'blue');
+            background-color: color("4", "blue");
 
             &::before {
                 $triangle-size: 12px;
                 position: absolute;
                 bottom: 100%;
-                right: ($base-triangle-size) + (($small-element-height - $triangle-size) / 2);
-                content: '';
+                right: ($base-triangle-size) + math.div(($small-element-height - $triangle-size), 2);
+                content: "";
 
-                @include triangle($triangle-size, color('4', 'blue'), up);
+                @include triangle($triangle-size, color("4", "blue"), up);
             }
 
-            color: color('text-inverted', 'general');
+            color: color("text-inverted", "general");
             font-size: $small-font-size;
 
             .notification__content {
@@ -68,25 +68,25 @@
 
             .notification__close {
                 box-shadow: none !important;
-                background: color('4', 'blue');
+                background: color("4", "blue");
 
                 .icon {
-                    color: color('icon-inverted', 'general');
+                    color: color("icon-inverted", "general");
                 }
 
                 &:hover {
-                    background: color('5', 'blue');
+                    background: color("5", "blue");
                 }
             }
 
             .link:last-child,
             a:last-child {
-                color: color('link-inverted', 'general');
+                color: color("link-inverted", "general");
                 font-weight: bold;
 
                 .icon {
                     transition: transform 150ms linear;
-                    color: color('icon-inverted', 'general');
+                    color: color("icon-inverted", "general");
                 }
 
                 @extend %row-flexbox;
@@ -94,9 +94,7 @@
                 @include prefixer(align-items, center, ms spec);
 
                 &:hover {
-
                     .icon {
-
                         @include transform(translateX(10px));
                     }
                 }
@@ -108,47 +106,42 @@
         }
     }
 
-    @include breakpoint('sm', 'min') {
-
+    @include breakpoint("sm", "min") {
         @keyframes walkthrough-overlay {
-
             from {
                 width: 500vw;
                 height: 500vw;
-                box-shadow: 0 0 0 200vw color('overlay', 'background', .2);
+                box-shadow: 0 0 0 200vw color("overlay", "background", 0.2);
             }
 
             to {
                 width: 400px;
                 height: 400px;
-                box-shadow: 0 0 0 200vw color('overlay', 'background', .8);
+                box-shadow: 0 0 0 200vw color("overlay", "background", 0.8);
             }
         }
     }
 
-    @include breakpoint('sm') {
-
+    @include breakpoint("sm") {
         @keyframes walkthrough-overlay {
-
             from {
                 width: 500vw;
                 height: 500vw;
-                box-shadow: 0 0 0 200vw color('overlay', 'background', .2);
+                box-shadow: 0 0 0 200vw color("overlay", "background", 0.2);
             }
 
             to {
                 width: 200px;
                 height: 200px;
-                box-shadow: 0 0 0 200vw color('overlay', 'background', .8);
+                box-shadow: 0 0 0 200vw color("overlay", "background", 0.8);
             }
         }
     }
 
     @keyframes walkthrough-notification {
-
         0% {
             opacity: 0;
-            transform: scale(.6);
+            transform: scale(0.6);
         }
 
         100% {
@@ -158,7 +151,6 @@
     }
 
     @keyframes walkthrough-notification-content {
-
         from {
             opacity: 0;
         }

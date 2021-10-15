@@ -1,17 +1,18 @@
+@use "sass:math";
 @if $pagination-v1-0 {
 	.pagination {
 		input::-webkit-inner-spin-button,
 		input::-webkit-outer-spin-button {
-			@include appearance(textfield); 
+			@include appearance(textfield);
 		}
 
 		ul {
 			@extend %row-flexbox;
 
-			margin: 0 (($extra-small-spacing / 2) * -1);
+			margin: 0 (math.div($extra-small-spacing, 2) * -1);
 
 			& > li {
-				padding: 0 ($extra-small-spacing / 2);
+				padding: 0 math.div($extra-small-spacing, 2);
 			}
 
 			.button {
@@ -30,7 +31,7 @@
 		}
 
 		a {
-			padding: ($small-spacing / 2) $small-spacing;
+			padding: math.div($small-spacing, 2) $small-spacing;
 
 			border-radius: $base-border-radius;
 
@@ -41,14 +42,14 @@
 
 				box-shadow: none;
 
-				color: color('text', 'general');
+				color: color("text", "general");
 				font-weight: bold;
 
 				background: none;
 			}
 		}
 
-		@include element('context') {
+		@include element("context") {
 			padding: 0 $base-spacing;
 
 			.pagination__pages {
@@ -56,11 +57,11 @@
 			}
 		}
 
-		@include element('button') {
+		@include element("button") {
 			@include prefixer(display, flex !important, ms spec);
 		}
 
-		@include element('menu') {
+		@include element("menu") {
 			display: table;
 
 			& > * {
@@ -73,7 +74,7 @@
 				text-align: center;
 			}
 
-			@include modifier('sm') {
+			@include modifier("sm") {
 				.pagination__menu__context {
 					padding: 0 $small-spacing;
 				}
@@ -81,8 +82,8 @@
 				.pagination__context span,
 				.pagination__input input {
 					display: inline-block;
-					height: $small-element-height;				
-					margin: (($base-element-height - $small-element-height) / 2) 0;					
+					height: $small-element-height;
+					margin: math.div(($base-element-height - $small-element-height), 2) 0;
 					font-size: $small-font-size;
 					line-height: $small-element-height;
 				}
@@ -106,7 +107,7 @@
 				}
 			}
 
-			@include modifier('xs') {
+			@include modifier("xs") {
 				.pagination__menu__context {
 					padding: 0 $small-spacing;
 				}
@@ -114,8 +115,8 @@
 				.pagination__context span,
 				.pagination__input input {
 					display: inline-block;
-					height: $extra-small-element-height;				
-					margin: (($base-element-height - $extra-small-element-height) / 2) 0;					
+					height: $extra-small-element-height;
+					margin: math.div(($base-element-height - $extra-small-element-height), 2) 0;
 					font-size: $extra-small-font-size;
 					line-height: $extra-small-element-height;
 				}
@@ -146,12 +147,12 @@
 					width: $extra-small-font-size;
 					height: $extra-small-font-size;
 
-					margin: (($extra-small-element-height - $extra-small-font-size) / 2) 0;
+					margin: math.div(($extra-small-element-height - $extra-small-font-size), 2) 0;
 
 					font-size: $extra-small-font-size;
 					line-height: $extra-small-font-size;
 				}
-			}			
+			}
 		}
 	}
 }

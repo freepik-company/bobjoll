@@ -1,12 +1,13 @@
+@use "sass:math";
 @if $icon-v1-0 {
-    $webfont: 'bobjoll-linear' !global;
+    $webfont: "bobjoll-linear" !global;
 
     @font-face {
         font-family: $webfont;
-        src:  url('~bobjoll/fonts/bobjoll-linear.eot?128990');
-        src:  url('~bobjoll/fonts/bobjoll-linear.eot?128990#iefix') format('embedded-opentype'),
-        url('~bobjoll/fonts/bobjoll-linear.ttf?128990') format('truetype'),
-        url('~bobjoll/fonts/bobjoll-linear.svg?128990#bobjoll-linear') format('svg');
+        src: url("~bobjoll/fonts/bobjoll-linear.eot?128990");
+        src: url("~bobjoll/fonts/bobjoll-linear.eot?128990#iefix") format("embedded-opentype"),
+            url("~bobjoll/fonts/bobjoll-linear.ttf?128990") format("truetype"),
+            url("~bobjoll/fonts/bobjoll-linear.svg?128990#bobjoll-linear") format("svg");
         font-weight: normal;
         font-style: normal;
     }
@@ -15,7 +16,7 @@
         margin-left: 0;
         margin-right: 0;
     }
-    
+
     .icon {
         display: block;
 
@@ -25,8 +26,8 @@
         font-size: $base-icon-width;
         line-height: $base-icon-height;
 
-        color: color('icon', 'general');
-        fill: color('icon', 'general');
+        color: color("icon", "general");
+        fill: color("icon", "general");
         font-family: $webfont !important;
         speak: none;
         font-style: normal;
@@ -37,129 +38,500 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
 
-        @include modifier('inverted') {
-            color: color('icon-inverted', 'general');
-            fill: color('icon-inverted', 'general');
+        @include modifier("inverted") {
+            color: color("icon-inverted", "general");
+            fill: color("icon-inverted", "general");
         } // End Inverted
 
-        $map: map-get($colors, 'social');
+        $map: map-get($colors, "social");
 
         @each $color, $hex in $map {
             @include modifier($color) {
                 color: $hex;
                 fill: $hex;
             }
-        } // End Social 
+        } // End Social
 
         @each $size1 in $sizes {
             $map: map-get($icon-sizes, $size1);
 
             @include modifier($size1) {
-                width: map-get($map, 'width');
-                height: map-get($map, 'height');
+                width: map-get($map, "width");
+                height: map-get($map, "height");
 
-                font-size: map-get($map, 'width');
-                line-height: map-get($map, 'height');
+                font-size: map-get($map, "width");
+                line-height: map-get($map, "height");
 
                 @each $size2 in $sizes {
-                    $icon-spacing: ((map-get($base-sizes, $size2) - map-get($map, 'height')) / 2);
+                    $icon-spacing: math.div((map-get($base-sizes, $size2) - map-get($map, "height")), 2);
 
-                    &.icon--mg-#{$size2} { padding: $icon-spacing; box-sizing: content-box; }
+                    &.icon--mg-#{$size2} {
+                        padding: $icon-spacing;
+                        box-sizing: content-box;
+                    }
                 } // End spacing
-            }       
+            }
         } // End sizes
 
-        @include modifier('next') { &::before { content: "\e900"; } }
-        @include modifier('copyright') { &::before { content: "\e901"; } }
-        @include modifier('credit-card') { &::before { content: "\e902"; } }
-        @include modifier('cross') { &::before { content: "\e903"; } }
-        @include modifier('disabled') { &::before { content: "\e904"; } }
-        @include modifier('down') { &::before { content: "\e905"; } }
-        @include modifier('download') { &::before { content: "\e906"; } }
-        @include modifier('download-filled') { &::before { content: "\e907"; } }
-        @include modifier('dribbble') { &::before { content: "\e908"; } }
-        @include modifier('earnings') { &::before { content: "\e909"; } }
-        @include modifier('envelope') { &::before { content: "\e90a"; } }
-        @include modifier('exclamation') { &::before { content: "\e90b"; } }
-        @include modifier('eye') { &::before { content: "\e90c"; } }
-        @include modifier('facebook') { &::before { content: "\e90d"; } }
-        @include modifier('file') { &::before { content: "\e90e"; } }
-        @include modifier('filter') { &::before { content: "\e90f"; } }
-        @include modifier('folder') { &::before { content: "\e910"; } }
-        @include modifier('fullscreen') { &::before { content: "\e911"; } }
-        @include modifier('globe') { &::before { content: "\e912"; } }
-        @include modifier('google') { &::before { content: "\e913"; } }
-        @include modifier('heart') { &::before { content: "\e914"; } }
-        @include modifier('heart-filled') { &::before { content: "\e915"; } }
-        @include modifier('home') { &::before { content: "\e916"; } }
-        @include modifier('icon') { &::before { content: "\e917"; } }
-        @include modifier('inbox') { &::before { content: "\e918"; } }
-        @include modifier('info') { &::before { content: "\e919"; } }
-        @include modifier('instagram') { &::before { content: "\e91a"; } }
-        @include modifier('interogation') { &::before { content: "\e91b"; } }
-        @include modifier('laptop') { &::before { content: "\e91c"; } }
-        @include modifier('left') { &::before { content: "\e91d"; } }
-        @include modifier('linkedin') { &::before { content: "\e91e"; } }
-        @include modifier('list') { &::before { content: "\e91f"; } }
-        @include modifier('lock') { &::before { content: "\e920"; } }
-        @include modifier('logout') { &::before { content: "\e921"; } }
-        @include modifier('marker') { &::before { content: "\e922"; } }
-        @include modifier('master-card') { &::before { content: "\e923"; } }
-        @include modifier('menu-burger') { &::before { content: "\e924"; } }
-        @include modifier('menu-dots') { &::before { content: "\e925"; } }
-        @include modifier('minus') { &::before { content: "\e926"; } }
-        @include modifier('mockup') { &::before { content: "\e927"; } }
-        @include modifier('notification') { &::before { content: "\e928"; } }
-        @include modifier('paper-plane') { &::before { content: "\e929"; } }
-        @include modifier('paypal') { &::before { content: "\e92a"; } }
-        @include modifier('pencil') { &::before { content: "\e92b"; } }
-        @include modifier('phone') { &::before { content: "\e92c"; } }
-        @include modifier('photo') { &::before { content: "\e92d"; } }
-        @include modifier('pinterest') { &::before { content: "\e92e"; } }
-        @include modifier('play') { &::before { content: "\e92f"; } }
-        @include modifier('plus') { &::before { content: "\e930"; } }
-        @include modifier('popular') { &::before { content: "\e931"; } }
-        @include modifier('prev') { &::before { content: "\e932"; } }
-        @include modifier('receipt') { &::before { content: "\e933"; } }
-        @include modifier('refresh') { &::before { content: "\e934"; } }
-        @include modifier('resize') { &::before { content: "\e935"; } }
-        @include modifier('right') { &::before { content: "\e936"; } }
-        @include modifier('save') { &::before { content: "\e937"; } }
-        @include modifier('search') { &::before { content: "\e938"; } }
-        @include modifier('settings') { &::before { content: "\e939"; } }
-        @include modifier('share') { &::before { content: "\e93a"; } }
-        @include modifier('shopping-cart') { &::before { content: "\e93b"; } }
-        @include modifier('star') { &::before { content: "\e93c"; } }
-        @include modifier('stats') { &::before { content: "\e93d"; } }
-        @include modifier('stop') { &::before { content: "\e93e"; } }
-        @include modifier('stumbleupon') { &::before { content: "\e93f"; } }
-        @include modifier('subtitles') { &::before { content: "\e940"; } }
-        @include modifier('support') { &::before { content: "\e941"; } }
-        @include modifier('tablet') { &::before { content: "\e942"; } }
-        @include modifier('tag') { &::before { content: "\e943"; } }
-        @include modifier('thumb-down') { &::before { content: "\e944"; } }
-        @include modifier('thumb-up') { &::before { content: "\e945"; } }
-        @include modifier('time') { &::before { content: "\e946"; } }
-        @include modifier('trash') { &::before { content: "\e947"; } }
-        @include modifier('twitter') { &::before { content: "\e948"; } }
-        @include modifier('unlock') { &::before { content: "\e949"; } }
-        @include modifier('up') { &::before { content: "\e94a"; } }
-        @include modifier('upload') { &::before { content: "\e94b"; } }
-        @include modifier('url') { &::before { content: "\e94c"; } }
-        @include modifier('user') { &::before { content: "\e94d"; } }
-        @include modifier('vector') { &::before { content: "\e94e"; } }
-        @include modifier('video') { &::before { content: "\e94f"; } }
-        @include modifier('visa') { &::before { content: "\e950"; } }
-        @include modifier('volume') { &::before { content: "\e951"; } }
-        @include modifier('youtube') { &::before { content: "\e952"; } }
-        @include modifier('zoom-in') { &::before { content: "\e953"; } }
-        @include modifier('zoom-out') { &::before { content: "\e954"; } }
-        @include modifier('american-express') { &::before { content: "\e955"; } }
-        @include modifier('behance') { &::before { content: "\e956"; } }
-        @include modifier('bug') { &::before { content: "\e957"; } }
-        @include modifier('calendar') { &::before { content: "\e958"; } }
-        @include modifier('check') { &::before { content: "\e959"; } }
-        @include modifier('cloud') { &::before { content: "\e95a"; } }
-        @include modifier('comment') { &::before { content: "\e95b"; } }
+        @include modifier("next") {
+            &::before {
+                content: "\e900";
+            }
+        }
+        @include modifier("copyright") {
+            &::before {
+                content: "\e901";
+            }
+        }
+        @include modifier("credit-card") {
+            &::before {
+                content: "\e902";
+            }
+        }
+        @include modifier("cross") {
+            &::before {
+                content: "\e903";
+            }
+        }
+        @include modifier("disabled") {
+            &::before {
+                content: "\e904";
+            }
+        }
+        @include modifier("down") {
+            &::before {
+                content: "\e905";
+            }
+        }
+        @include modifier("download") {
+            &::before {
+                content: "\e906";
+            }
+        }
+        @include modifier("download-filled") {
+            &::before {
+                content: "\e907";
+            }
+        }
+        @include modifier("dribbble") {
+            &::before {
+                content: "\e908";
+            }
+        }
+        @include modifier("earnings") {
+            &::before {
+                content: "\e909";
+            }
+        }
+        @include modifier("envelope") {
+            &::before {
+                content: "\e90a";
+            }
+        }
+        @include modifier("exclamation") {
+            &::before {
+                content: "\e90b";
+            }
+        }
+        @include modifier("eye") {
+            &::before {
+                content: "\e90c";
+            }
+        }
+        @include modifier("facebook") {
+            &::before {
+                content: "\e90d";
+            }
+        }
+        @include modifier("file") {
+            &::before {
+                content: "\e90e";
+            }
+        }
+        @include modifier("filter") {
+            &::before {
+                content: "\e90f";
+            }
+        }
+        @include modifier("folder") {
+            &::before {
+                content: "\e910";
+            }
+        }
+        @include modifier("fullscreen") {
+            &::before {
+                content: "\e911";
+            }
+        }
+        @include modifier("globe") {
+            &::before {
+                content: "\e912";
+            }
+        }
+        @include modifier("google") {
+            &::before {
+                content: "\e913";
+            }
+        }
+        @include modifier("heart") {
+            &::before {
+                content: "\e914";
+            }
+        }
+        @include modifier("heart-filled") {
+            &::before {
+                content: "\e915";
+            }
+        }
+        @include modifier("home") {
+            &::before {
+                content: "\e916";
+            }
+        }
+        @include modifier("icon") {
+            &::before {
+                content: "\e917";
+            }
+        }
+        @include modifier("inbox") {
+            &::before {
+                content: "\e918";
+            }
+        }
+        @include modifier("info") {
+            &::before {
+                content: "\e919";
+            }
+        }
+        @include modifier("instagram") {
+            &::before {
+                content: "\e91a";
+            }
+        }
+        @include modifier("interogation") {
+            &::before {
+                content: "\e91b";
+            }
+        }
+        @include modifier("laptop") {
+            &::before {
+                content: "\e91c";
+            }
+        }
+        @include modifier("left") {
+            &::before {
+                content: "\e91d";
+            }
+        }
+        @include modifier("linkedin") {
+            &::before {
+                content: "\e91e";
+            }
+        }
+        @include modifier("list") {
+            &::before {
+                content: "\e91f";
+            }
+        }
+        @include modifier("lock") {
+            &::before {
+                content: "\e920";
+            }
+        }
+        @include modifier("logout") {
+            &::before {
+                content: "\e921";
+            }
+        }
+        @include modifier("marker") {
+            &::before {
+                content: "\e922";
+            }
+        }
+        @include modifier("master-card") {
+            &::before {
+                content: "\e923";
+            }
+        }
+        @include modifier("menu-burger") {
+            &::before {
+                content: "\e924";
+            }
+        }
+        @include modifier("menu-dots") {
+            &::before {
+                content: "\e925";
+            }
+        }
+        @include modifier("minus") {
+            &::before {
+                content: "\e926";
+            }
+        }
+        @include modifier("mockup") {
+            &::before {
+                content: "\e927";
+            }
+        }
+        @include modifier("notification") {
+            &::before {
+                content: "\e928";
+            }
+        }
+        @include modifier("paper-plane") {
+            &::before {
+                content: "\e929";
+            }
+        }
+        @include modifier("paypal") {
+            &::before {
+                content: "\e92a";
+            }
+        }
+        @include modifier("pencil") {
+            &::before {
+                content: "\e92b";
+            }
+        }
+        @include modifier("phone") {
+            &::before {
+                content: "\e92c";
+            }
+        }
+        @include modifier("photo") {
+            &::before {
+                content: "\e92d";
+            }
+        }
+        @include modifier("pinterest") {
+            &::before {
+                content: "\e92e";
+            }
+        }
+        @include modifier("play") {
+            &::before {
+                content: "\e92f";
+            }
+        }
+        @include modifier("plus") {
+            &::before {
+                content: "\e930";
+            }
+        }
+        @include modifier("popular") {
+            &::before {
+                content: "\e931";
+            }
+        }
+        @include modifier("prev") {
+            &::before {
+                content: "\e932";
+            }
+        }
+        @include modifier("receipt") {
+            &::before {
+                content: "\e933";
+            }
+        }
+        @include modifier("refresh") {
+            &::before {
+                content: "\e934";
+            }
+        }
+        @include modifier("resize") {
+            &::before {
+                content: "\e935";
+            }
+        }
+        @include modifier("right") {
+            &::before {
+                content: "\e936";
+            }
+        }
+        @include modifier("save") {
+            &::before {
+                content: "\e937";
+            }
+        }
+        @include modifier("search") {
+            &::before {
+                content: "\e938";
+            }
+        }
+        @include modifier("settings") {
+            &::before {
+                content: "\e939";
+            }
+        }
+        @include modifier("share") {
+            &::before {
+                content: "\e93a";
+            }
+        }
+        @include modifier("shopping-cart") {
+            &::before {
+                content: "\e93b";
+            }
+        }
+        @include modifier("star") {
+            &::before {
+                content: "\e93c";
+            }
+        }
+        @include modifier("stats") {
+            &::before {
+                content: "\e93d";
+            }
+        }
+        @include modifier("stop") {
+            &::before {
+                content: "\e93e";
+            }
+        }
+        @include modifier("stumbleupon") {
+            &::before {
+                content: "\e93f";
+            }
+        }
+        @include modifier("subtitles") {
+            &::before {
+                content: "\e940";
+            }
+        }
+        @include modifier("support") {
+            &::before {
+                content: "\e941";
+            }
+        }
+        @include modifier("tablet") {
+            &::before {
+                content: "\e942";
+            }
+        }
+        @include modifier("tag") {
+            &::before {
+                content: "\e943";
+            }
+        }
+        @include modifier("thumb-down") {
+            &::before {
+                content: "\e944";
+            }
+        }
+        @include modifier("thumb-up") {
+            &::before {
+                content: "\e945";
+            }
+        }
+        @include modifier("time") {
+            &::before {
+                content: "\e946";
+            }
+        }
+        @include modifier("trash") {
+            &::before {
+                content: "\e947";
+            }
+        }
+        @include modifier("twitter") {
+            &::before {
+                content: "\e948";
+            }
+        }
+        @include modifier("unlock") {
+            &::before {
+                content: "\e949";
+            }
+        }
+        @include modifier("up") {
+            &::before {
+                content: "\e94a";
+            }
+        }
+        @include modifier("upload") {
+            &::before {
+                content: "\e94b";
+            }
+        }
+        @include modifier("url") {
+            &::before {
+                content: "\e94c";
+            }
+        }
+        @include modifier("user") {
+            &::before {
+                content: "\e94d";
+            }
+        }
+        @include modifier("vector") {
+            &::before {
+                content: "\e94e";
+            }
+        }
+        @include modifier("video") {
+            &::before {
+                content: "\e94f";
+            }
+        }
+        @include modifier("visa") {
+            &::before {
+                content: "\e950";
+            }
+        }
+        @include modifier("volume") {
+            &::before {
+                content: "\e951";
+            }
+        }
+        @include modifier("youtube") {
+            &::before {
+                content: "\e952";
+            }
+        }
+        @include modifier("zoom-in") {
+            &::before {
+                content: "\e953";
+            }
+        }
+        @include modifier("zoom-out") {
+            &::before {
+                content: "\e954";
+            }
+        }
+        @include modifier("american-express") {
+            &::before {
+                content: "\e955";
+            }
+        }
+        @include modifier("behance") {
+            &::before {
+                content: "\e956";
+            }
+        }
+        @include modifier("bug") {
+            &::before {
+                content: "\e957";
+            }
+        }
+        @include modifier("calendar") {
+            &::before {
+                content: "\e958";
+            }
+        }
+        @include modifier("check") {
+            &::before {
+                content: "\e959";
+            }
+        }
+        @include modifier("cloud") {
+            &::before {
+                content: "\e95a";
+            }
+        }
+        @include modifier("comment") {
+            &::before {
+                content: "\e95b";
+            }
+        }
     }
 }

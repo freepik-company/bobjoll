@@ -1,6 +1,7 @@
+@use "sass:math";
 @if $form-v1-0 {
     .group {
-		@extend %row-flexbox;
+        @extend %row-flexbox;
         @extend .row--vertical-center;
 
         overflow: hidden;
@@ -8,10 +9,10 @@
         position: relative;
 
         border-radius: $base-border-radius;
-        
+
         box-sizing: border-box;
 
-        background-color: color('secondary', 'background');
+        background-color: color("secondary", "background");
 
         &::before {
             @include position(absolute, 0 null null 0);
@@ -23,9 +24,9 @@
 
             border-radius: $base-border-radius;
 
-            box-shadow: inset 0 0 0 $base-border-width color('form-border', 'general');
+            box-shadow: inset 0 0 0 $base-border-width color("form-border", "general");
 
-            content: '';
+            content: "";
 
             z-index: 2;
         }
@@ -34,7 +35,7 @@
             @extend .col--stretch;
 
             border-right: $base-border;
-            border-color: color('form-border', 'general');
+            border-color: color("form-border", "general");
 
             &:last-child {
                 border: none;
@@ -47,7 +48,7 @@
             flex: 1;
 
             height: 100%;
-            
+
             margin: 0;
 
             border: none;
@@ -55,22 +56,22 @@
             @if $button-v1-0 {
                 &:focus ~ button {
                     @extend .button--main--hover.active;
-                }                
+                }
             }
 
             @if $button-v2-0 {
-                @each $color, $hex in map-get($colors, 'buttons') {
+                @each $color, $hex in map-get($colors, "buttons") {
                     &:focus ~ .button {
                         border: none !important;
                     }
 
                     &:focus ~ .button--#{$color}--hover {
-                        --bg: color($color, 'buttons', 1);
-                        --size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
-                        --color: color($color, 'buttons-text');
+                        --bg: color($color, "buttons", 1);
+                        --size: math.div(map-get($button-sizes, map-get-last($button-sizes)), 2);
+                        --color: color($color, "buttons-text");
 
                         .icon {
-                            color: color($color, 'buttons-text');
+                            color: color($color, "buttons-text");
                         }
 
                         z-index: 2;
@@ -81,14 +82,14 @@
 
         & > button {
             @if ($button-v1-0) {
-                border: none;                
+                border: none;
             }
 
             @if ($button-v2-0) {
                 &.button--flat:not(.button--inverted) {
                     z-index: 2;
                 }
-            }           
+            }
 
             position: relative;
 
@@ -103,17 +104,17 @@
             }
         }
 
-        @include modifier('inverted') {
-            background-color: color('light', 'background');
+        @include modifier("inverted") {
+            background-color: color("light", "background");
 
-            color: color('text', 'general');
+            color: color("text", "general");
 
             &::before {
                 box-shadow: none;
             }
         }
 
-        @include element('context') {
+        @include element("context") {
             padding: 0 $small-spacing;
 
             span {
@@ -121,15 +122,15 @@
                 @include transform(translateY(-50%));
 
                 position: relative;
-                
+
                 display: block;
             }
         }
-        
-        @include element('button') {
+
+        @include element("button") {
             .button {
                 position: relative;
-                
+
                 border-radius: 0;
 
                 @if ($button-v1-0) {
@@ -140,7 +141,7 @@
             }
         }
 
-        @include element('input') {
+        @include element("input") {
             @include flex(1);
 
             #{$all-text-inputs} {
@@ -153,5 +154,5 @@
                 height: 100%;
             }
         }
-	}
+    }
 }

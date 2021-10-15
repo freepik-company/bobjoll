@@ -1,11 +1,9 @@
+@use "sass:math";
 @if $form-v1-0 {
 	%checked-indicator {
-		@include transition(
-			box-shadow $base-duration $base-timing
-			background-color $base-duration $base-timing
-		);
+		@include transition(box-shadow $base-duration $base-timing background-color $base-duration $base-timing);
 
-		box-shadow: inset 0 0 0 $extra-large-input-height color('link', 'general');
+		box-shadow: inset 0 0 0 $extra-large-input-height color("link", "general");
 
 		.icon {
 			@include transform(scale(1));
@@ -21,7 +19,7 @@
 	%checked-link {
 		opacity: 1;
 	}
-	
+
 	%spacing {
 		margin-left: $small-spacing;
 	}
@@ -33,7 +31,7 @@
 
 		cursor: pointer;
 
-		padding: (($base-element-height - $base-input-ui-height) / 2) 0;
+		padding: math.div(($base-element-height - $base-input-ui-height), 2) 0;
 
 		&.active .checkbox__indicator,
 		&.active .radio__indicator {
@@ -54,13 +52,13 @@
 				@extend %checked-indicator;
 			}
 
-			&:checked ~ .checkbox__link,
+			&:checked ~  .checkbox__link,
 			&:checked ~ .checkbox__link {
 				@extend %checked-link;
 			}
 		}
 
-		@include element('indicator') {
+		@include element("indicator") {
 			display: block;
 
 			width: $base-input-ui-height;
@@ -68,32 +66,29 @@
 
 			border-radius: $base-border-radius;
 
-			background-color: color('input', 'background');
+			background-color: color("input", "background");
 
-			box-shadow: inset 0 0 0 $base-border-width color('border', 'general', 1, 10);
+			box-shadow: inset 0 0 0 $base-border-width color("border", "general", 1, 10);
 
 			.icon {
 				@include transform(scale(0));
-				@include transition(
-					opaicty $base-duration $base-timing,
-					transform $base-duration $base-timing
-				);
+				@include transition(opaicty $base-duration $base-timing, transform $base-duration $base-timing);
 
 				opacity: 0;
 
 				width: $base-input-ui-height;
 				height: $base-input-ui-height;
 
-				padding: (($base-input-ui-height - ($base-input-ui-height * .8)) / 2);
-				
-				color: color('input', 'background');
-				fill: color('input', 'background');
-				font-size: $base-input-ui-height * .8;
-				line-height: $base-input-ui-height * .8;
+				padding: math.div(($base-input-ui-height - ($base-input-ui-height * 0.8)), 2);
+
+				color: color("input", "background");
+				fill: color("input", "background");
+				font-size: $base-input-ui-height * 0.8;
+				line-height: $base-input-ui-height * 0.8;
 			}
 		}
 
-		@include element('link') {
+		@include element("link") {
 			@include transition(opacity $base-duration $base-timing);
 			@include user-select(none);
 
@@ -106,40 +101,40 @@
 			line-height: $base-input-ui-height;
 		}
 
-		@include modifier('inverted') {
-			color: color('text-inverted', 'general', 1);
+		@include modifier("inverted") {
+			color: color("text-inverted", "general", 1);
 
 			input[type="checkbox"]:checked + .checkbox__indicator,
 			input[type="radio"]:checked + .radio__indicator {
-				background-color: color('input', 'background');
+				background-color: color("input", "background");
 
 				// box-shadow: inset 0 0 0 ($base-input-ui-height) color('link', 'general');
 
 				.icon {
-					color: color('link', 'general');
+					color: color("link", "general");
 				}
 			}
 		}
 
 		// Sizes
-		@each $size in $sizes {		
+		@each $size in $sizes {
 			$checkbox-width: map-get($input-ui-sizes, $size);
 			$checkbox-height: $checkbox-width;
-			$icon-size: $checkbox-width * .8;
+			$icon-size: $checkbox-width * 0.8;
 
 			@include modifier($size) {
-				padding: (($base-element-height - $checkbox-height) / 2) 0;
+				padding: math.div(($base-element-height - $checkbox-height), 2) 0;
 
 				.checkbox__indicator,
 				.radio__indicator {
 					width: $checkbox-width;
-					height: $checkbox-height;				
+					height: $checkbox-height;
 
 					.icon {
 						width: $checkbox-width;
 						height: $checkbox-height;
 
-						padding: ($checkbox-width - $icon-size) / 2;
+						padding: math.div(($checkbox-width - $icon-size), 2);
 
 						font-size: $icon-size;
 						line-height: $icon-size;
@@ -173,14 +168,14 @@
 			border-radius: 50%;
 		}
 
-		&.active .radio__indicator, 
+		&.active .radio__indicator,
 		input[type="radio"]:checked ~ .radio__indicator {
-			box-shadow: inset 0 0 0 5px color('link', 'general');
+			box-shadow: inset 0 0 0 5px color("link", "general");
 		}
 
-		@include modifier('inverted') {
+		@include modifier("inverted") {
 			input[type="radio"]:checked ~ .radio__indicator {
-				box-shadow: inset 0 0 0 5px color('link', 'general');
+				box-shadow: inset 0 0 0 5px color("link", "general");
 			}
 		}
 	}

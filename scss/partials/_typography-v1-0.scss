@@ -1,3 +1,4 @@
+@use "sass:math";
 @if $typography-v1-0 {
 	.copyright {
 		margin: 0;
@@ -9,7 +10,7 @@
 		display: inline-block;
 
 		margin: 0 0 $small-spacing;
-		padding: ($small-spacing / 10) 0;
+		padding: math.div($small-spacing, 10) 0;
 
 		border-bottom: $base-border;
 
@@ -21,19 +22,19 @@
 	.date {
 		margin: 0;
 
-		color: rgba(color('text', 'general'), .5);		
+		color: rgba(color("text", "general"), 0.5);
 	}
 
-	.author {		
+	.author {
 		font-size: $small-font-size;
 	}
 
 	.read-more {
 		position: relative;
 
-		padding: 0 ($small-spacing / 2) 0 0;
+		padding: 0 math.div($small-spacing, 2) 0 0;
 
-		color: color('link', 'general');
+		color: color("link", "general");
 		font-size: $small-font-size;
 		font-weight: bold;
 		text-transform: uppercase;
@@ -47,14 +48,14 @@
 
 		border: none;
 
-		background-color: color('border', 'general');
+		background-color: color("border", "general");
 	}
 
-	#{$all-headings} {		
+	#{$all-headings} {
 		margin: $base-spacing 0;
 		padding: 0;
 
-		color: color('heading', 'general');
+		color: color("heading", "general");
 		font-family: $title-font-family;
 		line-height: $title-line-height;
 
@@ -63,7 +64,7 @@
 		}
 	}
 
-	#{$big-headings} {		
+	#{$big-headings} {
 		line-height: $extra-small-line-height;
 	}
 
@@ -72,36 +73,48 @@
 			padding-bottom: $extra-small-spacing;
 
 			border-bottom: $base-border;
-			border-color: color('text', 'general', .15);
+			border-color: color("text", "general", 0.15);
 
 			text-align: center;
 		}
 	}
 
 	.heading-inverted {
-		color: color('heading-inverted', 'general');
+		color: color("heading-inverted", "general");
 	}
 
-	h1 { @include font-size($h1-font-size); }
-	h2 { @include font-size($h2-font-size); }
-	h3 { @include font-size($h3-font-size); }
-	h4 { @include font-size($h4-font-size); }
-	h5 { @include font-size($h5-font-size); }
-	h6 { @include font-size($h6-font-size); }
+	h1 {
+		@include font-size($h1-font-size);
+	}
+	h2 {
+		@include font-size($h2-font-size);
+	}
+	h3 {
+		@include font-size($h3-font-size);
+	}
+	h4 {
+		@include font-size($h4-font-size);
+	}
+	h5 {
+		@include font-size($h5-font-size);
+	}
+	h6 {
+		@include font-size($h6-font-size);
+	}
 
 	%link-inverted {
-		color: color('link-inverted', 'general', 1);
+		color: color("link-inverted", "general", 1);
 
 		&:hover {
-			color: color('link-inverted', 'general', 1);
+			color: color("link-inverted", "general", 1);
 
 			svg {
-				opacity: .8;
+				opacity: 0.8;
 			}
 		}
 
 		&.active {
-			color: color('link-inverted', 'general', 1);
+			color: color("link-inverted", "general", 1);
 			font-weight: bold;
 
 			svg {
@@ -110,9 +123,9 @@
 		}
 
 		svg {
-			opacity: .4;
+			opacity: 0.4;
 		}
-		
+
 		&--hover-underline {
 			&:hover,
 			&.active {
@@ -123,19 +136,19 @@
 
 	%link-hover {
 		&:hover {
-			color: color('link', 'general', 1, 4);
+			color: color("link", "general", 1, 4);
 
 			.icon {
-				color: color('link', 'general', 1, 4);
+				color: color("link", "general", 1, 4);
 			}
 		}
 
 		&.active {
-			color: color('link', 'general', 1, 4);
+			color: color("link", "general", 1, 4);
 			font-weight: 500;
 
 			.icon {
-				color: color('link', 'general', 1, 4);
+				color: color("link", "general", 1, 4);
 			}
 		}
 	}
@@ -143,23 +156,23 @@
 	.link {
 		@extend %link-hover;
 
-		color: color('link', 'general');
+		color: color("link", "general");
 
 		cursor: pointer;
 		font-weight: 500;
 		text-decoration: none;
-		
+
 		.icon {
-			color: color('link', 'general');
+			color: color("link", "general");
 		}
-		
+
 		&--text {
 			@extend %link-hover;
 
-			color: color('text', 'general', 1, 4);
+			color: color("text", "general", 1, 4);
 
 			.icon {
-				color: color('text', 'general', 1, 4);
+				color: color("text", "general", 1, 4);
 			}
 		}
 
@@ -172,22 +185,23 @@
 		@extend %link-inverted;
 	}
 
-	.text, p {
+	.text,
+	p {
 		margin: 0 0 $base-spacing;
 	}
 
 	.text--inverted {
-		color: color('text-inverted', 'general');
+		color: color("text-inverted", "general");
 	}
 
 	blockquote {
 		margin: 0;
 		padding-left: $base-spacing;
-		border-left: 4px solid color('border', 'general');
+		border-left: 4px solid color("border", "general");
 	}
 
 	figcaption {
-		color: color('text', 'general', 1, -20);
+		color: color("text", "general", 1, -20);
 		font-size: $small-font-size;
 	}
 

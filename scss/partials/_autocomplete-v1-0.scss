@@ -1,3 +1,4 @@
+@use "sass:math";
 @if $accordion-v1-0 {
     .autocomplete {
         @include position(absolute, null null null null);
@@ -13,22 +14,22 @@
 
         transform: translateY(-1px);
 
-        background-color: color('input', 'background');
+        background-color: color("input", "background");
 
         box-shadow: $base-box-shadow;
 
         z-index: 100;
 
-        @include breakpoint('md') {
-            height: ($small-element-height * 5) + ($small-element-height / 2);
+        @include breakpoint("md") {
+            height: ($small-element-height * 5) + math.div($small-element-height, 2);
         }
 
-        @include element('item') {
+        @include element("item") {
             height: $small-element-height;
-            
+
             padding: 0 $base-spacing;
-            
-            color: color('text-secondary', 'general');
+
+            color: color("text-secondary", "general");
             text-align: left;
             text-transform: lowercase;
             line-height: $small-element-height;
@@ -36,19 +37,19 @@
             cursor: pointer;
 
             &:hover {
-                background-color: color('border', 'general', 1, -4);
+                background-color: color("border", "general", 1, -4);
             }
 
             &.selected {
-                background-color: color('border', 'general', 1, -1);
+                background-color: color("border", "general", 1, -1);
             }
-            
+
             b {
-                color: color('text', 'general');
+                color: color("text", "general");
             }
         }
 
-        @include modifier('show') {
+        @include modifier("show") {
             display: block;
         }
     }

@@ -1,20 +1,21 @@
+@use "sass:math";
 @if $form-v1-0 {
 	$switch-padding: 2px;
-	$switch-shadow: 0 $base-border-width 0 0 color('gray', 'state');
+	$switch-shadow: 0 $base-border-width 0 0 color("gray", "state");
 
 	.switch {
 		@extend %row-flexbox;
 		@extend .row--vertical-center;
 
-		background-color: color('input', 'background');
+		background-color: color("input", "background");
 
 		cursor: pointer;
 
 		&:hover {
 			.switch__indicator::after {
-				background-color: color('secondary', 'background');
+				background-color: color("secondary", "background");
 			}
-		}	
+		}
 
 		.switch__indicator ~ .switch__link,
 		.switch__link ~ .switch__indicator {
@@ -26,31 +27,30 @@
 			display: none;
 
 			&:checked ~ .switch__indicator {
-				background-color: color('green', 'state');
+				background-color: color("green", "state");
 
 				&::before {
 					@include transform(scale(0));
 				}
 
 				&::after {
-					background-color: color('input', 'background');
+					background-color: color("input", "background");
 
-					box-shadow: 0 0 0 $base-border-width color('border', 'general', 0);
+					box-shadow: 0 0 0 $base-border-width color("border", "general", 0);
 				}
 			}
 
-			&:checked ~ .switch__link {
-				color: color('text', 'general');
+			&:checked ~  .switch__link {
+				color: color("text", "general");
 			}
 		}
 
-		@include element('indicator') {
-			
+		@include element("indicator") {
 			position: relative;
 
 			display: block;
 
-			background: color('switch', 'background');			
+			background: color("switch", "background");
 
 			&::before {
 				@include position(absolute, $switch-padding null null $switch-padding);
@@ -61,7 +61,7 @@
 
 				z-index: 1;
 
-				content: '';
+				content: "";
 			}
 
 			&::after {
@@ -70,23 +70,23 @@
 
 				margin: $switch-padding;
 
-				background-color: color('body', 'background');
+				background-color: color("body", "background");
 
 				box-shadow: $switch-shadow;
 
 				z-index: 2;
 
-				content: '';
+				content: "";
 			}
 		}
 
 		// Sizes
 		@each $size in $sizes {
 			@include modifier($size) {
-				$spacing: map-get($input-ui-sizes, $size) / 2;
+				$spacing: math.div(map-get($input-ui-sizes, $size), 2);
 				$switch-width: map-get($input-ui-sizes, $size) + $spacing;
 				$switch-height: map-get($input-ui-sizes, $size);
-				$switch-spacing: ((map-get($input-sizes, $size) - map-get($input-ui-sizes, $size)) / 2);
+				$switch-spacing: math.div((map-get($input-sizes, $size) - map-get($input-ui-sizes, $size)), 2);
 				$switch-font-size: map-get($font-sizes, $size);
 
 				.switch__indicator {
@@ -100,7 +100,7 @@
 					&::before {
 						width: $switch-width - ($switch-padding * 2);
 						height: $switch-height - ($switch-padding * 2);
- 
+
 						border-radius: $switch-height - ($switch-padding * 2);
 					}
 

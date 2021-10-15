@@ -1,5 +1,6 @@
+@use "sass:math";
 @if $popover-v1-0 {
-	.popover { 
+	.popover {
 		position: relative;
 
 		display: inline-block;
@@ -11,7 +12,7 @@
 
 			z-index: 21;
 
-			content: ''; 
+			content: "";
 		}
 
 		&.active {
@@ -22,7 +23,7 @@
 			}
 
 			.popover__container {
-				opacity: 1; 
+				opacity: 1;
 
 				display: block;
 			}
@@ -32,13 +33,10 @@
 			overflow-x: hidden;
 		}
 
-		@include element('container') {
-			@include transition(
-				opacity $base-duration $base-timing,
-				margin $base-duration $base-timing
-			);
+		@include element("container") {
+			@include transition(opacity $base-duration $base-timing, margin $base-duration $base-timing);
 			@include position(absolute, null null null null);
-			
+
 			overflow: hidden;
 
 			opacity: 0;
@@ -47,13 +45,13 @@
 
 			width: 80vw;
 			min-width: 320px;
-			max-width: map-get($breakpoints, 'sm');
+			max-width: map-get($breakpoints, "sm");
 
 			padding: $base-spacing;
 
 			border-radius: $base-border-radius;
 
-			background-color: color('popover', 'background'); 
+			background-color: color("popover", "background");
 
 			box-shadow: $base-box-shadow;
 
@@ -62,22 +60,22 @@
 			z-index: 20;
 		}
 
-		@include modifier('width-auto') {
+		@include modifier("width-auto") {
 			.popover__container {
 				width: auto;
 				min-width: inherit;
 
-				white-space: nowrap;				
+				white-space: nowrap;
 			}
 		}
 
-		@include modifier('width-xs') {
+		@include modifier("width-xs") {
 			.popover__container {
 				width: 320px;
 			}
 		}
 
-		@include modifier('full-size') {
+		@include modifier("full-size") {
 			position: static !important;
 
 			.popover__container {
@@ -97,45 +95,45 @@
 					width: 100%;
 
 					padding: $small-spacing;
-				}		
+				}
 			}
 		}
 
-		@include modifier('top') {
+		@include modifier("top") {
 			@extend %popover-top;
 
 			.popover__container {
 				@include transform(translateX(-50%));
 
-				left: 50%;				
+				left: 50%;
 			}
 		}
 
-		@include modifier('top-left') {
+		@include modifier("top-left") {
 			@extend %popover-top;
 
 			.popover__container {
 				left: 0;
-			}			
+			}
 		}
 
-		@include modifier('top-right') {
+		@include modifier("top-right") {
 			@extend %popover-top;
 
 			.popover__container {
 				right: 0;
-			}			
+			}
 		}
 
-		@include modifier('left') {
+		@include modifier("left") {
 			@extend %popover-left;
 		}
 
-		@include modifier('right') {
+		@include modifier("right") {
 			@extend %popover-right;
 		}
 
-		@include modifier('bottom') {
+		@include modifier("bottom") {
 			@extend %popover-bottom;
 
 			.popover__container {
@@ -145,44 +143,44 @@
 			}
 		}
 
-		@include modifier('bottom-left') {
+		@include modifier("bottom-left") {
 			@extend %popover-bottom;
 
 			.popover__container {
 				left: 0;
-			}			
+			}
 		}
 
-		@include modifier('bottom-right') {
+		@include modifier("bottom-right") {
 			@extend %popover-bottom;
 
 			.popover__container {
 				right: 0;
-			}			
+			}
 		}
 
-		@include breakpoint('md', 'min') {
+		@include breakpoint("md", "min") {
 			.scrollable {
 				max-height: 480px;
 			}
 		}
 	}
-	
+
 	%popover-top {
 		&.active {
 			&::after {
 				@include position(absolute, null null 100% 50%);
 				@include transform(translateX(-50%));
-				@include triangle($base-triangle-size, color('popover', 'background'), down);
+				@include triangle($base-triangle-size, color("popover", "background"), down);
 
-				margin: 0 0 ($small-spacing - ($base-triangle-size / 2));
+				margin: 0 0 ($small-spacing - math.div($base-triangle-size, 2));
 
-				content: '';			
+				content: "";
 			}
 
 			.popover__container {
 				margin: 0 0 $small-spacing;
-			}			
+			}
 		}
 
 		.popover__container {
@@ -198,16 +196,16 @@
 			&::after {
 				@include position(absolute, 50% null null 100%);
 				@include transform(translateY(-50%));
-				@include triangle($base-triangle-size, color('popover', 'background'), left);
+				@include triangle($base-triangle-size, color("popover", "background"), left);
 
-				margin: 0 ($small-spacing - ($base-triangle-size / 2)) 0;
+				margin: 0 ($small-spacing - math.div($base-triangle-size, 2)) 0;
 
-				content: '';			
+				content: "";
 			}
 
 			.popover__container {
 				margin: 0 $small-spacing 0 0;
-			}			
+			}
 		}
 
 		.popover__container {
@@ -227,16 +225,16 @@
 			&::after {
 				@include position(absolute, 50% 100% null null);
 				@include transform(translateY(-50%));
-				@include triangle($base-triangle-size, color('popover', 'background'), right);
+				@include triangle($base-triangle-size, color("popover", "background"), right);
 
-				margin: 0 ($small-spacing - ($base-triangle-size / 2)) 0;
+				margin: 0 ($small-spacing - math.div($base-triangle-size, 2)) 0;
 
-				content: '';			
+				content: "";
 			}
 
 			.popover__container {
 				margin: 0 $small-spacing 0 0;
-			}			
+			}
 		}
 
 		.popover__container {
@@ -255,16 +253,16 @@
 			&::after {
 				@include position(absolute, 100% null null 50%);
 				@include transform(translateX(-50%));
-				@include triangle($base-triangle-size, color('popover', 'background'), up);
+				@include triangle($base-triangle-size, color("popover", "background"), up);
 
-				margin: ($small-spacing - ($base-triangle-size / 2)) 0 0;
+				margin: ($small-spacing - math.div($base-triangle-size, 2)) 0 0;
 
-				content: '';			
+				content: "";
 			}
 
 			.popover__container {
-				margin: $small-spacing 0 0;	
-			}			
+				margin: $small-spacing 0 0;
+			}
 		}
 
 		.popover__container {

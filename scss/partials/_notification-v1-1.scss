@@ -1,10 +1,11 @@
+@use "sass:math";
 @if $notification-v1-1 {
     .notifications {
         @include position(fixed, 0 null null 0);
-        
+
         width: 100%;
         height: 100%;
-        
+
         pointer-events: none;
 
         z-index: 1000;
@@ -17,21 +18,21 @@
             padding-right: ($base-button-height - $base-spacing) + $extra-small-spacing;
         }
 
-        @include element('top-left') {
+        @include element("top-left") {
             @extend %notification-position;
 
             top: 0;
             left: 0;
         }
 
-        @include element('top-right') {
+        @include element("top-right") {
             @extend %notification-position;
 
             top: 0;
             right: 20px;
         }
 
-        @include element('top-center') {
+        @include element("top-center") {
             @extend %notification-position;
 
             @include transform(translateX(-50%));
@@ -40,21 +41,21 @@
             left: 50%;
         }
 
-         @include element('bottom-left') {
+        @include element("bottom-left") {
             @extend %notification-position;
 
             bottom: 0;
             left: 0;
         }
 
-        @include element('bottom-right') {
+        @include element("bottom-right") {
             @extend %notification-position;
 
             bottom: 0;
             right: 20px;
         }
 
-        @include element('bottom-center') {
+        @include element("bottom-center") {
             @extend %notification-position;
 
             @include transform(translateX(-50%));
@@ -63,7 +64,7 @@
             left: 50%;
         }
 
-        @include element('center') {
+        @include element("center") {
             @extend %notification-position;
 
             @include transform(translate(-50%, -50%));
@@ -71,7 +72,7 @@
             top: 50%;
             left: 50%;
         }
-    }    
+    }
 
     .notification {
         position: relative;
@@ -87,13 +88,13 @@
 
         border-radius: $base-border-radius;
 
-        background-color: color('notification', 'background');
+        background-color: color("notification", "background");
 
         box-shadow: $base-box-shadow;
 
         pointer-events: all;
 
-        @include element('message') {
+        @include element("message") {
             @include flex(1);
 
             padding: $small-spacing $base-element-height $small-spacing $base-spacing;
@@ -103,10 +104,10 @@
             font-weight: 500;
         }
 
-        @include element('state') {
+        @include element("state") {
             @extend .col--stretch;
 
-            overflow: hidden;        
+            overflow: hidden;
 
             position: relative;
 
@@ -118,15 +119,15 @@
 
             border-radius: $base-border-radius;
 
-            background-color: rgba(#fff, .2);
+            background-color: rgba(#fff, 0.2);
 
             .icon {
                 @include position(absolute, 50% null null 50%);
-                @include transform(translate(-50%, -50%))
+                @include transform(translate(-50%, -50%));
             }
         }
 
-        @include element('close') {
+        @include element("close") {
             &:not(.nostyle) {
                 @include position(absolute, 0 0 null null);
                 margin: $extra-small-spacing;
@@ -134,38 +135,38 @@
             }
         }
 
-        @include element('triangle') {
+        @include element("triangle") {
             @include position(absolute, null null null null);
 
             &::before {
-                @include triangle($base-triangle-size, color('light', 'background'), down);
+                @include triangle($base-triangle-size, color("light", "background"), down);
 
                 display: block;
 
-                content: '';
+                content: "";
             }
         }
 
-        @include modifier('no-shadow') {
+        @include modifier("no-shadow") {
             box-shadow: none;
         }
 
-        @include modifier('static') {
+        @include modifier("static") {
             width: 100%;
             max-width: inherit;
 
             margin: 0 0 $base-spacing;
         }
 
-        @include modifier('absolute') {
+        @include modifier("absolute") {
             @include position(absolute, null null null null);
 
             margin: 0;
 
             z-index: 99;
-        }        
+        }
 
-        @include modifier('alert') {
+        @include modifier("alert") {
             padding: 0;
 
             .notification__content {
@@ -174,21 +175,21 @@
             }
 
             .notification__close {
-                margin: ($base-element-height - $small-element-height) / 2;
+                margin: math.div(($base-element-height - $small-element-height), 2);
             }
         }
 
-        @include modifier('error') {
-            background-color: color('red', 'state');
+        @include modifier("error") {
+            background-color: color("red", "state");
 
-            color: color('red', 'state-text');
+            color: color("red", "state-text");
 
             a {
-                color: color('red', 'state-text', 0.75);
+                color: color("red", "state-text", 0.75);
                 font-weight: bold;
 
                 &:hover {
-                    color: color('red', 'state-text');
+                    color: color("red", "state-text");
                 }
             }
 
@@ -201,21 +202,21 @@
             }
 
             .icon {
-                color: color('red', 'state-text');
+                color: color("red", "state-text");
             }
         }
 
-        @include modifier('warning') {
+        @include modifier("warning") {
             background-color: $yellow-shade-5;
 
-            color: color('yellow', 'state-text');
+            color: color("yellow", "state-text");
 
             a {
-                color: color('yellow', 'state-text', 0.75);
+                color: color("yellow", "state-text", 0.75);
                 font-weight: bold;
 
                 &:hover {
-                    color: color('yellow', 'state-text');
+                    color: color("yellow", "state-text");
                 }
             }
 
@@ -228,21 +229,21 @@
             }
 
             .icon {
-                color: color('yellow', 'state-text');
+                color: color("yellow", "state-text");
             }
         }
 
-        @include modifier('success') {
+        @include modifier("success") {
             background-color: $green-shade-5;
 
-            color: color('green', 'state-text');
+            color: color("green", "state-text");
 
             a {
-                color: color('green', 'state-text', 0.75);
+                color: color("green", "state-text", 0.75);
                 font-weight: bold;
 
                 &:hover {
-                    color: color('green', 'state-text');
+                    color: color("green", "state-text");
                 }
             }
 
@@ -255,36 +256,36 @@
             }
 
             .icon {
-                color: color('green', 'state-text');
+                color: color("green", "state-text");
             }
         }
 
-        @include modifier('neutral') {
-            background-color: color('blue', 'state');
+        @include modifier("neutral") {
+            background-color: color("blue", "state");
 
-            color: color('blue', 'state-text');
+            color: color("blue", "state-text");
 
             a {
-                color: color('blue', 'state-text', 0.75);
+                color: color("blue", "state-text", 0.75);
                 font-weight: bold;
 
                 &:hover {
-                    color: color('blue', 'state-text');
+                    color: color("blue", "state-text");
                 }
             }
 
             .icon {
-                color: color('blue', 'state-text');
+                color: color("blue", "state-text");
             }
         }
 
-        @include modifier('hide-disable') {
+        @include modifier("hide-disable") {
             .notification__disable {
                 display: none;
             }
         }
 
-        @include modifier('hide-close') {
+        @include modifier("hide-close") {
             .notification__close {
                 display: none;
             }

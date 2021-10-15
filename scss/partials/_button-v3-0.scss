@@ -1,3 +1,4 @@
+@use "sass:math";
 @if $button-v3-0 {
     #{$all-buttons} {
         @include prefixer(appearance, none, webkit moz ms);
@@ -24,9 +25,9 @@
 
         border-radius: $base-border-radius;
 
-        box-shadow: inset 0px 0px 0px 0 color('default', 'buttons');
+        box-shadow: inset 0px 0px 0px 0 color("default", "buttons");
 
-        color: color('default', 'buttons-text');
+        color: color("default", "buttons-text");
         font-size: $base-font-size;
         font-weight: 500;
         line-height: $base-element-height;
@@ -35,67 +36,72 @@
 
         &.active,
         &:hover {
-            box-shadow: inset 0px 0px 0px 0 color('default', 'buttons', 1, 5);
+            box-shadow: inset 0px 0px 0px 0 color("default", "buttons", 1, 5);
 
-            color: color('default', 'buttons-text');
+            color: color("default", "buttons-text");
 
             .icon {
-                color: color('default', 'buttons-text');
+                color: color("default", "buttons-text");
             }
         }
 
         &.active,
         &:active {
-            box-shadow: inset 0px 0px 0px 0 color('default', 'buttons-text', 1, 12);
+            box-shadow: inset 0px 0px 0px 0 color("default", "buttons-text", 1, 12);
         }
 
         .icon {
-            color: color('default', 'buttons-text');
+            color: color("default", "buttons-text");
         }
 
         /**
         * Modifier
         */
         &--outline {
-            --color: color('default-outline', 'buttons-text');
+            --color: color("default-outline", "buttons-text");
 
-            box-shadow: inset 0px 0px 0px $base-border-width color('default', 'buttons');
+            box-shadow: inset 0px 0px 0px $base-border-width color("default", "buttons");
 
-            color: color('default-outline', 'buttons-text');
+            color: color("default-outline", "buttons-text");
 
             .icon {
-                color: color('default-outline', 'buttons-text');
+                color: color("default-outline", "buttons-text");
             }
 
             &.active,
             &:hover {
-                box-shadow: inset 0px 0px 0px (map-get($button-sizes, map-get-last($button-sizes)) / 2) color('default', 'buttons');
+                box-shadow: inset
+                    0px
+                    0px
+                    0px
+                    math.div(map-get($button-sizes, map-get-last($button-sizes)), 2)
+                    color("default", "buttons");
 
-                color: color('default', 'buttons-text');
+                color: color("default", "buttons-text");
 
                 .icon {
-                    color: color('default', 'buttons-text');
+                    color: color("default", "buttons-text");
                 }
             }
         }
 
         &--flat {
-            box-shadow: inset 0px 0px 0px 100px color('default', 'buttons');
+            box-shadow: inset 0px 0px 0px 100px color("default", "buttons");
 
             &.active,
             &:hover {
-                box-shadow: inset 0px 0px 0px 100px color('default', 'buttons', 1, 5);
+                box-shadow: inset 0px 0px 0px 100px color("default", "buttons", 1, 5);
 
-                color: color('default', 'buttons-text');
+                color: color("default", "buttons-text");
 
                 .icon {
-                    color: color('default', 'buttons-text');
+                    color: color("default", "buttons-text");
                 }
             }
 
             &.active,
             &:active {
-                box-shadow: inset 0px 0px 0px 100px color('default', 'buttons', 1, 12);
+                box-shadow: inset 0px 0px 0px 100px color("default", "buttons", 1, 12);
             }
         }
 
@@ -112,7 +118,7 @@
 
                 box-shadow: $small-box-shadow;
 
-                content: '';
+                content: "";
             }
         }
 
@@ -172,7 +178,7 @@
         }
 
         &--auto {
-            box-shadow: inset 0px 0px 0px 100px color('default', 'buttons');
+            box-shadow: inset 0px 0px 0px 100px color("default", "buttons");
 
             height: auto !important;
 
@@ -182,9 +188,9 @@
         }
 
         &--loading {
-            $size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
+            $size: math.div(map-get($button-sizes, map-get-last($button-sizes)), 2);
 
-            box-shadow: inset 0px 0px 0px ($size) color('gray', 'buttons') !important;
+            box-shadow: inset 0px 0px 0px ($size) color("gray", "buttons") !important;
 
             pointer-events: none !important;
 
@@ -200,19 +206,19 @@
                 width: calc((#{$size}) * 0.75);
                 height: calc((#{$size}) * 0.75);
 
-                margin: calc(((#{$size}) * 0.25) / 2) auto;
+                margin: calc(math.div(((#{$size}) * 0.25), 2)) auto;
 
                 border-radius: 50%;
                 border-width: 2px;
-                border-color: color('border-inverted', 'general')
-                    color('border-inverted', 'general', 0.3)
-                    color('border-inverted', 'general', 0.3)
-                    color('border-inverted', 'general', 0.3);
+                border-color: color("border-inverted", "general")
+                    color("border-inverted", "general", 0.3)
+                    color("border-inverted", "general", 0.3)
+                    color("border-inverted", "general", 0.3);
                 border-style: solid;
 
                 box-sizing: border-box;
 
-                content: '';
+                content: "";
             }
 
             & > * {
@@ -243,37 +249,37 @@
         /**
         * Colors
         */
-        @each $color, $hex in map-get($colors, 'buttons') {
+        @each $color, $hex in map-get($colors, "buttons") {
             &--#{$color} {
-                --color: color($color, 'buttons-text');
+                --color: color($color, "buttons-text");
 
-                color: color($color, 'buttons-text');
+                color: color($color, "buttons-text");
 
                 .icon {
-                    color: color($color, 'buttons-text');
+                    color: color($color, "buttons-text");
                 }
 
                 &.button--outline {
                     box-shadow: inset 0px 0px 0px $base-border-width $hex;
 
-                    color: color(#{$color}-outline, 'buttons-text');
+                    color: color(#{$color}-outline, "buttons-text");
 
                     .icon {
-                        color: color(#{$color}-outline, 'buttons-text');
+                        color: color(#{$color}-outline, "buttons-text");
                     }
 
                     &:hover {
-                        box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-hover');
+                        box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover");
                     }
 
                     &.active,
                     &:active {
-                        color: color($color, 'buttons-text');
+                        color: color($color, "buttons-text");
 
-                        box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-hover');
+                        box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover");
 
                         .icon {
-                            color: color($color, 'buttons-text');
+                            color: color($color, "buttons-text");
                         }
                     }
                 }
@@ -283,36 +289,36 @@
                 }
 
                 &:hover {
-                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-hover');
+                    box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover");
 
-                    color: color($color, 'buttons-text');
+                    color: color($color, "buttons-text");
 
                     .icon {
-                        color: color($color, 'buttons-text');
+                        color: color($color, "buttons-text");
                     }
                 }
 
                 &.active,
                 &:active {
-                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-active');
+                    box-shadow: inset 0px 0px 0px 100px color($color, "buttons-active");
                 }
             }
 
             &--#{$color}--hover {
                 &.active,
                 &:hover {
-                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-hover') !important;
+                    box-shadow: inset 0px 0px 0px 100px color($color, "buttons-hover") !important;
 
-                    color: color($color, 'buttons-text') !important;
+                    color: color($color, "buttons-text") !important;
 
                     .icon {
-                        color: color($color, 'buttons-text') !important;
+                        color: color($color, "buttons-text") !important;
                     }
                 }
 
                 &.active,
                 &:active {
-                    box-shadow: inset 0px 0px 0px 100px color($color, 'buttons-active') !important;
+                    box-shadow: inset 0px 0px 0px 100px color($color, "buttons-active") !important;
                 }
             }
         }
@@ -320,65 +326,65 @@
         /**
         * Social
         */
-        @each $color, $hex in map-get($colors, 'social') {
+        @each $color, $hex in map-get($colors, "social") {
             &--#{$color} {
                 box-shadow: inset 0px 0px 0px 0 $hex;
 
-                color: color('inverted', 'buttons');
+                color: color("inverted", "buttons");
 
                 .icon {
-                    color: color('inverted', 'buttons');
+                    color: color("inverted", "buttons");
                 }
 
                 &.button--flat.button--inverted {
-                    box-shadow: inset 0px 0px 0px 100px color('inverted', 'buttons');
+                    box-shadow: inset 0px 0px 0px 100px color("inverted", "buttons");
 
-                    color: color($color, 'social');
+                    color: color($color, "social");
 
                     .icon {
-                        color: color($color, 'social');
+                        color: color($color, "social");
                     }
 
                     &.active,
                     &:hover {
-                        box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 5);
+                        box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 5);
 
-                        color: color('inverted', 'buttons');
+                        color: color("inverted", "buttons");
 
                         .icon {
-                            color: color('inverted', 'buttons');
+                            color: color("inverted", "buttons");
                         }
                     }
 
                     &.active,
                     &:active {
-                        box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 7);
+                        box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 7);
                     }
                 }
 
                 &.button--outline {
                     box-shadow: inset 0px 0px 0px $base-border-width $hex;
 
-                    color: color($color, 'social');
+                    color: color($color, "social");
 
                     .icon {
-                        color: color($color, 'social');
+                        color: color($color, "social");
                     }
 
                     &.active,
                     &:hover {
-                        box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 5);
+                        box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 5);
 
-                        color: color('inverted', 'buttons');
+                        color: color("inverted", "buttons");
 
                         .icon {
-                            color: color('inverted', 'buttons');
+                            color: color("inverted", "buttons");
                         }
                     }
 
                     &.active,
                     &:active {
-                        box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 7);
+                        box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 7);
                     }
                 }
 
@@ -388,18 +394,18 @@
 
                 &.active,
                 &:hover {
-                    box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 5);
+                    box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 5);
 
-                    color: color('inverted', 'buttons');
+                    color: color("inverted", "buttons");
 
                     .icon {
-                        color: color('inverted', 'buttons');
+                        color: color("inverted", "buttons");
                     }
                 }
 
                 &.active,
                 &:active {
-                    box-shadow: inset 0px 0px 0px 100px color($color, 'social', 1, 7);
+                    box-shadow: inset 0px 0px 0px 100px color($color, "social", 1, 7);
                 }
             }
         }

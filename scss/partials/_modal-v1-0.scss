@@ -1,24 +1,26 @@
+@use "sass:math";
 @if $modal-v1-0 {
 	.modal {
 		@include position(fixed, 0 null null 0);
 		@include transform(scale(0));
 		@include transition(
-			opacity ($base-duration / 2) ($base-duration / 2) $base-timing,
+			opacity math.div($base-duration, 2) math.div($base-duration, 2) $base-timing,
 			transform $base-duration ($base-duration) $base-timing
 		);
 
 		opacity: 0;
 
-		& iframe,object {
-            display: none;
-        }
+		& iframe,
+		object {
+			display: none;
+		}
 
 		width: 100vw;
 		height: 0vh;
 
 		padding: 0 $base-spacing;
 
-		background-color: color('overlay', 'background', .75);
+		background-color: color("overlay", "background", 0.75);
 
 		text-align: center;
 		line-height: 100vh;
@@ -26,7 +28,7 @@
 		z-index: 100;
 
 		&.scrollable {
-			overflow-y: scroll;			
+			overflow-y: scroll;
 		}
 
 		&.active {
@@ -41,31 +43,32 @@
 				@include transform(scale(1));
 				@include transition($base-duration $base-duration $base-timing);
 
-				opacity: 1;				
+				opacity: 1;
 			}
 
-			& iframe,object {
+			& iframe,
+			object {
 				display: block;
 			}
 		}
 
-		& > * {			
-			@include transform(scale(.8));
+		& > * {
+			@include transform(scale(0.8));
 			@include transition($base-duration $base-timing);
 
 			opacity: 0;
-		}		
+		}
 
-		@include element('container') {
+		@include element("container") {
 			position: relative;
 
 			display: inline-block;
 
 			width: 100%;
-			max-width: map-get($breakpoints, 'lg');
+			max-width: map-get($breakpoints, "lg");
 
-			margin: $large-spacing * 2 0;			
-		
+			margin: $large-spacing * 2 0;
+
 			vertical-align: middle;
 
 			text-align: left;
@@ -78,11 +81,11 @@
 
 				border-radius: $base-border-radius;
 
-				background-color: color('modal', 'background');
+				background-color: color("modal", "background");
 			}
 		}
 
-		@include element('close') {
+		@include element("close") {
 			&:not(.nostyle) {
 				@include appearance(none);
 				@include position(absolute, 0 0 null null);
@@ -92,39 +95,39 @@
 				padding: 0;
 				font-size: $large-font-size * 2;
 				line-height: 1;
-				z-index: 10;		
+				z-index: 10;
 			}
 		}
 
-		@include element('close') {
-			@include modifier('absolute') {
+		@include element("close") {
+			@include modifier("absolute") {
 				@include position(absolute, null null null null);
 
 				z-index: 1;
 			}
 
-			@include modifier('top-left') {
+			@include modifier("top-left") {
 				top: 0;
 				left: 0;
 			}
 
-			@include modifier('top-right') {
+			@include modifier("top-right") {
 				top: 0;
 				right: 0;
 			}
 
-			@include modifier('bottom-left') {
+			@include modifier("bottom-left") {
 				top: 0;
 				left: 0;
 			}
 
-			@include modifier('bottom-right') {
+			@include modifier("bottom-right") {
 				top: 0;
 				right: 0;
 			}
 		}
 
-		@include modifier('full-screen') {
+		@include modifier("full-screen") {
 			padding: 0;
 
 			line-height: inherit;
@@ -137,21 +140,21 @@
 				margin: 0;
 				padding: 0;
 
-				background-color: color('modal', 'background');
+				background-color: color("modal", "background");
 
 				vertical-align: inherit;
 			}
 		}
 
-		@include element('trigger') {
+		@include element("trigger") {
 			cursor: pointer;
 		}
 
 		// Sizes
 		@each $size in $sizes {
-			@include modifier($size) {				
+			@include modifier($size) {
 				.modal__container {
-					max-width: map-get($breakpoints, $size);					
+					max-width: map-get($breakpoints, $size);
 				}
 			}
 		}

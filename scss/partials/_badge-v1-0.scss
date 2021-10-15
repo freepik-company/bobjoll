@@ -1,3 +1,4 @@
+@use "sass:math";
 @if $badge-v1-0 {
 	.badge {
 		$badge-padding: 2px 4px !default;
@@ -10,128 +11,128 @@
 		border-radius: $base-border-radius;
 
 		border: $base-border;
-		border-color: color('badge', 'background');
+		border-color: color("badge", "background");
 
-		background-color: color('badge', 'background');		
+		background-color: color("badge", "background");
 
-		color: color('text-inverted', 'general');
+		color: color("text-inverted", "general");
 		font-size: $badge-font-size;
 
-		line-height: $badge-line-height; 
+		line-height: $badge-line-height;
 		vertical-align: middle;
 
-		@include modifier('absolute') {
+		@include modifier("absolute") {
 			@include position(absolute, null null null null);
 
 			z-index: 1;
 		} // End absolute
 
-		@include modifier('top-left') {
+		@include modifier("top-left") {
 			@include transform(translateY(-50%));
 
 			top: 0;
 			left: $small-spacing * -1;
 		} // End top left
 
-		@include modifier('top-right') {
+		@include modifier("top-right") {
 			@include transform(translateY(-50%));
-			
+
 			top: 0;
 			right: $small-spacing * -1;
 		} // End top right
 
-		@include modifier('top-center') {
+		@include modifier("top-center") {
 			@include transform(translate(-50%, -50%));
-			
+
 			top: 0;
 			left: 50%;
 		} // End top center
 
-		@include modifier('bottom-left') {
+		@include modifier("bottom-left") {
 			@include transform(translateY(50%));
 
 			bottom: 0;
 			left: $small-spacing * -1;
 		} // End bottom left
 
-		@include modifier('bottom-right') {
+		@include modifier("bottom-right") {
 			@include transform(translateY(50%));
-			
+
 			bottom: 0;
 			right: $small-spacing * -1;
 		} // End bottom-right
 
-		@include modifier('bottom-center') {
+		@include modifier("bottom-center") {
 			@include transform(translate(50%, -50%));
-			
+
 			bottom: 0;
 			left: 50%;
 		} // End bottom-center
 
-		@each $state, $hex in map-get($colors, 'state') {
+		@each $state, $hex in map-get($colors, "state") {
 			@include modifier($state) {
-				border-color: color($state, 'state');
+				border-color: color($state, "state");
 
-				background-color: color($state, 'state');
+				background-color: color($state, "state");
 
 				color: pick-visible-color(
-					color($state, 'state'),
-					color('text', 'general'),
-					color('text-inverted', 'general')
+					color($state, "state"),
+					color("text", "general"),
+					color("text-inverted", "general")
 				);
 
 				&.badge--outline {
-					border-color: color($state, 'state');
+					border-color: color($state, "state");
 
-					color: color($state, 'state');
+					color: color($state, "state");
 				}
 			}
-		} // End state 
+		} // End state
 
-		@include modifier('inverted') {
-			border-color: color('badge-inverted', 'background');
+		@include modifier("inverted") {
+			border-color: color("badge-inverted", "background");
 
-			background-color: color('badge-inverted', 'background');
+			background-color: color("badge-inverted", "background");
 
 			color: pick-visible-color(
-				color('badge-inverted', 'background'),
-				color('text', 'general'),
-				color('text-inverted', 'general')
+				color("badge-inverted", "background"),
+				color("text", "general"),
+				color("text-inverted", "general")
 			);
 
 			&.badge--outline {
-				border-color: color('badge-inverted', 'background');
+				border-color: color("badge-inverted", "background");
 
 				color: pick-visible-color(
-					color('badge-inverted', 'background'),
-					color('text', 'general'),
-					color('text-inverted', 'general')
+					color("badge-inverted", "background"),
+					color("text", "general"),
+					color("text-inverted", "general")
 				);
 			}
 		}
 
-		@include modifier('outline') {
-			background-color: color('badge-inverted', 'background');
+		@include modifier("outline") {
+			background-color: color("badge-inverted", "background");
 
-			color: color('badge', 'background'); 
+			color: color("badge", "background");
 		} // End outline
 
-		@include modifier('sm') {
+		@include modifier("sm") {
 			font-size: $badge-small-font-size;
 		} // End small
 
-		@include modifier('pill') {
+		@include modifier("pill") {
 			border-radius: 20px;
 		} // End
- 
+
 		@each $size in $sizes {
 			@include modifier($size) {
 				display: inline-block;
-				
+
 				min-width: map-get($base-sizes, $size);
 				height: map-get($base-sizes, $size);
-				
-				padding: 0 (map-get($spacing-sizes, $size) / 4);
+
+				padding: 0 math.div(map-get($spacing-sizes, $size), 4);
 
 				font-size: map-get($font-sizes, $size);
 				text-align: center;
