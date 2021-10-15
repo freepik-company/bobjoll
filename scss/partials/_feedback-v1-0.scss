@@ -34,7 +34,7 @@
 
         @if ($button-v3-0) {
           .feedback__trigger {
-            @extend .button--state.active;
+            @extend .button--state, .active;
           }
         }
 
@@ -89,9 +89,7 @@
       }
 
       @include breakpoint("xs") {
-        max-width: calc(
-          100% - #{$extra-small-button-height + $extra-small-spacing}
-        );
+        max-width: calc(100% - #{$extra-small-button-height + $extra-small-spacing});
       }
     }
 
