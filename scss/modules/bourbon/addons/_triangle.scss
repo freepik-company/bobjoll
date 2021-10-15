@@ -9,7 +9,7 @@
 
   @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
     $width: math.div($width, 2);
-    $height: if(length($size) > 1, $height, $height/2);
+    $height: if(math.div(length($size) > 1, $height, $height, 2));
 
     @if $direction == up {
       border-bottom: $height solid $foreground-color;
