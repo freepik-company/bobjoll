@@ -27,8 +27,12 @@
             padding: $small-spacing $extra-small-spacing $small-spacing ($base-spacing + $small-spacing);
 
             p {
-                margin: $extra-small-spacing 0 0;
+                margin: 0;
                 font-weight: normal;
+            }
+
+            b + p {
+                margin-top: $extra-small-spacing;
             }
 
             a.link-action {
