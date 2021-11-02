@@ -16,8 +16,13 @@
 		</div>
 
 		<div class="notification__message">
-			<b>{{{title}}}</b>
-			<p>{{{content}}}</p>
+			{{#if title}}
+				<b>{{{title}}}</b>
+			{{/if}}
+
+			{{#if content}}
+				<p>{{{content}}}</p>
+			{{/if}}
 
 			{{#if link}}
 			<a href="{{link.url}}"
