@@ -3,7 +3,7 @@
     @font-face {
         font-family: 'Proxima Nova';
         src: url('~bobjoll/fonts/proximanova-regular-webfont.woff2') format('woff2');
-        font-weight: 400;
+        font-weight: $normal-font-weight;
         font-style: normal;
         font-display: swap;
     }
@@ -11,7 +11,7 @@
     @font-face {
         font-family: 'Proxima Nova';
         src: url('~bobjoll/fonts/proximanova-semibold-webfont.woff2') format('woff2');
-        font-weight: 500;
+        font-weight: $semi-font-weight;
         font-style: normal;
         font-display: swap;
     }
@@ -19,7 +19,7 @@
     @font-face {
         font-family: 'Proxima Nova';
         src: url('~bobjoll/fonts/proximanova-bold-webfont.woff2') format('woff2');
-        font-weight: 600;
+        font-weight: $bold-font-weight;
         font-style: normal;
         font-display: swap;
     }

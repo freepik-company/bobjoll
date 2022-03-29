@@ -28,7 +28,7 @@
 
         color: color('default', 'buttons-text');
         font-size: $base-font-size;
-        font-weight: 500;
+        font-weight: $semi-font-weight;
         line-height: $base-element-height;
 
         cursor: pointer;

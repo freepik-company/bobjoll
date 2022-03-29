@@ -121,6 +121,17 @@ $font-sizes: (
 	'lg': $large-font-size,
 	'xl': $extra-large-font-size
 ) !default;
+`
+// Typography Weight
+$normal-font-weight: 400 !default;
+$semi-font-weight: 600 !default;
+$bold-font-weight: 700 !default;
+
+$font-weights: (
+	'normal': $normal-font-weight,
+	'semi': $semi-font-weight,
+	'bold': $bold-font-weight,
+) !default;
 
 // Icons
 $extra-large-icon-width: 24px !default;
