@@ -16,7 +16,7 @@ export interface InsertSettings {
     };
     fixed?: boolean;
     link?: Link;
-    title: string;
+    title?: string;
     type: AlertType;
 }
 

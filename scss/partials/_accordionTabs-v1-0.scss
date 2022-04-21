@@ -16,7 +16,7 @@
                 padding: 0 $large-spacing;
                 cursor: pointer;
                 color: color('hoki', 'gray');
-                font-weight: 500;
+                font-weight: $semi-font-weight;
                 line-height: $base-element-height;
                 &.active {
                     color: color('oxford', 'gray');

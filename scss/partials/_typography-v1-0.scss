@@ -145,7 +145,7 @@
 
 		&.active {
 			color: color("link", "general", 1, 4);
-			font-weight: 500;
+			font-weight: $semi-font-weight;
 
 			.icon {
 				color: color("link", "general", 1, 4);
@@ -159,7 +159,7 @@
 		color: color("link", "general");
 
 		cursor: pointer;
-		font-weight: 500;
+		font-weight: $semi-font-weight;
 		text-decoration: none;
 
 		.icon {
