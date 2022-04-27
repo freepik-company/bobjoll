@@ -2,7 +2,7 @@
     <p class="dropdown__button">
         {{#each options}}
             {{#compare @key '==' @root.selectedIndex}}
-                {{#if innerText}} {{innerText}} {{else}} {{innerHTML}} {{#if}}
+                {{#if innerText}} {{innerText}} {{else}} {{innerHTML}} {{/if}}
             {{/compare}}
         {{/each}}
     </p>
@@ -26,7 +26,7 @@
                                 {{#if @root.checkList}}
                                     <i class="{{#compare @key '!=' @root.selectedIndex}}invisible {{/compare}}icon icon--md icon--check inline v-alignc"></i>
                                 {{/if}}
-                                {{#if innerText}} {{innerText}} {{else}} {{innerHTML}} {{#if}}
+                                {{#if innerText}} {{innerText}} {{else}} {{innerHTML}} {{/if}}
                             </li>
                         {{/if}}
                     {{/compare}}
