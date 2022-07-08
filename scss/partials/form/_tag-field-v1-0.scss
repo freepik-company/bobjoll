@@ -1,6 +1,6 @@
 @if $form-v1-0 and $tag-field-v1-0 {
     .tag-field {        
-        $tags-spacing: (($base-element-height - $small-button-height) / 2) - $base-border-width;
+        $tags-spacing: (($base-element-height - $small-button-height) * 0.5) - $base-border-width;
 
         @extend input;
 

@@ -1,9 +1,0 @@
-@mixin setComponent($placeholder) {
-  %#{$placeholder} {
-    @content;
-  }
-}
-
-@mixin getComponent($placeholder) {
-  @extend %#{$placeholder};
-}

@@ -4,7 +4,7 @@
     $icon-height: 50px;
 
     &--fixed {
-      @include prefixer(font-smoothing, subpixel-antialiased, webkit spec);
+      font-smoothing: subpixel-antialiased;
 
       position: fixed;
       top: 0;
@@ -40,7 +40,7 @@
 
         @if ($button-v4-0) {
           .feedback__trigger {
-            @include getComponent(button--state);
+            @extend %button--state;
           }
         }
       }

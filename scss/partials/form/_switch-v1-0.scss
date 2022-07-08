@@ -83,10 +83,10 @@
 		// Sizes
 		@each $size in $sizes {
 			@include modifier($size) {
-				$spacing: map-get($input-ui-sizes, $size) / 2;
+				$spacing: map-get($input-ui-sizes, $size) * 0.5;
 				$switch-width: map-get($input-ui-sizes, $size) + $spacing;
 				$switch-height: map-get($input-ui-sizes, $size);
-				$switch-spacing: ((map-get($input-sizes, $size) - map-get($input-ui-sizes, $size)) / 2);
+				$switch-spacing: ((map-get($input-sizes, $size) - map-get($input-ui-sizes, $size)) * 0.5);
 				$switch-font-size: map-get($font-sizes, $size);
 
 				.switch__indicator {

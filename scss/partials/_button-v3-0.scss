@@ -1,6 +1,6 @@
 @if $button-v3-0 {
     #{$all-buttons} {
-        @include prefixer(appearance, none, webkit moz ms);
+        appearance: none;
 
         margin: 0;
         padding: 0;
@@ -69,7 +69,7 @@
 
             &.active,
             &:hover {
-                box-shadow: inset 0px 0px 0px (map-get($button-sizes, map-get-last($button-sizes)) / 2) color('default', 'buttons');
+                box-shadow: inset 0px 0px 0px (map-get($button-sizes, map-get-last($button-sizes)) * 0.5) color('default', 'buttons');
 
                 color: color('default', 'buttons-text');
 
@@ -182,7 +182,7 @@
         }
 
         &--loading {
-            $size: map-get($button-sizes, map-get-last($button-sizes)) / 2;
+            $size: map-get($button-sizes, map-get-last($button-sizes)) * 0.5;
 
             box-shadow: inset 0px 0px 0px ($size) color('gray', 'buttons') !important;
 

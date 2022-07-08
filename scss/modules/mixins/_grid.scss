@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @mixin grid($grid-columns: 12) {
   $grid-media-width: map-values($breakpoints);
   $grid-media-mode: map-keys($breakpoints);
@@ -47,7 +49,7 @@
 @mixin grid-style($span: $columns of $container-columns, $mode: '') {
   $columns: nth($span, 1);
   $container-columns: $grid-columns;
-  $percentage: $columns / $container-columns * 100%;
+  $percentage: math.div($columns, $container-columns) * 100%;
 
   @if $percentage == 0% and $mode != offset {
     $percentage: auto;

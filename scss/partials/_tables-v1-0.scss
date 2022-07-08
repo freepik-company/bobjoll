@@ -24,13 +24,13 @@
 			&::before {
 				@include triangle($base-triangle-size, color('text', 'general', .50), up);
 
-				margin-top: (($base-triangle-size / 2) * -1);
+				margin-top: (($base-triangle-size * 0.5) * -1);
 			}
 
 			&::after {
 				@include triangle($base-triangle-size, color('text', 'general', .50), down);
 
-				margin-top: ($base-triangle-size / 2);
+				margin-top: ($base-triangle-size * 0.5);
 			}
 
 			@include modifier('icon') {
@@ -43,7 +43,7 @@
 							@include position(absolute, 50% auto auto 50%);
 							@include transform(translate(-50%, -50%));
 
-							margin-left: map-get(map-get($icon-sizes, $size), 'width') + ($extra-small-spacing / 2);
+							margin-left: map-get(map-get($icon-sizes, $size), 'width') + ($extra-small-spacing * 0.5);
 						}
 					}
 				}

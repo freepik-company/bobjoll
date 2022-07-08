@@ -1,6 +1,6 @@
 @if $button-v2-0 {
     #{$all-buttons} {
-        @include prefixer(appearance, none, webkit moz ms);
+        appearance: none;
 
 		margin:  0; 
 		padding: 0;

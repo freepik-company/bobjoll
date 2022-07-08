@@ -19,15 +19,15 @@
                     content: attr(data-active-hover);
                 }
 
-                @include getComponent('#{$prefix}button--red');
+                @extend %#{$prefix}button--red;
             }
 
             &:not(:hover):not(:focus) {
-                @include getComponent('#{$prefix}button--gray');
+                @extend %#{$prefix}button--gray;
             }
         }
 
-        @include getComponent('button');
-        @include getComponent('button--outline');
+        @extend %button;
+        @extend %button--outline;
     }
 }

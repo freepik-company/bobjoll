@@ -62,7 +62,7 @@
                 line-height: map-get($map, 'height');
 
                 @each $size2 in $sizes {
-                    $icon-spacing: ((map-get($base-sizes, $size2) - map-get($map, 'height')) / 2);
+                    $icon-spacing: ((map-get($base-sizes, $size2) - map-get($map, 'height')) * 0.5);
 
                     &.icon--mg-#{$size2} { padding: $icon-spacing; box-sizing: content-box; }
                 } // End spacing

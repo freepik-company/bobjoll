@@ -7,7 +7,7 @@
     $defaultStyles: map-get($buttonStyles, $defaultStyle);
 
     #{$all-buttons} {
-        @include prefixer(appearance, none, webkit moz ms);
+        appearance: none;
         margin: 0;
         padding: 0;
         border: none;
@@ -67,19 +67,19 @@
         }
 
         &--auto {
-            @include getComponent(#{$defaultPrefix}--auto);
+            @extend %#{$defaultPrefix}--auto;
         }
 
         &--state {
-            @include getComponent(#{$defaultPrefix}--state);
+            @extend %#{$defaultPrefix}--state;
         }
 
         &--icon {
-            @include getComponent(#{$defaultPrefix}--icon);
+            @extend %#{$defaultPrefix}--icon;
         }
 
         &--fullwidth {
-            @include getComponent(#{$defaultPrefix}--fullwidth);
+            @extend %#{$defaultPrefix}--fullwidth;
         }
 
         &.disabled {
@@ -89,13 +89,13 @@
 
         @each $size, $map in $buttonSizes {
             &--#{$size} {
-                @include getComponent(#{$defaultPrefix}--#{$size});
+                @extend %#{$defaultPrefix}--#{$size};
             }
         }
 
         @each $style, $map in $buttonStyles {
             &--#{$style} {
-                @include getComponent(#{$defaultPrefix}--#{$style});
+                @extend %#{$defaultPrefix}--#{$style};
             }
         }
 
@@ -127,7 +127,7 @@
         }
     }
 
-    @include setComponent(#{$defaultPrefix}--auto) {
+    %#{$defaultPrefix}--auto {
         height: auto !important;
         padding-top: $small-spacing;
         padding-bottom: $small-spacing;
@@ -138,7 +138,7 @@
         }
     }
 
-    @include setComponent(#{$defaultPrefix}--state) {
+    %#{$defaultPrefix}--state {
         &:not(.active) .state--inactive,
         &.active .state--active {
             display: block;
@@ -150,7 +150,7 @@
         }
     }
 
-    @include setComponent(#{$defaultPrefix}--icon) {
+    %#{$defaultPrefix}--icon {
         padding: 0 !important;
 
         i {
@@ -159,14 +159,14 @@
         }
     }
 
-    @include setComponent(#{$defaultPrefix}--fullwidth) {
-        @include prefixer(display, flex, ms spec);
-        @include prefixer(align-items, center, ms spec);
-        @include prefixer(justify-content, center, ms spec);
+    %#{$defaultPrefix}--fullwidth {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
     }
 
-    @include setComponent(#{$defaultPrefix}--google) {
+    %#{$defaultPrefix}--google {
         $defaultButtonSize: map-get($buttonSizes, 'md');
         $defaultIconProperties: map-get($defaultButtonSize, 'propertiesIcon');
         $defaultFontSize: map-get($defaultIconProperties, 'font-size');
@@ -196,7 +196,7 @@
     }
 
     @each $size, $map in $buttonSizes {
-        @include setComponent(#{$defaultPrefix}--#{$size}) {
+        %#{$defaultPrefix}--#{$size} {
             @each $propertyName, $propertyValue in map-get($map, 'propertiesButton') {
                 #{$propertyName}: #{$propertyValue};
             }
@@ -210,7 +210,7 @@
     }
 
     @each $buttonStyle, $buttonProperties in $buttonStyles {
-        @include setComponent(#{$defaultPrefix}--#{$buttonStyle}) {
+        %#{$defaultPrefix}--#{$buttonStyle} {
             @each $propertyRealName, $propertyKey in $buttonProperties {
                 // default styles
                 @each $colorName, $colorMap in $defaultColorMap {
@@ -247,14 +247,11 @@
 
     @each $buttonStyle, $buttonProperties in $buttonStyles {
         $prefix: #{$defaultPrefix};
-        @if ($buttonStyle != map-get($buttonSettings, 'defaultStyle')) {
-            $prefix: '#{$defaultPrefix}--#{$buttonStyle}.#{$defaultPrefix}';
-        }
         @each $colorName, $colorProperties in $buttonColors {
             $ignoreStyles: map-get($colorProperties, 'ignoreStyles');
             $ignoreStyle: index($ignoreStyles, $buttonStyle);
             @if (null == $ignoreStyle) {
-                @include setComponent(#{$prefix}--#{$colorName}) {
+                %#{$defaultPrefix}--#{$colorName} {
                     @each $propertyRealName, $propertyKey in $buttonProperties {
                         @each $colorState, $colorStateMap in $colorProperties {
                             @if ($colorState == 'default') {
@@ -295,8 +292,15 @@
                         }
                     }
                 }
-                .#{$prefix}--#{$colorName} {
-                    @include getComponent(#{$prefix}--#{$colorName});
+                @if ($buttonStyle != map-get($buttonSettings, 'defaultStyle')) {
+                    .#{$defaultPrefix}--#{$buttonStyle}.#{$defaultPrefix}--#{$colorName} {
+                        @extend %#{$defaultPrefix}--#{$buttonStyle};
+                        @extend %#{$defaultPrefix}--#{$colorName};
+                    }
+                } @else {
+                    .#{$prefix}--#{$colorName} {
+                        @extend %#{$prefix}--#{$colorName};
+                    }
                 }
             }
         }

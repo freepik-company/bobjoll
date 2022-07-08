@@ -1,9 +1,9 @@
 @if $general-v1-0 {
 	body {
-		@include prefixer(align-items, flex-start, spec ms);
-		@include prefixer(display, flex, spec ms);
-		@include prefixer(flex-direction, column, spec ms);
-		@include prefixer(flex-wrap, wrap, spec ms);
+		align-items: flex-start;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
 
 		overflow: auto;	
 
@@ -30,7 +30,7 @@
 	}
 
 	main {
-		@include prefixer(flex, 1, spec ms);
+		flex: 1;
 
 		overflow: hidden;
 

@@ -131,7 +131,7 @@
 				min-width: map-get($base-sizes, $size);
 				height: map-get($base-sizes, $size);
 				
-				padding: 0 (map-get($spacing-sizes, $size) / 4);
+				padding: 0 (map-get($spacing-sizes, $size) * 0.25);
 
 				font-size: map-get($font-sizes, $size);
 				text-align: center;

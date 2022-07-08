@@ -2,7 +2,7 @@
 	.tags {
 		$tag-triangle-size: 6px;
 
-		margin: 0 ($extra-small-spacing / 2) * -1 ($extra-small-spacing * -1) ($extra-small-spacing / 2) * -1;
+		margin: 0 ($extra-small-spacing * 0.5) * -1 ($extra-small-spacing * -1) ($extra-small-spacing * 0.5) * -1;
 
 		list-style: none;
 
@@ -15,7 +15,7 @@
 
 			display: inline-block;
 
-			margin: 0 ($extra-small-spacing / 2) $extra-small-spacing ($extra-small-spacing / 2);
+			margin: 0 ($extra-small-spacing * 0.5) $extra-small-spacing ($extra-small-spacing * 0.5);
 			padding: 0 $small-spacing;
 
 			border-radius: $base-border-radius;

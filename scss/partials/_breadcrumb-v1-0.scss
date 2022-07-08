@@ -15,7 +15,7 @@
 
 			float: left;
 
-			padding: ($small-spacing / 2) $base-spacing;
+			padding: ($small-spacing * 0.5) $base-spacing;
 
 			font-size: $small-font-size;
 			text-decoration: none;
@@ -29,7 +29,7 @@
 			}
 
 			@include breakpoint('sm') {
-				padding: ($small-spacing / 4) $small-spacing;
+				padding: ($small-spacing * 0.25) $small-spacing;
 
 				font-size: $extra-small-font-size;
 			} 

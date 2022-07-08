@@ -63,7 +63,7 @@ url("~bobjoll/fonts/bobjoll.woff?8ae69738aa8442665e8e01f714956db1") format("woff
             line-height: map-get($map, 'height');
 
             @each $size2 in $sizes {
-                $icon-spacing: ((map-get($base-sizes, $size2) - map-get($map, 'height')) / 2);
+                $icon-spacing: ((map-get($base-sizes, $size2) - map-get($map, 'height')) * 0.5);
 
                 &.icon--mg-#{$size2} { padding: $icon-spacing; box-sizing: content-box; }
             } // End spacing

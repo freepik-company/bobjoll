@@ -20,7 +20,7 @@
         z-index: 100;
 
         @include breakpoint('md') {
-            height: ($small-element-height * 5) + ($small-element-height / 2);
+            height: ($small-element-height * 5) + ($small-element-height * 0.5);
         }
 
         @include element('item') {

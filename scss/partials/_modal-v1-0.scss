@@ -3,7 +3,7 @@
 		@include position(fixed, 0 null null 0);
 		@include transform(scale(0));
 		@include transition(
-			opacity ($base-duration / 2) ($base-duration / 2) $base-timing,
+			opacity ($base-duration * 0.5) ($base-duration * 0.5) $base-timing,
 			transform $base-duration ($base-duration) $base-timing
 		);
 

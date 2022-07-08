@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @if $helper-v1-0 {
 	html {
 		// Colors
@@ -262,7 +264,7 @@
 				@if (unitless(nth($map, 1)) and unitless(nth($map, 2))) {
 					$width: nth($map, 1);
 					$height: nth($map, 2);
-					$ratio: ($height / $width) * 100;
+					$ratio: math.div($height, $width) * 100;
 
 					@include modifier($name) {
 						&::before {
@@ -289,7 +291,7 @@
 		}	
 
 		@for $i from 1 through 10 {
-			$percentage: ($i * 10) / 100;
+			$percentage: ($i * 10) * 0.01;
 
 			.opacity-#{$i} {
 				opacity: $percentage;

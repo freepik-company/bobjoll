@@ -14,7 +14,7 @@
 		li {
 			position: relative;
 
-			margin: 0 0 ($extra-small-spacing / 2);
+			margin: 0 0 ($extra-small-spacing * 0.5);
 			padding: 0 0 0 $small-spacing;
 
 			list-style: none;
@@ -22,7 +22,7 @@
 			&::before {
 				$bullet-width: 6px;
 				$bullet-height: $bullet-width;
-				$bullet-spacing: floor(floor($base-line-height * $base-font-size) - $bullet-height) / 2;
+				$bullet-spacing: floor(floor($base-line-height * $base-font-size) - $bullet-height) * 0.5;
 
 				display: inline-block;
 
@@ -50,7 +50,7 @@
 					&::before {
 						$bullet-width: 6px;
 						$bullet-height: $bullet-width;
-						$bullet-spacing: floor(floor(map-get($line-height-sizes, $size) * map-get($font-sizes, $size)) - $bullet-height) / 2;
+						$bullet-spacing: floor(floor(map-get($line-height-sizes, $size) * map-get($font-sizes, $size)) - $bullet-height) * 0.5;
 
 						margin: $bullet-spacing $extra-small-spacing 0 0;
 					}

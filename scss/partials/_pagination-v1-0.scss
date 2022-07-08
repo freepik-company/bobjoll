@@ -8,10 +8,10 @@
 		ul {
 			@extend %row-flexbox;
 
-			margin: 0 (($extra-small-spacing / 2) * -1);
+			margin: 0 (($extra-small-spacing * 0.5) * -1);
 
 			& > li {
-				padding: 0 ($extra-small-spacing / 2);
+				padding: 0 ($extra-small-spacing * 0.5);
 			}
 
 			.button {
@@ -30,7 +30,7 @@
 		}
 
 		a {
-			padding: ($small-spacing / 2) $small-spacing;
+			padding: ($small-spacing * 0.5) $small-spacing;
 
 			border-radius: $base-border-radius;
 
@@ -57,7 +57,7 @@
 		}
 
 		@include element('button') {
-			@include prefixer(display, flex !important, ms spec);
+			display: flex !important;
 		}
 
 		@include element('menu') {
@@ -82,7 +82,7 @@
 				.pagination__input input {
 					display: inline-block;
 					height: $small-element-height;				
-					margin: (($base-element-height - $small-element-height) / 2) 0;					
+					margin: (($base-element-height - $small-element-height) * 0.5) 0;					
 					font-size: $small-font-size;
 					line-height: $small-element-height;
 				}
@@ -115,7 +115,7 @@
 				.pagination__input input {
 					display: inline-block;
 					height: $extra-small-element-height;				
-					margin: (($base-element-height - $extra-small-element-height) / 2) 0;					
+					margin: (($base-element-height - $extra-small-element-height) * 0.5) 0;					
 					font-size: $extra-small-font-size;
 					line-height: $extra-small-element-height;
 				}
@@ -146,7 +146,7 @@
 					width: $extra-small-font-size;
 					height: $extra-small-font-size;
 
-					margin: (($extra-small-element-height - $extra-small-font-size) / 2) 0;
+					margin: (($extra-small-element-height - $extra-small-font-size) * 0.5) 0;
 
 					font-size: $extra-small-font-size;
 					line-height: $extra-small-font-size;

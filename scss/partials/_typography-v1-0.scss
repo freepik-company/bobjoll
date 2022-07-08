@@ -9,7 +9,7 @@
 		display: inline-block;
 
 		margin: 0 0 $small-spacing;
-		padding: ($small-spacing / 10) 0;
+		padding: ($small-spacing * 0.1) 0;
 
 		border-bottom: $base-border;
 
@@ -31,7 +31,7 @@
 	.read-more {
 		position: relative;
 
-		padding: 0 ($small-spacing / 2) 0 0;
+		padding: 0 ($small-spacing * 0.5) 0 0;
 
 		color: color('link', 'general');
 		font-size: $small-font-size;

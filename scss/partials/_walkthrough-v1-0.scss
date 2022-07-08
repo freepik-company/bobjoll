@@ -53,7 +53,7 @@
                 $triangle-size: 12px;
                 position: absolute;
                 bottom: 100%;
-                right: ($base-triangle-size) + (($small-element-height - $triangle-size) / 2);
+                right: ($base-triangle-size) + (($small-element-height - $triangle-size) * 0.5);
                 content: '';
 
                 @include triangle($triangle-size, color('4', 'blue'), up);
@@ -91,7 +91,7 @@
 
                 @extend %row-flexbox;
 
-                @include prefixer(align-items, center, ms spec);
+                align-items: center;
 
                 &:hover {
 
