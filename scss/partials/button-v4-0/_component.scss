@@ -251,7 +251,7 @@
             $ignoreStyles: map-get($colorProperties, 'ignoreStyles');
             $ignoreStyle: index($ignoreStyles, $buttonStyle);
             @if (null == $ignoreStyle) {
-                %#{$defaultPrefix}--#{$colorName} {
+                %#{$defaultPrefix}--#{"" + $colorName} {
                     @each $propertyRealName, $propertyKey in $buttonProperties {
                         @each $colorState, $colorStateMap in $colorProperties {
                             @if ($colorState == 'default') {
@@ -293,13 +293,13 @@
                     }
                 }
                 @if ($buttonStyle != map-get($buttonSettings, 'defaultStyle')) {
-                    .#{$defaultPrefix}--#{$buttonStyle}.#{$defaultPrefix}--#{$colorName} {
+                    .#{$defaultPrefix}--#{$buttonStyle}.#{$defaultPrefix}--#{"" + $colorName} {
                         @extend %#{$defaultPrefix}--#{$buttonStyle};
-                        @extend %#{$defaultPrefix}--#{$colorName};
+                        @extend %#{$defaultPrefix}--#{"" + $colorName};
                     }
                 } @else {
-                    .#{$prefix}--#{$colorName} {
-                        @extend %#{$prefix}--#{$colorName};
+                    .#{$prefix}--#{"" + $colorName} {
+                        @extend %#{$prefix}--#{"" + $colorName};
                     }
                 }
             }
