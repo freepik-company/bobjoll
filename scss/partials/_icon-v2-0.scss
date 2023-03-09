@@ -3,8 +3,8 @@
 
 	@font-face {
 		font-family: $webfont;
-		src: url("~bobjoll/fonts/bobjoll.woff2?c7cd37f850080653b9fadb9f65d9f8a3") format("woff2"),
-url("~bobjoll/fonts/bobjoll.woff?c7cd37f850080653b9fadb9f65d9f8a3") format("woff");
+		src: url("~bobjoll/fonts/bobjoll.woff2?1dd598d93e5f49b04924c05625c5ba1a") format("woff2"),
+url("~bobjoll/fonts/bobjoll.woff?1dd598d93e5f49b04924c05625c5ba1a") format("woff");
 	}
 
     %icon {
@@ -75,7 +75,7 @@ url("~bobjoll/fonts/bobjoll.woff?c7cd37f850080653b9fadb9f65d9f8a3") format("woff
     .icon--add-user { &::before { content: "\f103"; } }
     .icon--addcollection { &::before { content: "\f104"; } }
     .icon--advanced { &::before { content: "\f105"; } }
-    .icon--ai-icon { &::before { content: "\f106"; } }
+    .icon--ai { &::before { content: "\f106"; } }
     .icon--aligncenter { &::before { content: "\f107"; } }
     .icon--alignleft { &::before { content: "\f108"; } }
     .icon--alignright { &::before { content: "\f109"; } }
