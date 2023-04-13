@@ -82,7 +82,7 @@
         */
         @each $color, $hex in map-get($colors, 'buttons') {        
             @if ($color != 'default') {
-                &--#{$color} {
+                &--#{'' + $color} {
                     &.button--flat {
                         box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons');
 
@@ -129,7 +129,7 @@
                 }
             }
 
-            &--#{$color}--hover {
+            &--#{'' + $color}--hover {
                 &:hover, &.active {
                     box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'buttons');
         
@@ -142,7 +142,7 @@
         * Social
         */
         @each $color, $hex in map-get($colors, 'social') {
-            &--#{$color} {
+            &--#{'' + $color} {
                 &.button--flat {
                     box-shadow: inset 0px 0px 0px $box-shadow-size color($color, 'social');
 

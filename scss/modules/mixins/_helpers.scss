@@ -78,7 +78,7 @@
 		$hex: map-get($array, $color);
 
 		@if $hex == null {
-			@warn "Sorry, but '#{$color}' is not found in '#{$group}'.";
+			@warn "Sorry, but '#{'' + $color}' is not found in '#{'' + $group}'.";
 		} @else {
 			@if type-of($hex) == "color" {
 				$hex: ($hex, $opacity, $darken);

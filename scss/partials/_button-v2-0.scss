@@ -248,12 +248,12 @@
         * Colors
         */
         @each $color, $hex in map-get($colors, "buttons") {
-            &--#{$color} {
+            &--#{'' + $color} {
                 --bg: $hex;
                 --color: color($color, "buttons-text");
 
                 &.button--outline {
-                    --color: color(#{$color}-outline, "buttons-text");
+                    --color: color(#{'' + $color}-outline, "buttons-text");
                 }
 
                 &.active,
@@ -267,7 +267,7 @@
                 }
             }
 
-            &--#{$color}--hover {
+            &--#{'' + $color}--hover {
                 &.active,
                 &:hover {
                     --color: color($color, "buttons-text") !important;
@@ -284,7 +284,7 @@
         * Social
         */
         @each $color, $hex in map-get($colors, "social") {
-            &--#{$color} {
+            &--#{'' + $color} {
                 --bg: $hex;
                 --color: color("inverted", "buttons");
 

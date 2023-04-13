@@ -47,7 +47,7 @@ url("~bobjoll/fonts/bobjoll.woff?f5b05adcdc95dc3fe972c7e36da368cb") format("woff
     $map: map-get($colors, "social");
 
     @each $color, $hex in $map {
-        .icon--#{$color} {
+        .icon--#{'' + $color} {
             color: $hex;
             fill: $hex;
         }

@@ -10,7 +10,7 @@
     @include grid-media($current-media-width, $mode, $grid-columns);
 
     @for $i from 1 through $grid-columns {
-      .col__#{$mode}--#{$i} {
+      .col__#{'' + $mode}--#{$i} {
         @extend %col;
       }
     }
