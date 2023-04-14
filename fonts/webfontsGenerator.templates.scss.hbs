@@ -1,3 +1,4 @@
+@use 'sass:math';
 @if $icon-v2-0 {
     $webfont: "{{fontName}}" !global;
 
@@ -62,7 +63,7 @@
             line-height: map-get($map, 'height');
 
             @each $size2 in $sizes {
-                $icon-spacing: ((map-get($base-sizes, $size2) - map-get($map, 'height')) / 2);
+                $icon-spacing: math.div((map-get($base-sizes, $size2) - map-get($map, 'height')), 2);
 
                 &{{classPrefix}}mg-#{$size2} { padding: $icon-spacing; box-sizing: content-box; }
             } // End spacing
