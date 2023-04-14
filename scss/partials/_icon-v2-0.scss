@@ -1,29 +1,28 @@
-@use "sass:math";
 @if $icon-v2-0 {
     $webfont: "bobjoll" !global;
 
 	@font-face {
 		font-family: $webfont;
-		src: url("~bobjoll/fonts/bobjoll.woff2?f5b05adcdc95dc3fe972c7e36da368cb") format("woff2"),
-url("~bobjoll/fonts/bobjoll.woff?f5b05adcdc95dc3fe972c7e36da368cb") format("woff");
+		src: url("~bobjoll/fonts/bobjoll.woff2?6695439932dba2c10586c1d05d7b1f99") format("woff2"),
+url("~bobjoll/fonts/bobjoll.woff?6695439932dba2c10586c1d05d7b1f99") format("woff");
 	}
 
     %icon {
-        display: block;
+		display: block;
 
         text-transform: none;
 
         -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+		-moz-osx-font-smoothing: grayscale;
 
-        speak: none;
-
-        &::before {
-            font-family: $webfont;
-            font-style: normal;
-            font-weight: normal;
-            font-variant: normal;
-        }
+		speak: none;
+		
+		&::before {
+			font-family: $webfont;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+		}
     }
 
     .icon {
@@ -35,19 +34,19 @@ url("~bobjoll/fonts/bobjoll.woff?f5b05adcdc95dc3fe972c7e36da368cb") format("woff
         font-size: $base-icon-width;
         line-height: $base-icon-height;
 
-        color: color("icon", "general");
-        fill: color("icon", "general");
+        color: color('icon', 'general');
+        fill: color('icon', 'general');
     }
 
     .icon--inverted {
-        color: color("icon-inverted", "general") !important;
-        fill: color("icon-inverted", "general") !important;
+        color: color('icon-inverted', 'general') !important;
+        fill: color('icon-inverted', 'general') !important;
     }
 
-    $map: map-get($colors, "social");
+    $map: map-get($colors, 'social');
 
     @each $color, $hex in $map {
-        .icon--#{'' + $color} {
+        .icon--#{$color} {
             color: $hex;
             fill: $hex;
         }
@@ -56,22 +55,19 @@ url("~bobjoll/fonts/bobjoll.woff?f5b05adcdc95dc3fe972c7e36da368cb") format("woff
     @each $size1 in $sizes {
         $map: map-get($icon-sizes, $size1);
 
-        .icon--#{$size1} {
-            width: map-get($map, "width");
-            height: map-get($map, "height");
+            .icon--#{$size1} {
+            width: map-get($map, 'width');
+            height: map-get($map, 'height');
 
-            font-size: map-get($map, "width");
-            line-height: map-get($map, "height");
+            font-size: map-get($map, 'width');
+            line-height: map-get($map, 'height');
 
             @each $size2 in $sizes {
-                $icon-spacing: math.div((map-get($base-sizes, $size2) - map-get($map, "height")), 2);
+                $icon-spacing: ((map-get($base-sizes, $size2) - map-get($map, 'height')) / 2);
 
-                &.icon--mg-#{$size2} {
-                    padding: $icon-spacing;
-                    box-sizing: content-box;
-                }
+                &.icon--mg-#{$size2} { padding: $icon-spacing; box-sizing: content-box; }
             } // End spacing
-        }
+        }       
     }
     
     .icon--3d { &::before { content: "\f101"; } }

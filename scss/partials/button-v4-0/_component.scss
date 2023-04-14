@@ -248,7 +248,7 @@
     @each $buttonStyle, $buttonProperties in $buttonStyles {
         $prefix: #{$defaultPrefix};
         @if ($buttonStyle != map-get($buttonSettings, "defaultStyle")) {
-            $prefix: "#{$defaultPrefix}--#{$buttonStyle}, .#{$defaultPrefix}";
+            $prefix: "#{$defaultPrefix}--#{$buttonStyle}.#{$defaultPrefix}";
         }
         @each $colorName, $colorProperties in $buttonColors {
             $ignoreStyles: map-get($colorProperties, "ignoreStyles");
@@ -295,8 +295,12 @@
                         }
                     }
                 }
-                .#{$prefix}--#{"" + $colorName} {
-                    @include getComponent(#{$prefix}--#{'' + $colorName});
+                %prefix-extend-selector, .#{$prefix}--#{"" + $colorName} {
+                    @if ($prefix == $defaultPrefix) {
+                        @include getComponent(#{$prefix}--#{'' + $colorName});
+                    } @else {
+                        @extend %prefix-extend-selector;
+                    }
                 }
             }
         }
