@@ -67,15 +67,24 @@ $base-border-style: solid !default;
 $base-border: $base-border-width $base-border-style color('border', 'general') !default;
 
 // Typography
-$base-font-family: 'Proxima Nova', 'Verdana', 'Avenir Next' !default;
-$title-font-family: $base-font-family !default;
+$base-font-family: 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif !default;
+$title-font-family: 'Degular', 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif !default;
+$non-latin-font-family: Helvetica Neue, Helvetica, Arial, sans-serif !default;
 
 // Typography Sizes
-$extra-large-font-size: 22px !default;
-$large-font-size: 18px !default;
-$base-font-size: 16px !default;
-$small-font-size: 14px !default;
-$extra-small-font-size: 13px !default;
+$font-size-3xs: 8px !default;
+$font-size-2xs: 10px !default;
+$font-size-xs: 12px !default;
+$font-size-sm: 13px !default;
+$font-size-md: 15px !default;
+$font-size-lg: 17px !default;
+$font-size-xl: 20px !default;
+$font-size-2xl: 24px !default;
+$font-size-3xl: 32px !default;
+$font-size-4xl: 36px !default;
+$font-size-5xl: 40px !default;
+$font-size-6xl: 44px !default;
+$font-size-7xl: 48px !default;
 
 $h1-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
@@ -115,22 +124,25 @@ $h6-font-size: (
 ) !default;   
 
 $font-sizes: (
-	'xs': $extra-small-font-size,
-	'sm': $small-font-size,
-	'md': $base-font-size,
-	'lg': $large-font-size,
-	'xl': $extra-large-font-size
+	'xxxs': $font-size-3xs,
+	'xxs': $font-size-2xs,
+	'xs': $font-size-xs,
+	'sm': $font-size-sm,
+	'md': $font-size-md,
+	'lg': $font-size-lg,
+	'xl': $font-size-xl,
+	'xxl': $font-size-2xl,
 ) !default;
 
 // Typography Weight
-$normal-font-weight: 400 !default;
-$semi-font-weight: 600 !default;
-$bold-font-weight: 700 !default;
+$font-weight-regular: 400 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
 
 $font-weights: (
-	'normal': $normal-font-weight,
-	'semi': $semi-font-weight,
-	'bold': $bold-font-weight,
+	'normal': $font-weight-regular,
+	'semi': $font-weight-semibold,
+	'bold': $font-weight-bold,
 ) !default;
 
 // Icons
@@ -198,18 +210,17 @@ $input-ui-sizes: (
 ) !default;
 
 // Line Height
-$base-line-height: 1.6 !default;
-$extra-large-line-height: 2 !default;
-$large-line-height: 1.8 !default;
-$small-line-height: 1.4 !default;
-$extra-small-line-height: 1.2 !default;
-$title-line-height: 1.4 !default;
+$line-height-125: 1.25 !default;
+$line-height-150: 1.5 !default;
+$line-height-160: 1.6 !default;
+$line-height-175: 1.75 !default;
+
 $line-height-sizes: (
-	'xs': $extra-small-line-height,
-	'sm': $small-line-height,
-	'md': $base-line-height,
-	'lg': $large-line-height,
-	'xl': $extra-large-line-height
+	'xs': $line-height-125,
+	'sm': $line-height-150,
+	'md': $line-height-160,
+	'lg': $line-height-175,
+	'xl': $line-height-175
 ) !default;
 
 // Spacing

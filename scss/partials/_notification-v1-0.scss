@@ -70,7 +70,7 @@
 		p:last-child {
 			margin: 0;
 
-			font-size: $extra-small-font-size;
+			font-size: $font-size-sm;
 		}
 
 		@include element('content') {

@@ -59,8 +59,13 @@
                 @include triangle($triangle-size, color("4", "blue"), up);
             }
 
+<<<<<<< HEAD
             color: color("text-inverted", "general");
             font-size: $small-font-size;
+=======
+            color: color('text-inverted', 'general');
+            font-size: $font-size-sm;
+>>>>>>> master
 
             .notification__content {
                 padding: 0;

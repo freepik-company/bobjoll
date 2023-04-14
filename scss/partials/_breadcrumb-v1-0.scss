@@ -18,7 +18,7 @@
 
 			padding: math.div($small-spacing, 2) $base-spacing;
 
-			font-size: $small-font-size;
+			font-size: $font-size-sm;
 			text-decoration: none;
 
 			&:first-child {
@@ -32,8 +32,8 @@
 			@include breakpoint("sm") {
 				padding: math.div($small-spacing, 4) $small-spacing;
 
-				font-size: $extra-small-font-size;
-			}
+				font-size: $font-size-sm;
+			} 
 
 			&::after {
 				content: "/";

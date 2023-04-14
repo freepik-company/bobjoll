@@ -12,7 +12,7 @@
 			}
 
 			@include element('message') {
-				font-size: $small-font-size;
+				font-size: $font-size-sm;
 			}
 
 			@include element('image') {
@@ -39,7 +39,7 @@
 				margin: 0 0 $extra-small-spacing;
 				padding: $extra-small-spacing 0 0 0;
 
-				font-size: $small-font-size;
+				font-size: $font-size-sm;
 			}
 		}
 	}

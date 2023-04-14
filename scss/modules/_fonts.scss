@@ -1,25 +1,41 @@
 
 @if $fonts {
     @font-face {
-        font-family: 'Proxima Nova';
-        src: url('~bobjoll/fonts/proximanova-regular-webfont.woff2') format('woff2');
-        font-weight: $normal-font-weight;
+        font-family: 'Inter';
+        src: url('https://fps.cdnpk.net/static/inter-regular.woff2') format('woff2');
+        font-weight: $font-weight-regular;
         font-style: normal;
         font-display: swap;
     }
     
     @font-face {
-        font-family: 'Proxima Nova';
-        src: url('~bobjoll/fonts/proximanova-semibold-webfont.woff2') format('woff2');
-        font-weight: $semi-font-weight;
+        font-family: 'Inter';
+        src: url('https://fps.cdnpk.net/static/inter-semibold.woff2') format('woff2');
+        font-weight: $font-weight-semibold;
         font-style: normal;
         font-display: swap;
     }
     
     @font-face {
-        font-family: 'Proxima Nova';
-        src: url('~bobjoll/fonts/proximanova-bold-webfont.woff2') format('woff2');
-        font-weight: $bold-font-weight;
+        font-family: 'Inter';
+        src: url('https://fps.cdnpk.net/static/inter-bold.woff2') format('woff2');
+        font-weight: $font-weight-bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Degular';
+        src: url('https://fps.cdnpk.net/static/degular-regular.woff2') format('woff2');
+        font-weight: $font-weight-regular;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Degular';
+        src: url('https://fps.cdnpk.net/static/degular-semibold.woff2') format('woff2');
+        font-weight: $font-weight-semibold;
         font-style: normal;
         font-display: swap;
     }

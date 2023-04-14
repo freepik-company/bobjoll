@@ -14,12 +14,12 @@
         }
 
         .notification__close i {
-            font-size: $large-font-size;
-            color: $gray-oxford !important;
+            font-size: $font-size-lg;
+            color: $gray-800 !important;
             border-radius: $base-border-radius;
 
             &:hover {
-                background-color: rgba($gray-oxford, .1);
+                background-color: rgba($gray-800, .1);
             }
         }
 
@@ -38,7 +38,7 @@
             a.link-action {
                 display: inline-flex;
                 align-items: center;
-                color: $gray-oxford;
+                color: $gray-800;
                 border-radius: $base-border-radius;
                 padding: 0 $small-spacing;
                 margin-top: $small-spacing;
@@ -47,23 +47,23 @@
                 left: $small-spacing * (-1);
 
                 &.link-blue {
-                    color: $blue-freepik;
+                    color: $blue-500;
                     padding: $extra-small-spacing $small-spacing;
                 }
 
                 i {
-                    color: $gray-oxford;
+                    color: $gray-800;
                 }
 
                 &:hover {
-                    background-color: rgba($gray-oxford, .1);
+                    background-color: rgba($gray-800, .1);
                 }
             }
         }
 
         @include modifier('error') {
             .notification__state {
-                background-color: $red-muri;
+                background-color: $red-500;
 
                 @if $icon-v2-0 {
                     .icon:not(.nostyle) {
@@ -79,7 +79,7 @@
 
         @include modifier('warning') {
             .notification__state {
-                background-color: $yellow-sin;
+                background-color: $yellow-600;
 
                 @if $icon-v2-0 {
                     .icon:not(.nostyle) {
@@ -95,7 +95,7 @@
 
         @include modifier('info') {
             .notification__state {
-                background-color: $green-jungle;
+                background-color: $green-600;
 
                 @if $icon-v2-0 {
                     .icon:not(.nostyle) {

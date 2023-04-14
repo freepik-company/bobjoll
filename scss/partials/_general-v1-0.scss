@@ -13,9 +13,9 @@
 		background-color: color('body', 'background');
 
 		color: color('text', 'general');
-		font-family: $base-font-family;
-		font-size: $base-font-size;
-		line-height: $base-line-height;
+		font-family: var(--font-base);
+		font-size: $font-size-md;
+		line-height: $line-height-160;
 
 		-webkit-font-smoothing: antialiased;
 
@@ -27,6 +27,12 @@
 		& > * {
 			width: 100%;
 		}
+	}
+
+	html[lang="ko"] body,
+	html[lang="jp"] body,
+	html[lang="ru"] body {
+		font-family: var(--non-latin-font);
 	}
 
 	main {

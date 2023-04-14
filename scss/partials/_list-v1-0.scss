@@ -25,7 +25,7 @@
 			&::before {
 				$bullet-width: 6px;
 				$bullet-height: $bullet-width;
-				$bullet-spacing: math.div(floor(floor($base-line-height * $base-font-size) - $bullet-height), 2);
+				$bullet-spacing: floor(floor($line-height-160 * $font-size-md) - $bullet-height) / 2;
 
 				display: inline-block;
 

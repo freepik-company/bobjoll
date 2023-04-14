@@ -19,118 +19,60 @@
 		}
 
 		// Typography
-		.roman {
-			font-style: normal;
-		}
-		.italic {
-			font-style: italic;
-		}
-		.light {
-			font-weight: 300;
-		}
-		.regular {
-			font-weight: 400;
-		}
-		.medium {
-			font-weight: 500;
-		}
-		.semibold {
-			font-weight: 600;
-		}
-		.bold {
-			font-weight: 700;
-		}
-		.ff--base {
-			font-family: $base-font-family;
-		}
-		.ff--title {
-			font-family: $title-font-family;
+		.roman { font-style: normal }
+		.italic { font-style: italic; }
+		.light { font-weight: 300; }
+		.regular { font-weight: 400; }
+		.medium { font-weight: 500; }
+		.semibold { font-weight: 600; }
+		.bold { font-weight: 700; }
+		
+		.ff--base { font-family: var(--font-base) }
+		&[lang="ko"] .ff--base,
+		&[lang="jp"] .ff--base,
+		&[lang="ru"] .ff--base {
+			font-family: var(--non-latin-font);
 		}
 
-		.alignl {
-			text-align: left;
-		}
-		.alignr {
-			text-align: right;
-		}
-		.alignc {
-			text-align: center;
+		.ff--title { font-family: var(--font-title) }
+		&[lang="ko"] .ff--title,
+		&[lang="jp"] .ff--title,
+		&[lang="ru"] .ff--title {
+			font-family: var(--non-latin-font);
 		}
 
-		.font-xs {
-			font-size: $extra-small-font-size;
-		}
-		.font-sm {
-			font-size: $small-font-size;
-		}
-		.font-md {
-			font-size: $base-font-size;
-		}
-		.font-lg {
-			font-size: $large-font-size;
-		}
-		.font-xl {
-			font-size: $extra-large-font-size;
-		}
+		.alignl { text-align: left; }
+		.alignr { text-align: right; }
+		.alignc { text-align: center; }
 
-		.font-h1 {
-			@include font-size($h1-font-size);
-		}
-		.font-h2 {
-			@include font-size($h2-font-size);
-		}
-		.font-h3 {
-			@include font-size($h3-font-size);
-		}
-		.font-h4 {
-			@include font-size($h4-font-size);
-		}
-		.font-h5 {
-			@include font-size($h5-font-size);
-		}
-		.font-h6 {
-			@include font-size($h6-font-size);
-		}
+		.font-xs { font-size: $font-size-sm; }
+		.font-sm { font-size: $font-size-sm; }
+		.font-md { font-size: $font-size-md; }
+		.font-lg { font-size: $font-size-lg; }
+		.font-xl { font-size: $font-size-xl; }
 
-		.font-lh-xs {
-			line-height: $extra-small-font-size;
-		}
-		.font-lh-sm {
-			line-height: $small-font-size;
-		}
-		.font-lh-md {
-			line-height: $base-font-size;
-		}
-		.font-lh-lg {
-			line-height: $large-font-size;
-		}
-		.font-lh-xl {
-			line-height: $extra-large-font-size;
-		}
+		.font-h1 { @include font-size($h1-font-size); }
+		.font-h2 { @include font-size($h2-font-size); }
+		.font-h3 { @include font-size($h3-font-size); }
+		.font-h4 { @include font-size($h4-font-size); }
+		.font-h5 { @include font-size($h5-font-size); }
+		.font-h6 { @include font-size($h6-font-size); }
 
-		.resetcase {
-			text-transform: initial;
-		}
-		.lowercase {
-			text-transform: lowercase;
-		}
-		.uppercase {
-			text-transform: uppercase;
-		}
-		.capitalize {
-			text-transform: capitalize;
-		}
+		.font-lh-xs { line-height: $font-size-sm; }
+		.font-lh-sm { line-height: $font-size-sm; }
+		.font-lh-md { line-height: $font-size-md; }
+		.font-lh-lg { line-height: $font-size-lg; }
+		.font-lh-xl { line-height: $font-size-xl; }
 
-		.strike {
-			text-decoration: line-through;
-		}
-		.underline {
-			text-decoration: underline;
-		}
+		.resetcase { text-transform: initial; }
+		.lowercase { text-transform: lowercase; }
+		.uppercase { text-transform: uppercase; }
+		.capitalize { text-transform: capitalize; }
 
-		.text-inverted {
-			color: color("text-inverted", "general");
-		}
+		.strike { text-decoration: line-through; }
+		.underline { text-decoration: underline; }
+
+		.text-inverted { color: color('text-inverted', 'general'); }
 
 		// Line-height
 		.line-height-xs {

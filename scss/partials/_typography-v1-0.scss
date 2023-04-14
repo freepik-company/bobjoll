@@ -3,7 +3,7 @@
 	.copyright {
 		margin: 0;
 
-		font-size: $small-font-size;
+		font-size: $font-size-sm;
 	}
 
 	.type {
@@ -14,7 +14,7 @@
 
 		border-bottom: $base-border;
 
-		font-size: $small-font-size;
+		font-size: $font-size-sm;
 		font-weight: bold;
 		text-transform: uppercase;
 	}
@@ -25,8 +25,8 @@
 		color: rgba(color("text", "general"), 0.5);
 	}
 
-	.author {
-		font-size: $small-font-size;
+	.author {		
+		font-size: $font-size-sm;
 	}
 
 	.read-more {
@@ -34,8 +34,8 @@
 
 		padding: 0 math.div($small-spacing, 2) 0 0;
 
-		color: color("link", "general");
-		font-size: $small-font-size;
+		color: color('link', 'general');
+		font-size: $font-size-sm;
 		font-weight: bold;
 		text-transform: uppercase;
 	}
@@ -57,15 +57,15 @@
 
 		color: color("heading", "general");
 		font-family: $title-font-family;
-		line-height: $title-line-height;
+		line-height: $line-height-150;
 
 		&.first {
 			margin-top: 0;
 		}
 	}
 
-	#{$big-headings} {
-		line-height: $extra-small-line-height;
+	#{$big-headings} {		
+		line-height:$line-height-125;
 	}
 
 	#{$all-headings} {
@@ -144,8 +144,8 @@
 		}
 
 		&.active {
-			color: color("link", "general", 1, 4);
-			font-weight: $semi-font-weight;
+			color: color('link', 'general', 1, 4);
+			font-weight: $font-weight-semibold;
 
 			.icon {
 				color: color("link", "general", 1, 4);
@@ -159,7 +159,7 @@
 		color: color("link", "general");
 
 		cursor: pointer;
-		font-weight: $semi-font-weight;
+		font-weight: $font-weight-semibold;
 		text-decoration: none;
 
 		.icon {
@@ -201,8 +201,8 @@
 	}
 
 	figcaption {
-		color: color("text", "general", 1, -20);
-		font-size: $small-font-size;
+		color: color('text', 'general', 1, -20);
+		font-size: $font-size-sm;
 	}
 
 	svg {

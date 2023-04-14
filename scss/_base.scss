@@ -70,3 +70,9 @@
 @import "partials/gr/gr-auth-v1-0";
 
 @import "partials/profile/profile-login-v1-0";
+
+:root {
+    --font-base: #{$base-font-family};
+    --font-title: #{$title-font-family};
+    --non-latin-font: #{$non-latin-font-family};
+}

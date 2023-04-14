@@ -58,13 +58,13 @@
                             color: color('text-inverted', 'general');
             
                             &.font-xs {
-                                color: color('cadet', 'gray');
+                                color: color('400', 'gray');
             
                                 a {
-                                    color: color('cadet', 'gray');
+                                    color: color('400', 'gray');
             
                                     &:hover {
-                                        color: color('cadet', 'gray');
+                                        color: color('400', 'gray');
                                         text-decoration: underline;
                                     }
                                 }
@@ -87,11 +87,11 @@
                     text-align: center;
             
                     #{$all-headings} {
-                        color: color('freepik', 'blue');
+                        color: color('500', 'blue');
                     }
             
                     p {
-                        color: color('hoki', 'gray');
+                        color: color('600', 'gray');
                     }
                 }
             }
@@ -124,14 +124,14 @@
                     
                     background-color: color('1' , 'gray', .50);
         
-                    color: color('hoki', 'gray');
-                    font-size: $extra-large-font-size;
-                    font-weight: $semi-font-weight;
+                    color: color('600', 'gray');
+                    font-size: $font-size-xl;
+                    font-weight: $font-weight-semibold;
                     text-align: center;
                     line-height: $extra-large-element-height;
         
                     &.active {
-                        color: color('oxford', 'gray');
+                        color: color('800', 'gray');
                         box-shadow: none;
                         background-color: color('light', 'background');
                     }
@@ -198,7 +198,7 @@
         }
 
         &__intro {
-            color: color('cadet', 'gray');
+            color: color('400', 'gray');
             text-align: center;
 
             img {
@@ -207,10 +207,10 @@
             }
 
             a {
-                color: color('cadet', 'gray');
+                color: color('400', 'gray');
 
                 &:hover {
-                    color: color('cadet', 'gray');
+                    color: color('400', 'gray');
                     text-decoration: underline;
                 }
             }
@@ -232,7 +232,7 @@
                 width: 80%;
                 height: $base-border-width;
                 
-                background-color: color('aqua', 'gray', .80);
+                background-color: color('50', 'gray', .80);
     
                 transform: translate(-50%, -50%);
     
@@ -264,7 +264,7 @@
                     margin: ($base-spacing * -1) ($base-spacing * -1) $base-spacing ($base-spacing * -1);
     
                     button {
-                        font-size: $small-font-size;
+                        font-size: $font-size-sm;
                     }
                 }
             }

@@ -138,8 +138,8 @@
 				color('text-inverted', 'general'),
 				color('text', 'general')
 			);
-			font-size: $extra-small-font-size;
-			line-height: $small-line-height;
+			font-size: $font-size-sm;
+			line-height: $line-height-150;
 
 			&::before {
 				@include position(absolute, null null null null);

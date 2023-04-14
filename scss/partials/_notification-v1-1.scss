@@ -99,9 +99,9 @@
 
             padding: $small-spacing $base-element-height $small-spacing $base-spacing;
 
-            font-size: $small-font-size;
+            font-size: $font-size-sm;
 
-            font-weight: $semi-font-weight;
+            font-weight: $font-weight-semibold;
         }
 
         @include element("state") {

@@ -171,7 +171,7 @@
         $defaultIconProperties: map-get($defaultButtonSize, "propertiesIcon");
         $defaultFontSize: map-get($defaultIconProperties, "font-size");
 
-        i {
+        #{$defaultPrefix}--google i {
             display: inline-block;
             width: $defaultFontSize;
             height: 100%;
