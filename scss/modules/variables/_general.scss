@@ -201,19 +201,17 @@ $input-ui-sizes: (
 ) !default;
 
 // Line Height
-$base-line-height: 1.6 !default;
-$extra-large-line-height: 2 !default;
-$large-line-height: 1.8 !default;
-$small-line-height: 1.4 !default;
-$extra-small-line-height: 1.2 !default;
-$title-line-height: 1.4 !default;
+$line-height-125: 1.25 !default;
+$line-height-150: 1.5 !default;
+$line-height-160: 1.6 !default;
+$line-height-175: 1.75 !default;
 
 $line-height-sizes: (
-	'xs': $extra-small-line-height,
-	'sm': $small-line-height,
-	'md': $base-line-height,
-	'lg': $large-line-height,
-	'xl': $extra-large-line-height
+	'xs':$line-height-125,
+	'sm': $line-height-150,
+	'md': $line-height-160,
+	'lg': $line-height-175,
+	'xl': $line-height-175
 ) !default;
 
 // Spacing

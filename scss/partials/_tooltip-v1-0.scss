@@ -139,7 +139,7 @@
 				color('text', 'general')
 			);
 			font-size: $font-size-sm;
-			line-height: $small-line-height;
+			line-height: $line-height-150;
 
 			&::before {
 				@include position(absolute, null null null null);

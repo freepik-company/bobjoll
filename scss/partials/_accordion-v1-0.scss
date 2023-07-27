@@ -9,7 +9,7 @@
         margin: 0 0 $base-spacing;
         padding: 0;
 
-        line-height: $base-line-height;
+        line-height: $line-height-160;
 
         &:not(.accordion--ready) {
             .accordion__mobile-nav {
