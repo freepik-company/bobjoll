@@ -27,8 +27,8 @@
         box-shadow: inset 0px 0px 0px 0 color('default', 'buttons');
 
         color: color('default', 'buttons-text');
-        font-size: $base-font-size;
-        font-weight: $semi-font-weight;
+        font-size: $font-size-md;
+        font-weight: $font-weight-semibold;
         line-height: $base-element-height;
 
         cursor: pointer;

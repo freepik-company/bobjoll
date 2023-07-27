@@ -33,11 +33,11 @@ $base-font-family: 'Roboto';
 $title-font-family: 'Montserrat';
 
 // Typography Sizes
-$extra-large-font-size: 22px;
-$large-font-size: 18px;
-$base-font-size: 15px;
+$font-size-xl: 22px;
+$font-size-lg: 18px;
+$font-size-md: 15px;
 $small-font-size: 14px;
-$extra-small-font-size: 12px;
+$font-size-sm: 12px;
 
 $h1-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),

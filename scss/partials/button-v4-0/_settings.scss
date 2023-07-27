@@ -568,7 +568,7 @@ $defaultSizes: (
             padding: 0 $base-spacing,
             min-width: $extra-small-element-height,
             height: $extra-small-element-height,
-            font-size: $extra-small-font-size,
+            font-size: $font-size-sm,
             line-height: $extra-small-element-height,
         ),
         propertiesIcon: (
@@ -592,7 +592,7 @@ $defaultSizes: (
             padding: 0 $large-spacing,
             min-width: $base-element-height,
             height: $base-element-height,
-            font-size: $base-font-size,
+            font-size: $font-size-md,
             line-height: $base-element-height,
         ),
         propertiesIcon: (
@@ -604,7 +604,7 @@ $defaultSizes: (
             padding: 0 $large-spacing,
             min-width: $large-element-height,
             height: $large-element-height,
-            font-size: $large-font-size,
+            font-size: $font-size-lg,
             line-height: $large-element-height,
         ),
         propertiesIcon: (
@@ -616,7 +616,7 @@ $defaultSizes: (
             padding: 0 $large-spacing,
             min-width: $extra-large-element-height,
             height: $extra-large-element-height,
-            font-size: $large-font-size,
+            font-size: $font-size-lg,
             line-height: $extra-large-element-height,
         ),
         propertiesIcon: (

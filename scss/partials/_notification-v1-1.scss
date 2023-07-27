@@ -100,7 +100,7 @@
 
             font-size: $small-font-size;
 
-            font-weight: $semi-font-weight;
+            font-weight: $font-weight-semibold;
         }
 
         @include element('state') {

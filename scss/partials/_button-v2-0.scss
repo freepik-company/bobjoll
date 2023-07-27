@@ -17,7 +17,7 @@
     .button { 
         --bg: color('default', 'buttons');
         --size: 0;
-        --font: $base-font-size;
+        --font: $font-size-md;
         --color: color('default', 'buttons-text');
         --height: $base-element-height;
 
@@ -36,7 +36,7 @@
         color: var(--color);
         font-size: var(--font);
         line-height: var(--height);
-        font-weight: $semi-font-weight;
+        font-weight: $font-weight-semibold;
 
         cursor: pointer;
 

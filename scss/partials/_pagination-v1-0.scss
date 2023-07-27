@@ -116,7 +116,7 @@
 					display: inline-block;
 					height: $extra-small-element-height;				
 					margin: (($base-element-height - $extra-small-element-height) / 2) 0;					
-					font-size: $extra-small-font-size;
+					font-size: $font-size-sm;
 					line-height: $extra-small-element-height;
 				}
 
@@ -143,13 +143,13 @@
 				}
 
 				.icon {
-					width: $extra-small-font-size;
-					height: $extra-small-font-size;
+					width: $font-size-sm;
+					height: $font-size-sm;
 
-					margin: (($extra-small-element-height - $extra-small-font-size) / 2) 0;
+					margin: (($extra-small-element-height - $font-size-sm) / 2) 0;
 
-					font-size: $extra-small-font-size;
-					line-height: $extra-small-font-size;
+					font-size: $font-size-sm;
+					line-height: $font-size-sm;
 				}
 			}			
 		}

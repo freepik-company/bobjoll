@@ -1,25 +1,25 @@
 
 @if $fonts {
     @font-face {
-        font-family: 'Proxima Nova';
-        src: url('~bobjoll/fonts/proximanova-regular-webfont.woff2') format('woff2');
+        font-family: 'Inter';
+        src: url('~bobjoll/fonts/Inter-Regular.woff2') format('woff2');
         font-weight: $normal-font-weight;
         font-style: normal;
         font-display: swap;
     }
     
     @font-face {
-        font-family: 'Proxima Nova';
-        src: url('~bobjoll/fonts/proximanova-semibold-webfont.woff2') format('woff2');
-        font-weight: $semi-font-weight;
+        font-family: 'Inter';
+        src: url('~bobjoll/fonts/Inter-SemiBold.woff2') format('woff2');
+        font-weight: $font-weight-semibold;
         font-style: normal;
         font-display: swap;
     }
     
     @font-face {
-        font-family: 'Proxima Nova';
-        src: url('~bobjoll/fonts/proximanova-bold-webfont.woff2') format('woff2');
-        font-weight: $bold-font-weight;
+        font-family: 'Inter';
+        src: url('~bobjoll/fonts/Inter-Bold.woff2') format('woff2');
+        font-weight: $font-weight-bold;
         font-style: normal;
         font-display: swap;
     }

@@ -25,7 +25,7 @@
 		box-shadow: 0 0 0 transparent;
 
 		color: color('text', 'general');
-		font-size: $base-font-size;
+		font-size: $font-size-md;
 		line-height: ($base-input-height - $base-spacing);
 
 		&:-webkit-autofill {
@@ -71,11 +71,11 @@
 
 		& > span {
 			color: color('text-secondary', 'general');
-			font-size: $extra-small-font-size;
+			font-size: $font-size-sm;
 		}
 
 		#{$all-text-inputs} {		
-			font-size: $base-font-size;
+			font-size: $font-size-md;
 			font-weight: normal;		
 		}
 
@@ -87,7 +87,7 @@
 			margin-bottom: $small-spacing;
 
 			color: color('text', 'general');
-			font-size: $base-font-size;
+			font-size: $font-size-md;
 			font-weight: normal;	
 		}
 
