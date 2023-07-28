@@ -25,7 +25,7 @@
 		.alignc { text-align: center; }
 
 		.font-xs { font-size: $font-size-sm; }
-		.font-sm { font-size: $small-font-size; }
+		.font-sm { font-size: $font-size-sm; }
 		.font-md { font-size: $font-size-md; }
 		.font-lg { font-size: $font-size-lg; }
 		.font-xl { font-size: $font-size-xl; }
@@ -38,7 +38,7 @@
 		.font-h6 { @include font-size($h6-font-size); }
 
 		.font-lh-xs { line-height: $font-size-sm; }
-		.font-lh-sm { line-height: $small-font-size; }
+		.font-lh-sm { line-height: $font-size-sm; }
 		.font-lh-md { line-height: $font-size-md; }
 		.font-lh-lg { line-height: $font-size-lg; }
 		.font-lh-xl { line-height: $font-size-xl; }

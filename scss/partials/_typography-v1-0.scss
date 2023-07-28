@@ -2,7 +2,7 @@
 	.copyright {
 		margin: 0;
 
-		font-size: $small-font-size;
+		font-size: $font-size-sm;
 	}
 
 	.type {
@@ -13,7 +13,7 @@
 
 		border-bottom: $base-border;
 
-		font-size: $small-font-size;
+		font-size: $font-size-sm;
 		font-weight: bold;
 		text-transform: uppercase;
 	}
@@ -25,7 +25,7 @@
 	}
 
 	.author {		
-		font-size: $small-font-size;
+		font-size: $font-size-sm;
 	}
 
 	.read-more {
@@ -34,7 +34,7 @@
 		padding: 0 ($small-spacing / 2) 0 0;
 
 		color: color('link', 'general');
-		font-size: $small-font-size;
+		font-size: $font-size-sm;
 		font-weight: bold;
 		text-transform: uppercase;
 	}
@@ -188,7 +188,7 @@
 
 	figcaption {
 		color: color('text', 'general', 1, -20);
-		font-size: $small-font-size;
+		font-size: $font-size-sm;
 	}
 
 	svg {

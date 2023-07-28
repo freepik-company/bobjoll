@@ -83,7 +83,7 @@
 					display: inline-block;
 					height: $small-element-height;				
 					margin: (($base-element-height - $small-element-height) / 2) 0;					
-					font-size: $small-font-size;
+					font-size: $font-size-sm;
 					line-height: $small-element-height;
 				}
 
@@ -98,11 +98,11 @@
 				}
 
 				.icon {
-					width: $small-font-size;
-					height: $small-font-size;
+					width: $font-size-sm;
+					height: $font-size-sm;
 
-					font-size: $small-font-size;
-					line-height: $small-font-size;
+					font-size: $font-size-sm;
+					line-height: $font-size-sm;
 				}
 			}
 
