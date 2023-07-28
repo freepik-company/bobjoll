@@ -59,7 +59,7 @@
 				@include transition($base-duration $base-timing);
 
 				color: color('tags', 'general');
-				font-weight: $normal-font-weight;
+				font-weight: $font-weight-regular;
 			}
 		}
 
