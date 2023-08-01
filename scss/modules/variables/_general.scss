@@ -79,6 +79,11 @@ $font-size-md: 15px !default;
 $font-size-lg: 17px !default;
 $font-size-xl: 20px !default;
 $font-size-2xl: 24px !default;
+$font-size-3xl: 32px !default;
+$font-size-4xl: 36px !default;
+$font-size-5xl: 40px !default;
+$font-size-6xl: 44px !default;
+$font-size-7xl: 48px !default;
 
 $h1-font-size: (
     'min-vw': map-get($breakpoints, 'xs'),
