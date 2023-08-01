@@ -23,4 +23,20 @@
         font-style: normal;
         font-display: swap;
     }
+
+    @font-face {
+        font-family: 'Degular';
+        src: url('~bobjoll/fonts/Degular-Regular.woff2') format('woff2');
+        font-weight: $font-weight-regular;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Degular';
+        src: url('~bobjoll/fonts/Degular-Semibold.woff2') format('woff2');
+        font-weight: $font-weight-semibold;
+        font-style: normal;
+        font-display: swap;
+    }
 }
