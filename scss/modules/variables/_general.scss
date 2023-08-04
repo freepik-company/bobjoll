@@ -67,8 +67,8 @@ $base-border-style: solid !default;
 $base-border: $base-border-width $base-border-style color('border', 'general') !default;
 
 // Typography
-$base-font-family: 'Inter' !default;
-$title-font-family: 'Degular' !default;
+$base-font-family: 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif !default;
+$title-font-family: 'Degular', 'Inter', Helvetica Nue, Helvetica, Arial, sans-serif !default;
 
 // Typography Sizes
 $font-size-3xs: 8px !default;
@@ -215,7 +215,7 @@ $line-height-160: 1.6 !default;
 $line-height-175: 1.75 !default;
 
 $line-height-sizes: (
-	'xs':$line-height-125,
+	'xs': $line-height-125,
 	'sm': $line-height-150,
 	'md': $line-height-160,
 	'lg': $line-height-175,
