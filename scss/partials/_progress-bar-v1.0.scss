@@ -2,22 +2,22 @@
     &__title {
         font-size: $font-size-sm;
         line-height: $extra-small-element-height;
-        color: color('hoki', 'gray');
+        color: color('600', 'gray');
         margin-bottom: $extra-small-spacing;
 
         &-complete {
-            color: color('jungle', 'green');
+            color: color('600', 'green');
         }
     }
 
     &__wrapper {
-        background: color('mystic', 'gray');
+        background: color('100', 'gray');
         border-radius: 3px;
         margin-bottom: $large-spacing;
     }
 
     &__value {
-        background: color('freepik', 'blue');
+        background: color('500', 'blue');
         border-radius: 3px;
         height: 5px;
         width: 0;
