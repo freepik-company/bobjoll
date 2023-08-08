@@ -1,154 +1,155 @@
 // Gray
-$gray-shade-9: #1D262D !default;
-$gray-shade-8: #374957 !default;
-$gray-shade-7: #5F7D95 !default;
-$gray-shade-6: #869FB2 !default;
-$gray-shade-5: #A5B7C6 !default;
-$gray-shade-4: #BAC8D3 !default;
-$gray-shade-3: #CFD9E0 !default;
-$gray-shade-2: #E3E9ED !default;
-$gray-shade-1: #F8FAFB !default;
+$gray-shade-9: #121212 !default;
+$gray-shade-8: #424242 !default;
+$gray-shade-7: #777777 !default;
+$gray-shade-6: #9C9C9C !default;
+$gray-shade-5: #B1B1B1 !default;
+$gray-shade-4: #C8C8C8 !default;
+$gray-shade-3: #D8D8D8 !default;
+$gray-shade-2: #E5E5E5 !default;
+$gray-shade-1: #F7F7F7 !default;
 
 // Gray named
-$gray-ebony: 			#1D262D !default;
-$gray-oxford: 			#374957 !default;
-$gray-bayoux: 			#4A6375 !default;
-$gray-hoki: 			#5F7D95 !default;
-$gray-bali: 			#869FB2 !default;
-$gray-cadet:			#A5B7C6 !default;
-$gray-heather: 			#BAC8D3 !default;
-$gray-gaysir: 			#CFD9E0 !default;
-$gray-mystic: 			#E3E9ED !default;
-$gray-hades: 			#EFF3F6 !default;
-$gray-aqua: 			#F8FAFB !default;
+$gray-900: 			#121212 !default;
+$gray-800: 			#424242 !default;
+$gray-700: 			#5B5B5B !default;
+$gray-600: 			#777777 !default;
+$gray-500: 			#9C9C9C !default;
+$gray-400:			#B1B1B1 !default;
+$gray-300: 			#C8C8C8 !default;
+$gray-200: 			#D8D8D8 !default;
+$gray-100: 			#E5E5E5 !default;
+$gray-75: 			#F0F0F0 !default;
+$gray-50: 			#F7F7F7 !default;
 
 // Dark blue
-$dark-blue-shade-7: #08192B !default;
-$dark-blue-shade-6: #0B2239 !default;
-$dark-blue-shade-5: #0E2A47 !default;
-$dark-blue-shade-4: #113255 !default;
-$dark-blue-shade-3: #143B63 !default;
-$dark-blue-shade-2: #164372 !default;
-$dark-blue-shade-1: #194C80 !default;
+$dark-blue-shade-9: #0A152F !default;
+$dark-blue-shade-8: #142A5E !default;
+$dark-blue-shade-7: #1F408C !default;
 
 // Dark blue named
-$dark-blue-blackale:	#08192B !default;
-$dark-blue-zodiac:		#0B2239 !default;
-$dark-blue-fc: 	 		#0E2A47 !default;
-$dark-blue-biscay: 		#113255 !default;
-$dark-blue-chathams: 	#143B63 !default;
-$dark-blue-bay: 		#164372 !default;
-$dark-blue-blumine: 	#194C80 !default;
-$dark-blue-sea: 		#1F5A97 !default;
+$dark-blue-900:		#0A152F !default;
+$dark-blue-800:		#142A5E !default;
+$dark-blue-700: 		#1F408C !default;
 
 // Purple
-$purple-shade-8: #202095 !default;
-$purple-shade-7: #2D2DB0 !default;
-$purple-shade-6: #3636CC !default;
-$purple-shade-5: #4949E7 !default;
-$purple-shade-4: #5F5FF6 !default;
-$purple-shade-3: #8080F1 !default;
-$purple-shade-2: #B3B3FC !default;
-$purple-shade-1: #D7D7FF !default;
+$purple-shade-9: #22244E !default;
+$purple-shade-8: #353777 !default;
+$purple-shade-7: #404492 !default;
+$purple-shade-6: #4C50AE !default;
+$purple-shade-5: #6569BD !default;
+$purple-shade-4: #8F91CF !default;
+$purple-shade-3: #B5B6E2 !default;
+$purple-shade-2: #D5D6F2 !default;
+$purple-shade-1: #F0F1FF !default;
 
 // Purple named
-$purple-jacksons: 		#202095 !default;
-$purple-governor: 		#2D2DB0 !default;
-$purple-spiritual: 		#3636CC !default;
-$purple-piktab:			#4949E7 !default;
-$purple-sara: 			#5F5FF6 !default;
-$purple-portage: 		#8080F1 !default;
-$purple-melrose: 		#B3B3FC !default;
-$purple-fog: 			#D7D7FF !default;
+$purple-900: 	#22244E !default;
+$purple-800: 	#353777 !default;
+$purple-700: 	#404492 !default;
+$purple-600: 	#4C50AE !default;
+$purple-500:	#6569BD !default;
+$purple-400: 	#8F91CF !default;
+$purple-300: 	#B5B6E2 !default;
+$purple-200: 	#D5D6F2 !default;
+$purple-100: 	#F0F1FF !default;
 
 // Blue
-$blue-shade-8: #04458F !default;
-$blue-shade-7: #0353A7 !default;
-$blue-shade-6: #0161CD !default;
-$blue-shade-5: #1273EB !default;
-$blue-shade-4: #2C8CF4 !default;
-$blue-shade-3: #5EB2FC !default;
-$blue-shade-2: #92CDFA !default;
-$blue-shade-1: #C7EBFF !default;
+$blue-shade-9: #0A152F !default;
+$blue-shade-8: #142A5E !default;
+$blue-shade-7: #1F408C !default;
+$blue-shade-6: #2955BB !default;
+$blue-shade-5: #336AEA !default;
+$blue-shade-4: #648EEF !default;
+$blue-shade-3: #8FADF4 !default;
+$blue-shade-2: #B8CBF8 !default;
+$blue-shade-1: #E1E9FC !default;
 
 // Blue named
-$blue-congress: 		#04458F !default;
-$blue-endeavour: 		#0353A7 !default;
-$blue-science: 			#0161CD !default;
-$blue-freepik: 			#1273EB !default;
-$blue-campu: 			#2C8CF4 !default;
-$blue-malibu: 			#5EB2FC !default;
-$blue-picton: 			#92CDFA !default;
-$blue-onahau: 			#C7EBFF !default;
+$blue-900: 		#0A152F !default;
+$blue-800: 		#142A5E !default;
+$blue-700: 		#1F408C !default;
+$blue-600: 		#2955BB !default;
+$blue-500: 		#336AEA !default;
+$blue-400: 		#648EEF !default;
+$blue-300: 		#8FADF4 !default;
+$blue-200: 		#B8CBF8 !default;
+$blue-100: 		#E1E9FC !default;
 
 // Green
-$green-shade-8: #008B71 !default;
-$green-shade-7: #009D73 !default;
-$green-shade-6: #00AF80 !default;
-$green-shade-5: #2BC48A  !default;
-$green-shade-4: #4AD295 !default;
-$green-shade-3: #60E0A3 !default;
-$green-shade-2: #79EBB2 !default;
-$green-shade-1: #A2F7C5 !default;
+$green-shade-9: #1E541D !default;
+$green-shade-8: #286D34 !default;
+$green-shade-7: #32864C !default;
+$green-shade-6: #3B9E62 !default;
+$green-shade-5: #44B678  !default;
+$green-shade-4: #52D999 !default;
+$green-shade-3: #7BE2B1 !default;
+$green-shade-2: #A0EAC7 !default;
+$green-shade-1: #CBF3E0 !default;
 
 // Green named
-$green-jade: 			#008B71 !default;
-$green-shamrock: 		#009D73 !default;
-$green-jungle: 			#00AF80 !default;
-$green-flaticon:		#2BC48A !default;
-$green-pepinen: 		#4AD295 !default;
-$green-snowy: 			#60E0A3 !default;
-$green-hint: 			#79EBB2 !default;
-$green-sugar: 			#A2F7C5 !default;
+$green-900: 	#1E541D !default;
+$green-800: 	#286D34 !default;
+$green-700: 	#32864C !default;
+$green-600: 	#3B9E62 !default;
+$green-500:		#44B678 !default;
+$green-400: 	#52D999 !default;
+$green-300: 	#7BE2B1 !default;
+$green-200: 	#A0EAC7 !default;
+$green-100: 	#CBF3E0 !default;
 
 // Yellow
-$yellow-shade-8: #DD6D10 !default;
-$yellow-shade-7: #EB7D16 !default;
-$yellow-shade-6: #F69110 !default;
-$yellow-shade-5: #FCA120 !default;
-$yellow-shade-4: #FCBD24 !default;
-$yellow-shade-3: #FCD250 !default;
-$yellow-shade-2: #FCDB7E !default;
-$yellow-shade-1: #FFEEB6 !default;
+$yellow-shade-9: #BC5912 !default;
+$yellow-shade-8: #DE6815 !default;
+$yellow-shade-7: #EA7E11 !default;
+$yellow-shade-6: #EA7E11 !default;
+$yellow-shade-5: #FEB602 !default;
+$yellow-shade-4: #FEC73F !default;
+$yellow-shade-3: #FFD774 !default;
+$yellow-shade-2: #FFE6A7 !default;
+$yellow-shade-1: #FFF4D9 !default;
 
 // Yellow named
-$yellow-tango: 			#DD6D10 !default;
-$yellow-poppy: 			#EB7D16 !default;
-$yellow-sin: 			#F69110 !default;
-$yellow-premium:		#FCA120 !default;
-$yellow-bea:	 		#FCBD24 !default;
-$yellow-dandelion: 		#FCD250 !default;
-$yellow-paco:	 		#FCDB7E !default;
-$yellow-buttermilk: 	#FFEEB6 !default;
+$yellow-900: 		#BC5912 !default;
+$yellow-800: 		#DE6815 !default;
+$yellow-700: 		#EA7E11 !default;
+$yellow-600: 		#EA7E11 !default;
+$yellow-500:		#FEB602 !default;
+$yellow-400:	 	#FEC73F !default;
+$yellow-300: 		#FFD774 !default;
+$yellow-200:	 		#FFE6A7 !default;
+$yellow-100: 	#FFF4D9 !default;
 
 // Red
-$red-shade-8: #C12020 !default;
-$red-shade-7: #D53232 !default;
-$red-shade-6: #EC3A3B !default;
-$red-shade-5: #FB5252 !default;
-$red-shade-4: #FF8578 !default;
-$red-shade-3: #FFA68F !default;
-$red-shade-2: #FFC8AF !default;
-$red-shade-1: #FFDECC !default;
+$red-shade-9: #9A2B17 !default;
+$red-shade-8: #BC371C !default;
+$red-shade-7: #D3482B !default;
+$red-shade-6: #EB644C !default;
+$red-shade-5: #FF7D6A !default;
+$red-shade-4: #FF9E90 !default;
+$red-shade-3: #FFBEB4 !default;
+$red-shade-2: #FFD8D2 !default;
+$red-shade-1: #FFECE9 !default;
 
 // Red named
-$red-thunderbird: 		#C12020 !default;
-$red-valencia:	 		#D53232 !default;
-$red-bloody: 			#EC3A3B !default;
-$red-muri:				#FB5252 !default;
-$red-salmon: 			#FF8578 !default;
-$red-lisa: 				#FFA68F !default;
-$red-wax: 				#FFC8AF !default;
-$red-bush: 				#FFDECC !default;
+$red-900: 		#9A2B17 !default;
+$red-800: 		#BC371C !default;
+$red-700:	 	#D3482B !default;
+$red-600: 		#EB644C !default;
+$red-500:		#FF7D6A !default;
+$red-400: 		#FF9E90 !default;
+$red-300: 		#FFBEB4 !default;
+$red-200: 		#FFD8D2 !default;
+$red-100: 		#FFECE9 !default;
 
-$color-main: #1273eb !default;
-$color-dark: #0E2A47 !default;
+$color-main: #336AEA !default;
+$color-dark: #142A5E !default;
 $color-border: $gray-shade-2 !default;
 $color-secondary: $gray-shade-1 !default;
 $color-light: #fff !default;
 $color-heading: $gray-shade-8 !default;
 $color-text: $gray-shade-7 !default;
-$color-premium: #FCA120 !default;
+$color-premium: #FEB602 !default;
 
 $social-behance: #1769ff !default;
 $social-dribbble: #ea4c89 !default;
@@ -163,12 +164,12 @@ $social-youtube: #bb0000 !default;
 $social-whatsapp: #25d366 !default;
 $social-telegram: #0088cc !default;
 
-$state-green: $green-flaticon !default;
-$state-blue: $blue-freepik !default;
-$state-gray: $gray-bali !default;
-$state-red: $red-muri !default;
-$state-yellow: $yellow-premium !default;
-$state-purple: $purple-piktab !default;
+$state-green: $green-500 !default;
+$state-blue: $blue-500 !default;
+$state-gray: $gray-500 !default;
+$state-red: $red-500 !default;
+$state-yellow: $yellow-500 !default;
+$state-purple: $purple-500 !default;
 
 $global-colors: ( 
 	background:(
@@ -321,36 +322,28 @@ $global-colors: (
 		'3': $gray-shade-3,
 		'2': $gray-shade-2,
 		'1': $gray-shade-1,
-		'ebony': $gray-ebony,
-		'oxford': $gray-oxford,
-		'bayoux': $gray-bayoux,
-		'hoki': $gray-hoki,
-		'bali': $gray-bali,
-		'cadet': $gray-cadet,
-		'heather': $gray-heather,
-		'gaysir': $gray-gaysir,
-		'mystic': $gray-mystic,
-		'hades': $gray-hades,
-		'aqua': $gray-aqua,
+		'900': $gray-900,
+		'800': $gray-800,
+		'700': $gray-700,
+		'600': $gray-600,
+		'500': $gray-500,
+		'400': $gray-400,
+		'300': $gray-300,
+		'200': $gray-200,
+		'100': $gray-100,
+		'75': $gray-75,
+		'50': $gray-50,
 	),
 	'dark-blue': (
-		'7': $dark-blue-shade-7,
-		'6': $dark-blue-shade-6,
-		'5': $dark-blue-shade-5,
-		'4': $dark-blue-shade-4,
-		'3': $dark-blue-shade-3,
-		'2': $dark-blue-shade-2,
-		'1': $dark-blue-shade-1,
-		'blackale':$dark-blue-blackale,
-		'zodiac': $dark-blue-zodiac,
-		'fc': $dark-blue-fc,
-		'biscay': $dark-blue-biscay,
-		'chathams': $dark-blue-chathams,
-		'bay': $dark-blue-bay,
-		'blumine': $dark-blue-blumine,
-		'sea': $dark-blue-sea,
+		'9': $dark-blue-shade-9,
+		'8': $dark-blue-shade-8,
+		'7': $dark-blue-shade-8,
+		'900':$dark-blue-900,
+		'800': $dark-blue-800,
+		'700': $dark-blue-700,
 	),
 	'purple': (
+		'9': $purple-shade-9,
 		'8': $purple-shade-8,
 		'7': $purple-shade-7,
 		'6': $purple-shade-6,
@@ -359,16 +352,18 @@ $global-colors: (
 		'3': $purple-shade-3,
 		'2': $purple-shade-2,
 		'1': $purple-shade-1,
-		'jacksons': $purple-jacksons,
-		'governor': $purple-governor,
-		'spiritual': $purple-spiritual,
-		'piktab': $purple-piktab,		
-		'sara': $purple-sara,
-		'portage': $purple-portage,
-		'melrose': $purple-melrose,
-		'fog': $purple-fog,
+		'900': $purple-900,
+		'800': $purple-800,
+		'700': $purple-700,
+		'600': $purple-600,
+		'500': $purple-500,		
+		'400': $purple-400,
+		'300': $purple-300,
+		'200': $purple-200,
+		'100': $purple-100,
 	),
 	'blue': (
+		'9': $blue-shade-9,
 		'8': $blue-shade-8,
 		'7': $blue-shade-7,
 		'6': $blue-shade-6,
@@ -377,16 +372,18 @@ $global-colors: (
 		'3': $blue-shade-3,
 		'2': $blue-shade-2,
 		'1': $blue-shade-1,
-		'congress': $blue-congress,
-		'endeavour': $blue-endeavour,
-		'science': $blue-science,
-		'freepik': $blue-freepik,
-		'campu': $blue-campu,
-		'malibu': $blue-malibu,
-		'picton': $blue-picton,
-		'onahau': $blue-onahau,
+		'900': $blue-900,
+		'800': $blue-800,
+		'700': $blue-700,
+		'600': $blue-600,
+		'500': $blue-500,
+		'400': $blue-400,
+		'300': $blue-300,
+		'200': $blue-200,
+		'100': $blue-100,
 	),
 	'green': (
+		'9': $green-shade-9,
 		'8': $green-shade-8,
 		'7': $green-shade-7,
 		'6': $green-shade-6,
@@ -395,16 +392,18 @@ $global-colors: (
 		'3': $green-shade-3,
 		'2': $green-shade-2,
 		'1': $green-shade-1,
-		'jade': $green-jade,
-		'shamrock': $green-shamrock,
-		'jungle': $green-jungle,
-		'flaticon': $green-flaticon,
-		'pepinen': $green-pepinen,
-		'snowy': $green-snowy,
-		'hint': $green-hint,
-		'sugar': $green-sugar,
+		'900': $green-900,
+		'800': $green-800,
+		'700': $green-700,
+		'600': $green-600,
+		'500': $green-500,
+		'400': $green-400,
+		'300': $green-300,
+		'200': $green-200,
+		'100': $green-100,
 	),
 	'yellow': (
+		'9': $yellow-shade-9,
 		'8': $yellow-shade-8,
 		'7': $yellow-shade-7,
 		'6': $yellow-shade-6,
@@ -413,16 +412,17 @@ $global-colors: (
 		'3': $yellow-shade-3,
 		'2': $yellow-shade-2,
 		'1': $yellow-shade-1,
-		'tango': $yellow-tango,
-		'poppy': $yellow-poppy,
-		'sin': $yellow-sin,
-		'premium': $yellow-premium,
-		'bea': $yellow-bea,
-		'dandelion': $yellow-dandelion,
-		'paco': $yellow-paco,
-		'buttermilk': $yellow-buttermilk,
+		'800': $yellow-800,
+		'700': $yellow-700,
+		'600': $yellow-600,
+		'500': $yellow-500,
+		'400': $yellow-400,
+		'300': $yellow-300,
+		'200': $yellow-200,
+		'100': $yellow-100,
 	),
 	'red': (
+		'9': $red-shade-9,
 		'8': $red-shade-8,
 		'7': $red-shade-7,
 		'6': $red-shade-6,
@@ -431,14 +431,15 @@ $global-colors: (
 		'3': $red-shade-3,
 		'2': $red-shade-2,
 		'1': $red-shade-1,
-		'thunderbird': $red-thunderbird,
-		'valencia': $red-valencia,
-		'bloody': $red-bloody,
-		'muri': $red-muri,
-		'salmon': $red-salmon,
-		'lisa': $red-lisa,
-		'wax': $red-wax,
-		'bush': $red-bush,
+		'900': $red-900,
+		'800': $red-800,
+		'700': $red-700,
+		'600': $red-600,
+		'500': $red-500,
+		'400': $red-400,
+		'300': $red-300,
+		'200': $red-200,
+		'100': $red-100,
 	),
 );
 
