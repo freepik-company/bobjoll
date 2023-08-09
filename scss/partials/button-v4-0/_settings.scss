@@ -12,14 +12,14 @@ $defaultColors: (
         ),
         hover: (
             background: color('600', 'blue'),
-            background-outline: color('science', 'blue', 0.1),
+            background-outline: color('600', 'blue', 0.1),
             box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('600', 'blue'),
             color-outline: color('600', 'blue'),
             color: $color-light,
         ),
         active: (
             background: color('700', 'blue'),
-            background-outline: color('science', 'blue', 0.2),
+            background-outline: color('600', 'blue', 0.2),
             box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('700', 'blue'),
             color-outline: color('700', 'blue'),
             color: $color-light,
