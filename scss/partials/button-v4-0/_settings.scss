@@ -84,14 +84,14 @@ $defaultColors: (
         ),
         hover: (
             background: color('600', 'green'),
-            background-outline: color('shamrock', 'green', 0.1),
+            background-outline: color('700', 'green', 0.1),
             box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('700', 'green'),
             color-outline: color('700', 'green'),
             color: $color-light,
         ),
         active: (
             background: color('700', 'green'),
-            background-outline: color('shamrock', 'green', 0.2),
+            background-outline: color('700', 'green', 0.2),
             box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('800', 'green'),
             color-outline: color('800', 'green'),
             color: $color-light,
