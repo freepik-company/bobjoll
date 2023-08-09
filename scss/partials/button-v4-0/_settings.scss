@@ -108,14 +108,14 @@ $defaultColors: (
         ),
         hover: (
             background: color('600', 'purple'),
-            background-outline: color('spiritual', 'purple', 0.1),
+            background-outline: color('600', 'purple', 0.1),
             box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('600', 'purple'),
             color-outline: color('600', 'purple'),
             color: $color-light,
         ),
         active: (
             background: color('700', 'purple'),
-            background-outline: color('spiritual', 'purple', 0.2),
+            background-outline: color('600', 'purple', 0.2),
             box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('700', 'purple'),
             color-outline: color('700', 'purple'),
             color: $color-light,
