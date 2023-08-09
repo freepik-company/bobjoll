@@ -36,14 +36,14 @@ $defaultColors: (
         ),
         hover: (
             background: color('600', 'yellow'),
-            background-outline: color('sin', 'yellow', 0.1),
+            background-outline: color('600', 'yellow', 0.1),
             box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('600', 'yellow'),
             color-outline: color('600', 'yellow'),
             color: $color-light,
         ),
         active: (
             background: color('700', 'yellow'),
-            background-outline: color('sin', 'yellow', 0.2),
+            background-outline: color('600', 'yellow', 0.2),
             box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('700', 'yellow'),
             color-outline: color('700', 'yellow'),
             color: $color-light,
