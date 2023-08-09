@@ -47,7 +47,7 @@
                 left: $small-spacing * (-1);
 
                 &.link-blue {
-                    color: $blue-500;
+                    color: $blue-freepik;
                     padding: $extra-small-spacing $small-spacing;
                 }
 
@@ -63,7 +63,7 @@
 
         @include modifier('error') {
             .notification__state {
-                background-color: $red-500;
+                background-color: $red-muri;
 
                 @if $icon-v2-0 {
                     .icon:not(.nostyle) {
@@ -79,7 +79,7 @@
 
         @include modifier('warning') {
             .notification__state {
-                background-color: $yellow-600;
+                background-color: $yellow-sin;
 
                 @if $icon-v2-0 {
                     .icon:not(.nostyle) {
@@ -95,7 +95,7 @@
 
         @include modifier('info') {
             .notification__state {
-                background-color: $green-600;
+                background-color: $green-jungle;
 
                 @if $icon-v2-0 {
                     .icon:not(.nostyle) {

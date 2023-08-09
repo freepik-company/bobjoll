@@ -2,7 +2,7 @@ $minmax: 'min', 'max';
 
 @mixin triangle-tooltip($position) {
     .tooltip__content::before {
-        @include triangle($base-spacing, color('400', 'blue'), $position);
+        @include triangle($base-spacing, color('campu', 'blue'), $position);
     }
 }
 
@@ -16,14 +16,14 @@ $minmax: 'min', 'max';
     .notification__close {
         box-shadow: none !important;
         color: $gray-oxford;
-        background: $gray-50;
+        background: $gray-aqua;
 
         .icon {
             color: color('icon-inverted', 'general');
         }
 
         &:hover {
-            background: $gray-50;
+            background: $gray-aqua;
         }
     }
 
@@ -31,7 +31,7 @@ $minmax: 'min', 'max';
         background-color: #ffffff;
 
         &:hover {
-            color: color('800', 'gray');
+            color: color('oxford', 'gray');
         }
     }
 
@@ -58,15 +58,15 @@ $minmax: 'min', 'max';
             border-radius: $base-border-radius;
             font-size: $small-font-size;
             text-align: left;
-            background-color: color('400', 'blue');
+            background-color: color('campu', 'blue');
             color: color('text-inverted', 'general');
 
             .notification__close {
                 color: #ffffff;
-                background: color('400', 'blue');
+                background: color('campu', 'blue');
 
                 &:hover {
-                    background: color('500', 'blue');
+                    background: color('freepik', 'blue');
                 }
             }
 

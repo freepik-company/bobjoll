@@ -15,13 +15,13 @@
                 height: $base-element-height;
                 padding: 0 $large-spacing;
                 cursor: pointer;
-                color: color('600', 'gray');
+                color: color('hoki', 'gray');
                 font-weight: $semi-font-weight;
                 line-height: $base-element-height;
                 &.active {
-                    color: color('800', 'gray');
+                    color: color('oxford', 'gray');
                     border-bottom: $base-border;
-                    border-color: color('800', 'gray');
+                    border-color: color('oxford', 'gray');
                 }
             }
         }
