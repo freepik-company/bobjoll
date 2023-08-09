@@ -60,14 +60,14 @@ $defaultColors: (
         ),
         hover: (
             background: color('600', 'red'),
-            background-outline: color('bloody', 'red', 0.1),
+            background-outline: color('600', 'red', 0.1),
             box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('600', 'red'),
             color-outline: color('600', 'red'),
             color: $color-light,
         ),
         active: (
             background: color('700', 'red'),
-            background-outline: color('bloody', 'red', 0.2),
+            background-outline: color('600', 'red', 0.2),
             box-shadow-outline: inset 0 0 0 $defaultBorderWidth color('700', 'red'),
             color-outline: color('700', 'red'),
             color: $color-light,
