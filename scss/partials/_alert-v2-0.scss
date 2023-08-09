@@ -15,11 +15,11 @@
 
         .notification__close i {
             font-size: $font-size-lg;
-            color: $gray-oxford !important;
+            color: $gray-800 !important;
             border-radius: $base-border-radius;
 
             &:hover {
-                background-color: rgba($gray-oxford, .1);
+                background-color: rgba($gray-800, .1);
             }
         }
 
@@ -38,7 +38,7 @@
             a.link-action {
                 display: inline-flex;
                 align-items: center;
-                color: $gray-oxford;
+                color: $gray-800;
                 border-radius: $base-border-radius;
                 padding: 0 $small-spacing;
                 margin-top: $small-spacing;
@@ -52,11 +52,11 @@
                 }
 
                 i {
-                    color: $gray-oxford;
+                    color: $gray-800;
                 }
 
                 &:hover {
-                    background-color: rgba($gray-oxford, .1);
+                    background-color: rgba($gray-800, .1);
                 }
             }
         }
