@@ -10,17 +10,17 @@ $gray-shade-2: #E5E5E5 !default;
 $gray-shade-1: #F7F7F7 !default;
 
 // Gray named
-$gray-900: 			#121212 !default;
-$gray-800: 			#424242 !default;
-$gray-700: 			#5B5B5B !default;
-$gray-600: 			#777777 !default;
-$gray-500: 			#9C9C9C !default;
-$gray-400:			#B1B1B1 !default;
-$gray-300: 			#C8C8C8 !default;
-$gray-200: 			#D8D8D8 !default;
-$gray-100: 			#E5E5E5 !default;
-$gray-75: 			#F0F0F0 !default;
-$gray-50: 			#F7F7F7 !default;
+$gray-900: #121212 !default;
+$gray-800: #424242 !default;
+$gray-700: #5B5B5B !default;
+$gray-600: #777777 !default;
+$gray-500: #9C9C9C !default;
+$gray-400: #B1B1B1 !default;
+$gray-300: #C8C8C8 !default;
+$gray-200: #D8D8D8 !default;
+$gray-100: #E5E5E5 !default;
+$gray-75:  #F0F0F0 !default;
+$gray-50:  #F7F7F7 !default;
 
 // Dark blue
 $dark-blue-shade-9: #0A152F !default;
@@ -30,7 +30,7 @@ $dark-blue-shade-7: #1F408C !default;
 // Dark blue named
 $dark-blue-900:		#0A152F !default;
 $dark-blue-800:		#142A5E !default;
-$dark-blue-700: 		#1F408C !default;
+$dark-blue-700: 	#1F408C !default;
 
 // Purple
 $purple-shade-9: #22244E !default;
@@ -102,7 +102,7 @@ $green-100: 	#CBF3E0 !default;
 $yellow-shade-9: #BC5912 !default;
 $yellow-shade-8: #DE6815 !default;
 $yellow-shade-7: #EA7E11 !default;
-$yellow-shade-6: #EA7E11 !default;
+$yellow-shade-6: #F4980A !default;
 $yellow-shade-5: #FEB602 !default;
 $yellow-shade-4: #FEC73F !default;
 $yellow-shade-3: #FFD774 !default;
@@ -110,26 +110,26 @@ $yellow-shade-2: #FFE6A7 !default;
 $yellow-shade-1: #FFF4D9 !default;
 
 // Yellow named
-$yellow-900: 		#BC5912 !default;
-$yellow-800: 		#DE6815 !default;
-$yellow-700: 		#EA7E11 !default;
-$yellow-600: 		#EA7E11 !default;
-$yellow-500:		#FEB602 !default;
-$yellow-400:	 	#FEC73F !default;
-$yellow-300: 		#FFD774 !default;
-$yellow-200:	 		#FFE6A7 !default;
+$yellow-900: 	#BC5912 !default;
+$yellow-800: 	#DE6815 !default;
+$yellow-700: 	#EA7E11 !default;
+$yellow-600: 	#F4980A !default;
+$yellow-500:	#FEB602 !default;
+$yellow-400:	#FEC73F !default;
+$yellow-300: 	#FFD774 !default;
+$yellow-200:	#FFE6A7 !default;
 $yellow-100: 	#FFF4D9 !default;
 
 // Red
-$red-shade-9: #9A2B17 !default;
-$red-shade-8: #BC371C !default;
-$red-shade-7: #D3482B !default;
-$red-shade-6: #EB644C !default;
-$red-shade-5: #FF7D6A !default;
-$red-shade-4: #FF9E90 !default;
-$red-shade-3: #FFBEB4 !default;
-$red-shade-2: #FFD8D2 !default;
-$red-shade-1: #FFECE9 !default;
+$red-shade-9: 	#9A2B17 !default;
+$red-shade-8: 	#BC371C !default;
+$red-shade-7: 	#D3482B !default;
+$red-shade-6: 	#EB644C !default;
+$red-shade-5: 	#FF7D6A !default;
+$red-shade-4: 	#FF9E90 !default;
+$red-shade-3: 	#FFBEB4 !default;
+$red-shade-2: 	#FFD8D2 !default;
+$red-shade-1: 	#FFECE9 !default;
 
 // Red named
 $red-900: 		#9A2B17 !default;
@@ -149,7 +149,7 @@ $color-secondary: $gray-shade-1 !default;
 $color-light: #fff !default;
 $color-heading: $gray-shade-8 !default;
 $color-text: $gray-shade-7 !default;
-$color-premium: #FEB602 !default;
+$color-premium: #F4980A !default;
 
 $social-behance: #1769ff !default;
 $social-dribbble: #ea4c89 !default;
@@ -274,7 +274,7 @@ $global-colors: (
 		'blue': $blue-shade-5,
 		'gray': $gray-shade-7,
 		'red': $red-shade-5,
-		'yellow': $yellow-shade-5,
+		'yellow': $yellow-shade-6,
 		'purple': $purple-shade-5,
 		'inverted': $gray-shade-2,
 	), 
@@ -412,6 +412,7 @@ $global-colors: (
 		'3': $yellow-shade-3,
 		'2': $yellow-shade-2,
 		'1': $yellow-shade-1,
+		'900': $yellow-900,
 		'800': $yellow-800,
 		'700': $yellow-700,
 		'600': $yellow-600,
