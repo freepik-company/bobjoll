@@ -19,16 +19,16 @@
 		.bold { font-weight: 700; }
 		
 		.ff--base { font-family: $base-font-family; }
-		html[lang="ko"] .ff--base,
-		html[lang="jp"] .ff--base,
-		html[lang="ru"] .ff--base {
+		[lang="ko"] .ff--base,
+		[lang="jp"] .ff--base,
+		[lang="ru"] .ff--base {
 			font-family: var(--non-latin-font);
 		}
 
 		.ff--title { font-family: $title-font-family; }
-		html[lang="ko"] .ff--title,
-		html[lang="jp"] .ff--title,
-		html[lang="ru"] .ff--title {
+		[lang="ko"] .ff--title,
+		[lang="jp"] .ff--title,
+		[lang="ru"] .ff--title {
 			font-family: var(--non-latin-font);
 		}
 
