@@ -29,6 +29,12 @@
 		}
 	}
 
+	html[lang="ko"] body,
+	html[lang="jp"] body,
+	html[lang="ru"] body {
+		font-family: var(--non-latin-font);
+	}
+
 	main {
 		@include prefixer(flex, 1, spec ms);
 
