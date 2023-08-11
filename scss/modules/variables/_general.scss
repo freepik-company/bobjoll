@@ -70,6 +70,13 @@ $base-border: $base-border-width $base-border-style color('border', 'general') !
 $base-font-family: 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif !default;
 $title-font-family: 'Degular', 'Inter', Helvetica Nue, Helvetica, Arial, sans-serif !default;
 
+html[land="ko"],
+html[land="jp"],
+html[land="ru"] {
+	$base-font-family: Helvetica Neue, Helvetica, Arial, sans-serif !default;
+	$title-font-family: $base-font-family !default;
+}
+
 // Typography Sizes
 $font-size-3xs: 8px !default;
 $font-size-2xs: 10px !default;
