@@ -74,5 +74,5 @@
 :root {
     --font-base: #{$base-font-family};
     --font-title: #{$title-font-family};
-    --non-latin-font: Helvetica Neue, Helvetica, Arial, sans-serif;
+    --non-latin-font: #{$non-latin-font-family};
 }

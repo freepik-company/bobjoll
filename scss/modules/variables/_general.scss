@@ -68,7 +68,8 @@ $base-border: $base-border-width $base-border-style color('border', 'general') !
 
 // Typography
 $base-font-family: 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif !default;
-$title-font-family: 'Degular', 'Inter', Helvetica Nue, Helvetica, Arial, sans-serif !default;
+$title-font-family: 'Degular', 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif !default;
+$non-latin-font-family: Helvetica Neue, Helvetica, Arial, sans-serif !default;
 
 // Typography Sizes
 $font-size-3xs: 8px !default;

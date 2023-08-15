@@ -18,14 +18,14 @@
 		.semibold { font-weight: 600; }
 		.bold { font-weight: 700; }
 		
-		.ff--base { font-family: $base-font-family; }
+		.ff--base { font-family: var(--font-base) }
 		&[lang="ko"] .ff--base,
 		&[lang="jp"] .ff--base,
 		&[lang="ru"] .ff--base {
 			font-family: var(--non-latin-font);
 		}
 
-		.ff--title { font-family: $title-font-family; }
+		.ff--title { font-family: var(--font-title) }
 		&[lang="ko"] .ff--title,
 		&[lang="jp"] .ff--title,
 		&[lang="ru"] .ff--title {
