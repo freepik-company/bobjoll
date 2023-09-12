@@ -2,7 +2,7 @@
 @if $fonts {
     @font-face {
         font-family: 'Inter';
-        src: url('~bobjoll/fonts/Inter-Regular.woff2') format('woff2');
+        src: url('https://fps.cdnpk.net/static/inter-regular.woff2') format('woff2');
         font-weight: $font-weight-regular;
         font-style: normal;
         font-display: swap;
@@ -10,7 +10,7 @@
     
     @font-face {
         font-family: 'Inter';
-        src: url('~bobjoll/fonts/Inter-SemiBold.woff2') format('woff2');
+        src: url('https://fps.cdnpk.net/static/inter-semibold.woff2') format('woff2');
         font-weight: $font-weight-semibold;
         font-style: normal;
         font-display: swap;
@@ -18,7 +18,7 @@
     
     @font-face {
         font-family: 'Inter';
-        src: url('~bobjoll/fonts/Inter-Bold.woff2') format('woff2');
+        src: url('https://fps.cdnpk.net/static/inter-bold.woff2') format('woff2');
         font-weight: $font-weight-bold;
         font-style: normal;
         font-display: swap;
@@ -26,7 +26,7 @@
 
     @font-face {
         font-family: 'Degular';
-        src: url('~bobjoll/fonts/Degular-Regular.woff2') format('woff2');
+        src: url('https://fps.cdnpk.net/static/Degular-Regular.woff2') format('woff2');
         font-weight: $font-weight-regular;
         font-style: normal;
         font-display: swap;
@@ -34,7 +34,7 @@
 
     @font-face {
         font-family: 'Degular';
-        src: url('~bobjoll/fonts/Degular-Semibold.woff2') format('woff2');
+        src: url('https://fps.cdnpk.net/static/Degular-Semibold.woff2') format('woff2');
         font-weight: $font-weight-semibold;
         font-style: normal;
         font-display: swap;
