@@ -158,7 +158,7 @@ $social-google: #dd4b39 !default;
 $social-instagram: #c32aa3 !default;
 $social-pinterest: #cb2027 !default;
 $social-stumbleupon: #f74425 !default;
-$social-twitter: #55acee !default;
+$social-twitter: #000000 !default;
 $social-vimeo: #aad450 !default;
 $social-youtube: #bb0000 !default;
 $social-whatsapp: #25d366 !default;
@@ -171,7 +171,7 @@ $state-red: $red-500 !default;
 $state-yellow: $yellow-500 !default;
 $state-purple: $purple-500 !default;
 
-$global-colors: ( 
+$global-colors: (
 	background:(
 		'badge': $color-dark,
 		'badge-inverted': $color-light,
@@ -192,14 +192,14 @@ $global-colors: (
 		'table': $color-light,
 		'table-head': ($color-secondary, 1, +2),
 		'table-odd': ($color-secondary, 1, -2),
-		'tabs': $color-light,	
+		'tabs': $color-light,
 		'tabs-active': $color-secondary,
-		'tags': $color-light, 
-		'tags-inverted': $gray-shade-1, 
+		'tags': $color-light,
+		'tags-inverted': $gray-shade-1,
 		'tooltip': $color-light
 	),
 	social: (
-		'behance': $social-behance, 
+		'behance': $social-behance,
 		'dribbble': $social-dribbble,
 		'facebook': $social-facebook,
 		'google': $social-google,
@@ -245,8 +245,8 @@ $global-colors: (
 		'tabs-border': ($color-secondary, 1, 10),
 		'tabs-active': ($color-main, 1, 1),
 		'tabs-triangle': $color-text,
-		'tabs-triangle-active': $color-border, 
-		'accordion': $gray-shade-8, 
+		'tabs-triangle-active': $color-border,
+		'accordion': $gray-shade-8,
 		'tags': $color-text,
 		'tags-inverted': $color-light,
 		'text': $color-text,
@@ -267,7 +267,7 @@ $global-colors: (
 		'yellow': $state-yellow,
 		'purple': $state-purple,
 		'inverted': $color-light,
-	), 
+	),
 	buttons-hover: (
 		'default': ($color-main, 1, 5),
 		'green': $green-shade-5,
@@ -277,7 +277,7 @@ $global-colors: (
 		'yellow': $yellow-shade-6,
 		'purple': $purple-shade-5,
 		'inverted': $gray-shade-2,
-	), 
+	),
 	buttons-active: (
 		'default': ($color-main, 1, 10),
 		'green': $green-shade-6,
@@ -287,7 +287,7 @@ $global-colors: (
 		'yellow': $yellow-shade-6,
 		'purple': $purple-shade-6,
 		'inverted': $gray-shade-2,
-	), 
+	),
 	buttons-text: (
 		'default': $color-light,
 		'default-outline': $color-main,
@@ -356,7 +356,7 @@ $global-colors: (
 		'800': $purple-800,
 		'700': $purple-700,
 		'600': $purple-600,
-		'500': $purple-500,		
+		'500': $purple-500,
 		'400': $purple-400,
 		'300': $purple-300,
 		'200': $purple-200,
